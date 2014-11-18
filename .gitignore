@@ -16,6 +16,9 @@
 # Fortran module files
 *.mod
 
+# Dirs
+build/*
+
 # Compiled Static libraries
 *.lai
 *.la
@@ -26,3 +29,6 @@
 *.exe
 *.out
 *.app
+*.3dsx
+*.elf
+*.smdh
