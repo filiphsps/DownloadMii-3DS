@@ -5,20 +5,17 @@
 #include <iostream>
 #include <sstream>
 #include <3ds.h>
+//Custom Classes
+#include "utils.h"
+#include "application.h"
+#include "gui.h"
+#include "input.h"
 
 using namespace std;
 
-struct Application_s{
-	int id;
-	string Name;
-	string Owner;
-	//TODO: add all the values that can be found in the json file
-	
-};
+Input_s Input;
 
-string generateMenu(int pointer, int apps);
-Application_s getApp(int id);
-Application_s defineApplication_s(int id, string name);
+void MainLoop();
 
 int main()
 {
@@ -27,27 +24,37 @@ int main()
 	aptInit();
 	hidInit(NULL);
 	gfxInit();
+	initGUI();
 	//gfxSet3D(true); //uncomment if using stereoscopic 3D
-
+	
+	APP_STATUS status;
+	
 	/* Main loop */
-	while (aptMainLoop())
+	while ((status = aptGetStatus()) != APP_EXITING)
 	{
-		gspWaitForVBlank();
-		hidScanInput();
-
-		/*
-			Main Code
-		*/
-			generateMenu(3, 46);
-		//---------------------------
-		
-		u32 kDown = hidKeysDown();
-		if (kDown & KEY_START)
-			break; //break in order to return to hbmenu
-
-		//Flush and swap framebuffers
-		gfxFlushBuffers();
-		gfxSwapBuffers();
+		if (status == APP_RUNNING)
+		{
+			//If the app is currently in the forground running, execute the program.
+			gspWaitForVBlank();
+			hidScanInput();
+			MainLoop();
+			if (Input.Start == true){
+				break; //break in order to return to hbmenu
+			}
+			//Flush and swap framebuffers
+			gfxFlushBuffers();
+			gfxSwapBuffers();
+			}
+		else if (status == APP_SUSPENDING)
+		{
+			//If the app is currently suspended in the background, return to the home menu.
+			break;
+		}
+		else if (status == APP_SLEEPMODE)
+		{
+			//If the app is currently suspended in sleep mode, wait.
+			aptWaitStatusEvent();
+		}
 	}
 
 	//Exit services
@@ -58,29 +65,6 @@ int main()
 	return 0;
 }
 
-string generateMenu(int pointer, int apps){
-	string output = "";
-	Application_s ta;
-	for(int x = 0; x <= apps; x++){
-		if(x == pointer)
-			output += ">"; //Render pointer
-		ta = getApp(x);
-		output += ta.Name;
-	}
-	return output;
-}
-
-Application_s getApp(int id){
-	ostringstream convert;
-	convert << "App " << id;
-	Application_s test = defineApplication_s(id, convert.str());
-	return test;
-}
-
-Application_s defineApplication_s(int id, string name){
-	Application_s App;
-	App.id = id;
-	App.Name = name;
-	App.Owner = "Test";
-	return App;
+void MainLoop(){
+	renderGUI(&Input);
 }
