@@ -8,7 +8,7 @@ CREDITS
 ======
 * Main App Developer: Filiph sandström (@filfat).
 * Main Website Developer: Filiph sandström (@filfat).
-* Developer AlbertoSONIC!
+* Developer: AlbertoSONIC!
 * (Coming Soon)Logo made by JoostinOnline.
 
 TODO
