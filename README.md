@@ -1,15 +1,15 @@
 DownloadMii [![Build Status](http://build.filfatstudios.com:8080/buildStatus/icon?job=DownloadMii)](http://build.filfatstudios.com:8080/view/3DS/job/DownloadMii/)
 ===========
-
 DownloadMii is(will be) a online store for 3DS homebrew applications.
+[Website](http://downloadmii.filfatstudios.com)
 
 
 CREDITS
 ======
-* Main App Developer: Filiph sandström (@filfat).
-* Main Website Developer: Filiph sandström (@filfat).
-* Logo made by JoostinOnline.
-* Some code is taken from AlbertoSONIC! Thanks :)
+* Main App Developer: Filiph sandstrÃ¶m (@filfat).
+* Main Website Developer: Filiph sandstrÃ¶m (@filfat).
+* Developer AlbertoSONIC!
+* (Coming Soon)Logo made by JoostinOnline.
 
 TODO
 ======
