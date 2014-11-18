@@ -12,7 +12,7 @@ struct Application_s{
 	int id;
 	string Name;
 	string Owner;
-	//TODO
+	//TODO: add all the values that can be found in the json file
 	
 };
 
