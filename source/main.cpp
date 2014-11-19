@@ -1,17 +1,19 @@
+#include <3ds.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
 #include <iostream>
 #include <sstream>
-#include <3ds.h>
 //Custom Classes
 #include "utils.h"
 #include "application.h"
 #include "gui.h"
 #include "input.h"
+#include "json.h" //https://github.com/kazuho/picojson
 
 using namespace std;
+using namespace picojson;
 
 Input_s Input;
 

@@ -12,6 +12,7 @@ CREDITS
 * Main Website Developer: Filiph sandström (@filfat).
 * Developer: AlbertoSONIC!
 * (Coming Soon)Logo made by JoostinOnline.
+* https://github.com/kazuho/picojson JSON LIBRARY!
 
 TODO
 ======
