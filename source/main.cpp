@@ -10,6 +10,7 @@
 #include "application.h"
 #include "gui.h"
 #include "input.h"
+//#include "json.h"
 
 using namespace std;
 
@@ -36,7 +37,6 @@ int main()
 		{
 			//If the app is currently in the forground running, execute the program.
 			gspWaitForVBlank();
-			hidScanInput();
 			MainLoop();
 			if (Input.Start == true){
 				break; //break in order to return to hbmenu
@@ -66,5 +66,6 @@ int main()
 }
 
 void MainLoop(){
-	renderGUI(&Input);
+	UpdateInput(&Input);
+	renderGUI();
 }

@@ -12,6 +12,7 @@
 
 void UpdateInput(Input_s* input){
 	resetInput(input);
+	hidScanInput();
 	u32 kDown = hidKeysDown();
 	switch(kDown){
 		case KEY_A:
