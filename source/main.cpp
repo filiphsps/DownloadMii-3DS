@@ -10,9 +10,10 @@
 #include "application.h"
 #include "gui.h"
 #include "input.h"
-//#include "json.h"
+#include "json.h"
 
 using namespace std;
+using namespace picojson;
 
 Input_s Input;
 
