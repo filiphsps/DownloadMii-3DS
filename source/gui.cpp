@@ -49,6 +49,6 @@ void navBar(){ //ToDo: Change name to "topNavBar()"
 	
 	char buffer[110];
 	sprintf(buffer, "DownloadMii"); //ToDo: create a "main.h" file that defines the app name
-	drawString(buffer, 5, 28, 255, 255, 255, screenTopLeft, GFX_LEFT); 
- 	drawString(buffer, 5, 28, 255, 255, 255, screenTopRight, GFX_LEFT);
+	drawString(buffer, 5, 28, 255, 255, 255, screenTopLeft, GFX_TOP); 
+ 	drawString(buffer, 5, 28, 255, 255, 255, screenTopRight, GFX_TOP);
 }
