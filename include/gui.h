@@ -14,6 +14,10 @@ struct navBar_s{
 	
 };
 
+static volatile u8* screenTopLeft = 0;
+static volatile u8* screenTopRight = 0;
+static volatile u8* screenBottom = 0;
+
 void initGUI();
 void renderGUI();
 

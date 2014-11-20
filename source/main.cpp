@@ -19,7 +19,7 @@ Input_s Input;
 
 void MainLoop();
 
-int main()
+int main(int argc, char** argv)
 {
 	//Initialize services
 	srvInit();
