@@ -9,11 +9,11 @@
 #include "application.h"
 #include "input.h"
 #include "gui.h"
+#include "main.h"
 
 using namespace std;
 
 /*
-I think thats right ;)
 TopScreen: w400 h240
 BottomScreen: w320 h240
 */
@@ -44,11 +44,15 @@ void renderGUI(){
 
 /* UIs */
 void navBar(){ //ToDo: Change name to "topNavBar()"
-	drawRect(0,0,400,60, 255,255,255, screenTopLeft);
-	drawRect(0,0,400,60, 255,255,255, screenTopRight);
+	drawRect(0,0,400,60, 33,150,243, screenTopLeft);
+	drawRect(0,0,400,60, 33,150,243, screenTopRight);
 	
 	char buffer[110];
-	sprintf(buffer, "DownloadMii"); //ToDo: create a "main.h" file that defines the app name
+	sprintf(buffer, APPLICATION_NAME);
+	drawString(buffer, 5, 28, 255, 255, 255, screenTopLeft, GFX_TOP); 
+ 	drawString(buffer, 5, 28, 255, 255, 255, screenTopRight, GFX_TOP);
+	
+	sprintf(buffer, "            v1.0");
 	drawString(buffer, 5, 28, 255, 255, 255, screenTopLeft, GFX_TOP); 
  	drawString(buffer, 5, 28, 255, 255, 255, screenTopRight, GFX_TOP);
 }
