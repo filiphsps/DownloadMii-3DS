@@ -23,7 +23,7 @@ void initGUI(){
 }
 
 void renderGUI(){
-	nacBar(); //Draw navBar
+	navBar(); //Draw navBar
 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
 	//screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_BOTTOM, NULL, NULL);

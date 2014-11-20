@@ -8,7 +8,6 @@
 #include "utils.h"
 #include "application.h"
 #include "input.h"
-#include "gui.h"
 
 void UpdateInput(Input_s* input){
 	resetInput(input);
