@@ -25,8 +25,8 @@ void initGUI(){
 void renderGUI(){
 	for(int x = 0; x <= 1; x++){ //Render twice
 		/* Clear Screen */
-		clearScreen(screenTopLeft, GFX_LEFT); 
-	 	clearScreen(screenTopRight, GFX_LEFT); 
+		clearScreen(screenTopLeft, GFX_TOP); 
+	 	clearScreen(screenTopRight, GFX_TOP); 
 
 		/* UI */
 		navBar();
