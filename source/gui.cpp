@@ -23,16 +23,24 @@ void initGUI(){
 }
 
 void renderGUI(){
-	navBar(); //Draw navBar
-	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
-	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
-	//screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_BOTTOM, NULL, NULL);
-	gfxSwapBuffersGpu(); 
-	gspWaitForEvent(GSPEVENT_VBlank0, false); 
+	for(int x = 0; x <= 1; x++){ //Render top twice
+	
+		/* UI */
+		navBar();
+		
+		/* Buffers */
+		gfxFlushBuffers(); 
+	 	gfxSwapBuffers(); 
+	 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_BOTTOM, NULL, NULL); 
+	 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
+	 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 
+	}
+	
+	gspWaitForEvent(GSPEVENT_VBlank0, false); //vSync
 }
 
 /* UIs */
-void navBar(){
-	drawRect(0,0,400,20, 0xFF,0xFF,0xFF, screenTopLeft);
-	drawRect(0,0,400,20, 0xFF,0xFF,0xFF, screenTopRight);
+void navBar(){ //ToDo: Change name to "topNavBar()"
+	drawRect(0,0,400,20, 255,255,255, screenTopLeft);
+	drawRect(0,0,400,20, 255,255,255, screenTopRight);
 }
