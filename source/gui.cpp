@@ -23,8 +23,11 @@ void initGUI(){
 }
 
 void renderGUI(){
-	for(int x = 0; x <= 1; x++){ //Render top twice
-	
+	for(int x = 0; x <= 1; x++){ //Render twice
+		/* Clear Screen */
+		clearScreen(screenTopLeft, GFX_LEFT); 
+	 	clearScreen(screenTopRight, GFX_LEFT); 
+
 		/* UI */
 		navBar();
 		
@@ -41,6 +44,11 @@ void renderGUI(){
 
 /* UIs */
 void navBar(){ //ToDo: Change name to "topNavBar()"
-	drawRect(0,0,400,20, 255,255,255, screenTopLeft);
-	drawRect(0,0,400,20, 255,255,255, screenTopRight);
+	drawRect(0,0,400,60, 255,255,255, screenTopLeft);
+	drawRect(0,0,400,60, 255,255,255, screenTopRight);
+	
+	char buffer[110];
+	sprintf(buffer, "DownloadMii" + " " + " v1.0"); //ToDo: create a "main.h" file that defines the app name
+	drawString(buffer, 5, 28, 255, 255, 255, screenTopLeft, GFX_LEFT); 
+ 	drawString(buffer, 5, 28, 255, 255, 255, screenTopRight, GFX_LEFT); 
 }
