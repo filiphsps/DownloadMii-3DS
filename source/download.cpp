@@ -47,7 +47,7 @@ string downloadFile(string url){
 	if(r != 0){ //Error
 		return "error";
 	}
-	string data = "test";//(char*)b;
+	string data = (char*)b;
 	free(b);
 	return data;
 }
