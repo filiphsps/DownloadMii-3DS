@@ -8,7 +8,7 @@
 using namespace std;
 /* Public functions */
 Result initDownload();
-string downloadJson(char* url);
+string downloadFile(char* url);
 
 /* Private-ish functuons, shouldnt be used by any other class! */
 
