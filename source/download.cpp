@@ -10,7 +10,8 @@ using namespace std;
 
 Result networkInit(){
 	Result r;
-	Handle h = 0;
+	Handle h;
+	srvGetServiceHandle(&h, "http:C");
 	r = HTTPC_Initialize(h);
 	if(r != 0){ //Error
 		return r;
@@ -20,7 +21,8 @@ Result networkInit(){
 }
 string downloadFile(string url){
 	Result r;
-	Handle h = 0;
+	Handle h;
+	srvGetServiceHandle(&h, "http:C");
 	Handle c = 0;
 	u8* b = (u8*)malloc(BUFFER_SIZE); //buffer
 	r = HTTPC_CreateContext(h, (char*)url.c_str(), &c);

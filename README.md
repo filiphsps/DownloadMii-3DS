@@ -13,6 +13,7 @@ CREDITS
 * Some code is used from AlbertoSONIC!
 * Logo made by JoostinOnline.
 * https://github.com/kazuho/picojson JSON LIBRARY!
+* The CTRULIB team for their awesome lib!
 
 TODO
 ======
