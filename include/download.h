@@ -1,5 +1,4 @@
-#ifndef DOWNLOAD_H
-#define DOWNLOAD_H
+#pragma once
 
 #include <iostream>
 #include <netdb.h>
@@ -13,4 +12,3 @@ string downloadFile(string url);
 
 /* Private-ish functuons, shouldnt be used by any other class! */
 
-#endif

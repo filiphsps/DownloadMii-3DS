@@ -1,6 +1,3 @@
-#ifndef MAIN_H
-#define MAIN_H
+#pragma once
 
 #define APPLICATION_NAME "DownloadMii"
-
-#endif

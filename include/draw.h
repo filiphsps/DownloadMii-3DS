@@ -1,5 +1,4 @@
-#ifndef DRAW_H
-#define DRAW_H
+#pragma once
 
 #define TOP_ASPECT_X 0x5
 #define TOP_ASPECT_Y 0x3
@@ -21,4 +20,3 @@ void drawFillRect( int x1, int y1, int x2, int y2, char r, char g, char b, u8* s
 void drawCircle(int x, int y, int radius, char r, char g, char b, u8* screen);
 void drawFillCircle(int x, int y, int radius, char r , char g, char b, u8* screen);
 void drawCircleCircum(int xc, int yc, int x, int y, char r, char g, char b, u8* screen);
-#endif
