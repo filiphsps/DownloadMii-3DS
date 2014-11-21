@@ -30,7 +30,9 @@ void renderGUI(){
 
 		/* UI */
 		navBar();
+		if(debug_l == true){
 		
+		}
 		/* Buffers */
 		gfxFlushBuffers(); 
 	 	gfxSwapBuffers(); 
@@ -41,8 +43,18 @@ void renderGUI(){
 	
 	gspWaitForEvent(GSPEVENT_VBlank0, false); //vSync
 }
-
+void debug(string text){
+	debug_l = true;
+	debugStr = text;
+}
 /* UIs */
+void renderDebug(){
+	char buffer[110];
+	string debugStr = "";
+	sprintf(buffer, const_cast<char*>(debugStr.c_str()));
+	drawString(buffer, 200, 28, 255, 255, 255, screenTopLeft, GFX_TOP); 
+ 	drawString(buffer, 200, 28, 255, 255, 255, screenTopRight, GFX_TOP);
+}
 void navBar(){ //ToDo: Change name to "topNavBar()"
 	drawRect(0,0,400,60, 33,150,243, screenTopLeft);
 	drawRect(0,0,400,60, 33,150,243, screenTopRight);

@@ -11,6 +11,7 @@
 #include "gui.h"
 #include "input.h"
 #include "json.h"
+#include "download.h"
 
 using namespace std;
 using namespace picojson;
@@ -27,9 +28,20 @@ int main(int argc, char** argv)
 	hidInit(NULL);
 	gfxInit();
 	initGUI();
+	Result r = initDownload();
+	if(r != 0){
+		//Error,
+		//ToDo: Set application in offline mode
+	}
 	//gfxSet3D(true); //uncomment if using stereoscopic 3D
 	
 	APP_STATUS status;
+	
+	//Test
+	string url = "http://downloadmii.filfatstudios.com/applications.json";
+	string jsonSS = downloadFile(url);
+	jsonSS.resize(20);
+	debug(jsonSS);
 	
 	/* Main loop */
 	while ((status = aptGetStatus()) != APP_EXITING)
@@ -42,10 +54,7 @@ int main(int argc, char** argv)
 			if (Input.Start == true){
 				break; //break in order to return to hbmenu
 			}
-			//Flush and swap framebuffers
-			gfxFlushBuffers();
-			gfxSwapBuffers();
-			}
+		}
 		else if (status == APP_SUSPENDING)
 		{
 			//If the app is currently suspended in the background, return to the home menu.

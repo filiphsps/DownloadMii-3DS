@@ -14,13 +14,17 @@ struct navBar_s{
 	
 };
 
+static string debugStr;
+static bool debug_l;
 static u8* screenTopLeft = 0;
 static u8* screenTopRight = 0;
 static u8* screenBottom = 0;
 
 void initGUI();
 void renderGUI();
+void debug(string text);
 
 /* UIs */
 void navBar();
+void renderDebug();
 #endif
