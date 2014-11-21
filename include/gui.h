@@ -1,5 +1,5 @@
-#ifndef __GUI_H__
-#define __GUI_H__
+#pragma once
+
 
 #include <iostream>
 #include <string.h>
@@ -27,4 +27,3 @@ void debug(char* text);
 void navBar();
 void renderDebug();
 void whiteBG();
-#endif

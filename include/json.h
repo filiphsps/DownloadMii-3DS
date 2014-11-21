@@ -25,8 +25,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef picojson_h
-#define picojson_h
+#pragma once
 
 #include <algorithm>
 #include <cstdio>
@@ -1298,4 +1297,3 @@ int main(void)
   return success ? 0 : 1;
 }
 
-#endif

@@ -1,5 +1,4 @@
-#ifndef __APPLICATION_H__
-#define __APPLICATION_H__
+#pragma once
 
 #include <iostream>
 
@@ -15,5 +14,3 @@ struct Application_s{
 
 Application_s defineApplication_s(int id, string name, string owner);
 Application_s getApp(int id);
-
-#endif
