@@ -29,7 +29,7 @@ void renderGUI(){
 	 	clearScreen(screenTopRight, GFX_TOP); 
 
 		/* UI */
-		//navBar();
+		navBar();
 		if(debug_l == true){
 			renderDebug();
 		}
