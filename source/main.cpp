@@ -49,7 +49,6 @@ int main(int argc, char** argv)
 		if (status == APP_RUNNING)
 		{
 			//If the app is currently in the forground running, execute the program.
-			gspWaitForVBlank();
 			MainLoop();
 			if (Input.Start == true){
 				break; //break in order to return to hbmenu
