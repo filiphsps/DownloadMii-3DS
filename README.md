@@ -11,7 +11,7 @@ CREDITS
 * Main App Developer: Filiph sandström (@filfat).
 * Main Website Developer: Filiph sandström (@filfat).
 * Some code is used from AlbertoSONIC!
-* (Coming Soon)Logo made by JoostinOnline.
+* Logo made by JoostinOnline.
 * https://github.com/kazuho/picojson JSON LIBRARY!
 
 TODO

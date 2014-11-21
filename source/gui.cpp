@@ -29,9 +29,9 @@ void renderGUI(){
 	 	clearScreen(screenTopRight, GFX_TOP); 
 
 		/* UI */
-		navBar();
+		//navBar();
 		if(debug_l == true){
-		
+			renderDebug();
 		}
 		/* Buffers */
 		gfxFlushBuffers(); 
@@ -41,7 +41,7 @@ void renderGUI(){
 	 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 
 	}
 	
-	gspWaitForEvent(GSPEVENT_VBlank0, false); //vSync
+	//gspWaitForEvent(GSPEVENT_VBlank0, false); //vSync
 }
 void debug(string text){
 	debug_l = true;
