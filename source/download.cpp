@@ -8,9 +8,11 @@
 
 using namespace std;
 
+Handle h = 0;
+
 Result networkInit(){
+	srvGetServiceHandle(&h, "http:C");
 	Result r;
-	Handle h = 0;
 	r = HTTPC_Initialize(h);
 	if(r != 0){ //Error
 		return r;
@@ -20,7 +22,6 @@ Result networkInit(){
 }
 string downloadFile(string url){
 	Result r;
-	Handle h = 0;
 	Handle c = 0;
 	u8* b = (u8*)malloc(BUFFER_SIZE); //buffer
 	r = HTTPC_CreateContext(h, (char*)url.c_str(), &c);
@@ -28,6 +29,10 @@ string downloadFile(string url){
 		return "error";
 	}
 	r = HTTPC_InitializeConnectionSession(h, c);
+	if(r != 0){ //Error
+		return "error";
+	}
+	r = HTTPC_SetProxyDefault(h, c);
 	if(r != 0){ //Error
 		return "error";
 	}
