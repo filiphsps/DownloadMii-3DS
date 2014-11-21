@@ -27,7 +27,7 @@ string downloadFile(string url){
 	Handle h = 0;
 	Handle c = 0;
 	u8* b = (u8*)malloc(BUFFER_SIZE); //buffer
-	r = HTTPC_CreateContext(h, const_cast<char*>(url.c_str()), &c);
+	r = HTTPC_CreateContext(h, (char*)url.c_str(), &c);
 	if(r != 0){ //Error
 		return "error";
 	}
@@ -47,7 +47,7 @@ string downloadFile(string url){
 	if(r != 0){ //Error
 		return "error";
 	}
-	string data = "ToDo";
+	string data = (char*)b;
 	free(b);
 	return data;
 }

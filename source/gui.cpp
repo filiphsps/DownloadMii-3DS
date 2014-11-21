@@ -50,7 +50,7 @@ void debug(string text){
 /* UIs */
 void renderDebug(){
 	char buffer[110];
-	sprintf(buffer, const_cast<char*>(debugStr.c_str()));
+	sprintf(buffer, (char*)debugStr.c_str());
 	drawString(buffer, 5, 200, 178, 63, 255, screenTopLeft, GFX_TOP); 
  	drawString(buffer, 5, 200, 178, 63, 255,  screenTopRight, GFX_TOP);
 }
