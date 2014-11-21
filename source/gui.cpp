@@ -26,31 +26,31 @@ void renderGUI(){
 	for(int x = 0; x <= 1; x++){ //Render twice
 		/* Clear Screen */
 		clearScreen(screenTopLeft, GFX_TOP); 
-	 	clearScreen(screenTopRight, GFX_TOP); 
+	 	clearScreen(screenTopRight, GFX_TOP);
+
+		/* White BG */
+		whiteBG();
 
 		/* UI */
 		navBar();
-		if(debug_l == true){
+		if(DEBUG == true){
 			renderDebug();
 		}
 		/* Buffers */
 		gfxFlushBuffers(); 
 	 	gfxSwapBuffers(); 
-	 	//screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_BOTTOM, NULL, NULL); 
+	 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
 	 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 	 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 
 	}
-	
-	//gspWaitForEvent(GSPEVENT_VBlank0, false); //vSync
 }
-void debug(string text){
-	debug_l = true;
+void debug(char* text){
 	debugStr = text;
 }
 /* UIs */
 void renderDebug(){
 	char buffer[110];
-	sprintf(buffer, (char*)debugStr.c_str());
+	sprintf(buffer, debugStr);
 	drawString(buffer, 5, 200, 178, 63, 255, screenTopLeft, GFX_TOP); 
  	drawString(buffer, 5, 200, 178, 63, 255,  screenTopRight, GFX_TOP);
 }
@@ -66,4 +66,9 @@ void navBar(){ //ToDo: Change name to "topNavBar()"
 	sprintf(buffer, "            v1.0");
 	drawString(buffer, 5, 28, 255, 255, 255, screenTopLeft, GFX_TOP); 
  	drawString(buffer, 5, 28, 255, 255, 255, screenTopRight, GFX_TOP);
+}
+void whiteBG(){
+	drawFillRect( 0, 0, 400, 240, 255, 255, 255, screenTopLeft);
+	drawFillRect( 0, 0, 400, 240, 255, 255, 255, screenTopRight);
+	drawFillRect( 0, 0, 400, 240, 255, 255, 255, screenBottom);
 }

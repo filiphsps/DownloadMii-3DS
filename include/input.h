@@ -6,7 +6,7 @@
 using namespace std;
 
 struct Input_s{
-	bool Up, Down, Left, Right, A, B, X, Y, Start, Select;
+	bool Up = false, Down, Left, Right, A, B, X, Y, Start, Select;
 	u32 lX, lY, rX, rY;
 };
 

@@ -38,10 +38,14 @@ int main(int argc, char** argv)
 	APP_STATUS status;
 	
 	//Test
-	string url = "http://downloadmii.filfatstudios.com/applications.json";
-	string jsonSS = downloadFile(url);
-	jsonSS.resize(20);
-	debug(jsonSS);
+	char* url = "http://downloadmii.filfatstudios.com/applications.json";
+	char* jsonSS = downloadFile(url);
+	if(jsonSS != NULL){
+		debug(jsonSS);
+	}
+	else{
+		debug("");
+	}
 	
 	/* Main loop */
 	while ((status = aptGetStatus()) != APP_EXITING)

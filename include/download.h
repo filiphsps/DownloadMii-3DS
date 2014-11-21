@@ -8,7 +8,7 @@
 using namespace std;
 /* Public functions */
 Result networkInit();
-string downloadFile(string url);
+char* downloadFile(char*);
 
 /* Private-ish functuons, shouldnt be used by any other class! */
 

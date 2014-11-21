@@ -20,11 +20,11 @@ Result networkInit(){
 	
 	return 0; //Success
 }
-string downloadFile(string url){
+char* downloadFile(char* url){
 	Result r;
 	Handle c = 0;
 	u8* b = (u8*)malloc(BUFFER_SIZE); //buffer
-	r = HTTPC_CreateContext(h, (char*)url.c_str(), &c);
+	r = HTTPC_CreateContext(h, url, &c);
 	if(r != 0){ //Error
 		return "error";
 	}
@@ -48,7 +48,5 @@ string downloadFile(string url){
 	if(r != 0){ //Error
 		return "error";
 	}
-	string data = (char*)b;
-	free(b);
-	return data;
+	return (char*)b;
 }
