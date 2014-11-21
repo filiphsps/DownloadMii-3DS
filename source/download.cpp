@@ -15,10 +15,6 @@ Result networkInit(){
 	if(r != 0){ //Error
 		return r;
 	}
-	r = HTTPC_Initialize(h);
-	if(r != 0){ //Error
-		return r;
-	}
 	
 	return 0; //Success
 }
