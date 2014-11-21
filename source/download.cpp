@@ -25,7 +25,7 @@ Result networkInit(){
 string downloadFile(string url){
 	Result r;
 	Handle h = 0;
-	Handle c;
+	Handle c = 0;
 	u8* b = (u8*)malloc(BUFFER_SIZE); //buffer
 	r = HTTPC_CreateContext(h, const_cast<char*>(url.c_str()), &c);
 	if(r != 0){ //Error
