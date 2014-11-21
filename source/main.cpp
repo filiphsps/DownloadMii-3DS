@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 	hidInit(NULL);
 	gfxInit();
 	initGUI();
-	Result r = initDownload();
+	Result r = networkInit();
 	if(r != 0){
 		//Error,
 		//ToDo: Set application in offline mode

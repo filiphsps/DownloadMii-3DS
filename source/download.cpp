@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Result initDownload(){
+Result networkInit(){
 	Result r;
 	Handle h = 0;
 	r = HTTPC_Initialize(h);
