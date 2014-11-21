@@ -47,8 +47,7 @@ string downloadFile(string url){
 	if(r != 0){ //Error
 		return "error";
 	}
-	string data;
-	sprintf( const_cast<char*>(data.c_str()), "%s",b) ; //Places the content of the buffer inside "data"
+	string data = "ToDo";
 	free(b);
 	return data;
 }
