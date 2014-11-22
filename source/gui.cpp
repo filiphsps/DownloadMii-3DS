@@ -37,6 +37,7 @@ void renderGUI(){
 		background();
 
 		/* UI: TOP */
+		//renderTopNavBar();
 		
 		/* UI: BOTTOM */
 		
@@ -52,12 +53,17 @@ void renderGUI(){
 void renderDebug(){
 	int i = countLines(superStr); 
  	while(i>240/fontDefault.height-3){cutLine(superStr);i--;} 
- 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, NULL, superStr, 240-fontDefault.height*4, 20); 
+	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, superStr, 240-fontDefault.height*1, 20); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, superStr, 240-fontDefault.height*1, 20); 
 }
 void background(){
+	drawFillRect( 0, 0, 320, 240, 0,148,255, screenBottom);
 	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopLeft);
 	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopRight);
-	drawFillRect( 0, 0, 320, 240, 0,148,255, screenBottom);
+}
+void renderTopNavBar(){
+	drawFillRect( 0, 0, 400, 40, 255,255,255, screenTopLeft);
+	drawFillRect( 0, 0, 400, 40, 255,255,255, screenTopRight);
 }
 int countLines(char* str)
 {

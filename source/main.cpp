@@ -18,6 +18,7 @@ using namespace std;
 //using namespace picojson;
 
 Input_s Input;
+char superStr[8192];
 
 void MainLoop();
 
@@ -30,7 +31,6 @@ int main(int argc, char** argv)
 	gfxInit();
 	initGUI();
 	//gfxSet3D(true);
-	print("networkInit()\n");
 	Result r = networkInit();
 	if(r != 0){
 		//Error,
@@ -49,7 +49,6 @@ int main(int argc, char** argv)
 			print("Error\n");
 		}	
 	}
-	
 	//APP_STATUS status;
 	
 	/* Main loop */

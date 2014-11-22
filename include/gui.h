@@ -6,7 +6,7 @@
 #include "draw.h"
 #include "ascii64.h"
 
-#define print(...) sprintf(&superStr[strlen(superStr)], __VA_ARGS__); renderGUI()
+#define print(...) sprintf(&superStr[strlen(superStr)], __VA_ARGS__);
 
 using namespace std;
 
@@ -18,13 +18,14 @@ struct navBar_s{
 static u8* screenTopLeft = 0;
 static u8* screenTopRight = 0;
 static u8* screenBottom = 0;
-static char superStr[8192] = "";
+extern char superStr[];
 
 void initGUI(); 
 void renderGUI();
+void renderDebug();
 
 /* UIs */
-void renderDebug();
+void renderTopNavBar();
 void background();
 
 /* TEXT */

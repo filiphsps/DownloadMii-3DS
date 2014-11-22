@@ -22,33 +22,33 @@ char* downloadFile(char* url){
 	
 	r = httpcOpenContext(&c, url, 0);
 	if(r != 0){
-		return "error";
+		return "error: httpcOpenContext";
 	}
 	
 	r = httpcBeginRequest(&c);
 	if(r != 0){
-		return "error";
+		return "error: httpcBeginRequest";
 	}
 	
 	r = httpcGetResponseStatusCode(&c, &statuscode, 0);
 	if((r != 0) || statuscode != 200){
-		return "error";
+		return "error: httpcGetResponseStatusCode";
 	}
 	
 	r = httpcGetDownloadSizeState(&c, NULL, &contentsize);
 	if(r != 0){
-		return "error";
+		return "error: httpcGetDownloadSizeState";
 	}
 	
 	b = (u8*)malloc(contentsize);
-	if(b==NULL)return "error";
+	if(b==NULL)return "error: (u8*)malloc(contentsize)";
 	memset(b, 0, contentsize);
 	
 	r = httpcDownloadData(&c, b, contentsize, NULL);
 	if(r != 0)
 	{
 		free(b);
-		return "error";
+		return "error: httpcDownloadData";
 	}
 	file = (char*)b;
 	httpcCloseContext(&c);
