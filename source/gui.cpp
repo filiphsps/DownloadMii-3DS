@@ -38,6 +38,9 @@ void renderGUI(){
 		//renderDebug();
 	}
 	/* Buffers */
+	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
+ 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
+ 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 
 	gfxFlushBuffers(); 
  	gfxSwapBuffers(); 
 }
