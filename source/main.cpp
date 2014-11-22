@@ -12,6 +12,7 @@
 #include "input.h"
 //#include "json.h"
 #include "download.h"
+#include "font.h"
 
 using namespace std;
 //using namespace picojson;
@@ -28,37 +29,35 @@ int main(int argc, char** argv)
 	hidInit(NULL);
 	gfxInit();
 	initGUI();
-	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "networkInit()\n", 240-fontDefault.height*1, 10);
+	//gfxSet3D(true);
+	print("networkInit()\n");
 	Result r = networkInit();
 	if(r != 0){
 		//Error,
 		//ToDo: Set application in offline mode
-		gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Error could not init network!\n", 240-fontDefault.height*1, 10);
+		print("Error could not init network!\n");
 	}
 	else{
-		gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Downloading File..\n", 240-fontDefault.height*2, 10);
+		print("Downloading File..\n");
 		char* url = "http://downloadmii.filfatstudios.com/applications.json";
 		char* jsonSS = downloadFile(url);
 		if(jsonSS != NULL){
-			gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Success\n", 240-fontDefault.height*3, 10);
-			debug(jsonSS); //ToDo
+			print("Success\n");
+			print(jsonSS); //ToDo
 		}
 		else{
-			gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Error\n", 240-fontDefault.height*3, 10);
-			debug("");
+			print("Error\n");
 		}	
 	}
 	
-	//gfxSet3D(true); //uncomment if using stereoscopic 3D
-	
-	APP_STATUS status;
+	//APP_STATUS status;
 	
 	/* Main loop */
 	while (aptMainLoop())
 	{
 		MainLoop();
 		if (Input.Start == true){
-			gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Exiting\n", 240-fontDefault.height*1, 10);
+			print("Exiting\n");
 			break; //break in order to return to hbmenu
 		}
 	}

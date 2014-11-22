@@ -17,7 +17,7 @@ char* downloadFile(char* url){
 	httpcContext c;
 	u8 *b; //buffer
 	u32 statuscode=0;
-	u32 size=0, contentsize=0;
+	u32 contentsize=0;
 	char* file;
 	
 	r = httpcOpenContext(&c, url, 0);

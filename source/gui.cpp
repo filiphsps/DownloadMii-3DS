@@ -30,14 +30,16 @@ void renderGUI(){
 	clearScreen(screenTopLeft, GFX_TOP); 
  	clearScreen(screenTopRight, GFX_TOP);
 
-	/* White BG */
-	whiteBG();
+	/* Background */
+	background();
 
 	/* UI */
-	//navBar(); //Might be the problem we are facing.
+	
+	/* DEBUG */
 	if(DEBUG == true){
-		//renderDebug();
+		renderDebug();
 	}
+	
 	/* Buffers */
 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
  	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
@@ -45,31 +47,26 @@ void renderGUI(){
 	gfxFlushBuffers(); 
  	gfxSwapBuffers(); 
 }
-void debug(char* text){
-	debugStr = text;
-}
 /* UIs */
 void renderDebug(){
-	char buffer[110];
-	sprintf(buffer, debugStr);
-	drawString(buffer, 28, 200, 178, 63, 255, screenTopLeft, GFX_TOP); 
- 	drawString(buffer, 28, 200, 178, 63, 255,  screenTopRight, GFX_TOP);
+	int i = countLines(superStr); 
+ 	while(i>240/fontDefault.height-3){cutLine(superStr);i--;} 
+ 	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, superStr, 240-fontDefault.height*4, 20); 
 }
-void navBar(){ //ToDo: Change name to "topNavBar()"
-	drawRect(0,0,60,400, 33,150,243, screenTopLeft);
-	drawRect(0,0,60,400, 33,150,243, screenTopRight);
-	
-	char buffer[110];
-	sprintf(buffer, APPLICATION_NAME);
-	drawString(buffer, 28, 5, 255, 255, 255, screenTopLeft, GFX_TOP); 
- 	drawString(buffer, 28, 5, 255, 255, 255, screenTopRight, GFX_TOP);
-	
-	sprintf(buffer, "            v1.0");
-	drawString(buffer, 28, 5, 255, 255, 255, screenTopLeft, GFX_TOP); 
- 	drawString(buffer, 28, 5, 255, 255, 255, screenTopRight, GFX_TOP);
+void background(){
+	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopLeft);
+	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopRight);
+	drawFillRect( 0, 0, 300, 240, 0,148,255, screenBottom);
 }
-void whiteBG(){
-	drawFillRect( 0, 0, 240, 400, 255, 255, 255, screenTopLeft);
-	drawFillRect( 0, 0, 240, 400, 255, 255, 255, screenTopRight);
-	drawFillRect( 0, 0, 240, 400, 255, 255, 255, screenBottom);
+int countLines(char* str)
+{
+	if(!str)return 0;
+	int cnt; for(cnt=1;*str=='\n'?++cnt:*str;str++);
+	return cnt;
+}
+void cutLine(char* str)
+{
+	if(!str || !*str)return;
+	char* str2=str;	for(;*str2&&*(str2+1)&&*str2!='\n';str2++);	str2++;
+	memmove(str,str2,strlen(str2)+1);
 }
