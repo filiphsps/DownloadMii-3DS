@@ -11,7 +11,7 @@
 #include "gui.h"
 #include "input.h"
 //#include "json.h"
-//#include "download.h"
+#include "download.h"
 
 using namespace std;
 //using namespace picojson;
@@ -33,7 +33,7 @@ int main(int argc, char** argv)
 	if(r != 0){
 		//Error,
 		//ToDo: Set application in offline mode
-		gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "ftPONY v0.1 omega\n", 240-fontDefault.height*1, 10);
+		gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Error could not init network!\n", 240-fontDefault.height*1, 10);
 	}
 	else{
 		gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Downloading File..\n", 240-fontDefault.height*2, 10);
