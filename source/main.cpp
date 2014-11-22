@@ -28,30 +28,37 @@ int main(int argc, char** argv)
 	hidInit(NULL);
 	gfxInit();
 	initGUI();
-	//Result r = networkInit();
-	/*if(r != 0){
+	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "networkInit()\n", 240-fontDefault.height*1, 10);
+	Result r = networkInit();
+	if(r != 0){
 		//Error,
 		//ToDo: Set application in offline mode
-	}*/
-	//gfxSet3D(true); //uncomment if using stereoscopic 3D
-	
-	//APP_STATUS status;
-	
-	//Test
-	//char* url = "http://downloadmii.filfatstudios.com/applications.json";
-	//char* jsonSS = downloadFile(url);
-	/*if(jsonSS != NULL){
-		debug(jsonSS);
+		gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "ftPONY v0.1 omega\n", 240-fontDefault.height*1, 10);
 	}
 	else{
-		debug("");
-	}*/
+		gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Downloading File..\n", 240-fontDefault.height*2, 10);
+		char* url = "http://downloadmii.filfatstudios.com/applications.json";
+		char* jsonSS = downloadFile(url);
+		if(jsonSS != NULL){
+			gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Success\n", 240-fontDefault.height*3, 10);
+			debug(jsonSS); //ToDo
+		}
+		else{
+			gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Error\n", 240-fontDefault.height*3, 10);
+			debug("");
+		}	
+	}
+	
+	//gfxSet3D(true); //uncomment if using stereoscopic 3D
+	
+	APP_STATUS status;
 	
 	/* Main loop */
 	while (aptMainLoop())
 	{
 		MainLoop();
 		if (Input.Start == true){
+			gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Exiting\n", 240-fontDefault.height*1, 10);
 			break; //break in order to return to hbmenu
 		}
 	}
