@@ -23,26 +23,24 @@ void initGUI(){
 }
 
 void renderGUI(){
-	for(int x = 0; x <= 1; x++){ //Render twice
-		/* Clear Screen */
-		clearScreen(screenTopLeft, GFX_TOP); 
-	 	clearScreen(screenTopRight, GFX_TOP);
+	/* Clear Screen */
+	clearScreen(screenTopLeft, GFX_TOP); 
+ 	clearScreen(screenTopRight, GFX_TOP);
 
-		/* White BG */
-		whiteBG();
+	/* White BG */
+	whiteBG();
 
-		/* UI */
-		navBar();
-		if(DEBUG == true){
-			renderDebug();
-		}
-		/* Buffers */
-		gfxFlushBuffers(); 
-	 	gfxSwapBuffers(); 
-	 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
-	 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
-	 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 
+	/* UI */
+	navBar();
+	if(DEBUG == true){
+		//renderDebug();
 	}
+	/* Buffers */
+	gfxFlushBuffers(); 
+ 	gfxSwapBuffers(); 
+ 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
+ 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
+ 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 
 }
 void debug(char* text){
 	debugStr = text;
