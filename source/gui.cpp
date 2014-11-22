@@ -19,7 +19,9 @@ BottomScreen: w320 h240
 */
 
 void initGUI(){
-	
+	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
+ 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
+ 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 	
 }
 
 void renderGUI(){
@@ -38,9 +40,6 @@ void renderGUI(){
 	/* Buffers */
 	gfxFlushBuffers(); 
  	gfxSwapBuffers(); 
- 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
- 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
- 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 
 }
 void debug(char* text){
 	debugStr = text;
