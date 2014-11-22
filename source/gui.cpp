@@ -20,32 +20,35 @@ BottomScreen: w320 h240
 */
 
 void initGUI(){
-	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
- 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
- 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 	
+	//ToDo
 }
 
 void renderGUI(){
-	/* Clear Screen */
-	clearScreen(screenTopLeft, GFX_TOP); 
- 	clearScreen(screenTopRight, GFX_TOP);
-
-	/* Background */
-	background();
-
-	/* UI */
-	
-	/* DEBUG */
-	if(DEBUG == true){
-		renderDebug();
-	}
-	
-	/* Buffers */
 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
  	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
- 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 
-	gfxFlushBuffers(); 
- 	gfxSwapBuffers(); 
+ 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
+	for(int x = 0; x <= 1; x++){
+		/* Clear Screen */
+		clearScreen(screenTopLeft, GFX_TOP); 
+		clearScreen(screenTopRight, GFX_TOP);
+
+		/* Background */
+		background();
+
+		/* UI */
+		
+		/* DEBUG */
+		if(DEBUG == true){
+			renderDebug();
+		}
+		
+		/* Buffers */
+		screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
+		screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
+		screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL); 
+		gfxFlushBuffers(); 
+		gfxSwapBuffers(); 
+	}
 }
 /* UIs */
 void renderDebug(){
