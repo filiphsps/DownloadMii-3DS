@@ -72,4 +72,5 @@ int main(int argc, char** argv)
 void MainLoop(){
 	UpdateInput(&Input);
 	renderGUI();
+	gspWaitForEvent(GSPEVENT_VBlank0, false);
 }
