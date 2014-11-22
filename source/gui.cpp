@@ -41,9 +41,7 @@ void renderGUI(){
 		/* UI: BOTTOM */
 		
 		/* DEBUG */
-		if(DEBUG == true){
-			renderDebug();
-		}
+		renderDebug();
 		
 		/* Buffers */
 		gfxFlushBuffers(); 
