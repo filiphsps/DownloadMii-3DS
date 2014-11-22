@@ -42,7 +42,7 @@ char* downloadFile(char* url){
 	
 	b = (u8*)malloc(contentsize);
 	if(b==NULL)return "error";
-	memset(buf, 0, contentsize);
+	memset(b, 0, contentsize);
 	
 	r = httpcDownloadData(c, b, contentsize, NULL);
 	if(r != 0)
