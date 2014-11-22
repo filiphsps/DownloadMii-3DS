@@ -25,17 +25,17 @@ char* downloadFile(char* url){
 		return "error";
 	}
 	
-	r = httpcBeginRequest(c);
+	r = httpcBeginRequest(&c);
 	if(r != 0){
 		return "error";
 	}
 	
-	r = httpcGetResponseStatusCode(c, &statuscode, 0);
+	r = httpcGetResponseStatusCode(&c, &statuscode, 0);
 	if((r != 0) || statuscode != 200){
 		return "error";
 	}
 	
-	r = httpcGetDownloadSizeState(c, NULL, &contentsize);
+	r = httpcGetDownloadSizeState(&c, NULL, &contentsize);
 	if(r != 0){
 		return "error";
 	}
@@ -44,7 +44,7 @@ char* downloadFile(char* url){
 	if(b==NULL)return "error";
 	memset(b, 0, contentsize);
 	
-	r = httpcDownloadData(c, b, contentsize, NULL);
+	r = httpcDownloadData(&c, b, contentsize, NULL);
 	if(r != 0)
 	{
 		free(b);
