@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 		else{
 			print(jsonSS); //Prints out the error
 			print(", Offline mode enabled\n");
-			jsonSS = "{\"Apps\":{\"Tools\":[{\"name\":\"Temp\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Theme\",\"downloadUrl\":\"http://exampke.com/temp.3dsx\",\"icon\":\"http://example.com/temp.png\",\"smdh\":\"http://example.com/temp.smdh\"},{\"name\":\"Temp2\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Theme\",\"downloadUrl\":\"http://exampke.com/temp.3dsx\",\"icon\":\"http://example.com/temp.png\",\"smdh\":\"http://example.com/temp.smdh\"}],\"Games\":[{\"name\":\"Pong\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Retro\",\"downloadUrl\":\"http://exampke.com/pong.3dsx\",\"icon\":\"http://example.com/pong.png\",\"smdh\":\"http://example.com/pong.smdh\"}]}}";
+			//jsonSS = "{\"Apps\":{\"Tools\":[{\"name\":\"Temp\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Theme\",\"downloadUrl\":\"http://exampke.com/temp.3dsx\",\"icon\":\"http://example.com/temp.png\",\"smdh\":\"http://example.com/temp.smdh\"},{\"name\":\"Temp2\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Theme\",\"downloadUrl\":\"http://exampke.com/temp.3dsx\",\"icon\":\"http://example.com/temp.png\",\"smdh\":\"http://example.com/temp.smdh\"}],\"Games\":[{\"name\":\"Pong\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Retro\",\"downloadUrl\":\"http://exampke.com/pong.3dsx\",\"icon\":\"http://example.com/pong.png\",\"smdh\":\"http://example.com/pong.smdh\"}]}}";
 		}
 	}
 	
