@@ -55,7 +55,7 @@ int main(int argc, char** argv)
 	
 	//JSON TEST-----------------------------------------
 	//Link to example: http://developer.mbed.org/users/mimil/code/PicoJSONSample/docs/81c978de0e2b/main_8cpp_source.html
-		picojson::value v;
+		/*picojson::value v;
 		
 		char * json = (char*) malloc(strlen(jsonSS)+1);
 		strcpy(json, jsonSS);
@@ -69,7 +69,7 @@ int main(int argc, char** argv)
 		for (picojson::array::const_iterator i = a.begin(); i != a.end(); ++i) { 
 			print((*i).get("name").get<string>().c_str());
 			print("\n");
-		} 
+		} */
 
 		
 	//--------------------------------------------------
