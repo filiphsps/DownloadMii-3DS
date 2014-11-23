@@ -19,6 +19,7 @@ using namespace std;
 
 Input_s Input;
 char superStr[8192];
+int x;
 
 void MainLoop();
 
@@ -46,19 +47,25 @@ int main(int argc, char** argv)
 			print(jsonSS); //ToDo
 		}
 		else{
-			print("Error\n");
-		}	
+			print(jsonSS); //Prints out the error
+		}
+		print("\n");
 	}
 	//APP_STATUS status;
 	
 	/* Main loop */
 	while (aptMainLoop())
 	{
-		MainLoop();
-		if (Input.Start == true){
+		UpdateInput(&Input);
+		renderGUI();
+		if(Input.Right){
+			print("Right!");
+		} else if (Input.Start){
 			print("Exiting\n");
 			break; //break in order to return to hbmenu
 		}
+		print("Tick: %d\n", x);
+		x++;
 	}
 
 	//Exit services
@@ -67,9 +74,4 @@ int main(int argc, char** argv)
 	aptExit();
 	srvExit();
 	return 0;
-}
-
-void MainLoop(){
-	UpdateInput(&Input);
-	renderGUI();
 }

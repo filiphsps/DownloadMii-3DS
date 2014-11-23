@@ -10,7 +10,7 @@
 #include "input.h"
 #include "gui.h"
 #include "main.h"
-//#include "background_bin.h"
+#include "background_bin.h"
 
 using namespace std;
 
@@ -61,8 +61,19 @@ void background(){
 	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopLeft);
 	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopRight);
 	
-	//gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)background_bin, 400,240, 0,0);
-	//gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)background_bin, 400,240, 0,0);
+	//Background
+	gfxDrawDualSprite((u8*)background_bin, 240, 400, 240, 0);
+	
+	//L
+	/*drawFillRect( 0, 200, 60, 240, 0,126,216, screenTopLeft);
+	drawFillRect( 0, 200, 60, 240, 0,126,216, screenTopRight);
+	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "L", 12, 27); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, "L", 12, 27); 
+	//R
+	drawFillRect( 340, 200, 400, 240, 0,126,216, screenTopLeft);
+	drawFillRect( 340, 200, 400, 240, 0,126,216, screenTopRight);
+	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "R", 12, 367); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, "R", 12, 367); */
 }
 void drawTopBar(){
 	drawFillRect(0,0,400,12, 0,126,216, screenTopLeft);
