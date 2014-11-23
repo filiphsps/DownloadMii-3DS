@@ -35,7 +35,7 @@ void drawPixel(int x, int y, char r, char g, char b, u8* screen)
 {
 	int height=240;
 	
-	u32 v=(height-1-y+x*height)*3;
+	u32 v=(height-y+x*height)*3;
 	screen[v]=b;
 	screen[v+1]=g;
 	screen[v+2]=r;
