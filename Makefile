@@ -122,7 +122,7 @@ else
 	export APP_ICON := $(TOPDIR)/$(ICON)
 endif
 
-.PHONY: $(BUILD) clean all
+.PHONY: $(BUILD) clean all run
 
 #---------------------------------------------------------------------------------
 all: $(BUILD)

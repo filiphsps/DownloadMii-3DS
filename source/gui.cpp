@@ -15,7 +15,6 @@
 using namespace std;
 
 /*
-(They should be inverted for some reason)
 TopScreen: w400 h240
 BottomScreen: w320 h240
 */
