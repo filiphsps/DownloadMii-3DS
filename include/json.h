@@ -1000,7 +1000,6 @@ inline std::ostream& operator<<(std::ostream& os, const picojson::value& x)
     #pragma warning(pop)
 #endif
 
-#endif
 #ifdef TEST_PICOJSON
 #ifdef _MSC_VER
     #pragma warning(disable : 4127) // conditional expression is constant
@@ -1297,3 +1296,4 @@ int main(void)
   return success ? 0 : 1;
 }
 
+#endif
