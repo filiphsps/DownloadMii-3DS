@@ -24,30 +24,28 @@ void initGUI(){
 }
 
 void renderGUI(){
-	for(int x = 0; x <= 1; x++){
-		screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
-		screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
-		screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
-		/* Clear Screen */
-		clearScreen(screenBottom, GFX_BOTTOM);
-		clearScreen(screenTopLeft, GFX_TOP); 
-		clearScreen(screenTopRight, GFX_TOP);
+	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
+	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
+	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
+	/* Clear Screen */
+	clearScreen(screenBottom, GFX_BOTTOM);
+	clearScreen(screenTopLeft, GFX_TOP); 
+	clearScreen(screenTopRight, GFX_TOP);
 
-		/* Background */
-		background();
-		
-		/* UI: TOP */
-		drawTopBar();
-		
-		/* UI: BOTTOM */
-		
-		/* DEBUG */
-		renderDebug();
-		
-		/* Buffers */
-		gfxFlushBuffers(); 
-		gfxSwapBuffers();
-	}
+	/* Background */
+	background();
+	
+	/* UI: TOP */
+	drawTopBar();
+	
+	/* UI: BOTTOM */
+	
+	/* DEBUG */
+	renderDebug();
+	
+	/* Buffers */
+	gfxFlushBuffers(); 
+	gfxSwapBuffers();
 }
 /* UIs */
 void renderDebug(){
@@ -62,18 +60,8 @@ void background(){
 	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopRight);
 	
 	//Background
-	gfxDrawDualSprite((u8*)background_bin, 240, 400, 240, 0);
-	
-	//L
-	/*drawFillRect( 0, 200, 60, 240, 0,126,216, screenTopLeft);
-	drawFillRect( 0, 200, 60, 240, 0,126,216, screenTopRight);
-	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "L", 12, 27); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, "L", 12, 27); 
-	//R
-	drawFillRect( 340, 200, 400, 240, 0,126,216, screenTopLeft);
-	drawFillRect( 340, 200, 400, 240, 0,126,216, screenTopRight);
-	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "R", 12, 367); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, "R", 12, 367); */
+	gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)background_bin, 240, 400, 0, 0);
+	gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)background_bin, 240, 400, 0, 0);
 }
 void drawTopBar(){
 	drawFillRect(0,0,400,12, 0,126,216, screenTopLeft);

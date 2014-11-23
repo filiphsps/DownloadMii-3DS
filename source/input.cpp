@@ -8,11 +8,12 @@
 #include "utils.h"
 #include "application.h"
 #include "input.h"
+#include "gui.h"
 
 void UpdateInput(Input_s* input){
 	resetInput(input);
 	hidScanInput();
-	u32 kDown = hidKeysHeld();
+	u32 kDown = hidKeysDown();
 	switch(kDown){
 		case KEY_A:
 			input->A = true;
@@ -31,15 +32,19 @@ void UpdateInput(Input_s* input){
 
 		case KEY_UP:
 			input->Up = true;
+			print("Up\n");
 			break;
 		case KEY_DOWN:
 			input->Down = true;
+			print("Down\n");
 			break;
 		case KEY_LEFT:
 			input->Left = true;
+			print("Left\n");
 			break;
 		case KEY_RIGHT:
 			input->Right = true;
+			print("Right\n");
 			break;
 
 
@@ -55,6 +60,8 @@ void UpdateInput(Input_s* input){
 			break;
 		case KEY_R:
 			input->R = true;
+			break;
+		default:
 			break;
 	}
 }

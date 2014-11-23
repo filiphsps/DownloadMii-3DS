@@ -19,8 +19,6 @@ using namespace std;
 
 Input_s Input;
 char superStr[8192];
-int x;
-
 void MainLoop();
 
 int main(int argc, char** argv)
@@ -58,14 +56,10 @@ int main(int argc, char** argv)
 	{
 		UpdateInput(&Input);
 		renderGUI();
-		if(Input.Right){
-			print("Right!");
-		} else if (Input.Start){
+		if (Input.Start){
 			print("Exiting\n");
 			break; //break in order to return to hbmenu
 		}
-		print("Tick: %d\n", x);
-		x++;
 	}
 
 	//Exit services
