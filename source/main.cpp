@@ -48,19 +48,28 @@ int main(int argc, char** argv)
 		}
 		else{
 			print(jsonSS); //Prints out the error
-			print("\n");
-			jsonSS = "{\"Tools\":[{\"name\":\"Temp\", \"owner\":\"Temp\", \"description\":\"Line 1\nLine 2\", \"subGen\":\"Theme\", \"downloadUrl\":\"http://exampke.com/temp.3dsx\", \"icon\":\"http://example.com/temp.png\", \"smdh\":\"http://example.com/temp.smdh\"}, {\"name\":\"Temp2\", \"owner\":\"Temp\", \"description\":\"Line 1\nLine 2\", \"subGen\":\"Theme\", \"downloadUrl\":\"http://exampke.com/temp.3dsx\", \"icon\":\"http://example.com/temp.png\", \"smdh\":\"http://example.com/temp.smdh\"}, {\"name\":\"Temp\", \"owner\":\"Temp\", \"description\":\"Line 1\nLine 2\", \"subGen\":\"Theme\", \"downloadUrl\":\"http://exampke.com/temp.3dsx\", \"icon\":\"http://example.com/temp.png\", \"smdh\":\"http://example.com/temp.smdh\"}],\"Games\":[{\"name\":\"Pong\", \"owner\":\"Temp\", \"description\":\"Line 1\nLine 2\", \"subGen\":\"Retro\", \"downloadUrl\":\"http://exampke.com/pong.3dsx\", \"icon\":\"http://example.com/pong.png\", \"smdh\":\"http://example.com/pong.smdh\"}]}";
+			print(", Offline mode enabled\n");
+			jsonSS = "{\"Apps\":{\"Tools\":[{\"name\":\"Temp\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Theme\",\"downloadUrl\":\"http://exampke.com/temp.3dsx\",\"icon\":\"http://example.com/temp.png\",\"smdh\":\"http://example.com/temp.smdh\"},{\"name\":\"Temp2\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Theme\",\"downloadUrl\":\"http://exampke.com/temp.3dsx\",\"icon\":\"http://example.com/temp.png\",\"smdh\":\"http://example.com/temp.smdh\"}],\"Games\":[{\"name\":\"Pong\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Retro\",\"downloadUrl\":\"http://exampke.com/pong.3dsx\",\"icon\":\"http://example.com/pong.png\",\"smdh\":\"http://example.com/pong.smdh\"}]}}";
 		}
 	}
 	
 	//JSON TEST-----------------------------------------
 	//Link to example: http://developer.mbed.org/users/mimil/code/PicoJSONSample/docs/81c978de0e2b/main_8cpp_source.html
 		picojson::value v;
-		string err = picojson::parse(v, jsonSS, jsonSS + strlen(jsonSS));
-		picojson::array list = v.get("Tools").get<picojson::array>();
-		for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
-			print("menu item value =%s\r\n", (*iter).get("description").get<string>().c_str());
-		}
+		
+		char * json = (char*) malloc(strlen(jsonSS)+1);
+		strcpy(json, jsonSS);
+		string err = picojson::parse(v, json, json + strlen(json));
+		print(err.c_str());
+		print("\n");
+		
+		const picojson::array& a = v.get("Apps").get("Tools").get<picojson::array>();
+		
+		
+		for (picojson::array::const_iterator i = a.begin(); i != a.end(); ++i) { 
+			print((*i).get("name").get<string>().c_str());
+			print("\n");
+		} 
 
 		
 	//--------------------------------------------------
