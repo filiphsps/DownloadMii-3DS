@@ -85,6 +85,7 @@ int main(int argc, char** argv)
 			print("Exiting\n");
 			break; //break in order to return to hbmenu
 		}
+		gspWaitForVBlank();
 	}
 
 	//Exit services
