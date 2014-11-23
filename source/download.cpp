@@ -8,47 +8,49 @@
 
 using namespace std;
 
-Handle h = 0;
-
 Result networkInit(){
-	srvGetServiceHandle(&h, "http:C");
+	httpcInit();
+	return 0;
+}
+char* downloadFile(char* url){
 	Result r;
-	r = HTTPC_Initialize(h);
-	if(r != 0){ //Error
-		return r;
+	httpcContext c;
+	u8 *b; //buffer
+	u32 statuscode=0;
+	u32 contentsize=0;
+	char* file;
+	
+	r = httpcOpenContext(&c, url, 0);
+	if(r != 0){
+		return "error: httpcOpenContext";
 	}
 	
-	return 0; //Success
-}
-string downloadFile(string url){
-	Result r;
-	Handle c = 0;
-	u8* b = (u8*)malloc(BUFFER_SIZE); //buffer
-	r = HTTPC_CreateContext(h, (char*)url.c_str(), &c);
-	if(r != 0){ //Error
-		return "error";
+	r = httpcBeginRequest(&c);
+	if(r != 0){
+		return "error: httpcBeginRequest";
 	}
-	r = HTTPC_InitializeConnectionSession(h, c);
-	if(r != 0){ //Error
-		return "error";
+	
+	r = httpcGetResponseStatusCode(&c, &statuscode, 0);
+	if((r != 0) || statuscode != 200){
+		return "error: httpcGetResponseStatusCode";
 	}
-	r = HTTPC_SetProxyDefault(h, c);
-	if(r != 0){ //Error
-		return "error";
+	
+	r = httpcGetDownloadSizeState(&c, NULL, &contentsize);
+	if(r != 0){
+		return "error: httpcGetDownloadSizeState";
 	}
-	r = HTTPC_BeginRequest(h, c);
-	if(r != 0){ //Error
-		return "error";
+	
+	b = (u8*)malloc(contentsize);
+	if(b==NULL)return "error: (u8*)malloc(contentsize)";
+	memset(b, 0, contentsize);
+	
+	r = httpcDownloadData(&c, b, contentsize, NULL);
+	if(r != 0)
+	{
+		free(b);
+		return "error: httpcDownloadData";
 	}
-	r = HTTPC_ReceiveData(h, c, b, BUFFER_SIZE);
-	if(r != 0){ //Error
-		return "error";
-	}
-	r = HTTPC_CloseContext(h, c);
-	if(r != 0){ //Error
-		return "error";
-	}
-	string data = (char*)b;
-	free(b);
-	return data;
+	file = (char*)b;
+	httpcCloseContext(&c);
+	return file;
 }

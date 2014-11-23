@@ -46,11 +46,11 @@ APP_AUTHOR      := filfat
 #---------------------------------------------------------------------------------
 ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=softfp
 
-CFLAGS	:=  -Wunused-variable -g -Wall -O3 -mword-relocations \
+CFLAGS	:= -Wunused -g -Wall -O3 -mword-relocations \
 			-fomit-frame-pointer -ffast-math \
 			$(ARCH)
 
-CFLAGS	+=	$(INCLUDE) -Wunused-variable -DARM11 -D_3DS
+CFLAGS	+=	$(INCLUDE) -Wunused -Wno-write-strings -DARM11 -D_3DS
 
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 
@@ -122,7 +122,7 @@ else
 	export APP_ICON := $(TOPDIR)/$(ICON)
 endif
 
-.PHONY: $(BUILD) clean all
+.PHONY: $(BUILD) clean all run
 
 #---------------------------------------------------------------------------------
 all: $(BUILD)
@@ -136,6 +136,10 @@ clean:
 	@echo clean ...
 	@rm -fr $(BUILD) $(TARGET).3dsx $(OUTPUT).smdh $(TARGET).elf
 
+#---------------------------------------------------------------------------------
+run:
+	@echo run ...
+	$(TOPDIR)/Testing/3dmoo.exe  $(TARGET).elf
 
 #---------------------------------------------------------------------------------
 else

@@ -1,11 +1,12 @@
-#ifndef __GUI_H__
-#define __GUI_H__
+#pragma once
 
 #include <iostream>
 #include <string.h>
 #include "input.h"
 #include "draw.h"
 #include "ascii64.h"
+
+#define print(...) sprintf(&superStr[strlen(superStr)], __VA_ARGS__);
 
 using namespace std;
 
@@ -14,17 +15,19 @@ struct navBar_s{
 	
 };
 
-static string debugStr;
-static bool debug_l;
 static u8* screenTopLeft = 0;
 static u8* screenTopRight = 0;
 static u8* screenBottom = 0;
+extern char superStr[];
 
-void initGUI();
+void initGUI(); 
 void renderGUI();
-void debug(string text);
+void renderDebug();
 
 /* UIs */
-void navBar();
-void renderDebug();
-#endif
+void drawTopBar();
+void background();
+
+/* TEXT */
+void cutLine(char* str);
+int countLines(char* str);

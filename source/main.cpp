@@ -10,13 +10,15 @@
 #include "application.h"
 #include "gui.h"
 #include "input.h"
-#include "json.h"
+//#include "json.h"
 #include "download.h"
+#include "font.h"
 
 using namespace std;
-using namespace picojson;
+//using namespace picojson;
 
 Input_s Input;
+char superStr[8192];
 
 void MainLoop();
 
@@ -28,41 +30,34 @@ int main(int argc, char** argv)
 	hidInit(NULL);
 	gfxInit();
 	initGUI();
+	//gfxSet3D(true);
 	Result r = networkInit();
 	if(r != 0){
 		//Error,
 		//ToDo: Set application in offline mode
+		print("Error could not init network!\n");
 	}
-	//gfxSet3D(true); //uncomment if using stereoscopic 3D
-	
-	APP_STATUS status;
-	
-	//Test
-	string url = "http://downloadmii.filfatstudios.com/applications.json";
-	string jsonSS = downloadFile(url);
-	jsonSS.resize(20);
-	debug(jsonSS);
+	else{
+		print("Downloading File..\n");
+		char* url = "http://downloadmii.filfatstudios.com/applications.json";
+		char* jsonSS = downloadFile(url);
+		if(jsonSS != NULL && jsonSS[0] != 'e'){
+			print("Success\n");
+			print(jsonSS); //ToDo
+		}
+		else{
+			print("Error\n");
+		}	
+	}
+	//APP_STATUS status;
 	
 	/* Main loop */
-	while ((status = aptGetStatus()) != APP_EXITING)
+	while (aptMainLoop())
 	{
-		if (status == APP_RUNNING)
-		{
-			//If the app is currently in the forground running, execute the program.
-			MainLoop();
-			if (Input.Start == true){
-				break; //break in order to return to hbmenu
-			}
-		}
-		else if (status == APP_SUSPENDING)
-		{
-			//If the app is currently suspended in the background, return to the home menu.
-			break;
-		}
-		else if (status == APP_SLEEPMODE)
-		{
-			//If the app is currently suspended in sleep mode, wait.
-			aptWaitStatusEvent();
+		MainLoop();
+		if (Input.Start == true){
+			print("Exiting\n");
+			break; //break in order to return to hbmenu
 		}
 	}
 

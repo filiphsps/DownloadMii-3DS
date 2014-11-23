@@ -54,5 +54,5 @@ void UpdateInput(Input_s* input){
 }
 
 void resetInput(Input_s* input){
-	input = new Input_s;
+	input = {};
 }
