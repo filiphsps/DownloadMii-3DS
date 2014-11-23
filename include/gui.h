@@ -25,7 +25,7 @@ void renderGUI();
 void renderDebug();
 
 /* UIs */
-void renderTopNavBar();
+void drawTopBar();
 void background();
 
 /* TEXT */

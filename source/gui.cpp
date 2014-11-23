@@ -10,6 +10,7 @@
 #include "input.h"
 #include "gui.h"
 #include "main.h"
+#include "background_bin.h"
 
 using namespace std;
 
@@ -25,9 +26,9 @@ void initGUI(){
 
 void renderGUI(){
 	for(int x = 0; x <= 1; x++){
-		screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
 		screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 		screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
+		screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
 		/* Clear Screen */
 		clearScreen(screenBottom, GFX_BOTTOM);
 		clearScreen(screenTopLeft, GFX_TOP); 
@@ -35,9 +36,9 @@ void renderGUI(){
 
 		/* Background */
 		background();
-
+		
 		/* UI: TOP */
-		//renderTopNavBar();
+		drawTopBar();
 		
 		/* UI: BOTTOM */
 		
@@ -53,13 +54,28 @@ void renderGUI(){
 void renderDebug(){
 	int i = countLines(superStr); 
  	while(i>240/fontDefault.height-3){cutLine(superStr);i--;} 
-	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, superStr, 240-fontDefault.height*1, 20); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, superStr, 240-fontDefault.height*1, 20); 
+	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, superStr, 240-fontDefault.height*2, 2); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, superStr, 240-fontDefault.height*2, 2); 
 }
 void background(){
 	drawFillRect( 0, 0, 320, 240, 0,148,255, screenBottom);
 	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopLeft);
 	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopRight);
+	
+	//gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)background_bin, 400,240, 0,0);
+	//gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)background_bin, 400,240, 0,0);
+}
+void drawTopBar(){
+	drawFillRect(0,0,400,12, 0,126,216, screenTopLeft);
+	drawFillRect(0,0,400,12, 0,126,216, screenTopRight);
+	drawString(APPLICATION_NAME, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopLeft,GFX_TOP);
+	drawString(APPLICATION_NAME, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopRight,GFX_TOP);
+	char buffer[100];
+	u64 timeInSeconds = osGetTime() / 1000; 
+	u64 dayTime = timeInSeconds % SECONDS_IN_DAY; 
+	sprintf(buffer, "%llu:%llu:%llu",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE);
+	drawString(buffer, 2,2, 255,255,255, screenTopLeft,GFX_TOP);
+	drawString(buffer, 2,2, 255,255,255, screenTopRight,GFX_TOP);
 }
 void renderTopNavBar(){
 	drawFillRect( 0, 0, 400, 40, 255,255,255, screenTopLeft);

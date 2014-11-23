@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 		print("Downloading File..\n");
 		char* url = "http://downloadmii.filfatstudios.com/applications.json";
 		char* jsonSS = downloadFile(url);
-		if(jsonSS != NULL){
+		if(jsonSS != NULL && jsonSS[0] != 'e'){
 			print("Success\n");
 			print(jsonSS); //ToDo
 		}
@@ -72,5 +72,4 @@ int main(int argc, char** argv)
 void MainLoop(){
 	UpdateInput(&Input);
 	renderGUI();
-	gspWaitForEvent(GSPEVENT_VBlank0, false);
 }
