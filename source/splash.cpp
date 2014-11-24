@@ -18,7 +18,7 @@ using namespace std;
 
 void doSplash(){
 	char buffer[110];
-	sprintf(buffer, "Download Mii Build %u", 5/*(unsigned long) &__BUILD_NUMBER*/);
+	sprintf(buffer, "DownloadMii Build %u", 5/*(unsigned long) &__BUILD_NUMBER*/);
 	for(int x = 0;x <= 1; x++){
 		screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 		screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);

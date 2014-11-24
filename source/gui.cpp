@@ -36,7 +36,7 @@ void renderGUI(){
 	background();
 	
 	/* UI: TOP */
-	drawTopBar();
+	drawTopBar("Applications"); //ToDo
 	
 	/* UI: BOTTOM */
 	
@@ -50,34 +50,38 @@ void renderGUI(){
 /* UIs */
 void renderDebug(){
 	int i = countLines(superStr); 
- 	while(i>240/fontDefault.height-3){cutLine(superStr);i--;} 
-	gfxDrawText(GFX_TOP, GFX_LEFT, NULL, superStr, 240-fontDefault.height*2, 2); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, superStr, 240-fontDefault.height*2, 2); 
+ 	while(i>200/fontDefault.height-3){cutLine(superStr);i--;} 
+	gfxDrawText(GFX_TOP, GFX_LEFT, &fontBlack, superStr, 240-fontDefault.height*5, 2); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontBlack, superStr, 240-fontDefault.height*5, 2); 
 }
 void background(){
-	drawFillRect( 0, 0, 320, 240, 0,148,255, screenBottom);
-	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopLeft);
-	drawFillRect( 0, 0, 400, 240, 0,148,255, screenTopRight);
+	drawFillRect( 0, 0, 320, 240, 227,242,253, screenBottom);
+	drawFillRect( 0, 0, 400, 240, 227,242,253, screenTopLeft);
+	drawFillRect( 0, 0, 400, 240, 227,242,253, screenTopRight);
 	
 	//Background
-	gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)background_bin, 240, 400, 0, 0);
-	gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)background_bin, 240, 400, 0, 0);
+	//gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)background_bin, 240, 400, 0, 0);
+	//gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)background_bin, 240, 400, 0, 0);
 }
-void drawTopBar(){
-	drawFillRect(0,0,400,12, 0,126,216, screenTopLeft);
-	drawFillRect(0,0,400,12, 0,126,216, screenTopRight);
+void drawTopBar(char* Title){
+	char buffer[100];
+	sprintf(buffer, Title);
+	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopLeft);
+	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopRight);
+	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screenTopRight);
+	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screenTopRight);
+	
 	drawString(APPLICATION_NAME, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopLeft,GFX_TOP);
 	drawString(APPLICATION_NAME, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopRight,GFX_TOP);
-	char buffer[100];
+	
+	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhiteHeader, buffer, 237 - (((SECONDARY_NAVBAR_H/2) + fontWhiteHeader.height)), 13); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhiteHeader, buffer, 237 - (((SECONDARY_NAVBAR_H/2) + fontWhiteHeader.height)), 13); 
+	
 	u64 timeInSeconds = osGetTime() / 1000; 
 	u64 dayTime = timeInSeconds % SECONDS_IN_DAY; 
 	sprintf(buffer, "%llu:%llu:%llu",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE);
 	drawString(buffer, 2,2, 255,255,255, screenTopLeft,GFX_TOP);
 	drawString(buffer, 2,2, 255,255,255, screenTopRight,GFX_TOP);
-}
-void renderTopNavBar(){
-	drawFillRect( 0, 0, 400, 40, 255,255,255, screenTopLeft);
-	drawFillRect( 0, 0, 400, 40, 255,255,255, screenTopRight);
 }
 int countLines(char* str)
 {

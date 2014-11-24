@@ -13,6 +13,7 @@ typedef struct
 extern u8 font1Data[];
 extern charDesc_s font1Desc[];
 extern font_s fontDefault;
-
+extern font_s fontBlack;
+extern font_s fontWhiteHeader;
 
 #endif
