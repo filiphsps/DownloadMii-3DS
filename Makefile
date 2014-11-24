@@ -13,6 +13,7 @@ endif
 
 TOPDIR ?= $(CURDIR)
 include $(DEVKITARM)/3ds_rules
+#include $(TOPDIR)/buildnumber.mak
 
 #---------------------------------------------------------------------------------
 # TARGET is the name of the output
@@ -45,12 +46,14 @@ APP_AUTHOR      := filfat
 # options for code generation
 #---------------------------------------------------------------------------------
 ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=softfp
+# $(BUILD_NUMBER_FILE) $(BUILD_NUMBER_LDFLAGS) 
 
 CFLAGS	:= -Wunused -g -Wall -O3 -mword-relocations \
 			-fomit-frame-pointer -ffast-math \
 			$(ARCH)
 
-CFLAGS	+=	$(INCLUDE) -Wunused -Wno-write-strings -DARM11 -D_3DS
+CFLAGS	+=	$(INCLUDE) -Wunused -Wno-write-strings -DARM11 -D_3DS 
+#$(BUILD_NUMBER_FILE) $(BUILD_NUMBER_LDFLAGS) 
 
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 

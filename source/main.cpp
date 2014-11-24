@@ -10,12 +10,11 @@
 #include "application.h"
 #include "gui.h"
 #include "input.h"
-#include "json.h"
 #include "download.h"
 #include "font.h"
+#include "splash.h"
 
 using namespace std;
-using namespace picojson;
 
 Input_s Input;
 char superStr[8192];
@@ -30,6 +29,8 @@ int main(int argc, char** argv)
 	gfxInit();
 	initGUI();
 	//gfxSet3D(true);
+	
+	doSplash(); //SplashScreen
 	
 	Result r = networkInit();
 	if(r != 0){
@@ -49,33 +50,24 @@ int main(int argc, char** argv)
 		else{
 			print(jsonSS); //Prints out the error
 			print(", Offline mode enabled\n");
-			//jsonSS = "{\"Apps\":{\"Tools\":[{\"name\":\"Temp\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Theme\",\"downloadUrl\":\"http://exampke.com/temp.3dsx\",\"icon\":\"http://example.com/temp.png\",\"smdh\":\"http://example.com/temp.smdh\"},{\"name\":\"Temp2\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Theme\",\"downloadUrl\":\"http://exampke.com/temp.3dsx\",\"icon\":\"http://example.com/temp.png\",\"smdh\":\"http://example.com/temp.smdh\"}],\"Games\":[{\"name\":\"Pong\",\"owner\":\"Temp\",\"description\":\"Line 1\nLine 2\",\"subGen\":\"Retro\",\"downloadUrl\":\"http://exampke.com/pong.3dsx\",\"icon\":\"http://example.com/pong.png\",\"smdh\":\"http://example.com/pong.smdh\"}]}}";
+			
 		}
 	}
 	
 	//JSON TEST-----------------------------------------
-	//Link to example: http://developer.mbed.org/users/mimil/code/PicoJSONSample/docs/81c978de0e2b/main_8cpp_source.html
-		/*picojson::value v;
-		
-		char * json = (char*) malloc(strlen(jsonSS)+1);
-		strcpy(json, jsonSS);
-		string err = picojson::parse(v, json, json + strlen(json));
-		print(err.c_str());
-		print("\n");
-		
-		const picojson::array& a = v.get("Apps").get("Tools").get<picojson::array>();
-		
-		
-		for (picojson::array::const_iterator i = a.begin(); i != a.end(); ++i) { 
-			print((*i).get("name").get<string>().c_str());
-			print("\n");
-		} */
-
-		
+	
 	//--------------------------------------------------
 	
 	//APP_STATUS status;
 	
+	//Fade into main loop, needs to get moved over to splash.cpp
+	for(int x = 255; x >= 0; x = x - 20){
+		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
+		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
+		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
+		gfxFlushBuffers(); 
+		gfxSwapBuffers();
+	}
 	/* Main loop */
 	while (aptMainLoop())
 	{
