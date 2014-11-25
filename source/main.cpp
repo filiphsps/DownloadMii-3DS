@@ -68,13 +68,22 @@ int main(int argc, char** argv)
 		gfxFlushBuffers(); 
 		gfxSwapBuffers();
 	}
+	renderGUI();
+	/*for(int x = 0; x <= 255; x = x + 20){
+		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
+		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
+		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
+		gfxFlushBuffers(); 
+		gfxSwapBuffers();
+	}*/
 	/* Main loop */
 	while (aptMainLoop())
 	{
 		UpdateInput(&Input);
 		renderGUI();
 		if (Input.Start){
-			print("Exiting\n");
+			print("Exiting..\n");
+			renderGUI();
 			break; //break in order to return to hbmenu
 		}
 		gspWaitForVBlank();

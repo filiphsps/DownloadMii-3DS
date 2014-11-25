@@ -19,6 +19,9 @@ TopScreen: w400 h240
 BottomScreen: w320 h240
 */
 
+u8 VirtualScreenW = 400; //Used for scrolling
+u8 VirtualScreenH = 240;
+
 void initGUI(){
 	//ToDo
 }
@@ -51,8 +54,8 @@ void renderGUI(){
 void renderDebug(){
 	int i = countLines(superStr); 
  	while(i>200/fontDefault.height-3){cutLine(superStr);i--;} 
-	gfxDrawText(GFX_TOP, GFX_LEFT, &fontBlack, superStr, 240-fontDefault.height*5, 2); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontBlack, superStr, 240-fontDefault.height*5, 2); 
+	gfxDrawText(GFX_TOP, GFX_LEFT, &fontBlack, superStr, (240-fontDefault.height*5)+6, 6); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontBlack, superStr, (240-fontDefault.height*5)+6, 6); 
 }
 void background(){
 	drawFillRect( 0, 0, 320, 240, 227,242,253, screenBottom);
