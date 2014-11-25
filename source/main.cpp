@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 	//APP_STATUS status;
 	
 	//Fade into main loop, needs to get moved over to splash.cpp
-	for(int x = 255; x >= 0; x = x - 20){
+	for(int x = 255; x >= 0; x = x - 15){
 		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
@@ -69,7 +69,7 @@ int main(int argc, char** argv)
 		gfxSwapBuffers();
 	}
 	renderGUI();
-	/*for(int x = 0; x <= 255; x = x + 20){
+	/*for(int x = 0; x <= 255; x = x + 10){
 		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
