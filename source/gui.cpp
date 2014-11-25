@@ -97,13 +97,15 @@ void drawAppEntry(Application_s app, int place){
 	if(y  + APPLICATION_ENTRY_H >= 240)
 	{
 		drawFillRect( 15, y, 305, 240, 255,255,255, screenBottom);
-		drawRect( 15, y, 305, 241, 0,0,0, screenBottom); //ToDo: change to a light gray
+		drawRect( 15, y, 305, 241, 224,224,224, screenBottom); //ToDo: change to a light gray
 		drawLine( 0, 241, 320, 241,  240, 242, 253, screenBottom); //Removes the black ugly row at the top 
 	}
 	else{
 		drawFillRect( 15, y, 305, y + APPLICATION_ENTRY_H, 255,255,255, screenBottom);
-		drawRect( 15, y, 305, y + APPLICATION_ENTRY_H, 0,0,0, screenBottom); //ToDo: change to a light gray
+		drawRect( 15, y, 305, y + APPLICATION_ENTRY_H, 224,224,224, screenBottom); //ToDo: change to a light gray
 	}
+	
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, (char*)app.Name.c_str(), y + 15, 20); 
 }
 void renderDebug(){
 	int i = countLines(superStr); 
