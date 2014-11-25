@@ -98,12 +98,11 @@ void drawAppEntry(Application_s app, int place){
 	{
 		drawFillRect( 15, y, 305, 240, 255,255,255, screenBottom);
 		drawRect( 15, y, 305, 241, 0,0,0, screenBottom); //ToDo: change to a light gray
-		drawLine( 0, 0, 320, 1,  227, 242, 253, screenBottom); //Removes the black ugly row at the top 
+		drawLine( 0, 241, 320, 241,  240, 242, 253, screenBottom); //Removes the black ugly row at the top 
 	}
 	else{
 		drawFillRect( 15, y, 305, y + APPLICATION_ENTRY_H, 255,255,255, screenBottom);
 		drawRect( 15, y, 305, y + APPLICATION_ENTRY_H, 0,0,0, screenBottom); //ToDo: change to a light gray
-		
 	}
 }
 void renderDebug(){
