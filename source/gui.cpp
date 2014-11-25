@@ -19,14 +19,17 @@ TopScreen: w400 h240
 BottomScreen: w320 h240
 */
 
-u8 VirtualScreenW = 400; //Used for scrolling
-u8 VirtualScreenH = 240;
+int VirtualScreenW = 400; //Used for scrolling
+int VirtualScreenH = 240;
 
 void initGUI(){
 	//ToDo
 }
 
+//Todo: add scrolling to the whole app!!!
+
 void renderGUI(){
+	Application_s app2 = defineApplication_s(1, "name", "owner");
 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
@@ -46,11 +49,63 @@ void renderGUI(){
 	/* DEBUG */
 	renderDebug();
 	
+	/* Screen related UI(Changes based on scene) */
+	switch(scene){
+		case 0:
+			renderOverview();
+			drawAppEntry(app2, 1);
+			drawAppEntry(app2, 2);
+			drawAppEntry(app2, 3);
+			drawAppEntry(app2, 4);
+			drawAppEntry(app2, 5);
+			break;
+		case 1:
+			
+			break;
+		case 2:
+			
+			break;
+		default:
+			
+			break;
+	}
+	
 	/* Buffers */
 	gfxFlushBuffers(); 
 	gfxSwapBuffers();
 }
+
+
+
+
+/* Scenes */
+
+void renderOverview(){ //Renders a nice overview of the top apps for the user
+
+}
+
+
 /* UIs */
+void drawAppEntry(Application_s app, int place){
+	//Very hacky way to display an app list
+	int y = 0;
+	y = (MARGIN * (place)) + (APPLICATION_ENTRY_H * (place - 1));
+	
+	if(y >= 240){
+		return; //Outside screen dont draw
+	}
+	if(y  + APPLICATION_ENTRY_H >= 240)
+	{
+		drawFillRect( 15, y, 305, 240, 255,255,255, screenBottom);
+		drawRect( 15, y, 305, 241, 0,0,0, screenBottom); //ToDo: change to a light gray
+		drawLine( 0, 0, 320, 1,  227, 242, 253, screenBottom); //Removes the black ugly row at the top 
+	}
+	else{
+		drawFillRect( 15, y, 305, y + APPLICATION_ENTRY_H, 255,255,255, screenBottom);
+		drawRect( 15, y, 305, y + APPLICATION_ENTRY_H, 0,0,0, screenBottom); //ToDo: change to a light gray
+		
+	}
+}
 void renderDebug(){
 	int i = countLines(superStr); 
  	while(i>200/fontDefault.height-3){cutLine(superStr);i--;} 

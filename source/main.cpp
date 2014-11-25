@@ -13,6 +13,7 @@
 #include "download.h"
 #include "font.h"
 #include "splash.h"
+#include "json.h"
 
 using namespace std;
 
@@ -40,7 +41,7 @@ int main(int argc, char** argv)
 	}
 	else{
 		print("Downloading File..\n");
-		char* url = "http://downloadmii.filfatstudios.com/applications.json";
+		char* url = APPLICATIONSJSON; //Temp
 		jsonSS = downloadFile(url);
 		if(jsonSS != NULL && jsonSS[0] != 'e'){
 			print("Success\n");
@@ -49,6 +50,7 @@ int main(int argc, char** argv)
 		}
 		else{
 			print(jsonSS); //Prints out the error
+			jsonSS = offlineJson;
 			print(", Offline mode enabled\n");
 			
 		}
@@ -77,15 +79,41 @@ int main(int argc, char** argv)
 		gfxSwapBuffers();
 	}*/
 	/* Main loop */
+	int lastScene = 0;
 	while (aptMainLoop())
 	{
 		UpdateInput(&Input);
+		
+		if(lastScene != scene){
+			switch(scene){
+				case 0:
+					sceneTitle = "Overview";
+					break;
+				case 1:
+					sceneTitle = "Top Downloaded Applications";
+					break;
+				case 2:
+					sceneTitle = "Top Downloaded Games";
+					break;
+				default:
+					sceneTitle = "Staff Pick";
+					break;
+			}
+			lastScene = scene;
+		}
+		
 		renderGUI();
 		if (Input.Start){
 			print("Exiting..\n");
 			renderGUI();
 			break; //break in order to return to hbmenu
+		} else if(Input.R && (scene > maxScene)){
+			scene++;
+		} else if(Input.L && (scene < 0)){
+			scene--;
 		}
+		
+		
 		gspWaitForVBlank();
 	}
 
