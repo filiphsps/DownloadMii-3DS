@@ -31,6 +31,8 @@ int main(int argc, char** argv)
 	initGUI();
 	//gfxSet3D(true);
 	
+    gspWaitForVBlank(); //wait to let the app register itself
+
 	doSplash(); //SplashScreen
 	
 	Result r = networkInit();
