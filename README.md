@@ -1,6 +1,6 @@
 ![alt text](https://raw.githubusercontent.com/DownloadMii/DownloadMii/master/logo.PNG "Logo") [![Build Status](http://build.filfatstudios.com:8080/buildStatus/icon?job=DownloadMii (3DS))](http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/)
 ===========
-DownloadMii is(will be) a online store for 3DS homebrew applications.
+DownloadMii is(will be) an online store for 3DS homebrew applications.
 [Website](http://downloadmii.filfatstudios.com)
 
 DISCLAIMER: Its not 100% sure that this will ever be a finished product NOR that it will ever be a functional app.
