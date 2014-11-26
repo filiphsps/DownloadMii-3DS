@@ -10,7 +10,6 @@
 #include "input.h"
 #include "gui.h"
 #include "main.h"
-#include "background_bin.h"
 
 using namespace std;
 
@@ -42,7 +41,8 @@ void renderGUI(){
 	background();
 	
 	/* UI: TOP */
-	drawTopBar("Applications"); //ToDo
+	navbar.Title = "Applications"; //ToDo
+	drawTopBar();
 	
 	/* UI: BOTTOM */
 	
@@ -104,8 +104,10 @@ void drawAppEntry(Application_s app, int place){
 		drawFillRect( 15, y, 305, y + APPLICATION_ENTRY_H, 255,255,255, screenBottom);
 		drawRect( 15, y, 305, y + APPLICATION_ENTRY_H, 224,224,224, screenBottom); //ToDo: change to a light gray
 	}
-	
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, (char*)app.Name.c_str(), y + 15, 20); 
+	stringstream s;
+    s << app.Name << " (" << y << ")";
+	app.Name = s.str();
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, (char*)app.Name.c_str(), (VirtualScreenH - y) + APPTITLE_MARGIN, 20); 
 }
 void renderDebug(){
 	int i = countLines(superStr); 
@@ -117,14 +119,10 @@ void background(){
 	drawFillRect( 0, 0, 320, 240, 227,242,253, screenBottom);
 	drawFillRect( 0, 0, 400, 240, 227,242,253, screenTopLeft);
 	drawFillRect( 0, 0, 400, 240, 227,242,253, screenTopRight);
-	
-	//Background
-	//gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)background_bin, 240, 400, 0, 0);
-	//gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)background_bin, 240, 400, 0, 0);
 }
-void drawTopBar(char* Title){
+void drawTopBar(){
 	char buffer[100];
-	sprintf(buffer, Title);
+	sprintf(buffer, navbar.Title.c_str());
 	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopLeft);
 	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopRight);
 	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screenTopRight);

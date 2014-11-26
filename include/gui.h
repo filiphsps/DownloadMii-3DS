@@ -19,14 +19,14 @@
 #define SECONDARY_NAVBAR_H 36
 #define SHADOW_ANGLE 135
 #define MARGIN 12
+#define APPTITLE_MARGIN -15
 
 using namespace std;
 
 struct navBar_s{
 	string Title;
-	
 };
-
+static navBar_s navbar;
 static u8* screenTopLeft = 0;
 static u8* screenTopRight = 0;
 static u8* screenBottom = 0;
@@ -37,7 +37,7 @@ void renderGUI();
 void renderDebug();
 
 /* UIs */
-void drawTopBar(char* Title);
+void drawTopBar();
 void background();
 void renderOverview();
 void drawAppEntry(Application_s app, int place);
