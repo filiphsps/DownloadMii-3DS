@@ -1,4 +1,4 @@
-How to convert an imaghe to the BIN format
+How to convert an image to the BIN format
 ===========
 
 1. Download & install: http://www.imagemagick.org/ (If you get an option to add the application to the path make sure to check it!).
