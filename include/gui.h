@@ -26,10 +26,10 @@ using namespace std;
 struct navBar_s{
 	string Title;
 };
-static navBar_s navbar;
-static u8* screenTopLeft = 0;
-static u8* screenTopRight = 0;
-static u8* screenBottom = 0;
+extern navBar_s navbar;
+extern u8* screenTopLeft;
+extern u8* screenTopRight;
+extern u8* screenBottom;
 extern char superStr[];
 
 void initGUI(); 
@@ -47,6 +47,6 @@ void cutLine(char* str);
 int countLines(char* str);
 
 /* SCENE */
-static unsigned int scene = 0;
-static unsigned int maxScene = 2;
-static char* sceneTitle = "";
+extern unsigned int scene;
+extern unsigned int maxScene;
+extern char* sceneTitle;

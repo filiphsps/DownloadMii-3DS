@@ -79,7 +79,7 @@ int main(int argc, char** argv)
 		gfxSwapBuffers();
 	}*/
 	/* Main loop */
-	int lastScene = 0;
+	unsigned int lastScene = 0;
 	while (aptMainLoop())
 	{
 		UpdateInput(&Input);

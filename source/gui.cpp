@@ -13,6 +13,17 @@
 
 using namespace std;
 
+navBar_s navbar;
+u8* screenTopLeft = 0;
+u8* screenTopRight = 0;
+u8* screenBottom = 0;
+extern char superStr[];
+/* SCENE */
+unsigned int scene = 0;
+unsigned int maxScene = 2;
+char* sceneTitle = "";
+
+
 /*
 TopScreen: w400 h240
 BottomScreen: w320 h240
