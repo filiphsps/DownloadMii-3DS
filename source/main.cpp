@@ -52,7 +52,7 @@ int main(int argc, char** argv)
 		}
 		else{
 			print(jsonSS); //Prints out the error
-			jsonSS = offlineJson;
+			// jsonSS = offlineJson; ToDo
 			print(", Offline mode enabled\n");
 			
 		}
