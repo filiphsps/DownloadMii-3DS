@@ -107,22 +107,16 @@ void drawAppEntry(Application_s app, int place){
 	}
 	if(y  + APPLICATION_ENTRY_H >= 240)
 	{
-		drawFillRect( 15, y, 305, 240, 255,255,255, screenBottom);
-		drawRect( 15, y, 305, 241, 204,204,204, screenBottom); //ToDo: change to a light gray
-		drawLine( 15, y , 305, y, 255, 255, 255, screenBottom);
-		drawLine( 15, y , 15, 239, 255, 255, 255, screenBottom);
-		drawLine( 0, 241, 320, 241,  240, 242, 253, screenBottom); //Removes the black ugly row at the top 
+		drawFillRect( 0, y, 320, 240, 255,255,255, screenBottom);
 	}
 	else{
-		drawFillRect( 15, y, 305, y + APPLICATION_ENTRY_H, 255,255,255, screenBottom);
-		drawRect( 15, y, 305, y + APPLICATION_ENTRY_H, 204,204,204, screenBottom); //ToDo: change to a light gray
-		drawLine( 15, y , 305, y + APPLICATION_ENTRY_H, 255, 255, 255, screenBottom);
-		drawLine( 15, y , 15, y + APPLICATION_ENTRY_H, 255, 255, 255, screenBottom);
+		drawFillRect( 0, y, 320, y + APPLICATION_ENTRY_H, 255,255,255, screenBottom);
+		drawLine( 0, (y - 1) + APPLICATION_ENTRY_H , 320, (y - 1) + APPLICATION_ENTRY_H, 204,204,204, screenBottom);
 	}
 	stringstream s;
     s << app.Name << " (" << y << ")";
 	app.Name = s.str();
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, (char*)app.Name.c_str(), (VirtualScreenH - y) + APPTITLE_MARGIN, 20); 
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, (char*)app.Name.c_str(), ((240 + APPTITLE_MARGIN) - (y + APPLICATION_ENTRY_H)), 5); 
 }
 void renderDebug(){
 	int i = countLines(superStr); 

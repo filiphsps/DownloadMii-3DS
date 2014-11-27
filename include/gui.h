@@ -13,18 +13,20 @@
 #define TOPSCREEN_H 240
 #define BOTTOMSCREEN_W 320
 #define BOTTOMSCREEN_H 240
-#define APPLICATION_ENTRY_W 290
-#define APPLICATION_ENTRY_H 50
+#define APPLICATION_ENTRY_W 320
+#define APPLICATION_ENTRY_H 75
 #define NAVBAR_H 12
 #define SECONDARY_NAVBAR_H 36
 #define SHADOW_ANGLE 135
-#define MARGIN 12
-#define APPTITLE_MARGIN -15
+#define MARGIN 0 //No margin
+#define APPTITLE_MARGIN (APPLICATION_ENTRY_H/2) - (fontBlack.height)
 
 using namespace std;
 
 struct navBar_s{
 	string Title;
+	int ID;
+	//ToDo
 };
 extern navBar_s navbar;
 extern u8* screenTopLeft;
