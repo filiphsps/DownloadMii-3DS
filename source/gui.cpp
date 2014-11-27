@@ -29,8 +29,10 @@ TopScreen: w400 h240
 BottomScreen: w320 h240
 */
 
-int VirtualScreenW = 400; //Used for scrolling
-int VirtualScreenH = 240;
+int VSPX = 0; //Used for scrolling
+int VSPY = 0;
+int VSTX = 0; 
+int VSTY = 0;
 
 void initGUI(){
 	//ToDo
@@ -39,7 +41,7 @@ void initGUI(){
 //Todo: add scrolling to the whole app!!!
 
 void renderGUI(){
-	Application_s app2 = defineApplication_s(1, "name", "owner");
+	Application_s app2 = {1, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/"};
 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
@@ -69,6 +71,10 @@ void renderGUI(){
 			drawAppEntry(app2, 3);
 			drawAppEntry(app2, 4);
 			drawAppEntry(app2, 5);
+			drawAppEntry(app2, 6);
+			drawAppEntry(app2, 7);
+			print("VSTY: %d", VSTY);
+			print(", VSPY: %d\n", VSPY);
 			break;
 		case 1:
 			
@@ -100,23 +106,24 @@ void renderOverview(){ //Renders a nice overview of the top apps for the user
 void drawAppEntry(Application_s app, int place){
 	//Very hacky way to display an app list
 	int y = 0;
+	VSTY = place == 1 ? APPLICATION_ENTRY_H : VSTY + APPLICATION_ENTRY_H; //If this is the first app in the list clear the value set the valut to APPLICATION_ENTRY_H else add APPLICATION_ENTRY_H to VSPY
 	y = (MARGIN * (place)) + (APPLICATION_ENTRY_H * (place - 1));
 	
-	if(y >= 240){
+	if((y >= VSPY + 240 || y + 240 <= VSPY) || VSPY >= VSTY){
 		return; //Outside screen dont draw
 	}
-	if(y  + APPLICATION_ENTRY_H >= 240)
+	if(y  + APPLICATION_ENTRY_H >= VSPY + 240)
 	{
-		drawFillRect( 0, y, 320, 240, 255,255,255, screenBottom);
+		drawFillRect( 0, y, 320, VSPY + 240, 255,255 - (VSPY/10),255, screenBottom);
 	}
 	else{
-		drawFillRect( 0, y, 320, y + APPLICATION_ENTRY_H, 255,255,255, screenBottom);
+		drawFillRect( 0, y, 320, y + APPLICATION_ENTRY_H, 255,255 - (VSPY/10),255, screenBottom);
 		drawLine( 0, (y - 1) + APPLICATION_ENTRY_H , 320, (y - 1) + APPLICATION_ENTRY_H, 204,204,204, screenBottom);
 	}
 	stringstream s;
-    s << app.Name << " (" << y << ")";
-	app.Name = s.str();
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, (char*)app.Name.c_str(), ((240 + APPTITLE_MARGIN) - (y + APPLICATION_ENTRY_H)), 5); 
+    s << app.name << " (y: " << y << ", VSTY:" << VSTY << ")";
+	app.name = s.str();
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, (char*)app.name.c_str(), ((240 + APPTITLE_MARGIN) - (y + APPLICATION_ENTRY_H)), 5); 
 }
 void renderDebug(){
 	int i = countLines(superStr); 

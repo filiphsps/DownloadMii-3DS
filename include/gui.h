@@ -34,6 +34,11 @@ extern u8* screenTopRight;
 extern u8* screenBottom;
 extern char superStr[];
 
+extern int VSPY;
+extern int VSPX;
+extern int VSTY;
+extern int VSTX;
+
 void initGUI(); 
 void renderGUI();
 void renderDebug();
