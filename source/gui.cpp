@@ -101,39 +101,40 @@ void renderGUI(){
 void renderOverview(){ //Renders a nice overview of the top apps for the user
 
 }
-
 int getOnScreenY(int vsy)
 {
-    return 240- (vsy-VSPY);
+    return (vsy-VSPY);
 }
 
 /* UIs */
 void drawAppEntry(Application_s app, int place){
-	//Should be removed and recoded by someone smart unlike me as it doesnt work //filfat
-	int y = 0;
-	VSTY = place == 1 ? APPLICATION_ENTRY_H : VSTY + APPLICATION_ENTRY_H; //If this is the first app in the list clear the value set the valut to APPLICATION_ENTRY_H else add APPLICATION_ENTRY_H to VSPY
-	y = (MARGIN * (place)) + (APPLICATION_ENTRY_H * (place - 1));
+    //Should be removed and recoded by someone smart unlike me as it doesnt work //filfat
+    int y = 0;
+    VSTY = place == 1 ? APPLICATION_ENTRY_H : VSTY +MARGIN+ APPLICATION_ENTRY_H; //If this is the first app in the list clear the value set the valut to APPLICATION_ENTRY_H else add APPLICATION_ENTRY_H to VSPY
+    y = (MARGIN * (place)) + (APPLICATION_ENTRY_H * (place - 1));
 
-	if((y >= VSPY + 240 || y +APPLICATION_ENTRY_H <= VSPY) || VSPY >= VSTY){
-		return; //Outside screen dont draw
-	}
-	if(getOnScreenY(y+APPLICATION_ENTRY_H) >= 240)/*The entry is partly offscreen*/
-	{
-		drawFillRect( 0,getOnScreenY(y), 320,239, 255,255 - (y/10),255, screenBottom);
-	}
-	if(getOnScreenY(y)<0)
-    {
-        drawFillRect( 0,0, 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,255 - (y/10),255, screenBottom);
+    if((getOnScreenY(y)>=240 || getOnScreenY(y)+APPLICATION_ENTRY_H <= 0) || VSPY >= VSTY){
+        return; //Outside screen dont draw
     }
-	else{
-		//drawFillRect( 0, getOnScreenY(y), 320,getOnScreenY(y) +  APPLICATION_ENTRY_H, 255,255 - (VSPY/10),255, screenBottom);
-		drawLine( 0, getOnScreenY(y + APPLICATION_ENTRY_H) , 320, getOnScreenY(y + APPLICATION_ENTRY_H), 204,204,204, screenBottom);
-	}
-	stringstream s;
+    else if(getOnScreenY(y)+APPLICATION_ENTRY_H >= 240)/*The entry is partly offscreen*/
+    {
+        drawFillRect( 0,getOnScreenY(y), 320,239, 255,y/(float)VSTY*255,255, screenBottom);
+    }
+    else if(getOnScreenY(y)<0)
+    {
+        drawLine(0,0,320,0,0,255,0,screenBottom);
+        drawFillRect( 0,0, 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,y/(float)VSTY*255,255, screenBottom);
+        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H , 320, getOnScreenY(y) + APPLICATION_ENTRY_H, 204,204,204, screenBottom);
+    }
+    else{
+        drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,y/(float)VSTY*255,255, screenBottom);
+        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H , 320, getOnScreenY(y) + APPLICATION_ENTRY_H, 204,204,204, screenBottom);
+    }
+    stringstream s;
     s << app.name << " (y: " << y << ", VSTY:" << VSTY << ")";
-	app.name = (char*)s.str().c_str();
-	/*For christ sakes, use the same coordinate system on all gfx/draw functions*/
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, app.name,239-getOnScreenY( APPTITLE_MARGIN + y ), 5);
+    app.name = s.str();
+    /*For christ sakes, use the same coordinate system on all gfx/draw functions*/
+    gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, (char*)app.name.c_str(),239-getOnScreenY( APPTITLE_MARGIN + y ), 5);
 }
 
 
