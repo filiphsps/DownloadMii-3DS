@@ -118,17 +118,17 @@ void drawAppEntry(Application_s app, int place){
     }
     else if(getOnScreenY(y)+APPLICATION_ENTRY_H >= 240)/*The entry is partly offscreen*/
     {
-        drawFillRect( 0,getOnScreenY(y), 320,239, 255,y/(float)VSTY*255,255, screenBottom);
+        drawFillRect( 0,getOnScreenY(y), 320,239, 255,/*y/(float)VSTY**/255,255, screenBottom);
     }
     else if(getOnScreenY(y)<0)
     {
         drawLine(0,0,320,0,0,255,0,screenBottom);
-        drawFillRect( 0,0, 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,y/(float)VSTY*255,255, screenBottom);
-        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H , 320, getOnScreenY(y) + APPLICATION_ENTRY_H, 204,204,204, screenBottom);
+        drawFillRect( 0,0, 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
+        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H , 320, getOnScreenY(y) + APPLICATION_ENTRY_H, 224,224,224, screenBottom);
     }
     else{
-        drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,y/(float)VSTY*255,255, screenBottom);
-        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 204,204,204, screenBottom);
+        drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
+        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
     }
     stringstream s;
     s << app.name << " (y: " << y << ", VSTY:" << VSTY << ")";
