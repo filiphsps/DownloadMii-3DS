@@ -7,14 +7,20 @@ using namespace std;
 struct Application_s{
 	int ID;
 	int rating;
-	string name;
-	string owner;
-	string category;
+	char* name;
+	char* owner;
+	char* category;
 	
-	string execURL;
-	string smdhURL;
-	string iconURL;
-	string websiteURL;
+	char* execURL;
+	char* smdhURL;
+	char* iconURL;
+	char* websiteURL;
+	
+	bool installed;
 	
 	//TODO: add all the values that can be found in the json file
 };
+
+extern Handle sdHandle;
+
+Result installApp(Application_s app, char* path);

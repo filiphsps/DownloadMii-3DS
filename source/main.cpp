@@ -103,8 +103,8 @@ int main(int argc, char** argv)
 			}
 			lastScene = scene;
 		}
-		if(!(VSPY + 15 >= VSTY))
-			VSPY += 15;
+		if(!(VSPY + 1 >= VSTY))
+			VSPY += 1;
 		else
 			VSPY = VSTY;
 		renderGUI();

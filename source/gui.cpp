@@ -131,9 +131,9 @@ void drawAppEntry(Application_s app, int place){
 	}
 	stringstream s;
     s << app.name << " (y: " << y << ", VSTY:" << VSTY << ")";
-	app.name = s.str();
+	app.name = (char*)s.str().c_str();
 	/*For christ sakes, use the same coordinate system on all gfx/draw functions*/
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, (char*)app.name.c_str(),239-getOnScreenY( APPTITLE_MARGIN + y ), 5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, app.name,239-getOnScreenY( APPTITLE_MARGIN + y ), 5);
 }
 
 
