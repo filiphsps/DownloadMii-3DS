@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <3ds.h>
 
 using namespace std;
 
