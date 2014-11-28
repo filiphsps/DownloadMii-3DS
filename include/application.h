@@ -24,4 +24,4 @@ struct Application_s{
 
 extern Handle sdHandle;
 
-Result installApp(Application_s app, char* path);
+Result installApp(Application_s app);
