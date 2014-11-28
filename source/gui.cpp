@@ -104,7 +104,7 @@ void renderOverview(){ //Renders a nice overview of the top apps for the user
 
 /* UIs */
 void drawAppEntry(Application_s app, int place){
-	//Very hacky way to display an app list
+	//Should be removed and recoded by someone smart unlike me as it doesnt work //filfat
 	int y = 0;
 	VSTY = place == 1 ? APPLICATION_ENTRY_H : VSTY + APPLICATION_ENTRY_H; //If this is the first app in the list clear the value set the valut to APPLICATION_ENTRY_H else add APPLICATION_ENTRY_H to VSPY
 	y = (MARGIN * (place)) + (APPLICATION_ENTRY_H * (place - 1));
