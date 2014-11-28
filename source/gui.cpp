@@ -29,7 +29,8 @@ TopScreen: w400 h240
 BottomScreen: w320 h240
 */
 
-int VSPX = 0; //Used for scrolling
+/* Used for the so called "scrolling" */
+int VSPX = 0; 
 int VSPY = 0;
 int VSTX = 0; 
 int VSTY = 0;
