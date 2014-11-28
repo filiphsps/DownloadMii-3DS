@@ -103,10 +103,18 @@ int main(int argc, char** argv)
 			}
 			lastScene = scene;
 		}
-		if(!(VSPY + 1 >= VSTY))
-			VSPY += 1;
-		else
-			VSPY = VSTY;
+		if(Input.Down){
+			if(!(VSPY + 5 >= VSTY))
+				VSPY += 5;
+			else
+				VSPY = VSTY;
+		}
+		else if(Input.Down){
+			if(!(VSPY - 5 <= 0))
+				VSPY -= 5;
+			else
+				VSPY = 0;
+		}
 		renderGUI();
 		if (Input.Start){
 			print("Exiting..\n");

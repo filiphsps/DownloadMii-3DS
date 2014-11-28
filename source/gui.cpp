@@ -128,7 +128,7 @@ void drawAppEntry(Application_s app, int place){
     }
     else{
         drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,y/(float)VSTY*255,255, screenBottom);
-        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H , 320, getOnScreenY(y) + APPLICATION_ENTRY_H, 204,204,204, screenBottom);
+        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 204,204,204, screenBottom);
     }
     stringstream s;
     s << app.name << " (y: " << y << ", VSTY:" << VSTY << ")";
