@@ -74,8 +74,8 @@ void renderGUI(){
 			drawAppEntry(app2, 5);
 			drawAppEntry(app2, 6);
 			drawAppEntry(app2, 7);
-			print("VSTY: %d", VSTY);
-			print(", VSPY: %d\n", VSPY);
+			//print("VSTY: %d", VSTY);
+			//print(", VSPY: %d\n", VSPY);
 			break;
 		case 1:
 			

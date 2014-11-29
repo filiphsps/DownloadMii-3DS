@@ -36,27 +36,6 @@ int main(int argc, char** argv)
 	doSplash(); //SplashScreen
 	
 	Result r = networkInit();
-	if(r != 0){
-		//Error,
-		//ToDo: Set application in offline mode
-		print("Error could not init network!\n");
-	}
-	else{
-		print("Downloading File..\n");
-		char* url = APPLICATIONSJSON; //Temp
-		jsonSS = downloadFile(url);
-		if(jsonSS != NULL && jsonSS[0] != 'e'){
-			print("Success\n");
-			print(jsonSS); //ToDo
-			print("\n");
-		}
-		else{
-			print(jsonSS); //Prints out the error
-			// jsonSS = offlineJson; ToDo
-			print(", Offline mode enabled\n");
-			
-		}
-	}
 	Application_s app = {1, 4, "Test3DS", "filfat", "Utils", "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.3dsx", "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.smdh"};
 	r = installApp(app); //Test
 	

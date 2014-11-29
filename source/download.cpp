@@ -5,6 +5,7 @@
 #include <3ds.h>
 #include <netdb.h>
 #include "download.h"
+#include "gui.h"
 
 using namespace std;
 
@@ -22,21 +23,25 @@ char* downloadFile(char* url){
 	
 	r = httpcOpenContext(&c, url, 0);
 	if(r != 0){
+		print("error: httpcOpenContext");
 		return "error: httpcOpenContext";
 	}
 	
 	r = httpcBeginRequest(&c);
 	if(r != 0){
+		print("error: httpcBeginRequest");
 		return "error: httpcBeginRequest";
 	}
 	
 	r = httpcGetResponseStatusCode(&c, &statuscode, 0);
 	if((r != 0) || statuscode != 200){
+		print("error: httpcGetResponseStatusCode");
 		return "error: httpcGetResponseStatusCode";
 	}
 	
 	r = httpcGetDownloadSizeState(&c, NULL, &contentsize);
 	if(r != 0){
+		print("error: httpcGetDownloadSizeState");
 		return "error: httpcGetDownloadSizeState";
 	}
 	
@@ -48,6 +53,7 @@ char* downloadFile(char* url){
 	if(r != 0)
 	{
 		free(b);
+		print("error: httpcDownloadData");
 		return "error: httpcDownloadData";
 	}
 	file = (char*)b;

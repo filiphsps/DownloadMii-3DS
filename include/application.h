@@ -22,6 +22,4 @@ struct Application_s{
 	//TODO: add all the values that can be found in the json file
 };
 
-extern Handle sdHandle;
-
 Result installApp(Application_s app);
