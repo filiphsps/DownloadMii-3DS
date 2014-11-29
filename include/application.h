@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <3ds.h>
+#include "file.h"
 
 using namespace std;
 

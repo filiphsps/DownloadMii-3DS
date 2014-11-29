@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <netdb.h>
+#include "file.h"
 #define SERVER_HOSTNAME "downloadmii.filfatstudios.com"
 
 using namespace std;

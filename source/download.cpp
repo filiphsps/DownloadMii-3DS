@@ -6,6 +6,7 @@
 #include <netdb.h>
 #include "download.h"
 #include "gui.h"
+#include "file.h"
 
 using namespace std;
 

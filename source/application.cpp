@@ -10,10 +10,9 @@
 #include "application.h"
 #include "download.h"
 #include "gui.h"
+#include "file.h"
 
 using namespace std;
-
-Handle sdHandle;
 
 Result installApp(Application_s app){
 	//ToDo

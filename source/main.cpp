@@ -36,8 +36,14 @@ int main(int argc, char** argv)
 	doSplash(); //SplashScreen
 	
 	Result r = networkInit();
-	Application_s app = {1, 4, "Test3DS", "filfat", "Utils", "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.3dsx", "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.smdh"};
+	if(r != 0){
+		print("networkInit: Error!");
+	}
+	Application_s app = {1, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/Applications.json", "http://downloadmii.filfatstudios.com/Applications.json"};
 	r = installApp(app); //Test
+	if(r != 0){
+		print("installApp: Error!");
+	}
 	
 	//JSON TEST-----------------------------------------
 	
