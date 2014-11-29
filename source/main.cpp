@@ -57,6 +57,8 @@ int main(int argc, char** argv)
 			
 		}
 	}
+	Application_s app = {1, 4, "Test3DS", "filfat", "Utils", "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.3dsx", "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.smdh"};
+	r = installApp(app); //Test
 	
 	//JSON TEST-----------------------------------------
 	
@@ -103,6 +105,16 @@ int main(int argc, char** argv)
 			}
 			lastScene = scene;
 		}
+		renderGUI();
+		if (Input.Start){
+			print("Exiting..\n");
+			renderGUI();
+			break; //break in order to return to hbmenu
+		} else if(Input.R && (scene > maxScene)){
+			scene++;
+		} else if(Input.L && (scene < 0)){
+			scene--;
+		}
 		if(Input.Down){
 			if(!(VSPY + 5 >= VSTY))
 				VSPY += 5;
@@ -114,16 +126,6 @@ int main(int argc, char** argv)
 				VSPY -= 5;
 			else
 				VSPY = 0;
-		}
-		renderGUI();
-		if (Input.Start){
-			print("Exiting..\n");
-			renderGUI();
-			break; //break in order to return to hbmenu
-		} else if(Input.R && (scene > maxScene)){
-			scene++;
-		} else if(Input.L && (scene < 0)){
-			scene--;
 		}
 		
 		

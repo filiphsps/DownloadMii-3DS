@@ -101,8 +101,7 @@ void renderGUI(){
 void renderOverview(){ //Renders a nice overview of the top apps for the user
 
 }
-int getOnScreenY(int vsy)
-{
+inline int getOnScreenY(int vsy){
     return (vsy-VSPY);
 }
 
