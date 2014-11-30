@@ -1,1 +1,2 @@
-convert -rotate 90 filename.png filename.bgr
+You may need to flip sprites horizontally first.
+convert -rotate 90 filename.png filename.bin
