@@ -18,11 +18,11 @@ Result installApp(Application_s app){
 	//ToDo
 	char buffer[110];
 	FILE *fp;
-	
 	/* MKDIR */
-	sprintf(buffer, "\%s\%s", HBPATH, app.name);
-	mkdir(buffer, 0777);
-	
+	sprintf(buffer, "\\%s\\%s", HBPATH, app.name);
+	int ri = mkdir(buffer, 0777);
+	sprintf(buffer, "ri: %d\n", ri);
+	print(buffer);
 	/* Download Files */
 	char* file3dsx = downloadFile(app.execURL);
 	char* filesmdh = downloadFile(app.smdhURL);
@@ -30,12 +30,12 @@ Result installApp(Application_s app){
 		return -1; //Error
 	/* Save files to the SD-Card */
 	//Start with the elf file
-	sprintf(buffer, "\%s\%s\%s.3dsx", HBPATH, app.name, app.name);
+	sprintf(buffer, "\\%s\\%s\\%s.3dsx", HBPATH, app.name, app.name);
 	fp = fopen(buffer, "w+");
 	fprintf(fp, file3dsx);
 	fclose(fp);
 	//Continue with the smdh file
-	sprintf(buffer, "\%s\%s\%s.smdh", HBPATH, app.name, app.name);
+	sprintf(buffer, "\\%s\\%s\\%s.smdh", HBPATH, app.name, app.name);
 	fp = fopen(buffer, "w+");
 	fclose(fp);
 	return 0;

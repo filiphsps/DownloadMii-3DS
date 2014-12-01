@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 	if(r != 0){
 		print("networkInit: Error!\n");
 	}
-	Application_s app = {1, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/Applications.json", "http://downloadmii.filfatstudios.com/Applications.json"};
+	Application_s app = {1, 4, "Test3DS", "filfat", "Utils", "https://downloadmii.filfatstudios.com/Applications.json", "https://downloadmii.filfatstudios.com/Applications.json"};
 	r = installApp(app); //Test
 	if(r != 0){
 		print("installApp: Error!\n");
