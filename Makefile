@@ -142,7 +142,7 @@ clean:
 #---------------------------------------------------------------------------------
 run:
 	@echo run ...
-	$(TOPDIR)/Testing/3dmoo.exe  $(TARGET).elf
+	$(TOPDIR)/Testing/3dmoo.exe  $(TARGET).elf -sdmc $(TOPDIR)/Testing/SD -sdwrite
 
 #---------------------------------------------------------------------------------
 else
