@@ -37,29 +37,25 @@ int main(int argc, char** argv)
 	
 	Result r = networkInit();
 	if(r != 0){
-		print("networkInit: Error!");
+		print("networkInit: Error!\n");
 	}
 	Application_s app = {1, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/Applications.json", "http://downloadmii.filfatstudios.com/Applications.json"};
 	r = installApp(app); //Test
 	if(r != 0){
-		print("installApp: Error!");
+		print("installApp: Error!\n");
 	}
-	
-	//JSON TEST-----------------------------------------
-	
-	//--------------------------------------------------
 	
 	//APP_STATUS status;
 	
 	//Fade into main loop, needs to get moved over to splash.cpp
-	for(int x = 255; x >= 0; x = x - 15){
+	/*for(int x = 255; x >= 0; x = x - 15){
 		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
 		gfxFlushBuffers(); 
 		gfxSwapBuffers();
 	}
-	renderGUI();
+	renderGUI();*/
 	/*for(int x = 0; x <= 255; x = x + 10){
 		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
@@ -69,10 +65,14 @@ int main(int argc, char** argv)
 	}*/
 	/* Main loop */
 	unsigned int lastScene = 0;
+	char buffer[110];
 	while (aptMainLoop())
 	{
 		UpdateInput(&Input);
-		
+		if(Input.touchX != 0){
+			sprintf(buffer, "%d,%d\n", Input.touchX, Input.touchY);
+			print(buffer);
+		}
 		if(lastScene != scene){
 			switch(scene){
 				case 0:
@@ -113,7 +113,7 @@ int main(int argc, char** argv)
 				VSPY = 0;
 		}
 		
-		
+		//VSPY += 5;
 		gspWaitForVBlank();
 	}
 

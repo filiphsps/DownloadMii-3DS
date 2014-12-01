@@ -1,2 +1,0 @@
-You may need to flip sprites horizontally first.
-convert -rotate 90 filename.png filename.bin

@@ -24,25 +24,25 @@ char* downloadFile(char* url){
 	
 	result = httpcOpenContext(&context, url, 0);
 	if(result != 0){
-		print("error: httpcOpenContext");
+		print("error: httpcOpenContext\n");
 		return "error: httpcOpenContext";
 	}
 	
 	result = httpcBeginRequest(&context);
 	if(result != 0){
-		print("error: httpcBeginRequest");
+		print("error: httpcBeginRequest\n");
 		return "error: httpcBeginRequest";
 	}
 	
 	result = httpcGetResponseStatusCode(&context, &statuscode, 0);
 	if((result != 0) || statuscode != 200){
-		print("error: httpcGetResponseStatusCode");
+		print("error: httpcGetResponseStatusCode\n");
 		return "error: httpcGetResponseStatusCode";
 	}
 	
 	result = httpcGetDownloadSizeState(&context, NULL, &contentsize);
 	if(result != 0){
-		print("error: httpcGetDownloadSizeState");
+		print("error: httpcGetDownloadSizeState\n");
 		return "error: httpcGetDownloadSizeState";
 	}
 	
@@ -53,7 +53,7 @@ char* downloadFile(char* url){
 	if(result != 0)
 	{
 		free(buffer);
-		print("error: httpcDownloadData");
+		print("error: httpcDownloadData\n");
 		return "error: httpcDownloadData";
 	}
 	file = (char*)buffer;

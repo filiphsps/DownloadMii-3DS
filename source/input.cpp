@@ -10,8 +10,14 @@
 #include "input.h"
 #include "gui.h"
 
+touchPosition tp;
+
 void UpdateInput(Input_s* input){
 	resetInput(input);
+	hidTouchRead(&tp); 
+	input->touchX = tp.px; 
+ 	input->touchY = tp.py; 
+
 	hidScanInput();
 	u32 kDown = hidKeysDown();
 	switch(kDown){

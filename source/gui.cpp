@@ -123,14 +123,14 @@ void drawAppEntry(Application_s app, int place){
     {
         drawLine(0,0,320,0,0,255,0,screenBottom);
         drawFillRect( 0,0, 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
-        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H , 320, getOnScreenY(y) + APPLICATION_ENTRY_H, 224,224,224, screenBottom);
+        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
     }
     else{
         drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
         drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
     }
     stringstream s;
-    s << app.name << " (y: " << y << ", VSTY:" << VSTY << ")";
+    s << app.name << " (EntryPosY: " << y << ", VSTY:" << VSTY << ")";
     app.name = (char*)s.str().c_str();
     /*For christ sakes, use the same coordinate system on all gfx/draw functions*/
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, app.name,239-getOnScreenY( APPTITLE_MARGIN + y ), 5);
