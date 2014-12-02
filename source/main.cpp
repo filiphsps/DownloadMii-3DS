@@ -28,6 +28,7 @@ int main(int argc, char** argv)
 	aptInit();
 	hidInit(NULL);
 	gfxInit();
+	sdmcInit();
 	initGUI();
 	//gfxSet3D(true);
 	
