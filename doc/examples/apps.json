@@ -1,0 +1,40 @@
+{
+  "Apps": [
+    {
+      "name": "DownloadMii",
+      "publisher": "filfat Studio's",
+      "version": "1.0.0.0",
+      "description": "Download Homebrew apps on your 3ds",
+      "category": "Utils",
+      "subcategory": "Stores",
+      "othercategory": "NULL",
+      "3dsx": "http://downloadmii.filfatstudios.com/stable/dmii.3dsx",
+      "smdh": "http://downloadmii.filfatstudios.com/stable/dmii.smdh",
+      "raiting": 5
+    },
+    {
+      "name": "Test3DS",
+      "publisher": "filfat",
+      "version": "1.0.0.0",
+      "description": "Testing Application",
+      "category": "Utils",
+      "subcategory": "NULL",
+      "othercategory": "NULL",
+      "3dsx": "http://downloadmii.filfatstudios.com/testing/test3ds.3dsx",
+      "smdh": "http://downloadmii.filfatstudios.com/testing/test3ds.smdh",
+      "raiting": 3
+    },
+    {
+      "name": "Temp",
+      "publisher": "Developer, Publisher",
+      "version": "1.0.0.234",
+      "description": "Testing Application",
+      "category": "Utils",
+      "subcategory": "NULL",
+      "othercategory": "NULL",
+      "3dsx": "http://downloadmii.filfatstudios.com/testing/test3ds.3dsx",
+      "smdh": "http://downloadmii.filfatstudios.com/testing/test3ds.smdh",
+      "raiting": 0
+    }
+  ]
+}
