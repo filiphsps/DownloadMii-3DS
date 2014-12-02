@@ -16,17 +16,19 @@ vector<Application_s> topGames;
 vector<Application_s> overviewApps;
 vector<Application_s> staffSelectApps;
 
-Result updateAppList(vector<Application_s> *AppList, char* json){
+Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
+	print("updateAppList() is not yet implamentet\n");
 	vector<Application_s> tempV;
+	char* json = downloadFile(jsonURL);
 	/* Parse json and put it into the temp vector */
 	
-	//TODO---------------------------------------------------------------------------
+	
 	
 	*AppList = tempV;
 	if(!AppList->empty()) // NULL/Empty check
 		return 0;
 	else{
-		print("Error, failed to do updateAppList()");
+		print("Error, failed to do updateAppList()\n");
 		return -1;
 	}
 }

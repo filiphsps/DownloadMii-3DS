@@ -20,8 +20,7 @@ Result installApp(Application_s app){
 	FILE *fp;
 	/* MKDIR */
 	sprintf(buffer, "sdmc:/%s/%s", HBPATH, app.name);
-	sprintf(buffer, "mkdir: %d\n", mkdir(buffer, 0777));
-	print(buffer);
+	mkdir(buffer, 0777);
 	/* Download Files */
 	char* file3dsx = downloadFile(app.execURL);
 	char* filesmdh = downloadFile(app.smdhURL);

@@ -47,6 +47,9 @@ int main(int argc, char** argv)
 	if(r != 0){
 		print("installApp: Error!\n");
 	}
+	
+	r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
+	
 	//----------- Used for testing the dynamic list as we have yet to add a json parser
 	overviewApps.push_back(app);
 	overviewApps.push_back(app);
@@ -56,21 +59,13 @@ int main(int argc, char** argv)
 	//APP_STATUS status;
 	
 	//Fade into main loop, needs to get moved over to splash.cpp
-	/*for(int x = 255; x >= 0; x = x - 15){
+	for(int x = 255; x >= 0; x = x - 15){
 		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
 		gfxFlushBuffers(); 
 		gfxSwapBuffers();
 	}
-	renderGUI();*/
-	/*for(int x = 0; x <= 255; x = x + 10){
-		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
-		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
-		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
-		gfxFlushBuffers(); 
-		gfxSwapBuffers();
-	}*/
 	/* Main loop */
 	unsigned int lastScene = -1;
 	char buffer[110];
@@ -89,12 +84,15 @@ int main(int argc, char** argv)
 					break;
 				case 1:
 					sceneTitle = "Top Downloaded Applications";
+					setAppList(topApps);
 					break;
 				case 2:
 					sceneTitle = "Top Downloaded Games";
+					setAppList(topGames);
 					break;
 				default:
 					sceneTitle = "Staff Pick";
+					setAppList(staffSelectApps);
 					break;
 			}
 			lastScene = scene;
@@ -110,19 +108,19 @@ int main(int argc, char** argv)
 			scene--;
 		}
 		if(Input.Down){
-			if(!(VSPY + 5 >= VSTY))
-				VSPY += 5;
+			if(!(VSPY + 1 >= VSTY))
+				VSPY += 1;
 			else
 				VSPY = VSTY;
 		}
 		else if(Input.Down){
-			if(!(VSPY - 5 <= 0))
-				VSPY -= 5;
+			if(!(VSPY - 1 <= 0))
+				VSPY -= 1;
 			else
 				VSPY = 0;
 		}
 		
-		VSPY += 5;
+		VSPY += 1;
 		gspWaitForVBlank();
 	}
 
