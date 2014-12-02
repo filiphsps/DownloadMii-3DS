@@ -115,11 +115,13 @@ int main(int argc, char** argv)
 				VSPY = 0;
 		}
 		
-		//VSPY += 5;
+		VSPY += 5;
 		gspWaitForVBlank();
 	}
 
 	//Exit services
+	fsExit();
+	sdmcExit();
 	gfxExit();
 	hidExit();
 	aptExit();
