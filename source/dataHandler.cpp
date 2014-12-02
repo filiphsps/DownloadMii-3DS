@@ -11,6 +11,11 @@
 
 using namespace std;
 
+vector<Application_s> topApps;
+vector<Application_s> topGames;
+vector<Application_s> overviewApps;
+vector<Application_s> staffSelectApps;
+
 Result updateAppList(vector<Application_s> *AppList, char* json){
 	vector<Application_s> tempV;
 	/* Parse json and put it into the temp vector */
@@ -18,7 +23,7 @@ Result updateAppList(vector<Application_s> *AppList, char* json){
 	//TODO---------------------------------------------------------------------------
 	
 	*AppList = tempV;
-	if(!AppList->empty()) //NULL/Empty check
+	if(!AppList->empty()) // NULL/Empty check
 		return 0;
 	else{
 		print("Error, failed to do updateAppList()");

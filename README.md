@@ -12,7 +12,7 @@ CREDITS
 * Main Website Developer: Filiph sandström (@filfat).
 * Some code is used from AlbertoSONIC!
 * Logo made by JoostinOnline.
-* https://github.com/kazuho/picojson JSON LIBRARY!
+* todo: JSON LIBRARY!
 * The CTRULIB team for their awesome lib/dev env!
 
 DOCUMENTATION

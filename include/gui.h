@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <string.h>
+#include <vector>
+#include <3ds.h>
 #include "input.h"
 #include "draw.h"
 #include "ascii64.h"
@@ -42,6 +44,7 @@ extern int VSTX;
 void initGUI(); 
 void renderGUI();
 void renderDebug();
+void setAppList(vector<Application_s> AppList);
 
 /* UIs */
 void drawTopBar();

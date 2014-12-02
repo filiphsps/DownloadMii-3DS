@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <3ds.h>
+#include <vector>
 #include "utils.h"
 #include "application.h"
 #include "input.h"
@@ -22,7 +23,7 @@ extern char superStr[];
 unsigned int scene = 0;
 unsigned int maxScene = 2;
 char* sceneTitle = "";
-
+vector<Application_s> *tAppList;
 
 /*
 TopScreen: w400 h240
@@ -39,10 +40,12 @@ void initGUI(){
 	//ToDo
 }
 
-//Todo: add scrolling to the whole app!!!
+void setAppList(vector<Application_s> AppList){
+	tAppList = &AppList;
+}
 
 void renderGUI(){
-	Application_s app2 = {1, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/"};
+	int appn = 0;
 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
@@ -55,7 +58,7 @@ void renderGUI(){
 	background();
 	
 	/* UI: TOP */
-	navbar.Title = "Applications"; //ToDo
+	navbar.Title = sceneTitle;
 	drawTopBar();
 	
 	/* UI: BOTTOM */
@@ -67,13 +70,10 @@ void renderGUI(){
 	switch(scene){
 		case 0:
 			renderOverview();
-			drawAppEntry(app2, 1);
-			drawAppEntry(app2, 2);
-			drawAppEntry(app2, 3);
-			drawAppEntry(app2, 4);
-			drawAppEntry(app2, 5);
-			drawAppEntry(app2, 6);
-			drawAppEntry(app2, 7);
+			for(Application_s app : *tAppList){
+				drawAppEntry(app, appn);
+				appn++;
+			}
 			//print("VSTY: %d", VSTY);
 			//print(", VSPY: %d\n", VSPY);
 			break;

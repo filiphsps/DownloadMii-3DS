@@ -14,6 +14,7 @@
 #include "font.h"
 #include "splash.h"
 #include "json.h"
+#include "dataHandler.h"
 
 using namespace std;
 
@@ -46,7 +47,12 @@ int main(int argc, char** argv)
 	if(r != 0){
 		print("installApp: Error!\n");
 	}
-	
+	//----------- Used for testing the dynamic list as we have yet to add a json parser
+	overviewApps.push_back(app);
+	overviewApps.push_back(app);
+	overviewApps.push_back(app);
+	overviewApps.push_back(app);
+	//-----------
 	//APP_STATUS status;
 	
 	//Fade into main loop, needs to get moved over to splash.cpp
@@ -66,7 +72,7 @@ int main(int argc, char** argv)
 		gfxSwapBuffers();
 	}*/
 	/* Main loop */
-	unsigned int lastScene = 0;
+	unsigned int lastScene = -1;
 	char buffer[110];
 	while (aptMainLoop())
 	{
@@ -79,6 +85,7 @@ int main(int argc, char** argv)
 			switch(scene){
 				case 0:
 					sceneTitle = "Overview";
+					setAppList(overviewApps);
 					break;
 				case 1:
 					sceneTitle = "Top Downloaded Applications";
