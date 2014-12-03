@@ -19,59 +19,51 @@ void UpdateInput(Input_s* input){
  	input->touchY = tp.py; 
 
 	hidScanInput();
-	u32 kDown = hidKeysDown();
-	switch(kDown){
-		case KEY_A:
+	u32 kDown = hidKeysHeld();
+	if(kDown){
+		if(kDown & KEY_A){
 			input->A = true;
-			break;
-		case KEY_B:
+		} if(kDown & KEY_B){
 			input->B = true;
-			break;
-		case KEY_X:
+		} if(kDown & KEY_X){
 			input->X = true;
-			break;
-		case KEY_Y:
+		} if(kDown & KEY_Y){
 			input->Y = true;
-			break;
-
-
-
-		case KEY_UP:
+		}
+		
+		if(kDown & KEY_UP){
 			input->Up = true;
-			print("Up\n");
-			break;
-		case KEY_DOWN:
+		} if(kDown & KEY_DOWN){
 			input->Down = true;
-			print("Down\n");
-			break;
-		case KEY_LEFT:
+		} if(kDown & KEY_LEFT){
 			input->Left = true;
-			print("Left\n");
-			break;
-		case KEY_RIGHT:
+		} if(kDown & KEY_RIGHT){
 			input->Right = true;
-			print("Right\n");
-			break;
-
-
-
-		case KEY_START:
+		}
+		
+		if(kDown & KEY_START){
 			input->Start = true;
-			break;
-		case KEY_SELECT:
+		} if(kDown & KEY_SELECT){
 			input->Select = true;
-			break;
-		case KEY_L:
+		} if(kDown & KEY_L){
 			input->L = true;
-			break;
-		case KEY_R:
+		} if(kDown & KEY_R){
 			input->R = true;
-			break;
-		default:
-			break;
+		}
 	}
 }
 
 void resetInput(Input_s* input){
-	input = {};
+	input->A = false;
+	input->B = false;
+	input->X = false;
+	input->Y = false;
+	input->Up = false;
+	input->Down = false;
+	input->Left = false;
+	input->Right = false;
+	input->Start = false;
+	input->Select = false;
+	input->L = false;
+	input->R = false;
 }

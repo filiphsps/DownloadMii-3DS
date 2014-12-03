@@ -71,8 +71,11 @@ void renderGUI(){
 		case 0:
 			renderOverview();
 			for(Application_s app : *tAppList){
-				drawAppEntry(app, appn);
 				appn++;
+				drawAppEntry(app, appn);
+				char buffer[100];
+				sprintf(buffer, "t: %s\n", app.name);
+				print(buffer);
 			}
 			//print("VSTY: %d", VSTY);
 			//print(", VSPY: %d\n", VSPY);
@@ -130,7 +133,7 @@ void drawAppEntry(Application_s app, int place){
         drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
     }
     stringstream s;
-    s << app.name << " (EntryPosY: " << y << ", VSTY:" << VSTY << ")";
+    s << app.name << " (EntryPosY: " << y << ", VSTY:" << VSTY << ")\n";
     app.name = (char*)s.str().c_str();
     /*For christ sakes, use the same coordinate system on all gfx/draw functions*/
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, app.name,239-getOnScreenY( APPTITLE_MARGIN + y ), 5);

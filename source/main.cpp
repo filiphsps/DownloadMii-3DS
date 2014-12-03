@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	if(r != 0){
 		print("networkInit: Error!\n");
 	}
-	Application_s app = {1, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/Applications.json", "http://downloadmii.filfatstudios.com/Applications.json"};
+	Application_s app = {0, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/Applications.json", "http://downloadmii.filfatstudios.com/Applications.json"};
 	r = installApp(app); //Test
 	if(r != 0){
 		print("installApp: Error!\n");
@@ -51,6 +51,9 @@ int main(int argc, char** argv)
 	r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
 	
 	//----------- Used for testing the dynamic list as we have yet to add a json parser
+	overviewApps.reserve(20);
+	overviewApps.push_back(app);
+	overviewApps.push_back(app);
 	overviewApps.push_back(app);
 	overviewApps.push_back(app);
 	overviewApps.push_back(app);
@@ -113,14 +116,14 @@ int main(int argc, char** argv)
 			else
 				VSPY = VSTY;
 		}
-		else if(Input.Down){
+		else if(Input.Up){
 			if(!(VSPY - 1 <= 0))
 				VSPY -= 1;
 			else
 				VSPY = 0;
 		}
 		
-		VSPY += 1;
+		//VSPY += 1;
 		gspWaitForVBlank();
 	}
 
