@@ -79,20 +79,24 @@ int main(int argc, char** argv)
 			switch(scene){
 				case 0:
 					sceneTitle = "Overview";
+					setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner1.bin"); //Test
 					setAppList(&overviewApps);
 					break;
 				case 1:
 					sceneTitle = "Top Downloaded Applications";
+					setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner2.bin"); //Test
 					setAppList(&topApps);
 					break;
 				case 2:
 					sceneTitle = "Top Downloaded Games";
 					setAppList(&topGames);
 					break;
-				default:
+				case 3:
 					sceneTitle = "Staff Pick";
 					setAppList(&staffSelectApps);
 					break;
+				default:
+					scene = 0;
 			}
 			lastScene = scene;
 		}
@@ -101,9 +105,9 @@ int main(int argc, char** argv)
 			print("Exiting..\n");
 			renderGUI();
 			break; //break in order to return to hbmenu
-		} else if(Input.R && (scene > maxScene)){
+		} else if(Input.R && !(scene > maxScene)){
 			scene++;
-		} else if(Input.L && (scene < 0)){
+		} else if(Input.L && (scene - 1 >= 0)){
 			scene--;
 		}
 		if(Input.Down){

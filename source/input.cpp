@@ -11,7 +11,7 @@
 #include "gui.h"
 
 touchPosition tp;
-
+int x;
 void UpdateInput(Input_s* input){
 	resetInput(input);
 	hidTouchRead(&tp); 
@@ -19,9 +19,13 @@ void UpdateInput(Input_s* input){
  	input->touchY = tp.py; 
 
 	hidScanInput();
-	u32 kDown = hidKeysHeld();
+	u32 kDown = hidKeysDown();
+	u32 kHeld = hidKeysHeld();
 	if(kDown){
-		print("Input detected!\n");
+		x++;
+		char buffer[100];
+		sprintf(buffer, "Input, %d\n", x);
+		print(buffer);
 		if(kDown & KEY_A){
 			input->A = true;
 		} if(kDown & KEY_B){
@@ -32,9 +36,9 @@ void UpdateInput(Input_s* input){
 			input->Y = true;
 		}
 		
-		if(kDown & KEY_UP){
+		if(kHeld & KEY_UP){
 			input->Up = true;
-		} if(kDown & KEY_DOWN){
+		} if(kHeld & KEY_DOWN){
 			input->Down = true;
 		} if(kDown & KEY_LEFT){
 			input->Left = true;
