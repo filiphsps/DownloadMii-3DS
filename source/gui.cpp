@@ -69,7 +69,9 @@ void renderGUI(){
 	/* UI: BOTTOM */
 	
 	/* DEBUG */
+	#ifdef DEBUG
 	renderDebug();
+	#endif
 	
 	/* Screen related UI(Changes based on scene) */
 	switch(scene){

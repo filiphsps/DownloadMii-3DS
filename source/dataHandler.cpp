@@ -27,6 +27,8 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	tempV.push_back(app);
 	tempV.push_back(app);
 	tempV.push_back(app);
+	tempV.push_back(app);
+	tempV.push_back(app);
 	//-----
 	
 	*AppList = tempV;
