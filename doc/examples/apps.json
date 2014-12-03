@@ -1,6 +1,7 @@
 {
   "Apps": [
     {
+      "guid": "todo",
       "name": "DownloadMii",
       "publisher": "filfat Studio's",
       "version": "1.0.0.0",
@@ -13,6 +14,7 @@
       "raiting": 5
     },
     {
+      "guid": "todo",
       "name": "Test3DS",
       "publisher": "filfat",
       "version": "1.0.0.0",
@@ -25,6 +27,7 @@
       "raiting": 3
     },
     {
+      "guid": "todo",
       "name": "Temp",
       "publisher": "Developer, Publisher",
       "version": "1.0.0.234",
