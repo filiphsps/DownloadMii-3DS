@@ -44,10 +44,11 @@ extern int VSTX;
 void initGUI(); 
 void renderGUI();
 void renderDebug();
-void setAppList(vector<Application_s> AppList);
+void setAppList(vector<Application_s>* AppList);
 
 /* UIs */
 void drawTopBar();
+void setStoreFrontImg(char* url); //Needs to be: 400x192
 void background();
 void renderOverview();
 void drawAppEntry(Application_s app, int place);

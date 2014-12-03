@@ -11,6 +11,7 @@
 #include "input.h"
 #include "gui.h"
 #include "main.h"
+#include "download.h"
 
 using namespace std;
 
@@ -24,6 +25,8 @@ unsigned int scene = 0;
 unsigned int maxScene = 2;
 char* sceneTitle = "";
 vector<Application_s> *tAppList;
+
+u8* cimg;
 
 /*
 TopScreen: w400 h240
@@ -40,8 +43,8 @@ void initGUI(){
 	//ToDo
 }
 
-void setAppList(vector<Application_s> AppList){
-	tAppList = &AppList;
+void setAppList(vector<Application_s>* AppList){
+	tAppList = AppList;
 }
 
 void renderGUI(){
@@ -60,7 +63,10 @@ void renderGUI(){
 	/* UI: TOP */
 	navbar.Title = sceneTitle;
 	drawTopBar();
-	
+	if(cimg != NULL){
+		gfxDrawSprite(GFX_TOP, GFX_LEFT, cimg, 192, 400, 0, 0);
+		gfxDrawSprite(GFX_TOP, GFX_RIGHT, cimg, 192, 400, 0, 0);
+	}
 	/* UI: BOTTOM */
 	
 	/* DEBUG */
@@ -73,9 +79,6 @@ void renderGUI(){
 			for(Application_s app : *tAppList){
 				appn++;
 				drawAppEntry(app, appn);
-				char buffer[100];
-				sprintf(buffer, "t: %s\n", app.name);
-				print(buffer);
 			}
 			//print("VSTY: %d", VSTY);
 			//print(", VSPY: %d\n", VSPY);
@@ -150,6 +153,13 @@ void background(){
 	drawFillRect( 0, 0, 320, 240, 227,242,253, screenBottom);
 	drawFillRect( 0, 0, 400, 240, 227,242,253, screenTopLeft);
 	drawFillRect( 0, 0, 400, 240, 227,242,253, screenTopRight);
+}
+void setStoreFrontImg(char* url){
+	//w: 400
+	//h: 192
+	print("Downloading banner...\n");
+	cimg = (u8*)downloadFile(url);
+	print("Banner downloaded!\n");
 }
 void drawTopBar(){
 	char buffer[100];

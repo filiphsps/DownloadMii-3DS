@@ -47,19 +47,15 @@ int main(int argc, char** argv)
 	if(r != 0){
 		print("installApp: Error!\n");
 	}
-	
 	r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
-	
-	//----------- Used for testing the dynamic list as we have yet to add a json parser
-	overviewApps.reserve(20);
-	overviewApps.push_back(app);
-	overviewApps.push_back(app);
-	overviewApps.push_back(app);
-	overviewApps.push_back(app);
-	overviewApps.push_back(app);
-	overviewApps.push_back(app);
-	//-----------
+	if(r != 0){
+		print("updateAppList: Error\n");
+	}
 	//APP_STATUS status;
+	
+	
+	//Banner:
+	setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner1.bin");
 	
 	//Fade into main loop, needs to get moved over to splash.cpp
 	for(int x = 255; x >= 0; x = x - 15){
@@ -83,19 +79,19 @@ int main(int argc, char** argv)
 			switch(scene){
 				case 0:
 					sceneTitle = "Overview";
-					setAppList(overviewApps);
+					setAppList(&overviewApps);
 					break;
 				case 1:
 					sceneTitle = "Top Downloaded Applications";
-					setAppList(topApps);
+					setAppList(&topApps);
 					break;
 				case 2:
 					sceneTitle = "Top Downloaded Games";
-					setAppList(topGames);
+					setAppList(&topGames);
 					break;
 				default:
 					sceneTitle = "Staff Pick";
-					setAppList(staffSelectApps);
+					setAppList(&staffSelectApps);
 					break;
 			}
 			lastScene = scene;

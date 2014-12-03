@@ -21,6 +21,7 @@ void UpdateInput(Input_s* input){
 	hidScanInput();
 	u32 kDown = hidKeysHeld();
 	if(kDown){
+		print("Input detected!\n");
 		if(kDown & KEY_A){
 			input->A = true;
 		} if(kDown & KEY_B){

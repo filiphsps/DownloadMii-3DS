@@ -22,7 +22,12 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	char* json = downloadFile(jsonURL);
 	/* Parse json and put it into the temp vector */
 	
-	
+	//-----<For Testing>
+	Application_s app = {0, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/Applications.json", "http://downloadmii.filfatstudios.com/Applications.json"};
+	tempV.push_back(app);
+	tempV.push_back(app);
+	tempV.push_back(app);
+	//-----
 	
 	*AppList = tempV;
 	if(!AppList->empty()) // NULL/Empty check
