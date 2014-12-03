@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 	if(r != 0){
 		print("networkInit: Error!\n");
 	}
-	Application_s app = {0, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/Applications.json", "http://downloadmii.filfatstudios.com/Applications.json"};
+	Application_s app = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
 	r = installApp(app); //Test
 	if(r != 0){
 		print("installApp: Error!\n");

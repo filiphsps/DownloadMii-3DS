@@ -21,7 +21,8 @@
 #define SECONDARY_NAVBAR_H 36
 #define SHADOW_ANGLE 135
 #define MARGIN 0 //No margin
-#define APPTITLE_MARGIN (APPLICATION_ENTRY_H/2) - (fontBlack.height)
+#define APPTITLE_MARGIN ((APPLICATION_ENTRY_H/2) - fontBlackHeader.height) + 12
+#define APPVERSION_MARGIN ((APPLICATION_ENTRY_H/2) - fontBlackSubHeader.height) + 24
 
 using namespace std;
 

@@ -23,7 +23,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	/* Parse json and put it into the temp vector */
 	
 	//-----<For Testing>
-	Application_s app = {0, 4, "Test3DS", "filfat", "Utils", "http://downloadmii.filfatstudios.com/Applications.json", "http://downloadmii.filfatstudios.com/Applications.json"};
+	Application_s app = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
 	tempV.push_back(app);
 	tempV.push_back(app);
 	tempV.push_back(app);

@@ -17,10 +17,27 @@ font_s fontBlack =
 	(u8[]){0x00,0x00,0x00}
 };
 
+
+font_s fontBlackHeader =
+{
+	RobotoData,
+	RobotoDesc,
+	24,
+	(u8[]){0x00,0x00,0x00}
+};
+
+font_s fontBlackSubHeader =
+{
+	robotoSmallData,
+	robotoSmallDesc,
+	18,
+	(u8[]){0x40,0x40,0x40}
+};
+
 font_s fontWhiteHeader =
 {
-	font1Data,
-	font1Desc,
+	RobotoData,
+	RobotoDesc,
 	24,
 	(u8[]){0xFF,0xFF,0xFF}
 };

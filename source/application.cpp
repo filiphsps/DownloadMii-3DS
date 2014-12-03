@@ -22,8 +22,8 @@ Result installApp(Application_s app){
 	sprintf(buffer, "sdmc:/%s/%s", HBPATH, app.name);
 	mkdir(buffer, 0777);
 	/* Download Files */
-	char* file3dsx = downloadFile(app.execURL);
-	char* filesmdh = downloadFile(app.smdhURL);
+	char* file3dsx = downloadFile(app._3dsx);
+	char* filesmdh = downloadFile(app.smdh);
 	if(file3dsx[0] == 'e' || filesmdh[0] == 'e') //Can return false positives(rare), needs to be fixed.
 		return -1; //Error
 	/* Save files to the SD-Card */

@@ -136,11 +136,10 @@ void drawAppEntry(Application_s app, int place){
         drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
         drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
     }
-    stringstream s;
-    s << app.name << " (EntryPosY: " << y << ", VSTY:" << VSTY << ")\n";
-    app.name = (char*)s.str().c_str();
-    /*For christ sakes, use the same coordinate system on all gfx/draw functions*/
-    gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, app.name,239-getOnScreenY( APPTITLE_MARGIN + y ), 5);
+	
+	
+    gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, app.name,240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
+    gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, app.version,240-getOnScreenY( APPVERSION_MARGIN + y ), 5);
 }
 
 
@@ -173,8 +172,8 @@ void drawTopBar(){
 	drawString(APPLICATION_NAME, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopLeft,GFX_TOP);
 	drawString(APPLICATION_NAME, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopRight,GFX_TOP);
 	
-	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhiteHeader, buffer, 237 - (((SECONDARY_NAVBAR_H/2) + fontWhiteHeader.height)), 13); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhiteHeader, buffer, 237 - (((SECONDARY_NAVBAR_H/2) + fontWhiteHeader.height)), 13); 
+	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H/2) + fontWhiteHeader.height)), 13); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H/2) + fontWhiteHeader.height)), 13); 
 	
 	u64 timeInSeconds = osGetTime() / 1000; 
 	u64 dayTime = timeInSeconds % SECONDS_IN_DAY; 
