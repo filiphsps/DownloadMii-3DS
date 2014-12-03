@@ -45,6 +45,9 @@ void initGUI(){
 
 void setAppList(vector<Application_s>* AppList){
 	tAppList = AppList;
+	//Reset the cords
+	VSPY = 0;
+	VSTY = 0;
 }
 
 void renderGUI(){
