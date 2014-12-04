@@ -66,6 +66,7 @@ int main(int argc, char** argv)
 	char buffer[110];
 	while (aptMainLoop())
 	{
+		UpdateInput(&Input);
 		if(Input.touchX != 0){
 			sprintf(buffer, "%d,%d\n", Input.touchX, Input.touchY);
 			print(buffer);
@@ -105,12 +106,12 @@ int main(int argc, char** argv)
 		} else if(Input.L && (scene - 1 >= 0)){
 			scene--;
 		}
-		if(hidKeysHeld() && KEY_DOWN){
+		if(hidKeysHeld() & KEY_DOWN){
 			if(!((VSPY) + 5 >= VSTY))
 				VSPY += 5;
 			else
 				VSPY = VSTY;
-		} else if(hidKeysHeld() && KEY_UP){
+		} else if(hidKeysHeld() & KEY_UP){
 			if(!(VSPY - 5 <= 0))
 				VSPY -= 5;
 			else
@@ -118,7 +119,6 @@ int main(int argc, char** argv)
 		}
 		
 		//VSPY += 1;
-		UpdateInput(&Input);
 		//gspWaitForVBlank();
 	}
 
