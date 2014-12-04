@@ -17,6 +17,7 @@ struct Application_s{
 	char* othercategory;
 	char* _3dsx;
 	char* smdh;
+	int raiting;
 	
 	bool installed;
 	
