@@ -8,6 +8,7 @@
 #include "download.h"
 #include "gui.h"
 #include "file.h"
+#include "picojson.h"
 
 using namespace std;
 
@@ -19,21 +20,30 @@ vector<Application_s> staffSelectApps;
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	print("updateAppList() is not yet implamentet\n");
 	vector<Application_s> tempV;
-	char* json = downloadFile(jsonURL);
+	const char* jsonsource = downloadFile(jsonURL);
 	/* Parse json and put it into the temp vector */
+	picojson::value v;
+    char * json = (char*) malloc(strlen(jsonsource)+1);
+    strcpy(json, jsonsource);
+    string err = picojson::parse(v, json, json + strlen(json));
+	print(err.c_str());
+    picojson::array list = v.get("Apps").get<picojson::array>();
 	
-	//-----<For Testing>
-	Application_s app = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
-	Application_s app2 = {"NULL", "Test3DS", "Developer", "3.0.2.649", "Test your 3DS!", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
-	tempV.push_back(app);
-	tempV.push_back(app2);
-	app.name = "Snake3D";
-	tempV.push_back(app);
-	app2.name = "GBAemu";
-	tempV.push_back(app2);
-	app.name = "WIFI Manger";
-	tempV.push_back(app);
-	//-----
+	Application_s app;
+    for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
+		app.GUID =          (char*)(*iter).get("guid").get<string>().c_str();
+		app.name =          (char*)(*iter).get("name").get<string>().c_str();
+		app.publisher =     (char*)(*iter).get("publisher").get<string>().c_str();
+		app.version =       (char*)(*iter).get("version").get<string>().c_str();
+		app.description =   (char*)(*iter).get("description").get<string>().c_str();
+		app.category =      (char*)(*iter).get("category").get<string>().c_str();
+		app.subcategory =   (char*)(*iter).get("subcategory").get<string>().c_str();
+		app.othercategory = (char*)(*iter).get("othercategory").get<string>().c_str();
+		app._3dsx         = (char*)(*iter).get("3dsx").get<string>().c_str();
+		app.smdh =          (char*)(*iter).get("smdh").get<string>().c_str();
+		//app.raiting =       (*iter).get("rating").get<int>();
+		tempV.push_back(app);
+    }
 	
 	*AppList = tempV;
 	if(!AppList->empty()) // NULL/Empty check

@@ -20,7 +20,6 @@ void UpdateInput(Input_s* input){
 
 	hidScanInput();
 	u32 kDown = hidKeysDown();
-	u32 kHeld = hidKeysHeld();
 	if(kDown){
 		x++;
 		char buffer[100];
