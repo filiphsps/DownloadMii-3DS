@@ -51,13 +51,29 @@ void setAppList(vector<Application_s>* AppList){
 }
 
 void renderGUI(){
-	int appn = 0;
 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
 
 	/* Background */
 	background();
+	
+	//TODO: Added a switch check for diffrent menus
+	renderStoreFront();
+	
+	/* DEBUG */
+	#ifdef DEBUG
+	renderDebug();
+	#endif
+	
+	/* Buffers */
+	gfxFlushBuffers(); 
+	gfxSwapBuffers();
+}
+
+
+void renderStoreFront(){
+	int appn = 0;
 	
 	/* UI: TOP */
 	navbar.Title = sceneTitle;
@@ -67,11 +83,6 @@ void renderGUI(){
 		gfxDrawSprite(GFX_TOP, GFX_RIGHT, cimg, 192, 400, 0, 0);
 	}
 	/* UI: BOTTOM */
-	
-	/* DEBUG */
-	#ifdef DEBUG
-	renderDebug();
-	#endif
 	
 	/* Screen related UI(Changes based on scene) */
 	switch(scene){
@@ -94,14 +105,7 @@ void renderGUI(){
 			
 			break;
 	}
-	
-	/* Buffers */
-	gfxFlushBuffers(); 
-	gfxSwapBuffers();
 }
-
-
-
 
 /* Scenes */
 
@@ -160,6 +164,11 @@ void setStoreFrontImg(char* url){
 	print("Downloading banner...\n");
 	cimg = (u8*)downloadFile(url);
 	print("Banner downloaded!\n");
+	if(cimg[0] == 'e'){
+		//Set banner to offline banner
+		printf("Failed to dowload and sett banner, defaulting to offline one\n");
+		//cimg = (u8*) offlineBanner_bin;
+	}
 }
 void drawTopBar(){
 	char buffer[100];

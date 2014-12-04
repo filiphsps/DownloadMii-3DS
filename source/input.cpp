@@ -36,9 +36,9 @@ void UpdateInput(Input_s* input){
 			input->Y = true;
 		}
 		
-		if(kHeld & KEY_UP){
+		if(kDown & KEY_UP){
 			input->Up = true;
-		} if(kHeld & KEY_DOWN){
+		} if(kDown & KEY_DOWN){
 			input->Down = true;
 		} if(kDown & KEY_LEFT){
 			input->Left = true;

@@ -53,10 +53,6 @@ int main(int argc, char** argv)
 	}
 	//APP_STATUS status;
 	
-	
-	//Banner:
-	setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner1.bin");
-	
 	//Fade into main loop, needs to get moved over to splash.cpp
 	for(int x = 255; x >= 0; x = x - 15){
 		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
@@ -70,7 +66,6 @@ int main(int argc, char** argv)
 	char buffer[110];
 	while (aptMainLoop())
 	{
-		UpdateInput(&Input);
 		if(Input.touchX != 0){
 			sprintf(buffer, "%d,%d\n", Input.touchX, Input.touchY);
 			print(buffer);
@@ -110,21 +105,21 @@ int main(int argc, char** argv)
 		} else if(Input.L && (scene - 1 >= 0)){
 			scene--;
 		}
-		if(Input.Down){
-			if(!(VSPY + 1 >= VSTY))
-				VSPY += 1;
+		if(hidKeysHeld() && KEY_DOWN){
+			if(!((VSPY) + 5 >= VSTY))
+				VSPY += 5;
 			else
 				VSPY = VSTY;
-		}
-		else if(Input.Up){
-			if(!(VSPY - 1 <= 0))
-				VSPY -= 1;
+		} else if(hidKeysHeld() && KEY_UP){
+			if(!(VSPY - 5 <= 0))
+				VSPY -= 5;
 			else
 				VSPY = 0;
 		}
 		
 		//VSPY += 1;
-		gspWaitForVBlank();
+		UpdateInput(&Input);
+		//gspWaitForVBlank();
 	}
 
 	//Exit services

@@ -44,6 +44,7 @@ extern int VSTX;
 
 void initGUI(); 
 void renderGUI();
+void renderStoreFront();
 void renderDebug();
 void setAppList(vector<Application_s>* AppList);
 
