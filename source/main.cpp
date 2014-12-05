@@ -60,6 +60,7 @@ int main(int argc, char** argv)
 	}
 	/* Main loop */
 	unsigned int lastScene = -1;
+	unsigned int lastMenu = -1;
 	char buffer[110];
 	while (aptMainLoop())
 	{
@@ -117,6 +118,10 @@ int main(int argc, char** argv)
 				break;
 		}
 		renderGUI();
+		if(lastMenu != currentMenu){
+			lastScene = -1;
+			lastMenu = currentMenu;
+		}
 		
 		if(Input.touchX != 0){
 			sprintf(buffer, "%d,%d\n", Input.touchX, Input.touchY);
