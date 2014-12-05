@@ -41,7 +41,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 		app.othercategory = (char*)(*iter).get("othercategory").get<string>().c_str();
 		app._3dsx         = (char*)(*iter).get("3dsx").get<string>().c_str();
 		app.smdh =          (char*)(*iter).get("smdh").get<string>().c_str();
-		//app.raiting =       (*iter).get("rating").get<int>();
+		app.raiting =       (int)(*iter).get("rating").get<double>();
 		tempV.push_back(app);
     }
 	

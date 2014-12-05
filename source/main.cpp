@@ -21,6 +21,7 @@ using namespace std;
 Input_s Input;
 char superStr[8192];
 char* jsonSS;
+int currentMenu = 0;
 
 int main(int argc, char** argv)
 {
@@ -42,11 +43,7 @@ int main(int argc, char** argv)
 	if(r != 0){
 		print("networkInit: Error!\n");
 	}
-	Application_s app = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
-	r = installApp(app); //Test
-	if(r != 0){
-		print("installApp: Error!\n");
-	}
+	
 	r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
 	if(r != 0){
 		print("updateAppList: Error\n");
@@ -67,59 +64,70 @@ int main(int argc, char** argv)
 	while (aptMainLoop())
 	{
 		UpdateInput(&Input);
+		switch(currentMenu){
+			case 0: //Overview
+				if(Input.R && !(scene > maxScene)){
+					scene++;
+				} else if(Input.L && (scene - 1 >= 0)){
+					scene--;
+				} else if(hidKeysHeld() & KEY_DOWN){
+					if(!((VSPY) + 5 >= VSTY))
+						VSPY += 5;
+					else
+						VSPY = VSTY;
+				} else if(hidKeysHeld() & KEY_UP){
+					if(!(VSPY - 5 <= 0))
+						VSPY -= 5;
+					else
+						VSPY = 0;
+				}
+				if(lastScene != scene){
+					switch(scene){
+						case 0:
+							sceneTitle = "Overview";
+							setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner1.bin"); //Test
+							setAppList(&overviewApps);
+							break;
+						case 1:
+							sceneTitle = "Top Downloaded Applications";
+							setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner2.bin"); //Test
+							setAppList(&topApps);
+							break;
+						case 2:
+							sceneTitle = "Top Downloaded Games";
+							setAppList(&topGames);
+							break;
+						case 3:
+							sceneTitle = "Staff Pick";
+							setAppList(&staffSelectApps);
+							break;
+						default:
+							scene = 0;
+					}
+					lastScene = scene;
+				}
+				break;
+			case 1: //Settings
+				break;
+			case 2: //App Page
+				break;
+			case 3: //Downloads
+				break;
+			case 4: //by dev
+				break;
+		}
+		renderGUI();
+		
 		if(Input.touchX != 0){
 			sprintf(buffer, "%d,%d\n", Input.touchX, Input.touchY);
 			print(buffer);
 		}
-		if(lastScene != scene){
-			switch(scene){
-				case 0:
-					sceneTitle = "Overview";
-					setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner1.bin"); //Test
-					setAppList(&overviewApps);
-					break;
-				case 1:
-					sceneTitle = "Top Downloaded Applications";
-					setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner2.bin"); //Test
-					setAppList(&topApps);
-					break;
-				case 2:
-					sceneTitle = "Top Downloaded Games";
-					setAppList(&topGames);
-					break;
-				case 3:
-					sceneTitle = "Staff Pick";
-					setAppList(&staffSelectApps);
-					break;
-				default:
-					scene = 0;
-			}
-			lastScene = scene;
-		}
-		renderGUI();
+		/* In case of start, exit the app */
 		if (Input.Start){
 			print("Exiting..\n");
-			renderGUI();
-			break; //break in order to return to hbmenu
-		} else if(Input.R && !(scene > maxScene)){
-			scene++;
-		} else if(Input.L && (scene - 1 >= 0)){
-			scene--;
+			break;
 		}
-		if(hidKeysHeld() & KEY_DOWN){
-			if(!((VSPY) + 5 >= VSTY))
-				VSPY += 5;
-			else
-				VSPY = VSTY;
-		} else if(hidKeysHeld() & KEY_UP){
-			if(!(VSPY - 5 <= 0))
-				VSPY -= 5;
-			else
-				VSPY = 0;
-		}
-		
-		//VSPY += 1;
-		//gspWaitForVBlank();
+		gspWaitForVBlank();
 	}
 
 	//Exit services

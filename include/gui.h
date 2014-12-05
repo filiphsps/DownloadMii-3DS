@@ -36,6 +36,7 @@ extern u8* screenTopLeft;
 extern u8* screenTopRight;
 extern u8* screenBottom;
 extern char superStr[];
+extern int currentMenu; //0 = overview, 1 = settings, 2 = app page, 3 = downloads(When i fugure out multicore), 4 = by dev.
 
 extern int VSPY;
 extern int VSPX;
@@ -45,6 +46,7 @@ extern int VSTX;
 void initGUI(); 
 void renderGUI();
 void renderStoreFront();
+void renderSettings();
 void renderDebug();
 void setAppList(vector<Application_s>* AppList);
 
@@ -52,7 +54,6 @@ void setAppList(vector<Application_s>* AppList);
 void drawTopBar();
 void setStoreFrontImg(char* url); //Needs to be: 400x192
 void background();
-void renderOverview();
 void drawAppEntry(Application_s app, int place);
 
 /* TEXT */

@@ -12,6 +12,8 @@
 #include "gui.h"
 #include "main.h"
 #include "download.h"
+/* Images */
+#include "offline_bin.h"
 
 using namespace std;
 
@@ -54,12 +56,29 @@ void renderGUI(){
 	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
 	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
-
+	
 	/* Background */
 	background();
 	
+	/* UI: TOP */
+	drawTopBar();
+	navbar.Title = sceneTitle;
+	
 	//TODO: Added a switch check for diffrent menus
-	renderStoreFront();
+	switch(currentMenu){
+		case 0: //Overview
+			renderStoreFront();
+			break;
+		case 1: //Settings
+			break;
+		case 2: //App Page
+			break;
+		case 3: //Downloads
+			break;
+		case 4: //by dev
+			break;
+	}
+	
 	
 	/* DEBUG */
 	#ifdef DEBUG
@@ -76,8 +95,6 @@ void renderStoreFront(){
 	int appn = 0;
 	
 	/* UI: TOP */
-	navbar.Title = sceneTitle;
-	drawTopBar();
 	if(cimg != NULL){
 		gfxDrawSprite(GFX_TOP, GFX_LEFT, cimg, 192, 400, 0, 0);
 		gfxDrawSprite(GFX_TOP, GFX_RIGHT, cimg, 192, 400, 0, 0);
@@ -87,7 +104,6 @@ void renderStoreFront(){
 	/* Screen related UI(Changes based on scene) */
 	switch(scene){
 		case 0:
-			renderOverview();
 			for(Application_s app : *tAppList){
 				appn++;
 				drawAppEntry(app, appn);
@@ -107,11 +123,17 @@ void renderStoreFront(){
 	}
 }
 
-/* Scenes */
-
-void renderOverview(){ //Renders a nice overview of the top apps for the user
-
+void renderSettings(){
+	/* UI: TOP */
+	if(cimg != NULL){ //ToDo
+		gfxDrawSprite(GFX_TOP, GFX_LEFT, cimg, 192, 400, 0, 0);
+		gfxDrawSprite(GFX_TOP, GFX_RIGHT, cimg, 192, 400, 0, 0);
+	}
+	/* UI: BOTTOM */
+	
 }
+
+/* Scenes */
 inline int getOnScreenY(int vsy){
     return (vsy-VSPY);
 }
@@ -167,7 +189,7 @@ void setStoreFrontImg(char* url){
 	if(cimg[0] == 'e'){
 		//Set banner to offline banner
 		printf("Failed to dowload and sett banner, defaulting to offline one\n");
-		//cimg = (u8*) offlineBanner_bin;
+		cimg = (u8*) offline_bin;
 	}
 }
 void drawTopBar(){
