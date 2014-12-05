@@ -45,7 +45,7 @@ APP_AUTHOR      := filfat
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-ARCH	:=	-march=armv6k -mtune=mpcore -mfloat-abi=softfp
+ARCH	:= 	-march=armv6k -mtune=mpcore -mfloat-abi=softfp
 # $(BUILD_NUMBER_FILE) $(BUILD_NUMBER_LDFLAGS) 
 
 CFLAGS	:= -Wunused -g -Wall -O3 -mword-relocations \

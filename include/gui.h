@@ -36,7 +36,9 @@ extern u8* screenTopLeft;
 extern u8* screenTopRight;
 extern u8* screenBottom;
 extern char superStr[];
+
 extern int currentMenu; //0 = overview, 1 = settings, 2 = app page, 3 = downloads(When i fugure out multicore), 4 = by dev.
+extern Application_s currentApp;
 
 extern int VSPY;
 extern int VSPX;
@@ -47,6 +49,7 @@ void initGUI();
 void renderGUI();
 void renderStoreFront();
 void renderSettings();
+void renderAppPage();
 void renderDebug();
 void setAppList(vector<Application_s>* AppList);
 

@@ -21,7 +21,9 @@ using namespace std;
 Input_s Input;
 char superStr[8192];
 char* jsonSS;
+
 int currentMenu = 0;
+Application_s currentApp = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
 
 int main(int argc, char** argv)
 {
@@ -67,6 +69,8 @@ int main(int argc, char** argv)
 		UpdateInput(&Input);
 		switch(currentMenu){
 			case 0: //Overview
+				if(lastMenu != currentMenu)
+					sceneTitle = "Overview";
 				if(Input.R && !(scene > maxScene)){
 					scene++;
 				} else if(Input.L && (scene - 1 >= 0)){
@@ -109,12 +113,26 @@ int main(int argc, char** argv)
 				}
 				break;
 			case 1: //Settings
+				if(lastMenu != currentMenu)
+					sceneTitle = "Settings";
 				break;
 			case 2: //App Page
+				if(lastMenu != currentMenu){
+					sceneTitle = currentApp.name;
+					setStoreFrontImg("http://downloadmii.filfatstudios.com/assets/logo.bin");
+					//setStoreFrontImg(currentApp.background);
+				}
 				break;
 			case 3: //Downloads
+				if(lastMenu != currentMenu)
+					sceneTitle = "Downloads";
 				break;
 			case 4: //by dev
+				if(lastMenu != currentMenu)
+					sceneTitle = "By Developer <Devname>";
+				break;
+			default:
+				currentMenu = 0;
 				break;
 		}
 		renderGUI();
@@ -126,6 +144,9 @@ int main(int argc, char** argv)
 		if(Input.touchX != 0){
 			sprintf(buffer, "%d,%d\n", Input.touchX, Input.touchY);
 			print(buffer);
+		}
+		if(Input.A){
+			currentMenu++;
 		}
 		/* In case of start, exit the app */
 		if (Input.Start){

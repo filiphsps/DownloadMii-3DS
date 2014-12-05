@@ -70,8 +70,10 @@ void renderGUI(){
 			renderStoreFront();
 			break;
 		case 1: //Settings
+			renderSettings();
 			break;
 		case 2: //App Page
+			renderAppPage();
 			break;
 		case 3: //Downloads
 			break;
@@ -125,12 +127,33 @@ void renderStoreFront(){
 
 void renderSettings(){
 	/* UI: TOP */
-	if(cimg != NULL){ //ToDo
+	if(cimg != NULL){ //ToDo: Render settings banner
+		gfxDrawSprite(GFX_TOP, GFX_LEFT, cimg, 192, 400, 0, 0);
+		gfxDrawSprite(GFX_TOP, GFX_RIGHT, cimg, 192, 400, 0, 0);
+	}
+	/* UI: BOTTOM */
+	//ToDo
+}
+
+void renderAppPage(){
+	/* UI: TOP */
+	if(cimg != NULL){ //ToDo: Render app page banner
 		gfxDrawSprite(GFX_TOP, GFX_LEFT, cimg, 192, 400, 0, 0);
 		gfxDrawSprite(GFX_TOP, GFX_RIGHT, cimg, 192, 400, 0, 0);
 	}
 	/* UI: BOTTOM */
 	
+	//Text
+	char buffer[310];
+	sprintf(buffer, "%s %s", currentApp.name, currentApp.version);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader,  buffer, 240 - fontBlackHeader.height,5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, currentApp.publisher , (240 - fontBlackHeader.height) - fontBlackSubHeader.height,5);
+	
+	//Download Button
+	drawFillRect(0,190,320,240, 0,148,255, screenBottom); //Todo: use button as download status bar
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
+	
+	//ToDo
 }
 
 /* Scenes */
@@ -163,7 +186,6 @@ void drawAppEntry(Application_s app, int place){
         drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
     }
 	
-	
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, app.name,240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, app.version,240-getOnScreenY( APPVERSION_MARGIN + y ), 5);
 }
@@ -188,7 +210,7 @@ void setStoreFrontImg(char* url){
 	print("Banner downloaded!\n");
 	if(cimg[0] == 'e'){
 		//Set banner to offline banner
-		printf("Failed to dowload and sett banner, defaulting to offline one\n");
+		printf("Failed to dowload and set banner, defaulting to offline one\n");
 		cimg = (u8*) offline_bin;
 	}
 }
