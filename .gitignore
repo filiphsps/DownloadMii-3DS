@@ -30,3 +30,6 @@ build/*
 *.3dsx
 *.elf
 *.smdh
+
+# Other
+3dmoo.log
