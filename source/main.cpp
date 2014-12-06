@@ -24,7 +24,7 @@ Input_s Input;
 char superStr[8192];
 char* jsonSS;
 
-int currentMenu = 2;
+int currentMenu = 0;
 Application_s currentApp = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
 
 int main(int argc, char** argv)
