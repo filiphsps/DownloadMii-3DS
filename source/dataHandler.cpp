@@ -18,7 +18,6 @@ vector<Application_s> overviewApps;
 vector<Application_s> staffSelectApps;
 
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
-	print("updateAppList() is not yet implamentet\n");
 	vector<Application_s> tempV;
 	const char* jsonsource = downloadFile(jsonURL);
 	/* Parse json and put it into the temp vector */

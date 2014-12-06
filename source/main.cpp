@@ -6,6 +6,7 @@
 #include <sstream>
 #include <3ds.h>
 //Custom Classes
+#include "main.h"
 #include "utils.h"
 #include "application.h"
 #include "gui.h"
@@ -15,6 +16,7 @@
 #include "splash.h"
 #include "json.h"
 #include "dataHandler.h"
+#include "settings.h"
 
 using namespace std;
 
@@ -22,7 +24,7 @@ Input_s Input;
 char superStr[8192];
 char* jsonSS;
 
-int currentMenu = 0;
+int currentMenu = 2;
 Application_s currentApp = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
 
 int main(int argc, char** argv)
@@ -32,9 +34,10 @@ int main(int argc, char** argv)
 	aptInit();
 	hidInit(NULL);
 	gfxInit();
-	fsInit();
 	sdmcInit();
-	initGUI();
+	fsInit();
+	guiInit();
+	settingsInit(DEFAULT_SETTINGS_PATH);
 	//gfxSet3D(true);
 	
     gspWaitForVBlank(); //wait to let the app register itself
@@ -62,7 +65,7 @@ int main(int argc, char** argv)
 	}
 	/* Main loop */
 	unsigned int lastScene = -1;
-	unsigned int lastMenu = -1;
+	int lastMenu = -1;
 	char buffer[110];
 	while (aptMainLoop())
 	{

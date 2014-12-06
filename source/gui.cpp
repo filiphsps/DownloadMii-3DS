@@ -41,7 +41,7 @@ int VSPY = 0;
 int VSTX = 0; 
 int VSTY = 0;
 
-void initGUI(){
+void guiInit(){
 	//ToDo
 }
 

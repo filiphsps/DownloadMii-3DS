@@ -45,7 +45,7 @@ extern int VSPX;
 extern int VSTY;
 extern int VSTX;
 
-void initGUI(); 
+void guiInit(); 
 void renderGUI();
 void renderStoreFront();
 void renderSettings();
