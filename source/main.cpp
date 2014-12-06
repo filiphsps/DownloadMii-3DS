@@ -14,7 +14,6 @@
 #include "download.h"
 #include "font.h"
 #include "splash.h"
-#include "json.h"
 #include "dataHandler.h"
 #include "settings.h"
 
