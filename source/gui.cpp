@@ -174,20 +174,33 @@ void drawAppEntry(Application_s app, int place){
     else if(getOnScreenY(y)+APPLICATION_ENTRY_H >= 240)/*The entry is partly offscreen*/
     {
         drawFillRect( 0,getOnScreenY(y), 320,239, 255,/*y/(float)VSTY**/255,255, screenBottom);
+		
+		//Button
+		int x =  getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 < 239 ? getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 : 239;
+        drawFillRect( 200,getOnScreenY(y) + APPLICATION_ENTRY_H/4 - 3, 302,x, 0,148,255, screenBottom);
     }
     else if(getOnScreenY(y)<0)
     {
         drawLine(0,0,320,0,0,255,0,screenBottom);
         drawFillRect( 0,0, 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
         drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
+		
+		//Button
+		drawFillRect( 200,getOnScreenY(y) + APPLICATION_ENTRY_H/4 -1, 302,getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 -1, 0,148,255, screenBottom);
     }
     else{
         drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
         drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
+		
+		//Button
+		drawFillRect( 200,getOnScreenY(y)+APPLICATION_ENTRY_H/4, 302,getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3, 0,148,255, screenBottom);
     }
 	
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, app.name,240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, app.version,240-getOnScreenY( APPVERSION_MARGIN + y ), 5);
+	
+	//Button
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Download",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
 }
 
 
