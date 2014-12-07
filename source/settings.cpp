@@ -9,12 +9,10 @@
 #include <errno.h>
 #include "settings.h"
 #include "gui.h"
-#include "ini.h"
 
 using namespace std;
 
 Settings_s settings;
-FS_archive sdmcArchive;
 
 void settingsInit(char* settingsPath){
 	char *buffer;
@@ -45,8 +43,7 @@ void settingsInit(char* settingsPath){
 		print("settingsInit: File is null(1)\n");
 	}
 	
-	INI::Parser p(buffer);  
-	print(p.top()("DownloadMii")["version"].c_str()); 
+	
 	//settings.version = (char*)reader.Get("DownloadMii", "version", "UNKNOWN").c_str();
 	//settings.nightly = reader.GetBoolean("DownloadMii", "nightly", true);
 	//settings.autoUpdate = reader.GetBoolean("DownloadMii", "autoUpdate", true);
