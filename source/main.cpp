@@ -33,8 +33,8 @@ int main(int argc, char** argv)
 	aptInit();
 	hidInit(NULL);
 	gfxInit();
-	sdmcInit();
 	fsInit();
+	sdmcInit();
 	guiInit();
 	settingsInit(DEFAULT_SETTINGS_PATH);
 	//gfxSet3D(true);
@@ -59,14 +59,8 @@ int main(int argc, char** argv)
 	u32 *stack = (u32*)malloc(0x4000);
 	svcCreateThread(&threadHandle, secondThread, 0, &stack[0x4000>>2], 0x3F, 0);*/
 	
-	//Fade into main loop, needs to get moved over to splash.cpp
-	for(int x = 255; x >= 0; x = x - 15){
-		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
-		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
-		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
-		gfxFlushBuffers(); 
-		gfxSwapBuffers();
-	}
+	
+	fadeOut();
 	/* Main loop */
 	unsigned int lastScene = -1;
 	int lastMenu = -1;

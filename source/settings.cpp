@@ -17,10 +17,8 @@ Settings_s settings;
 FS_archive sdmcArchive;
 
 void settingsInit(char* settingsPath){
-	errno = 0;
 	char *buffer;
-	char buf[100];
-	FILE *fh = fopen("sdmc:/3ds/downloadmii/settings.ini", "r+");
+	FILE *fh = fopen("sdmc:/3ds/downloadmii/settings.ini", "r");
 	if ( fh != NULL )
 	{
 		fseek(fh, 0L, SEEK_END);
@@ -40,17 +38,15 @@ void settingsInit(char* settingsPath){
 		}
 		if (fh != NULL){
 			fclose(fh);
-			print("Error 2\n");
+			print("settingsInit: File is null(2)\n");
 		}
 	}
 	else{
-		print("Error 1\n");
+		print("settingsInit: File is null(1)\n");
 	}
-	sprintf(buf, "%d", errno);
-	print(buf);
 	
 	INI::Parser p(buffer);  
-	print(p.top()("DownloadMii")["version"].c_str()); print("\n"); 
+	print(p.top()("DownloadMii")["version"].c_str()); 
 	//settings.version = (char*)reader.Get("DownloadMii", "version", "UNKNOWN").c_str();
 	//settings.nightly = reader.GetBoolean("DownloadMii", "nightly", true);
 	//settings.autoUpdate = reader.GetBoolean("DownloadMii", "autoUpdate", true);

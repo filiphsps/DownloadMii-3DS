@@ -52,6 +52,7 @@ void renderSettings();
 void renderAppPage();
 void renderDebug();
 void setAppList(vector<Application_s>* AppList);
+void fadeOut();
 
 /* UIs */
 void drawTopBar();

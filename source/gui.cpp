@@ -156,6 +156,16 @@ void renderAppPage(){
 	//ToDo
 }
 
+void fadeOut(){
+	for(int x = 255; x >= 0; x = x - 15){
+		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
+		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
+		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
+		gfxFlushBuffers(); 
+		gfxSwapBuffers();
+	}
+}
+
 /* Scenes */
 inline int getOnScreenY(int vsy){
     return (vsy-VSPY);
