@@ -54,6 +54,11 @@ int main(int argc, char** argv)
 	}
 	//APP_STATUS status;
 	
+	/* Threading */
+	/*Handle threadHandle;
+	u32 *stack = (u32*)malloc(0x4000);
+	svcCreateThread(&threadHandle, secondThread, 0, &stack[0x4000>>2], 0x3F, 0);*/
+	
 	//Fade into main loop, needs to get moved over to splash.cpp
 	for(int x = 255; x >= 0; x = x - 15){
 		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
@@ -78,15 +83,19 @@ int main(int argc, char** argv)
 				} else if(Input.L && (scene - 1 >= 0)){
 					scene--;
 				} else if(hidKeysHeld() & KEY_DOWN){
-					if(!((VSPY) + 5 >= VSTY))
+					if(!(VSPY + 5 > VSTY - 240))
 						VSPY += 5;
-					else
-						VSPY = VSTY;
+					else{
+						VSPY = VSTY - 240;
+						//ToDo: Indicator that we have hit the end of the list
+					}
 				} else if(hidKeysHeld() & KEY_UP){
 					if(!(VSPY - 5 <= 0))
 						VSPY -= 5;
-					else
+					else{
 						VSPY = 0;
+						//ToDo: Indicator that we have hit the start of the list
+					}
 				}
 				if(lastScene != scene){
 					switch(scene){

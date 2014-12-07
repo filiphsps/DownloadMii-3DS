@@ -163,9 +163,12 @@ inline int getOnScreenY(int vsy){
 
 /* UIs */
 void drawAppEntry(Application_s app, int place){
-    //Should be removed and recoded by someone smart unlike me as it doesnt work //filfat
     int y = 0;
-    VSTY = place == 1 ? APPLICATION_ENTRY_H : VSTY +MARGIN+ APPLICATION_ENTRY_H; //If this is the first app in the list clear the value set the valut to APPLICATION_ENTRY_H else add APPLICATION_ENTRY_H to VSPY
+	if(place == 1)
+		VSTY = APPLICATION_ENTRY_H;
+	else
+		VSTY += APPLICATION_ENTRY_H;
+		
     y = (MARGIN * (place)) + (APPLICATION_ENTRY_H * (place - 1));
 
     if((getOnScreenY(y)>=240 || getOnScreenY(y)+APPLICATION_ENTRY_H <= 0) || VSPY >= VSTY){

@@ -37,7 +37,7 @@ extern u8* screenTopRight;
 extern u8* screenBottom;
 extern char superStr[];
 
-extern int currentMenu; //0 = overview, 1 = settings, 2 = app page, 3 = downloads(When i fugure out multicore), 4 = by dev.
+extern int currentMenu; //0 = overview, 1 = settings, 2 = app page, 3 = downloads(When i fugure out multi-threading), 4 = by dev.
 extern Application_s currentApp;
 
 extern int VSPY;
