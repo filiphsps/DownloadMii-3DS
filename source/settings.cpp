@@ -50,7 +50,7 @@ void settingsInit(char* settingsPath){
 	print(buf);
 	
 	INI::Parser p(buffer);  
-	print(p.top()("DownloadMii")["a"].c_str()); print("\n"); 
+	print(p.top()("DownloadMii")["version"].c_str()); print("\n"); 
 	//settings.version = (char*)reader.Get("DownloadMii", "version", "UNKNOWN").c_str();
 	//settings.nightly = reader.GetBoolean("DownloadMii", "nightly", true);
 	//settings.autoUpdate = reader.GetBoolean("DownloadMii", "autoUpdate", true);
