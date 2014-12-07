@@ -12,6 +12,7 @@
 
 using namespace std;
 
+char* defaultSettings = "todo"; //used when the file is not found, invalid or corrupt, empty
 Settings_s settings;
 
 void settingsInit(char* settingsPath){
