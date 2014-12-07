@@ -14,6 +14,7 @@ CREDITS
 * Logo made by JoostinOnline.
 * todo: JSON LIBRARY!
 * The CTRULIB team for their awesome lib/dev env!
+* #3dsdev for all the help! <3
 
 DOCUMENTATION
 ======
