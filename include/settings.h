@@ -16,5 +16,7 @@ struct Settings_s{
 };
 
 extern Settings_s settings;
+extern char* defaultSettings;
 
 void settingsInit(char* settingsPath);
+void createSettings();
