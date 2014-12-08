@@ -63,15 +63,13 @@ int main(int argc, char** argv)
 	fadeOut();
 	/* Main loop */
 	unsigned int lastScene = -1;
-	int lastMenu = -1;
+	int lastMenu = 0;
 	char buffer[110];
 	while (aptMainLoop())
 	{
 		UpdateInput(&Input);
 		switch(currentMenu){
 			case 0: //Overview
-				if(lastMenu != currentMenu)
-					sceneTitle = "Overview";
 				if(Input.R && !(scene > maxScene)){
 					scene++;
 				} else if(Input.L && (scene - 1 >= 0)){
