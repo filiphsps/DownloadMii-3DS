@@ -13,3 +13,4 @@ struct Input_s{
 
 void UpdateInput(Input_s*  input);
 void resetInput(Input_s*  input);
+bool checkButtonTouch(int x1, int y1, int x2, int y2, Input_s* input); 

@@ -70,4 +70,13 @@ void resetInput(Input_s* input){
 	input->Select = false;
 	input->L = false;
 	input->R = false;
+	input->touchX = 0;
+	input->touchY = 0;
+}
+
+bool checkButtonTouch(int x1, int y1, int x2, int y2, Input_s* input){
+	if((input->touchX >= x1 && input->touchX <= x2) && (input->touchY >=y1 && input->touchY <= y2))
+		return true;
+	else
+		return false;
 }

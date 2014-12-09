@@ -166,6 +166,10 @@ void fadeOut(){
 	}
 }
 
+void doKeyboard(char* inputText){
+	//ToDo
+}
+
 /* Scenes */
 inline int getOnScreenY(int vsy){
     return (vsy-VSPY);
