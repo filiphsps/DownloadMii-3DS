@@ -18,7 +18,7 @@ CREDITS
 
 DOCUMENTATION
 ======
-Can be found under the "/doc" folder
+Can be found under the "/doc" folder, assets can be found under the "/assests" folder.
 
 TODO
 ======
