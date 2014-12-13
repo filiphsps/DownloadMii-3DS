@@ -48,9 +48,9 @@ int main(int argc, char** argv)
 		print("networkInit: Error!\n");
 	}
 	
-	r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
+	r = doListUpdate();
 	if(r != 0){
-		print("updateAppList: Error\n");
+		print("doUpdate: Error\n");
 	}
 	//APP_STATUS status;
 	
