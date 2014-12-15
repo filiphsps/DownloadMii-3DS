@@ -24,6 +24,7 @@ char superStr[8192];
 char* jsonSS;
 
 int currentMenu = 0;
+//To do
 Application_s currentApp = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
 
 int main(int argc, char** argv)
@@ -41,7 +42,7 @@ int main(int argc, char** argv)
 	
     gspWaitForVBlank(); //wait to let the app register itself
 
-	doSplash(); //SplashScreen
+	doSplash(); //Splash Screen
 	
 	Result r = networkInit();
 	if(r != 0){

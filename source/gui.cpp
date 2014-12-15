@@ -194,7 +194,8 @@ void drawAppEntry(Application_s app, int place){
 		
 		//Button
 		int x =  getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 < 239 ? getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 : 239;
-        drawFillRect( 200,getOnScreenY(y) + APPLICATION_ENTRY_H/4 - 3, 302,x, 0,148,255, screenBottom);
+		int z = getOnScreenY(y) + APPLICATION_ENTRY_H/4 < 239 ? getOnScreenY(y) + APPLICATION_ENTRY_H/4 : 239;
+        drawFillRect( 200, z, 302,x, 0,148,255, screenBottom);
     }
     else if(getOnScreenY(y)<0)
     {
