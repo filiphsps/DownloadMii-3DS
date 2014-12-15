@@ -41,12 +41,19 @@ int main(int argc, char** argv)
 	//gfxSet3D(true);
 	
     gspWaitForVBlank(); //wait to let the app register itself
+	
+	Handle APTHandle;
 
 	doSplash(); //Splash Screen
 	
 	Result r = networkInit();
 	if(r != 0){
 		print("networkInit: Error!\n");
+	}
+	
+	r = APT_SetAppCpuTimeLimit(&APTHandle, (u32)100);
+	if(r != 0){
+		print("APT_SetAppCpuTimeLimit: Error\n");
 	}
 	
 	r = doListUpdate();
@@ -59,7 +66,7 @@ int main(int argc, char** argv)
 	/*Handle threadHandle;
 	u32 *stack = (u32*)malloc(0x4000);
 	svcCreateThread(&threadHandle, secondThread, 0, &stack[0x4000>>2], 0x3F, 0);*/
-	
+
 	
 	fadeOut();
 	/* Main loop */
