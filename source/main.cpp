@@ -27,6 +27,8 @@ int currentMenu = 0;
 //To do
 Application_s currentApp = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
 
+static int CalcFPS(); //ToDo: move to utils.cpp
+
 int main(int argc, char** argv)
 {
 	//Initialize services
@@ -164,6 +166,7 @@ int main(int argc, char** argv)
 			print("Exiting..\n");
 			break;
 		}
+		FPS = CalcFPS();
 		gspWaitForVBlank();
 	}
 
@@ -175,4 +178,19 @@ int main(int argc, char** argv)
 	aptExit();
 	srvExit();
 	return 0;
+}
+
+static int CalcFPS(){
+	static int FC = 0;
+	static u32 lt;
+	u32 ClockSpeed = osGetTime();
+	static int FPS;
+	
+	FC++;
+	if(ClockSpeed - lt > 1000){
+		lt = ClockSpeed;
+		FPS = FC;
+		FC = 0;
+	}
+	return FPS;
 }

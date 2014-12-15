@@ -27,7 +27,7 @@ unsigned int scene = 0;
 unsigned int maxScene = 2;
 char* sceneTitle = "";
 vector<Application_s> *tAppList;
-
+int FPS;
 u8* cimg;
 
 /*
@@ -261,7 +261,7 @@ void drawTopBar(){
 	
 	u64 timeInSeconds = osGetTime() / 1000; 
 	u64 dayTime = timeInSeconds % SECONDS_IN_DAY; 
-	sprintf(buffer, "%llu:%llu:%llu",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE);
+	sprintf(buffer, "%llu:%llu:%llu, FPS: %d",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE, FPS);
 	drawString(buffer, 2,2, 255,255,255, screenTopLeft,GFX_TOP);
 	drawString(buffer, 2,2, 255,255,255, screenTopRight,GFX_TOP);
 }
