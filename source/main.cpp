@@ -16,6 +16,7 @@
 #include "splash.h"
 #include "dataHandler.h"
 #include "settings.h"
+#include "music.h"
 
 using namespace std;
 
@@ -24,7 +25,8 @@ char superStr[8192];
 char* jsonSS;
 
 int currentMenu = 0;
-//To do
+
+//Todo:
 Application_s currentApp = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
 
 static int CalcFPS(); //ToDo: move to utils.cpp
@@ -53,7 +55,7 @@ int main(int argc, char** argv)
 		print("networkInit: Error!\n");
 	}
 	
-	/*r = APT_SetAppCpuTimeLimit(&APTHandle, (u32)100);
+	/*r = APT_SetAppCpuTimeLimit(&APTHandle, (u32)80);
 	if(r != 0){
 		print("APT_SetAppCpuTimeLimit: Error\n");
 	}*/
