@@ -3,6 +3,7 @@
 #include <string.h>
 #include <malloc.h>
 #include <iostream>
+#include <vector>
 #include <sstream>
 #include <3ds.h>
 #include "utils.h"
@@ -10,6 +11,7 @@
 #include "input.h"
 #include "gui.h"
 
+vector<vButton_s> vButtons;
 touchPosition tp;
 int x;
 void UpdateInput(Input_s* input){
@@ -74,9 +76,17 @@ void resetInput(Input_s* input){
 	input->touchY = 0;
 }
 
-bool checkButtonTouch(int x1, int y1, int x2, int y2, Input_s* input){
-	if((input->touchX >= x1 && input->touchX <= x2) && (input->touchY >=y1 && input->touchY <= y2))
+void checkVButtonTouch(){
+	/*if((input->touchX >= x1 && input->touchX <= x2) && (input->touchY >=y1 && input->touchY <= y2))
 		return true;
 	else
-		return false;
+		return false;*/
 }
+void addVButton(vButton_s button){
+
+}
+void clearVButtons(){
+
+}
+
+

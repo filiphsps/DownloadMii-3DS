@@ -24,7 +24,10 @@ char superStr[8192];
 char* jsonSS;
 
 int currentMenu = 0;
+//To do
 Application_s currentApp = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
+
+static int CalcFPS(); //ToDo: move to utils.cpp
 
 int main(int argc, char** argv)
 {
@@ -40,17 +43,24 @@ int main(int argc, char** argv)
 	//gfxSet3D(true);
 	
     gspWaitForVBlank(); //wait to let the app register itself
+	
+	Handle APTHandle;
 
-	doSplash(); //SplashScreen
+	doSplash(); //Splash Screen
 	
 	Result r = networkInit();
 	if(r != 0){
 		print("networkInit: Error!\n");
 	}
 	
-	r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
+	/*r = APT_SetAppCpuTimeLimit(&APTHandle, (u32)100);
 	if(r != 0){
-		print("updateAppList: Error\n");
+		print("APT_SetAppCpuTimeLimit: Error\n");
+	}*/
+	
+	r = doListUpdate();
+	if(r != 0){
+		print("doUpdate: Error\n");
 	}
 	//APP_STATUS status;
 	
@@ -58,7 +68,7 @@ int main(int argc, char** argv)
 	/*Handle threadHandle;
 	u32 *stack = (u32*)malloc(0x4000);
 	svcCreateThread(&threadHandle, secondThread, 0, &stack[0x4000>>2], 0x3F, 0);*/
-	
+
 	
 	fadeOut();
 	/* Main loop */
@@ -156,6 +166,7 @@ int main(int argc, char** argv)
 			print("Exiting..\n");
 			break;
 		}
+		FPS = CalcFPS();
 		gspWaitForVBlank();
 	}
 
@@ -167,4 +178,19 @@ int main(int argc, char** argv)
 	aptExit();
 	srvExit();
 	return 0;
+}
+
+static int CalcFPS(){
+	static int FC = 0;
+	static u32 lt;
+	u32 ClockSpeed = osGetTime();
+	static int FPS;
+	
+	FC++;
+	if(ClockSpeed - lt > 1000){
+		lt = ClockSpeed;
+		FPS = FC;
+		FC = 0;
+	}
+	return FPS;
 }

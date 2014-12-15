@@ -52,3 +52,12 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 		return -1;
 	}
 }
+
+Result doListUpdate(){
+	//ToDo
+	Result r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
+	if(r != 0){
+		print("updateAppList: Error\n");
+	}
+	return r;
+}

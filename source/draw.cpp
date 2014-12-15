@@ -21,14 +21,7 @@ void clearScreen(u8* screen,gfxScreen_t screenPos)
 		break;
 	}
 
-	int i, j;
-	for(i=1;i<width;i++)
-	{
-		for(j=1;j<height;j++)
-		{
-			drawPixel(i,j,0x00,0x00,0x00,screen);
-		}
-	}
+	memset(screen,0,width*height*3);
 }
 
 void drawPixel(int x, int y, char r, char g, char b, u8* screen)
