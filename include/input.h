@@ -2,6 +2,7 @@
 
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -11,6 +12,18 @@ struct Input_s{
 	u16 touchX = 0, touchY = 0;
 };
 
+struct vButton_s{
+	int ID;
+	int x, y;
+	bool pressed;
+};
+
+extern vector<vButton_s> vButtons;
+
 void UpdateInput(Input_s*  input);
 void resetInput(Input_s*  input);
-bool checkButtonTouch(int x1, int y1, int x2, int y2, Input_s* input); 
+
+
+void checkVButtonTouch(); 
+void addVButton(vButton_s button);
+void clearVButtons();
