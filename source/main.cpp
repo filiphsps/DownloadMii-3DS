@@ -53,10 +53,10 @@ int main(int argc, char** argv)
 		print("networkInit: Error!\n");
 	}
 	
-	r = APT_SetAppCpuTimeLimit(&APTHandle, (u32)100);
+	/*r = APT_SetAppCpuTimeLimit(&APTHandle, (u32)100);
 	if(r != 0){
 		print("APT_SetAppCpuTimeLimit: Error\n");
-	}
+	}*/
 	
 	r = doListUpdate();
 	if(r != 0){
