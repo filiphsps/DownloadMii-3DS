@@ -14,7 +14,7 @@ struct Input_s{
 
 struct vButton_s{
 	int ID;
-	int x, y;
+	int x, y, x2, y2;
 	bool pressed;
 };
 
@@ -24,6 +24,6 @@ void UpdateInput(Input_s*  input);
 void resetInput(Input_s*  input);
 
 
-void checkVButtonTouch(); 
+void checkVButtonTouch(Input_s* input); 
 void addVButton(vButton_s button);
 void clearVButtons();

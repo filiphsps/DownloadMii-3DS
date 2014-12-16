@@ -41,6 +41,8 @@ int VSPY = 0;
 int VSTX = 0; 
 int VSTY = 0;
 
+int butPos = 0;
+
 void guiInit(){
 	//ToDo
 }
@@ -178,6 +180,7 @@ inline int getOnScreenY(int vsy){
 /* UIs */
 void drawAppEntry(Application_s app, int place){
     int y = 0;
+	int butY = 0, butY2 = 0, butX2 = 302, butX = 200;
 	if(place == 1)
 		VSTY = APPLICATION_ENTRY_H;
 	else
@@ -186,6 +189,8 @@ void drawAppEntry(Application_s app, int place){
     y = (MARGIN * (place)) + (APPLICATION_ENTRY_H * (place - 1));
 
     if((getOnScreenY(y)>=240 || getOnScreenY(y)+APPLICATION_ENTRY_H <= 0) || VSPY >= VSTY){
+		clearVButtons();
+		butPos = 0;
         return; //Outside screen dont draw
     }
     else if(getOnScreenY(y)+APPLICATION_ENTRY_H >= 240)/*The entry is partly offscreen*/
@@ -194,7 +199,9 @@ void drawAppEntry(Application_s app, int place){
 		
 		//Button
 		int x =  getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 < 239 ? getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 : 239;
+		butX2 = x;
 		int z = getOnScreenY(y) + APPLICATION_ENTRY_H/4 < 239 ? getOnScreenY(y) + APPLICATION_ENTRY_H/4 : 239;
+		butX = z;
         drawFillRect( 200, z, 302,x, 0,148,255, screenBottom);
     }
     else if(getOnScreenY(y)<0)
@@ -204,14 +211,18 @@ void drawAppEntry(Application_s app, int place){
         drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
 		
 		//Button
-		drawFillRect( 200,getOnScreenY(y) + APPLICATION_ENTRY_H/4 -1, 302,getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 -1, 0,148,255, screenBottom);
+		butY = getOnScreenY(y) + APPLICATION_ENTRY_H/4 -1;
+		butY2 = getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 -1;
+		drawFillRect( 200,butY, 302,butY2, 0,148,255, screenBottom);
     }
     else{
         drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
         drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
 		
 		//Button
-		drawFillRect( 200,getOnScreenY(y)+APPLICATION_ENTRY_H/4, 302,getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3, 0,148,255, screenBottom);
+		butY = getOnScreenY(y)+APPLICATION_ENTRY_H/4;
+		butY2 = getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3;
+		drawFillRect( 200,butY, 302,butY2, 0,148,255, screenBottom);
     }
 	
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, app.name,240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
@@ -219,6 +230,11 @@ void drawAppEntry(Application_s app, int place){
 	
 	//Button
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Download",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
+	
+	//ToDo: pass a pointer to the vButton struct so it knows which page to redirect to, and what data to pass.
+	vButton_s but = {butPos, butX, butY, butX2, butY2};
+	addVButton(but);
+	butPos++;
 }
 
 
