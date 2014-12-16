@@ -51,7 +51,7 @@ char* downloadFile(char* url){
 		return "error: httpcGetDownloadSizeState";
 	}
 	
-	buffer = (u8*)calloc(contentsize, sizeof(u8*));
+	buffer = (u8*)calloc(contentsize, 1);
 	if(buffer==NULL){
 		free(buffer);
 		httpcCloseContext(&context);

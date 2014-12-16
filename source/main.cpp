@@ -45,8 +45,6 @@ int main(int argc, char** argv)
 	//gfxSet3D(true);
 	
     gspWaitForVBlank(); //wait to let the app register itself
-	
-	Handle APTHandle;
 
 	doSplash(); //Splash Screen
 	
@@ -55,10 +53,13 @@ int main(int argc, char** argv)
 		print("networkInit: Error!\n");
 	}
 	
-	/*r = APT_SetAppCpuTimeLimit(&APTHandle, (u32)80);
+	//ToDo: check if we are running on o3ds or n3ds
+	/*aptOpenSession();
+	r = APT_SetAppCpuTimeLimit(NULL, (u32)80);
 	if(r != 0){
 		print("APT_SetAppCpuTimeLimit: Error\n");
-	}*/
+	}
+	aptCloseSession();*/
 	
 	r = doListUpdate();
 	if(r != 0){
