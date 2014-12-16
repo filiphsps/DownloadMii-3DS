@@ -19,7 +19,9 @@ void UpdateInput(Input_s* input){
 	hidTouchRead(&tp);
 	input->touchX = tp.px;
 	input->touchY = tp.py;
+	
 	checkVButtonTouch(input);
+	
 	hidScanInput();
 	u32 kDown = hidKeysDown();
 	if(kDown){
@@ -77,7 +79,7 @@ void resetInput(Input_s* input){
 }
 
 void checkVButtonTouch(Input_s* input){
-	for(vButton_s but : vButtons){
+	for(auto &but : vButtons){
 		if((input->touchX >= but.x && input->touchX <= but.x2) && (input->touchY >= but.y && input->touchY <= but.y2)){
 			but.pressed = true;
 			print("PRESSED!!!!!!!!\n");
@@ -91,6 +93,8 @@ void addVButton(vButton_s button){
 	vButtons.push_back(button);
 }
 void clearVButtons(){
+	vButton_s but;
+	vButtons.push_back(but);
 	vButtons.clear();
 }
 

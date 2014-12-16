@@ -181,15 +181,16 @@ inline int getOnScreenY(int vsy){
 void drawAppEntry(Application_s app, int place){
     int y = 0;
 	int butY = 0, butY2 = 0, butX2 = 302, butX = 200;
-	if(place == 1)
+	if(place == 1){
 		VSTY = APPLICATION_ENTRY_H;
+		clearVButtons();
+	}
 	else
 		VSTY += APPLICATION_ENTRY_H;
 		
     y = (MARGIN * (place)) + (APPLICATION_ENTRY_H * (place - 1));
 
     if((getOnScreenY(y)>=240 || getOnScreenY(y)+APPLICATION_ENTRY_H <= 0) || VSPY >= VSTY){
-		clearVButtons();
 		butPos = 0;
         return; //Outside screen dont draw
     }
