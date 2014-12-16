@@ -112,8 +112,6 @@ void renderStoreFront(){
 				appn++;
 				drawAppEntry(app, appn);
 			}
-			//print("VSTY: %d", VSTY);
-			//print(", VSPY: %d\n", VSPY);
 			break;
 		case 1:
 			
@@ -185,11 +183,12 @@ void drawAppEntry(Application_s app, int place){
 		VSTY = APPLICATION_ENTRY_H;
 		clearVButtons();
 	}
-	else
+	else{
 		VSTY += APPLICATION_ENTRY_H;
+	}
 		
     y = (MARGIN * (place)) + (APPLICATION_ENTRY_H * (place - 1));
-
+	
     if((getOnScreenY(y)>=240 || getOnScreenY(y)+APPLICATION_ENTRY_H <= 0) || VSPY >= VSTY){
 		butPos = 0;
         return; //Outside screen dont draw
@@ -225,10 +224,8 @@ void drawAppEntry(Application_s app, int place){
 		butY2 = getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3;
 		drawFillRect( 200,butY, 302,butY2, 0,148,255, screenBottom);
     }
-	
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, app.name,240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, app.version,240-getOnScreenY( APPVERSION_MARGIN + y ), 5);
-	
 	//Button
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Download",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
 	

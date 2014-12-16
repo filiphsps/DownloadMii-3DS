@@ -15,6 +15,7 @@ Result networkInit(){
 	return 0;
 }
 char* downloadFile(char* url){
+	print("Downloading..\n");
 	Result result;
 	httpcContext context;
 	u8 *buffer;
@@ -24,35 +25,45 @@ char* downloadFile(char* url){
 	
 	result = httpcOpenContext(&context, url, 0);
 	if(result != 0){
+		httpcCloseContext(&context);
 		print("error: httpcOpenContext\n");
 		return "error: httpcOpenContext";
 	}
 	
 	result = httpcBeginRequest(&context);
 	if(result != 0){
+		httpcCloseContext(&context);
 		print("error: httpcBeginRequest\n");
 		return "error: httpcBeginRequest";
 	}
 	
 	result = httpcGetResponseStatusCode(&context, &statuscode, 0);
 	if((result != 0) || statuscode != 200){
+		httpcCloseContext(&context);
 		print("error: httpcGetResponseStatusCode\n");
 		return "error: httpcGetResponseStatusCode";
 	}
 	
 	result = httpcGetDownloadSizeState(&context, NULL, &contentsize);
 	if(result != 0){
+		httpcCloseContext(&context);
 		print("error: httpcGetDownloadSizeState\n");
 		return "error: httpcGetDownloadSizeState";
 	}
 	
 	buffer = (u8*)calloc(contentsize, sizeof(u8*));
-	if(buffer==NULL)return "error: (u8*)malloc(contentsize)";
+	if(buffer==NULL){
+		free(buffer);
+		httpcCloseContext(&context);
+		print("error: (u8*)calloc(contentsize, sizeof(u8*)\n");
+		return "error: (u8*)calloc(contentsize, sizeof(u8*)";
+	}
 	
 	result = httpcDownloadData(&context, buffer, contentsize, NULL);
 	if(result != 0)
 	{
 		free(buffer);
+		httpcCloseContext(&context);
 		print("error: httpcDownloadData\n");
 		return "error: httpcDownloadData";
 	}

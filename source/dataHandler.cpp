@@ -19,7 +19,9 @@ vector<Application_s> staffSelectApps;
 
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	vector<Application_s> tempV;
-	const char* jsonsource = downloadFile(jsonURL);
+	char* jsonsource = downloadFile(jsonURL);
+	print(jsonsource);
+	print("\n");
 	/* Parse json and put it into the temp vector */
 	picojson::value v;
     char * json = (char*) malloc(strlen(jsonsource)+1);

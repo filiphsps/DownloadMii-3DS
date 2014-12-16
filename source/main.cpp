@@ -99,6 +99,13 @@ int main(int argc, char** argv)
 						//ToDo: Indicator that we have hit the start of the list
 					}
 				}
+				//Loop through all the buttons
+				for(auto &but : vButtons){
+					if(but.pressed){
+						currentApp = but.app;
+						currentMenu = but.menu;
+					}
+				}
 				if(lastScene != scene){
 					switch(scene){
 						case 0:
@@ -132,7 +139,7 @@ int main(int argc, char** argv)
 			case 2: //App Page
 				if(lastMenu != currentMenu){
 					sceneTitle = currentApp.name;
-					setStoreFrontImg("http://downloadmii.filfatstudios.com/assets/logo.bin");
+					//setStoreFrontImg("http://downloadmii.filfatstudios.com/assets/logo.bin");
 					//setStoreFrontImg(currentApp.background);
 				}
 				break;
@@ -150,8 +157,10 @@ int main(int argc, char** argv)
 		}
 		renderGUI();
 		if(lastMenu != currentMenu){
+			clearVButtons();
 			lastScene = -1;
 			lastMenu = currentMenu;
+			r = doListUpdate();
 		}
 		if(Input.A){
 			currentMenu++;
