@@ -7,3 +7,5 @@
 #define HBPATH "3ds"
 #define DEBUG true //set to false to disable/enable debug mode.
 #define DEFAULT_SETTINGS_PATH "sdmc:/3ds/downloadmii/settings.ini"
+
+extern int currentMenu;

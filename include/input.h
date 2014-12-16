@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include "application.h"
 
 using namespace std;
 
@@ -14,7 +15,8 @@ struct Input_s{
 
 struct vButton_s{
 	int ID;
-	int x, y, x2, y2;
+	int x, y, x2, y2, menu = 0;
+	Application_s app;
 	bool pressed;
 };
 

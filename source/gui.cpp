@@ -232,8 +232,14 @@ void drawAppEntry(Application_s app, int place){
 	//Button
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Download",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
 	
-	//ToDo: pass a pointer to the vButton struct so it knows which page to redirect to, and what data to pass.
-	vButton_s but = {butPos, butX, butY, butX2, butY2};
+	vButton_s but;
+	but.ID = butPos;
+	but.x = butX;
+	but.y = butY;
+	but.x2 = butX2;
+	but.y2 = butY2;
+	but.app = app;
+	but.menu = 2;
 	addVButton(but);
 	butPos++;
 }
