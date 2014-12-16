@@ -26,3 +26,7 @@ TODO
 This readme file has a lot more info that needs to be added, stay tuned!
 
 AS A WARNING: THIS APPLICATION IS NOT READY FOR TESTING YET! (11/18/2014)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/DownloadMii/downloadmii/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
