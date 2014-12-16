@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
+#include <sys/stat.h>
 #include <iostream>
 #include <sstream>
 #include <3ds.h>
@@ -40,6 +41,7 @@ void settingsInit(char* settingsPath){
 }
 
 void createSettings(){
+	mkdir("sdmc:/3ds/downloadmii", 0777);
 	FILE *fh = fopen("sdmc:/3ds/downloadmii/settings.ini", "w+");
 	if ( fh != NULL )
 	{
