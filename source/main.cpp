@@ -75,7 +75,6 @@ int main(int argc, char** argv)
 	/* Main loop */
 	unsigned int lastScene = -1;
 	int lastMenu = 0;
-	char buffer[110];
 	while (aptMainLoop())
 	{
 		UpdateInput(&Input);
@@ -153,11 +152,6 @@ int main(int argc, char** argv)
 		if(lastMenu != currentMenu){
 			lastScene = -1;
 			lastMenu = currentMenu;
-		}
-		
-		if(Input.touchX != 0){
-			sprintf(buffer, "%d,%d\n", Input.touchX, Input.touchY);
-			print(buffer);
 		}
 		if(Input.A){
 			currentMenu++;
