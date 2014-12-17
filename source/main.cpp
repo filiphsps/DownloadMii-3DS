@@ -167,7 +167,7 @@ int main(int argc, char** argv)
 			clearVButtons();
 			lastScene = -1;
 			lastMenu = currentMenu;
-			r = doListUpdate();
+			//r = doListUpdate();
 		}
 		if(Input.A){
 			currentMenu++;
