@@ -70,8 +70,8 @@ int main(int argc, char** argv)
 	}
 	//APP_STATUS status;
 	
-	gfxSetDoubleBuffering(GFX_TOP, true);
-	gfxSetDoubleBuffering(GFX_BOTTOM, true);
+	//gfxSetDoubleBuffering(GFX_TOP, true);
+	//gfxSetDoubleBuffering(GFX_BOTTOM, true);
 	
 	/* Threading */
 	/*Handle threadHandle;
@@ -178,7 +178,7 @@ int main(int argc, char** argv)
 			break;
 		}
 		FPS = CalcFPS();
-		gspWaitForVBlank();
+		//gspWaitForVBlank();
 	}
 
 	//Exit services
