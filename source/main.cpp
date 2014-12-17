@@ -53,19 +53,25 @@ int main(int argc, char** argv)
 		print("networkInit: Error!\n");
 	}
 	
-	//ToDo: check if we are running on o3ds or n3ds
-	/*aptOpenSession();
-	r = APT_SetAppCpuTimeLimit(NULL, (u32)80);
-	if(r != 0){
-		print("APT_SetAppCpuTimeLimit: Error\n");
+	u8 isN3DS=0;
+	APT_CheckNew3DS(NULL, &isN3DS);
+	if(isN3DS){
+		aptOpenSession();
+		r = APT_SetAppCpuTimeLimit(NULL, (u32)80);
+		if(r != 0){
+			print("APT_SetAppCpuTimeLimit: Error\n");
+		}
+		aptCloseSession();
 	}
-	aptCloseSession();*/
 	
 	r = doListUpdate();
 	if(r != 0){
 		print("doUpdate: Error\n");
 	}
 	//APP_STATUS status;
+	
+	gfxSetDoubleBuffering(GFX_TOP, false);
+	gfxSetDoubleBuffering(GFX_BOTTOM, false);
 	
 	/* Threading */
 	/*Handle threadHandle;

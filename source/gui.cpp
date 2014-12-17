@@ -90,8 +90,8 @@ void renderGUI(){
 	#endif
 	
 	/* Buffers */
-	gfxFlushBuffers(); 
-	gfxSwapBuffers();
+	gfxFlushBuffers();
+	//gfxSwapBuffers();
 }
 
 
