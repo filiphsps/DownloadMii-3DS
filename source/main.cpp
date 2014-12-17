@@ -21,7 +21,7 @@
 using namespace std;
 
 Input_s Input;
-char superStr[8192];
+char superStr[9192];
 char* jsonSS;
 
 int currentMenu = 0;
