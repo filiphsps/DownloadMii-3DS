@@ -68,6 +68,7 @@ int main(int argc, char** argv)
 	if(r != 0){
 		print("doUpdate: Error\n");
 	}
+
 	//APP_STATUS status;
 	
 	//gfxSetDoubleBuffering(GFX_TOP, true);
@@ -84,6 +85,10 @@ int main(int argc, char** argv)
 	int lastMenu = 0;
 	while (aptMainLoop())
 	{
+		for(Application_s app : overviewApps){
+			print(app.name);
+		}
+		print("\n");
 		UpdateInput(&Input);
 		if(lastMenu != currentMenu){
 			clearVButtons();
@@ -167,6 +172,7 @@ int main(int argc, char** argv)
 				currentMenu = 0;
 				break;
 		}
+		lastMenu = currentMenu;
 		renderGUI();
 		if(Input.A){
 			currentMenu++;

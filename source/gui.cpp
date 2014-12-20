@@ -108,13 +108,11 @@ void renderStoreFront(){
 	/* Screen related UI(Changes based on scene) */
 	switch(scene){
 		case 0:
-			for(Application_s app : tAppList){
+			for(auto app : tAppList){
 				appn++;
-				print(app.name)
 				drawAppEntry(app, appn);
 			}
 			appn = 0;
-			print("\n");
 			break;
 		case 1:
 			
@@ -182,12 +180,13 @@ void doKeyboard(char* inputText){
 }
 
 /* Scenes */
-inline int getOnScreenY(int vsy){
+int getOnScreenY(int vsy){
     return (vsy-VSPY);
 }
 
 /* UIs */
 void drawAppEntry(Application_s app, int place){
+	
     int y = 0;
 	int butY = 0, butY2 = 0, butX2 = 302, butX = 200;
 	if(place == 1){
@@ -235,6 +234,7 @@ void drawAppEntry(Application_s app, int place){
 		butY2 = getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3;
 		drawFillRect( 200,butY, 302,butY2, 0,148,255, screenBottom);
     }
+	
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, app.name,240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, app.version,240-getOnScreenY( APPVERSION_MARGIN + y ), 5);
 	//Button
