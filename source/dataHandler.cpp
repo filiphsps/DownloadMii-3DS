@@ -20,8 +20,6 @@ vector<Application_s> staffSelectApps;
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	vector<Application_s> tempV;
 	char* jsonsource = downloadFile(jsonURL);
-	print(jsonsource);
-	print("\n");
 	/* Parse json and put it into the temp vector */
 	picojson::value v;
     char * json = (char*) malloc(strlen(jsonsource)+1);
@@ -32,6 +30,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	
 	Application_s app;
     for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
+		print(app.name);
 		app.GUID =          (char*)(*iter).get("guid").get<string>().c_str();
 		app.name =          (char*)(*iter).get("name").get<string>().c_str();
 		app.publisher =     (char*)(*iter).get("publisher").get<string>().c_str();
@@ -45,7 +44,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 		app.raiting =       (int)(*iter).get("rating").get<double>();
 		tempV.push_back(app);
     }
-	
+	print("\n");
 	*AppList = tempV;
 	if(!AppList->empty()) // NULL/Empty check
 		return 0;

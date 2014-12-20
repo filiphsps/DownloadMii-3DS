@@ -85,6 +85,12 @@ int main(int argc, char** argv)
 	while (aptMainLoop())
 	{
 		UpdateInput(&Input);
+		if(lastMenu != currentMenu){
+			clearVButtons();
+			lastScene = -1;
+			lastMenu = currentMenu;
+			//r = doListUpdate();
+		}
 		switch(currentMenu){
 			case 0: //Overview
 				if(Input.R && !(scene > maxScene)){
@@ -118,20 +124,20 @@ int main(int argc, char** argv)
 						case 0:
 							sceneTitle = "Overview";
 							setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner1.bin"); //Test
-							setAppList(&overviewApps);
+							setAppList(overviewApps);
 							break;
 						case 1:
 							sceneTitle = "Top Downloaded Applications";
 							setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner2.bin"); //Test
-							setAppList(&topApps);
+							setAppList(topApps);
 							break;
 						case 2:
 							sceneTitle = "Top Downloaded Games";
-							setAppList(&topGames);
+							setAppList(topGames);
 							break;
 						case 3:
 							sceneTitle = "Staff Pick";
-							setAppList(&staffSelectApps);
+							setAppList(staffSelectApps);
 							break;
 						default:
 							scene = 0;
@@ -146,7 +152,6 @@ int main(int argc, char** argv)
 			case 2: //App Page
 				if(lastMenu != currentMenu){
 					sceneTitle = currentApp.name;
-					//setStoreFrontImg("http://downloadmii.filfatstudios.com/assets/logo.bin");
 					//setStoreFrontImg(currentApp.background);
 				}
 				break;
@@ -163,12 +168,6 @@ int main(int argc, char** argv)
 				break;
 		}
 		renderGUI();
-		if(lastMenu != currentMenu){
-			clearVButtons();
-			lastScene = -1;
-			lastMenu = currentMenu;
-			//r = doListUpdate();
-		}
 		if(Input.A){
 			currentMenu++;
 		}
@@ -178,7 +177,7 @@ int main(int argc, char** argv)
 			break;
 		}
 		FPS = CalcFPS();
-		//gspWaitForVBlank();
+		gspWaitForVBlank();
 	}
 
 	//Exit services

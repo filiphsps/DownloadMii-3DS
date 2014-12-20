@@ -26,7 +26,7 @@ extern char superStr[];
 unsigned int scene = 0;
 unsigned int maxScene = 2;
 char* sceneTitle = "";
-vector<Application_s> *tAppList;
+vector<Application_s> tAppList;
 int FPS;
 u8* cimg;
 
@@ -47,7 +47,7 @@ void guiInit(){
 	//ToDo
 }
 
-void setAppList(vector<Application_s>* AppList){
+void setAppList(vector<Application_s> AppList){
 	tAppList = AppList;
 	//Reset the cords
 	VSPY = 0;
@@ -96,7 +96,7 @@ void renderGUI(){
 
 
 void renderStoreFront(){
-	int appn = 0;
+	static int appn = 0;
 	
 	/* UI: TOP */
 	if(cimg != NULL){
@@ -108,10 +108,13 @@ void renderStoreFront(){
 	/* Screen related UI(Changes based on scene) */
 	switch(scene){
 		case 0:
-			for(Application_s app : *tAppList){
+			for(Application_s app : tAppList){
 				appn++;
+				print(app.name)
 				drawAppEntry(app, appn);
 			}
+			appn = 0;
+			print("\n");
 			break;
 		case 1:
 			
@@ -153,7 +156,15 @@ void renderAppPage(){
 	drawFillRect(0,190,320,240, 0,148,255, screenBottom); //Todo: use button as download status bar
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
 	
-	//ToDo
+	clearVButtons();
+	vButton_s but;
+	but.ID = 0;
+	but.x = 0;
+	but.y = 190;
+	but.x2 = 320;
+	but.y2 = 240;
+	but.menu = 0;
+	addVButton(but);
 }
 
 void fadeOut(){
