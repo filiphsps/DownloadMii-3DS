@@ -17,6 +17,8 @@
 
 # Dirs
 build/*
+debug/*
+obj/*
 
 # Compiled Static libraries
 *.lai
@@ -33,3 +35,4 @@ build/*
 
 # Other
 3dmoo.log
+*.sdf

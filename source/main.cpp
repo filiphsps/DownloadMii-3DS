@@ -78,7 +78,7 @@ int main(int argc, char** argv)
 	/*Handle threadHandle;
 	u32 *stack = (u32*)malloc(0x4000);
 	svcCreateThread(&threadHandle, secondThread, 0, &stack[0x4000>>2], 0x3F, 0);*/
-	
+
 	fadeOut();
 	/* Main loop */
 	unsigned int lastScene = -1;
