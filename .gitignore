@@ -36,3 +36,4 @@ obj/*
 # Other
 3dmoo.log
 *.sdf
+*.opensdf

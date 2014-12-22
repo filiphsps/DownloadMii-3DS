@@ -69,6 +69,6 @@ void cutLine(char* str);
 int countLines(char* str);
 
 /* SCENE */
-extern unsigned int scene;
-extern unsigned int maxScene;
+extern int scene;
+extern int maxScene;
 extern char* sceneTitle;

@@ -23,8 +23,8 @@ u8* screenTopRight = 0;
 u8* screenBottom = 0;
 extern char superStr[];
 /* SCENE */
-unsigned int scene = 0;
-unsigned int maxScene = 2;
+int scene = 0;
+int maxScene = 3;
 char* sceneTitle = "";
 vector<Application_s> tAppList;
 int FPS;
@@ -92,6 +92,7 @@ void renderGUI(){
 	/* Buffers */
 	gfxFlushBuffers();
 	gfxSwapBuffers();
+	gspWaitForVBlank();
 }
 
 

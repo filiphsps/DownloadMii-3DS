@@ -81,10 +81,13 @@ int main(int argc, char** argv)
 
 	fadeOut();
 	/* Main loop */
-	unsigned int lastScene = -1;
-	int lastMenu = 0;
+	int lastScene = 0;
+	int lastMenu = -1;
 	while (aptMainLoop())
 	{
+		#ifdef DEBUG
+		FPS = CalcFPS();
+		#endif
 		for(Application_s app : overviewApps){
 			print(app.name);
 		}
@@ -182,8 +185,6 @@ int main(int argc, char** argv)
 			print("Exiting..\n");
 			break;
 		}
-		FPS = CalcFPS();
-		gspWaitForVBlank();
 	}
 
 	//Exit services
