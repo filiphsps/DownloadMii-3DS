@@ -88,9 +88,6 @@ int main(int argc, char** argv)
 		#ifdef DEBUG
 		FPS = CalcFPS();
 		#endif
-		for(Application_s app : overviewApps){
-			print(app.name);
-		}
 		print("\n");
 		UpdateInput(&Input);
 		if(lastMenu != currentMenu){
@@ -159,7 +156,7 @@ int main(int argc, char** argv)
 				break;
 			case 2: //App Page
 				if(lastMenu != currentMenu){
-					sceneTitle = currentApp.name;
+					sceneTitle = (char*)currentApp.name.c_str();
 					//setStoreFrontImg(currentApp.background);
 				}
 				break;

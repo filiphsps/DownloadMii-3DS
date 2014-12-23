@@ -7,16 +7,16 @@
 using namespace std;
 
 struct Application_s{
-	char* GUID;
-	char* name;
-	char* publisher;
-	char* version;
-	char* description;
-	char* category;
-	char* subcategory;
-	char* othercategory;
-	char* _3dsx;
-	char* smdh;
+	string GUID;
+	string name;
+	string publisher;
+	string version;
+	string description;
+	string category;
+	string subcategory;
+	string othercategory;
+	string _3dsx;
+	string smdh;
 	int raiting;
 	
 	bool installed;

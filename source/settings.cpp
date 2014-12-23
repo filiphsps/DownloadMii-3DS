@@ -50,7 +50,7 @@ void createSettings(){
 		print("createSettings: settings.ini generated!\n");
 	}
 	else{
-		fclose(fh);
+		//fclose(fh);
 		print("createSettings: Error, couldnt create file settings.ini\n");
 	}
 }

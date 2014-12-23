@@ -68,7 +68,7 @@ char* downloadFile(char* url){
 		return "error: httpcDownloadData";
 	}
 	file = (char*)buffer;
-	free(buffer);
+	//free(buffer);
 	httpcCloseContext(&context);
 	return file;
 }

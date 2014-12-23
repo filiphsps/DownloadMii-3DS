@@ -147,9 +147,9 @@ void renderAppPage(){
 	
 	//Text
 	char buffer[310];
-	sprintf(buffer, "%s %s", currentApp.name, currentApp.version);
+	sprintf(buffer, "%s %s", (char*)currentApp.name.c_str(), (char*)currentApp.version.c_str());
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader,  buffer, 240 - fontBlackHeader.height,5);
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, currentApp.publisher , (240 - fontBlackHeader.height) - fontBlackSubHeader.height,5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), (240 - fontBlackHeader.height) - fontBlackSubHeader.height,5);
 	
 	//Download Button
 	drawFillRect(0,190,320,240, 0,148,255, screenBottom); //Todo: use button as download status bar
@@ -236,8 +236,8 @@ void drawAppEntry(Application_s app, int place){
 		drawFillRect( 200,butY, 302,butY2, 0,148,255, screenBottom);
     }
 	
-    gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, app.name,240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
-    gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, app.version,240-getOnScreenY( APPVERSION_MARGIN + y ), 5);
+    gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, (char*)app.name.c_str(),240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
+    gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)app.version.c_str(),240-getOnScreenY( APPVERSION_MARGIN + y ), 5);
 	//Button
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Download",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
 	
@@ -279,7 +279,7 @@ void setStoreFrontImg(char* url){
 }
 void drawTopBar(){
 	char buffer[100];
-	sprintf(buffer, navbar.Title.c_str());
+	sprintf(buffer, (char*)navbar.Title.c_str());
 	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopLeft);
 	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopRight);
 	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screenTopRight);

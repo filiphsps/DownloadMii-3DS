@@ -30,7 +30,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	
 	Application_s app;
     for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
-		print(app.name);
+		print(app.name.c_str());
 		app.GUID =          (char*)(*iter).get("guid").get<string>().c_str();
 		app.name =          (char*)(*iter).get("name").get<string>().c_str();
 		app.publisher =     (char*)(*iter).get("publisher").get<string>().c_str();
