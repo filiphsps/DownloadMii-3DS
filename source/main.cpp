@@ -64,10 +64,10 @@ int main(int argc, char** argv)
 		aptCloseSession();
 	}
 	
-	r = doListUpdate();
+	/*r = doListUpdate();
 	if(r != 0){
 		print("doUpdate: Error\n");
-	}
+	}*/
 
 	//APP_STATUS status;
 	
@@ -88,13 +88,12 @@ int main(int argc, char** argv)
 		#ifdef DEBUG
 		FPS = CalcFPS();
 		#endif
-		print("\n");
 		UpdateInput(&Input);
 		if(lastMenu != currentMenu){
 			clearVButtons();
 			lastScene = -1;
 			lastMenu = currentMenu;
-			//r = doListUpdate();
+			r = doListUpdate();
 		}
 		switch(currentMenu){
 			case 0: //Overview
