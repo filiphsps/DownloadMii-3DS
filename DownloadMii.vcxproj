@@ -40,7 +40,7 @@
     <NMakeCleanCommandLine>make clean</NMakeCleanCommandLine>
     <NMakeReBuildCommandLine>make clean all</NMakeReBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(CTRULIB)\include;include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(CTRULIB)\include;include;$(DEVKITARM)\arm-none-eabi\include</IncludePath>
     <NMakeOutput>
     </NMakeOutput>
   </PropertyGroup>
