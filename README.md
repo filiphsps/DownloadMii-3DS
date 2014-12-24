@@ -12,7 +12,6 @@ CREDITS
 * Main App Developer: Filiph sandström (@filfat).
 * Main Website Developer: Filiph sandström (@filfat).
 * Some code is used from AlbertoSONIC!
-* Logo made by JoostinOnline.
 * todo: JSON LIBRARY!
 * The CTRULIB team for their awesome lib/dev env!
 * #3dsdev for all the help! <3
