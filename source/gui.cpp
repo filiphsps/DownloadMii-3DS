@@ -25,7 +25,7 @@ extern char superStr[];
 /* SCENE */
 int scene = 0;
 int maxScene = 3;
-char* sceneTitle = "";
+string sceneTitle;
 vector<Application_s> tAppList;
 int FPS;
 u8* cimg;

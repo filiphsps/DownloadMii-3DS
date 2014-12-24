@@ -71,4 +71,4 @@ int countLines(char* str);
 /* SCENE */
 extern int scene;
 extern int maxScene;
-extern char* sceneTitle;
+extern string sceneTitle;

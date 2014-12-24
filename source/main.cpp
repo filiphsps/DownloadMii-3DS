@@ -63,11 +63,11 @@ int main(int argc, char** argv)
 		}
 		aptCloseSession();
 	}
-	
-	/*r = doListUpdate();
-	if(r != 0){
+
+	r = doListUpdate();
+	if (r != 0) {
 		print("doUpdate: Error\n");
-	}*/
+	}
 
 	//APP_STATUS status;
 	
@@ -83,18 +83,14 @@ int main(int argc, char** argv)
 	/* Main loop */
 	int lastScene = 0;
 	int lastMenu = -1;
+	char buffer[256];
 	while (aptMainLoop())
 	{
 		#ifdef DEBUG
 		FPS = CalcFPS();
 		#endif
 		UpdateInput(&Input);
-		if(lastMenu != currentMenu){
-			clearVButtons();
-			lastScene = -1;
-			lastMenu = currentMenu;
-			r = doListUpdate();
-		}
+		
 		switch(currentMenu){
 			case 0: //Overview
 				if(Input.R && !(scene > maxScene)){
@@ -164,14 +160,19 @@ int main(int argc, char** argv)
 					sceneTitle = "Downloads";
 				break;
 			case 4: //by dev
-				if(lastMenu != currentMenu)
-					sceneTitle = "By Developer <Devname>";
+				if (lastMenu != currentMenu)
+					snprintf(buffer,256, "Applications By %s", (char*)currentApp.publisher.c_str());
+					sceneTitle = buffer;
 				break;
 			default:
 				currentMenu = 0;
 				break;
 		}
-		lastMenu = currentMenu;
+		if (lastMenu != currentMenu) {
+			clearVButtons();
+			lastScene = -1;
+			lastMenu = currentMenu;
+		}
 		renderGUI();
 		if(Input.A){
 			currentMenu++;
