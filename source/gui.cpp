@@ -22,6 +22,7 @@ u8* screenTopLeft = 0;
 u8* screenTopRight = 0;
 u8* screenBottom = 0;
 extern char superStr[];
+char buffer[256];
 /* SCENE */
 int scene = 0;
 int maxScene = 3;
@@ -146,8 +147,8 @@ void renderAppPage(){
 	/* UI: BOTTOM */
 	
 	//Text
-	char buffer[310];
-	sprintf(buffer, "%s %s", (char*)currentApp.name.c_str(), (char*)currentApp.version.c_str());
+	snprintf(buffer,256, "%s %s", (char*)currentApp.name.c_str(), (char*)currentApp.version.c_str());
+
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader,  buffer, 240 - fontBlackHeader.height,5);
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), (240 - fontBlackHeader.height) - fontBlackSubHeader.height,5);
 	
@@ -278,22 +279,26 @@ void setStoreFrontImg(char* url){
 	}
 }
 void drawTopBar(){
-	char buffer[100];
-	sprintf(buffer, (char*)navbar.Title.c_str());
 	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopLeft);
 	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopRight);
+	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screenTopLeft);
 	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screenTopRight);
-	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screenTopRight);
+
+	snprintf(buffer,256, (char*)navbar.Title.c_str());
+	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H / 2) + fontWhiteHeader.height)), 13);
+	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H / 2) + fontWhiteHeader.height)), 13);
 	
-	drawString(APPLICATION_NAME, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopLeft,GFX_TOP);
-	drawString(APPLICATION_NAME, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopRight,GFX_TOP);
-	
-	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H/2) + fontWhiteHeader.height)), 13); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H/2) + fontWhiteHeader.height)), 13); 
+#ifdef DEBUG
+	snprintf(buffer, 256, "%s, FPS: %d", APPLICATION_NAME, FPS);
+#else
+	snprintf(buffer, 256, "%s", APPLICATION_NAME);
+#endif
+	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopLeft,GFX_TOP);
+	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopRight,GFX_TOP);
 	
 	u64 timeInSeconds = osGetTime() / 1000; 
 	u64 dayTime = timeInSeconds % SECONDS_IN_DAY; 
-	sprintf(buffer, "%llu:%llu:%llu, FPS: %d",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE, FPS);
+	snprintf(buffer,256, "%llu:%llu:%llu",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE);
 	drawString(buffer, 2,2, 255,255,255, screenTopLeft,GFX_TOP);
 	drawString(buffer, 2,2, 255,255,255, screenTopRight,GFX_TOP);
 }
