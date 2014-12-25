@@ -16,7 +16,8 @@ using namespace std;
 
 Result installApp(Application_s app){
 	//ToDo
-	char buffer[110];
+	print("Installing App..\n");
+	char buffer[1024];
 	FILE *fp;
 	/* MKDIR */
 	sprintf(buffer, "/%s/%s", HBPATH, app.name.c_str());
@@ -28,13 +29,15 @@ Result installApp(Application_s app){
 		return -1; //Error
 	/* Save files to the SD-Card */
 	//Start with the elf file
-	sprintf(buffer, "/%s/%s/%s.3dsx", HBPATH, app.name.c_str(), app.name.c_str());
+	snprintf(buffer,256, "/%s/%s/%s.3dsx", HBPATH, app.name.c_str(), app.name.c_str());
 	fp = fopen(buffer, "w+");
-	fprintf(fp, file3dsx);
+	fwrite(file3dsx, sizeof(file3dsx[0]), sizeof(file3dsx) / sizeof(file3dsx[0]), fp);
 	fclose(fp);
 	//Continue with the smdh file
-	sprintf(buffer, "/%s/%s/%s.smdh", HBPATH, app.name.c_str(), app.name.c_str());
+	snprintf(buffer,256, "/%s/%s/%s.smdh", HBPATH, app.name.c_str(), app.name.c_str());
 	fp = fopen(buffer, "w+");
+	fwrite(filesmdh, sizeof(filesmdh[0]), sizeof(filesmdh) / sizeof(filesmdh[0]), fp);
 	fclose(fp);
+	print("Done Installing app...\n");
 	return 0;
 }

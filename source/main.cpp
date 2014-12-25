@@ -24,10 +24,10 @@ Input_s Input;
 char superStr[9192];
 char* jsonSS;
 
-int currentMenu = 0;
+int currentMenu = 2;
 
 //Todo:
-Application_s currentApp = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5};
+Application_s currentApp = {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/testing/test.3dsx", "http://downloadmii.filfatstudios.com/testing/test.3dsx", 5};
 
 static int CalcFPS(); //ToDo: move to utils.cpp
 
@@ -153,6 +153,14 @@ int main(int argc, char** argv)
 				if(lastMenu != currentMenu){
 					sceneTitle = (char*)currentApp.name.c_str();
 					//setStoreFrontImg(currentApp.background);
+				}
+				for (auto &but : vButtons) {
+					if (but.pressed) {
+						//ToDo: Support multiple buttons
+						clearVButtons();
+						currentMenu = 3;
+						installApp(currentApp);
+					}
 				}
 				break;
 			case 3: //Downloads
