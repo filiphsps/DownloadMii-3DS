@@ -73,61 +73,55 @@ char* downloadFile(char* url){
 	return file;
 }
 
-char* downloadFile(char* url, u32 *size) {
-	print("Downloading..\n");
+Result downloadFile(char* url, char** buffer, u32 *size) {
+	print("Downloading File...\n");
 	Result result;
 	httpcContext context;
-	u8 *buffer;
 	u32 statuscode = 0;
-	u32 contentsize = 0;
-	char* file;
 
 	result = httpcOpenContext(&context, url, 0);
 	if (result != 0) {
 		httpcCloseContext(&context);
 		print("error: httpcOpenContext\n");
-		return "error: httpcOpenContext";
+		return -1;
 	}
 
 	result = httpcBeginRequest(&context);
 	if (result != 0) {
 		httpcCloseContext(&context);
 		print("error: httpcBeginRequest\n");
-		return "error: httpcBeginRequest";
+		return -1;
 	}
 
 	result = httpcGetResponseStatusCode(&context, &statuscode, 0);
 	if ((result != 0) || statuscode != 200) {
 		httpcCloseContext(&context);
 		print("error: httpcGetResponseStatusCode\n");
-		return "error: httpcGetResponseStatusCode";
+		return -1;
 	}
 
-	result = httpcGetDownloadSizeState(&context, NULL, &contentsize);
+	result = httpcGetDownloadSizeState(&context, NULL, size);
 	if (result != 0) {
 		httpcCloseContext(&context);
 		print("error: httpcGetDownloadSizeState\n");
-		return "error: httpcGetDownloadSizeState";
+		return -1;
 	}
 
-	buffer = (u8*)calloc(contentsize, 1);
-	if (buffer == NULL) {
-		free(buffer);
+	*buffer = (char*)calloc(*size, 1);
+	if (*buffer == NULL) {
 		httpcCloseContext(&context);
-		print("error: (u8*)calloc(contentsize, sizeof(u8*)\n");
-		return "error: (u8*)calloc(contentsize, sizeof(u8*)";
+		print("error: (char*)\n");
+		return -1;
 	}
 
-	result = httpcDownloadData(&context, buffer, contentsize, NULL);
+	result = httpcDownloadData(&context,(u8*)*buffer, *size, NULL);
 	if (result != 0)
 	{
 		free(buffer);
 		httpcCloseContext(&context);
 		print("error: httpcDownloadData\n");
-		return "error: httpcDownloadData";
+		return -1;
 	}
-	file = (char*)buffer;
 	httpcCloseContext(&context);
-	*size = contentsize;
-	return file;
+	return 0;
 }

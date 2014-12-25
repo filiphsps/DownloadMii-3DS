@@ -9,5 +9,5 @@ using namespace std;
 /* Public functions */
 Result networkInit();
 char* downloadFile(char*);
-char* downloadFile(char*, u32 *size);
+Result downloadFile(char* url, char** buf_out, u32 *size_out);
 
