@@ -25,6 +25,11 @@ Result installApp(Application_s app){
 	mkdir(buffer, 0777);
 	/* Download Files */
 	char* file3dsx = downloadFile((char*)app._3dsx.c_str(), &size[0]);
+	for (int i; i < size[0]; i++)
+	{
+		print("%X ", file3dsx[i]);
+	}
+	print("\n");
 	char* filesmdh = downloadFile((char*)app.smdh.c_str(), &size[1]);
 	if(file3dsx[0] == 'e' || filesmdh[0] == 'e') //Can return false positives(rare), needs to be fixed.
 		return -1; //Error

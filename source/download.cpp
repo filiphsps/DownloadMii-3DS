@@ -128,6 +128,6 @@ char* downloadFile(char* url, u32 *size) {
 	}
 	file = (char*)buffer;
 	httpcCloseContext(&context);
-	*size = sizeof(buffer);
+	*size = contentsize;
 	return file;
 }
