@@ -86,6 +86,7 @@ int main(int argc, char** argv)
 	char buffer[256];
 	while (aptMainLoop())
 	{
+		loopStart:
 		#ifdef DEBUG
 		FPS = CalcFPS();
 		#endif
@@ -159,10 +160,12 @@ int main(int argc, char** argv)
 						clearVButtons();
 						currentMenu = 3;
 						installApp(currentApp);
+						goto loopStart;
 					}
 					else if (but.pressed && but.ID == 1){ //Publisher
 						clearVButtons();
 						currentMenu = 4;
+						goto loopStart;
 					}
 				}
 				break;
@@ -172,8 +175,8 @@ int main(int argc, char** argv)
 				break;
 			case 4: //by dev
 				if (lastMenu != currentMenu)
-					snprintf(buffer,256, "Applications By %s", (char*)currentApp.publisher.c_str());
-					sceneTitle = buffer;
+					snprintf(buffer,256, "Applications By %s\n", currentApp.publisher.c_str());
+					sceneTitle = (char*)buffer;
 				break;
 			default:
 				currentMenu = 0;

@@ -166,6 +166,12 @@ void renderAppPage(){
 	but.y2 = 240;
 	but.menu = 0;
 	addVButton(but);
+	but.ID = 1;
+	but.x = 5;
+	but.y = fontBlackHeader.height;
+	but.x2 = 315;
+	but.y2 = (but.y + fontBlackHeader.height) + 10;
+	addVButton(but);
 }
 
 void fadeOut(){
