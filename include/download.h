@@ -9,6 +9,5 @@ using namespace std;
 /* Public functions */
 Result networkInit();
 char* downloadFile(char*);
-
-/* Private-ish functuons, shouldnt be used by any other class! */
+char* downloadFile(char*, u32 *size);
 
