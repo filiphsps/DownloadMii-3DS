@@ -27,12 +27,9 @@ Result installApp(Application_s app){
 	/* Download Files */
 	char* file3dsx;
 	r = downloadFile((char*)app._3dsx.c_str(), &file3dsx, &size[0]);
+	print(file3dsx);
 	if (r != 0) {
 		return -1;
-	}
-	for (u32 i = 0; i < size[0]; i++)
-	{
-		print("%X ", file3dsx[i]);
 	}
 	print("\n");
 	char* filesmdh;

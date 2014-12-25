@@ -270,7 +270,10 @@ void setStoreFrontImg(char* url){
 	//w: 400
 	//h: 192
 	print("Downloading banner...\n");
-	cimg = (u8*)downloadFile(url);
+	char* temp;
+	u32 size;
+	downloadFile(url, &temp, &size);
+	cimg = (u8*)temp;
 	print("Banner downloaded!\n");
 	if(cimg[0] == 'e'){
 		//Set banner to offline banner
