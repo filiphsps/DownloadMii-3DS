@@ -80,6 +80,7 @@ void renderGUI(){
 			renderAppPage();
 			break;
 		case 3: //Downloads
+			renderDownloads();
 			break;
 		case 4: //by dev
 			break;
@@ -174,6 +175,12 @@ void renderAppPage(){
 	but.x2 = 315;
 	but.y2 = (but.y + fontBlackHeader.height) + 10;
 	addVButton(but);
+}
+
+void renderDownloads() {
+	//ToDo
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This page will be implamented in version 1.1.0.0", 200, 5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "Or 1.2.0.0, press (B) to return to the main menu.", 180, 5);
 }
 
 void fadeOut(){

@@ -30,14 +30,16 @@ Result installApp(Application_s app){
 	if (r != 0) {
 		return -1;
 	}
+#ifdef  _ //Only used when testing binary output 
 	for (u32 i = 0; i <= size[0]; i++)
 	{
-		if (i >= 20)
-			break;
-		print("%X ", file3dsx[i]);
+		print("%x", file3dsx[i]);
+		print("\n");
 	}
-	print("\n");
+#endif
+	//ToDo: ProgressBar
 	renderGUI();
+
 	char* filesmdh;
 	r = downloadFile((char*)app.smdh.c_str(), &filesmdh, &size[1]);
 	if (r != 0) {

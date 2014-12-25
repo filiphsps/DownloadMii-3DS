@@ -55,6 +55,7 @@ void renderStoreFront();
 void renderSettings();
 void renderAppPage();
 void renderDebug();
+void renderDownloads();
 void setAppList(vector<Application_s> AppList);
 void fadeOut();
 

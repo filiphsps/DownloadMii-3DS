@@ -57,8 +57,16 @@ int main(int argc, char** argv)
 	APT_CheckNew3DS(NULL, &isN3DS);
 	if(isN3DS){
 		aptOpenSession();
-		r = APT_SetAppCpuTimeLimit(NULL, (u32)80);
+		r = APT_SetAppCpuTimeLimit(NULL, 80);
 		if(r != 0){
+			print("APT_SetAppCpuTimeLimit: Error\n");
+		}
+		aptCloseSession();
+	}
+	else {
+		aptOpenSession();
+		r = APT_SetAppCpuTimeLimit(NULL, 30);
+		if (r != 0) {
 			print("APT_SetAppCpuTimeLimit: Error\n");
 		}
 		aptCloseSession();
@@ -172,11 +180,15 @@ int main(int argc, char** argv)
 			case 3: //Downloads
 				if(lastMenu != currentMenu)
 					sceneTitle = "Downloads";
+				if (Input.B) {
+					currentMenu = 0;
+				}
 				break;
 			case 4: //by dev
-				if (lastMenu != currentMenu)
+				if (lastMenu != currentMenu){
 					snprintf(buffer,256, "Applications By %s\n", currentApp.publisher.c_str());
 					sceneTitle = (char*)buffer;
+				}
 				break;
 			default:
 				currentMenu = 0;
