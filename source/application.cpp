@@ -32,9 +32,9 @@ Result installApp(Application_s app){
 	}
 	for (u32 i = 0; i <= size[0]; i++)
 	{
-		print("%X ", file3dsx[i]);
-		if (i > 300)
+		if (i >= 20)
 			break;
+		print("%X ", file3dsx[i]);
 	}
 	print("\n");
 	renderGUI();

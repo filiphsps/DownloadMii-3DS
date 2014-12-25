@@ -56,19 +56,20 @@ void setAppList(vector<Application_s> AppList){
 }
 
 void renderGUI(){
-	screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
-	screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
-	screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
+	for (int xzy = 0; xzy <= 1; xzy++){
+		screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
+		screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
+		screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
 	
-	/* Background */
-	background();
+		/* Background */
+		background();
 	
-	/* UI: TOP */
-	drawTopBar();
-	navbar.Title = sceneTitle;
+		/* UI: TOP */
+		drawTopBar();
+		navbar.Title = sceneTitle;
 	
-	//TODO: Added a switch check for diffrent menus
-	switch(currentMenu){
+		//TODO: Added a switch check for diffrent menus
+		switch (currentMenu) {
 		case 0: //Overview
 			renderStoreFront();
 			break;
@@ -83,6 +84,7 @@ void renderGUI(){
 		case 4: //by dev
 			break;
 	}
+}
 	
 	
 	/* DEBUG */
