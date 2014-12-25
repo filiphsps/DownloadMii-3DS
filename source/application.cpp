@@ -32,6 +32,7 @@ Result installApp(Application_s app){
 		return -1;
 	}
 	print("\n");
+	renderGUI();
 	char* filesmdh;
 	r = downloadFile((char*)app.smdh.c_str(), &filesmdh, &size[1]);
 	if (r != 0) {

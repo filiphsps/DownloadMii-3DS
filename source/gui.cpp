@@ -156,6 +156,7 @@ void renderAppPage(){
 	drawFillRect(0,190,320,240, 0,148,255, screenBottom); //Todo: use button as download status bar
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
 	
+	//ToDo: We dont need to add & remove the button multiple times.
 	clearVButtons();
 	vButton_s but;
 	but.ID = 0;

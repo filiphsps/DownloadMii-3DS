@@ -155,11 +155,14 @@ int main(int argc, char** argv)
 					//setStoreFrontImg(currentApp.background);
 				}
 				for (auto &but : vButtons) {
-					if (but.pressed) {
-						//ToDo: Support multiple buttons
+					if (but.pressed && but.ID == 0) { //Download
 						clearVButtons();
 						currentMenu = 3;
 						installApp(currentApp);
+					}
+					else if (but.pressed && but.ID == 1){ //Publisher
+						clearVButtons();
+						currentMenu = 4;
 					}
 				}
 				break;
