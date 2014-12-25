@@ -19,17 +19,22 @@ Result installApp(Application_s app){
 	print("Installing App..\n");
 	Result r;
 	char buffer[1024];
-	u32 size[1];
+	u32 size[2];
 	FILE *fp;
 	/* MKDIR */
-	sprintf(buffer, "/%s/%s", HBPATH, app.name.c_str());
+	snprintf(buffer,256, "/%s/%s", HBPATH, app.name.c_str());
 	mkdir(buffer, 0777);
 	/* Download Files */
 	char* file3dsx;
 	r = downloadFile((char*)app._3dsx.c_str(), &file3dsx, &size[0]);
-	print(file3dsx);
 	if (r != 0) {
 		return -1;
+	}
+	for (u32 i = 0; i <= size[0]; i++)
+	{
+		print("%X ", file3dsx[i]);
+		if (i > 300)
+			break;
 	}
 	print("\n");
 	renderGUI();

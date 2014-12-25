@@ -49,7 +49,7 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 		return -1;
 	}
 
-	*buffer = (char*)calloc(*size, 1);
+	*buffer = (char*)malloc(*size);
 	if (*buffer == NULL) {
 		httpcCloseContext(&context);
 		print("error: (char*)\n");
