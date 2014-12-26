@@ -20,12 +20,9 @@ void doSplash(){
 	char buffer[256];
 	snprintf(buffer,256, "DownloadMii Build: %s\n", __DATE__);
 	for(int x = 0;x <= 1; x++){
-		screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
-		screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
-		screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
-		clearScreen(screenBottom, GFX_BOTTOM);
-		clearScreen(screenTopLeft, GFX_TOP); 
-		clearScreen(screenTopRight, GFX_TOP);
+		screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
+		screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
+		screen.screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
 		
 		//Temp img
 		gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)splash_bin, 240, 400, 0, 0);

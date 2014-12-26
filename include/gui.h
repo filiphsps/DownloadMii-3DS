@@ -31,10 +31,14 @@ struct navBar_s{
 	int ID;
 	//ToDo
 };
-extern navBar_s navbar;
-extern u8* screenTopLeft;
-extern u8* screenTopRight;
-extern u8* screenBottom;
+struct progressBar_s {
+	const int maxProgress = 100;
+	int progress = 0;
+};
+struct Screen_s {
+	u8* screenTopLeft, *screenTopRight, *screenBottom;
+};
+extern Screen_s screen;
 extern char superStr[];
 
 extern int currentMenu; //0 = overview, 1 = settings, 2 = app page, 3 = downloads(When i fugure out multi-threading), 4 = by dev.

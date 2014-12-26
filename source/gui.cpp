@@ -17,11 +17,11 @@
 
 using namespace std;
 
+/* UI */
+Screen_s screen;
 navBar_s navbar;
-	//ToDo: create a "Screen_s" struct
-	u8* screenTopLeft = 0;
-	u8* screenTopRight = 0;
-	u8* screenBottom = 0;
+progressBar_s progressbar;
+
 extern char superStr[];
 char buffer[256];
 /* SCENE */
@@ -58,9 +58,9 @@ void setAppList(vector<Application_s> AppList){
 
 void renderGUI(){
 	for (int xzy = 0; xzy <= 1; xzy++){
-		screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
-		screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
-		screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL); 
+		screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
+		screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
+		screen.screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
 	
 		/* Background */
 		background();
@@ -165,7 +165,7 @@ void renderAppPage(){
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), (240 - fontBlackHeader.height) - fontBlackSubHeader.height,5);
 	
 	//Download Button
-	drawFillRect(0,190,320,240, 0,148,255, screenBottom);
+	drawFillRect(0,190,320,240, 0,148,255, screen.screenBottom);
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
 	
 	//ToDo: We dont need to add & remove the button multiple times.
@@ -232,34 +232,34 @@ void drawAppEntry(Application_s app, int place){
     }
     else if(getOnScreenY(y)+APPLICATION_ENTRY_H >= 240)/*The entry is partly offscreen*/
     {
-        drawFillRect( 0,getOnScreenY(y), 320,239, 255,/*y/(float)VSTY**/255,255, screenBottom);
+        drawFillRect( 0,getOnScreenY(y), 320,239, 255,/*y/(float)VSTY**/255,255, screen.screenBottom);
 		
 		//Button
 		int x =  getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 < 239 ? getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 : 239;
 		butX2 = x;
 		int z = getOnScreenY(y) + APPLICATION_ENTRY_H/4 < 239 ? getOnScreenY(y) + APPLICATION_ENTRY_H/4 : 239;
 		butX = z;
-        drawFillRect( 200, z, 302,x, 0,148,255, screenBottom);
+        drawFillRect( 200, z, 302,x, 0,148,255, screen.screenBottom);
     }
     else if(getOnScreenY(y)<0)
     {
-        drawLine(0,0,320,0,0,255,0,screenBottom);
-        drawFillRect( 0,0, 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
-        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
+        drawLine(0,0,320,0,0,255,0, screen.screenBottom);
+        drawFillRect( 0,0, 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screen.screenBottom);
+        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screen.screenBottom);
 		
 		//Button
 		butY = getOnScreenY(y) + APPLICATION_ENTRY_H/4 -1;
 		butY2 = getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3 -1;
-		drawFillRect( 200,butY, 302,butY2, 0,148,255, screenBottom);
+		drawFillRect( 200,butY, 302,butY2, 0,148,255, screen.screenBottom);
     }
     else{
-        drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screenBottom);
-        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screenBottom);
+        drawFillRect( 0,getOnScreenY(y), 320,getOnScreenY(y)+APPLICATION_ENTRY_H, 255,/*y/(float)VSTY**/255,255, screen.screenBottom);
+        drawLine( 0, getOnScreenY(y) + APPLICATION_ENTRY_H -1 , 320, getOnScreenY(y) + APPLICATION_ENTRY_H -1, 224,224,224, screen.screenBottom);
 		
 		//Button
 		butY = getOnScreenY(y)+APPLICATION_ENTRY_H/4;
 		butY2 = getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3;
-		drawFillRect( 200,butY, 302,butY2, 0,148,255, screenBottom);
+		drawFillRect( 200,butY, 302,butY2, 0,148,255, screen.screenBottom);
     }
 	
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, (char*)app.name.c_str(),240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
@@ -287,9 +287,9 @@ void renderDebug(){
 	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontBlack, superStr, (240-fontDefault.height*5)+6, 6); 
 }
 void background(){
-	drawFillRect( 0, 0, 320, 240, 227,242,253, screenBottom);
-	drawFillRect( 0, 0, 400, 240, 227,242,253, screenTopLeft);
-	drawFillRect( 0, 0, 400, 240, 227,242,253, screenTopRight);
+	drawFillRect( 0, 0, 320, 240, 227,242,253, screen.screenBottom);
+	drawFillRect( 0, 0, 400, 240, 227,242,253, screen.screenTopLeft);
+	drawFillRect( 0, 0, 400, 240, 227,242,253, screen.screenTopRight);
 }
 void setStoreFrontImg(char* url){
 	//w: 400
@@ -307,10 +307,10 @@ void setStoreFrontImg(char* url){
 	}
 }
 void drawTopBar(){
-	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopLeft);
-	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screenTopRight);
-	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screenTopLeft);
-	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screenTopRight);
+	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screen.screenTopLeft);
+	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screen.screenTopRight);
+	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screen.screenTopLeft);
+	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screen.screenTopRight);
 
 	snprintf(buffer,256, (char*)navbar.Title.c_str());
 	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H / 2) + fontWhiteHeader.height)), 13);
@@ -321,14 +321,14 @@ void drawTopBar(){
 #else
 	snprintf(buffer, 256, "%s", APPLICATION_NAME);
 #endif
-	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopLeft,GFX_TOP);
-	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screenTopRight,GFX_TOP);
+	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
+	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screen.screenTopRight,GFX_TOP);
 	
 	u64 timeInSeconds = osGetTime() / 1000; 
 	u64 dayTime = timeInSeconds % SECONDS_IN_DAY; 
 	snprintf(buffer,256, "%llu:%llu:%llu",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE);
-	drawString(buffer, 2,2, 255,255,255, screenTopLeft,GFX_TOP);
-	drawString(buffer, 2,2, 255,255,255, screenTopRight,GFX_TOP);
+	drawString(buffer, 2,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
+	drawString(buffer, 2,2, 255,255,255, screen.screenTopRight,GFX_TOP);
 }
 int countLines(char* str)
 {
