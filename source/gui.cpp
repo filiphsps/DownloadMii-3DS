@@ -84,6 +84,7 @@ void renderGUI(){
 			renderDownloads();
 			break;
 		case 4: //by dev
+			renderByDev();
 			break;
 	}
 }
@@ -100,9 +101,16 @@ void renderGUI(){
 	gspWaitForVBlank();
 }
 
-
+void renderByDev() {
+	int appn = 0;
+	for (auto app : tAppList) {
+		appn++;
+		drawAppEntry(app, appn);
+	}
+	appn = 0;
+}
 void renderStoreFront(){
-	static int appn = 0;
+	int appn = 0;
 	
 	/* UI: TOP */
 	if(cimg != NULL){

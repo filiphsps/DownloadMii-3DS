@@ -188,6 +188,8 @@ int main(int argc, char** argv)
 				if (lastMenu != currentMenu){
 					snprintf(buffer,256, "Applications By %s\n", currentApp.publisher.c_str());
 					sceneTitle = (char*)buffer;
+					//ToDo: download applist for the selected developer.
+					setAppList(devList);
 				}
 				break;
 			default:

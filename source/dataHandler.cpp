@@ -18,6 +18,7 @@ vector<Application_s> topGames;
 vector<Application_s> overviewApps;
 vector<Application_s> staffSelectApps;
 vector<Application_s> InstalledApps;
+vector<Application_s> devList;
 
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	//Update installed apps

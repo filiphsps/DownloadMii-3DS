@@ -12,6 +12,7 @@ extern vector<Application_s> topApps;
 extern vector<Application_s> topGames;
 extern vector<Application_s> overviewApps;
 extern vector<Application_s> staffSelectApps;
+extern vector<Application_s> devList;
 
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL);
 Result doListUpdate();

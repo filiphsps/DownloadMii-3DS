@@ -16,15 +16,17 @@ touchPosition tp;
 int x;
 void UpdateInput(Input_s* input){
 	resetInput(input);
-	hidTouchRead(&tp);
-	input->touchX = tp.px;
-	input->touchY = tp.py;
-	
 	checkVButtonTouch(input);
 	
 	hidScanInput();
 	u32 kDown = hidKeysDown();
 	if(kDown){
+		if (kDown & KEY_TOUCH) {
+			hidTouchRead(&tp);
+			input->touchX = tp.px;
+			input->touchY = tp.py;
+			print("Touch: %d %d\n", tp.px,tp.py);
+		}
 		x++;
 		char buffer[100];
 		sprintf(buffer, "Input, %d\n", x);
@@ -74,8 +76,8 @@ void resetInput(Input_s* input){
 	input->Select = false;
 	input->L = false;
 	input->R = false;
-	input->touchX = 0;
-	input->touchY = 0;
+	input->touchX = -1;
+	input->touchY = -1;
 }
 
 void checkVButtonTouch(Input_s* input){
