@@ -24,10 +24,10 @@ Input_s Input;
 char superStr[9192];
 char* jsonSS;
 
-int currentMenu = 2;
+int currentMenu = 0;
 
 //Todo:
-Application_s currentApp = {"NULL", "Testing", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/testing/test.3dsx", "http://downloadmii.filfatstudios.com/testing/test.3dsx", 5};
+Application_s currentApp = {"NULL", "Error", "App isn't loaded", "E.RR.O.R", "Please restart your 3DS and try again!", "Error", "Error", "NULL", "http://downloadmii.filfatstudios.com/testing/test.3dsx", "http://downloadmii.filfatstudios.com/testing/test.3dsx", 5};
 
 static int CalcFPS(); //ToDo: move to utils.cpp
 

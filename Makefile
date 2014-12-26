@@ -142,7 +142,7 @@ clean:
 #---------------------------------------------------------------------------------
 run:
 	@echo run ...
-	$(TOPDIR)/Testing/3dmoo.exe  $(TARGET).elf -sdmc "Testing/SD" -sdwrite > 3dmoo.log
+	$(TOPDIR)/Testing/3dmoo.exe  $(TARGET).3dsx -sdmc "Testing/SD" -sdwrite > 3dmoo.log
 
 #---------------------------------------------------------------------------------
 else

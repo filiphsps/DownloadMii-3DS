@@ -18,9 +18,10 @@
 using namespace std;
 
 navBar_s navbar;
-u8* screenTopLeft = 0;
-u8* screenTopRight = 0;
-u8* screenBottom = 0;
+	//ToDo: create a "Screen_s" struct
+	u8* screenTopLeft = 0;
+	u8* screenTopRight = 0;
+	u8* screenBottom = 0;
 extern char superStr[];
 char buffer[256];
 /* SCENE */
@@ -156,7 +157,7 @@ void renderAppPage(){
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), (240 - fontBlackHeader.height) - fontBlackSubHeader.height,5);
 	
 	//Download Button
-	drawFillRect(0,190,320,240, 0,148,255, screenBottom); //Todo: use button as download status bar
+	drawFillRect(0,190,320,240, 0,148,255, screenBottom);
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
 	
 	//ToDo: We dont need to add & remove the button multiple times.
@@ -179,8 +180,8 @@ void renderAppPage(){
 
 void renderDownloads() {
 	//ToDo
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This page will be implamented in version 1.1.0.0", 200, 5);
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "Or 1.2.0.0, press (B) to return to the main menu.", 180, 5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This page will be implamented in version 1.1.0.0", 210, 5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "press (B) to return to the main menu.", 190, 5);
 }
 
 void fadeOut(){

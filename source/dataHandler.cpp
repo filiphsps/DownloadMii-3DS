@@ -9,6 +9,7 @@
 #include "gui.h"
 #include "file.h"
 #include "picojson.h"
+#include "error.h"
 
 using namespace std;
 
@@ -16,8 +17,15 @@ vector<Application_s> topApps;
 vector<Application_s> topGames;
 vector<Application_s> overviewApps;
 vector<Application_s> staffSelectApps;
+vector<Application_s> InstalledApps;
 
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
+	//Update installed apps
+	Result r = updateInstalledList(&InstalledApps);
+	if (r != 0) {
+		print("updateInstalledList: error %s\n", getErrorMsg(r));
+	}
+
 	vector<Application_s> tempV;
 	char* jsonsource;
 	u32 size;
@@ -44,6 +52,9 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 		app._3dsx         = (char*)(*iter).get("3dsx").get<string>().c_str();
 		app.smdh =          (char*)(*iter).get("smdh").get<string>().c_str();
 		app.raiting =       (int)(*iter).get("rating").get<double>();
+		for (auto tempApp : InstalledApps) //Check if app is installed
+			if (app.name == tempApp.name)
+				app.installed = true;
 		tempV.push_back(app);
     }
 	print("\n");

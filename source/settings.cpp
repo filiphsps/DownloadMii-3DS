@@ -15,7 +15,7 @@
 using namespace std;
 
 //ToDo: use a ini serializer to save settings.
-//The reason that two diffrent libs shoykd be used is that the parser only libs are usualy faster than the serialaztion and parser libs.
+//The reason that two diffrent libs should be used is that the parser only libs are usualy faster than the serialaztion and parser libs.
 char* defaultSettings = ";DownloadMii Config File\n[DownloadMii]             ; Main configuration\nversion=\"1.0.0.0\"      ; Ex: \"1.0.0.0\"\nnightly=true    	   ; Ex: true\nautoUpdate=true	       ; Ex: true\nthemePath=\"none\" 	   ; Ex: \"/3ds/downloadmii/flatTheme.dmt\"\n"; //used when the file is not found, invalid or corrupt, empty
 Settings_s settings;
 

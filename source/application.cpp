@@ -59,3 +59,8 @@ Result installApp(Application_s app){
 	print("Done Installing app...\n");
 	return 0;
 }
+
+Result updateInstalledList(vector<Application_s> *list) {
+
+	return -99; //Not implamentet
+}
