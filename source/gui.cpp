@@ -259,7 +259,7 @@ void drawAppEntry(Application_s app, int place){
 		//Button
 		butY = getOnScreenY(y)+APPLICATION_ENTRY_H/4;
 		butY2 = getOnScreenY(y)+(APPLICATION_ENTRY_H/4)*3;
-		drawFillRect( 200,butY, 302,butY2, 0,148,255, screen.screenBottom);
+		drawFillRect( 200,butY, 302,butY2, 0,148,255, screen.screenBottom); //H: 36
     }
 	
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, (char*)app.name.c_str(),240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
