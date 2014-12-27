@@ -12,6 +12,7 @@
 #include "gui.h"
 #include "utils.h"
 #include "file.h"
+#include "dataHandler.h"
 
 using namespace std;
 
@@ -59,7 +60,8 @@ Result installApp(Application_s app){
 	fp = fopen(buffer, "w+");
 	fwrite(filesmdh, sizeof(filesmdh[0]), size[1], fp);
 	fclose(fp);
-	print("Done Installing app...\n");
+	print("Done Installing app, updating list...\n");
+	r = doListUpdate();
 	return 0;
 }
 
