@@ -1,6 +1,7 @@
 #pragma once
 
 #define APPLICATION_NAME "DownloadMii v0.0.0.1"
+#define APIDOMAIN "downloadmii.filfatstudios.com"
 #define SECONDS_IN_DAY 86400 
 #define SECONDS_IN_HOUR 3600 
 #define SECONDS_IN_MINUTE 60 

@@ -69,10 +69,36 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 }
 
 Result doListUpdate(){
-	//ToDo
+	char buffer[256];
+	bool hasFailed = false;
+	//ToDo: replace with real url's
 	Result r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
 	if(r != 0){
-		print("updateAppList: Error\n");
+		print("updateAppList(1): Error\n");
 	}
-	return r;
+	snprintf(buffer, 256, "http://%s/api/apps/TopDownloadedApps/", APIDOMAIN);
+	r = updateAppList(&topApps, buffer);
+	if (r != 0) {
+		print("updateAppList(2): Error\n");
+	}
+	snprintf(buffer, 256, "http://%s/api/apps/TopDownloadedGames/", APIDOMAIN);
+	r = updateAppList(&topGames, buffer);
+	if (r != 0) {
+		print("updateAppList(3): Error\n");
+	}
+	snprintf(buffer, 256, "http://%s/api/apps/StaffPicks/", APIDOMAIN);
+	r = updateAppList(&staffSelectApps, buffer);
+	if (r != 0) {
+		print("updateAppList(4): Error\n");
+	}
+	if (hasFailed)
+		return -2;
+	else
+		return 0;
+}
+
+Result updateDevList(vector<Application_s> *AppList, char* developer) {
+	char buffer[256];
+	snprintf(buffer,256, "http://%s/api/bydev/%s/", APIDOMAIN,developer);
+	return updateAppList(AppList, buffer);
 }
