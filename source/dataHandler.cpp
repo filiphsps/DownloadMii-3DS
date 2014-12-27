@@ -59,6 +59,10 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 				if (app.version != tempApp.version)
 					app.updateAvalible = true;
 			}
+			else {
+				app.installed = false;
+				app.updateAvalible = false;
+			}
 		tempV.push_back(app);
     }
 	print("\n");
