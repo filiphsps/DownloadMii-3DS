@@ -265,7 +265,7 @@ void drawAppEntry(Application_s app, int place){
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, (char*)app.name.c_str(),240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)app.version.c_str(),240-getOnScreenY( APPVERSION_MARGIN + y ), 5);
 	//Button
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Download",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "More Info",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
 	
 	vButton_s but;
 	but.ID = butPos;

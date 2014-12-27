@@ -202,9 +202,6 @@ int main(int argc, char** argv)
 			lastMenu = currentMenu;
 		}
 		renderGUI();
-		if(Input.A){
-			currentMenu++;
-		}
 		/* In case of start, exit the app */
 		if (Input.Start){
 			print("Exiting..\n");
