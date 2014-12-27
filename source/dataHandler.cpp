@@ -53,7 +53,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 		app._3dsx         = (char*)(*iter).get("3dsx").get<string>().c_str();
 		app.smdh =          (char*)(*iter).get("smdh").get<string>().c_str();
 		app.raiting =       (int)(*iter).get("rating").get<double>();
-		for (auto tempApp : InstalledApps) //Check if app is installed
+		for (auto tempApp : InstalledApps) { //Check if app is installed
 			if (app.name == tempApp.name) {
 				app.installed = true;
 				if (app.version != tempApp.version)
@@ -63,6 +63,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 				app.installed = false;
 				app.updateAvalible = false;
 			}
+		}
 		tempV.push_back(app);
     }
 	print("\n");

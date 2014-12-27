@@ -75,7 +75,6 @@ Result updateInstalledList(vector<Application_s> *list) {
 
 	static char fullPath[1024];
 	static char tempPath[1024];
-	char buffer[256];
 	u32 entriesRead;
 	do
 	{
@@ -97,7 +96,6 @@ Result updateInstalledList(vector<Application_s> *list) {
 					tp += 5;
 					tempApp.name = tp;
 					list->push_back(tempApp);
-					snprintf(tempPath, 128, "%s/boot.3dsx", fullPath);
 				}
 			}
 		}
