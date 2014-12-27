@@ -19,6 +19,9 @@ using namespace std;
 void doSplash(){
 	char buffer[256];
 	snprintf(buffer,256, "DownloadMii Build: %s\n", __DATE__);
+	//Loading text
+	print(buffer);
+	print("Loading...\n");
 	for(int x = 0;x <= 1; x++){
 		screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 		screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
@@ -27,13 +30,8 @@ void doSplash(){
 		//Temp img
 		gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)splash_bin, 240, 400, 0, 0);
 		gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)splash_bin, 240, 400, 0, 0);
-		
-		
-		//Loading text
-		gfxDrawText(GFX_TOP, GFX_LEFT, NULL, buffer, 240-fontDefault.height*1, 2); 
-		gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, buffer, 240-fontDefault.height*1, 2);
-		gfxDrawText(GFX_TOP, GFX_LEFT, NULL, "Loading...", 240-fontDefault.height*2, 2); 
-		gfxDrawText(GFX_TOP, GFX_RIGHT, NULL, "Loading...", 240-fontDefault.height*2, 2);
+
+		renderDebug();
 		
 		gfxFlushBuffers(); 
 		gfxSwapBuffers();

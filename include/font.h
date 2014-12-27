@@ -18,6 +18,7 @@ extern charDesc_s RobotoDesc[];
 extern charDesc_s robotoSmallDesc[];
 extern font_s fontDefault;
 extern font_s fontBlack;
+extern font_s fontWhite;
 extern font_s fontBlackHeader;
 extern font_s fontBlackSubHeader;
 extern font_s fontWhiteHeader;

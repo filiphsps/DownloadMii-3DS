@@ -9,12 +9,22 @@ font_s fontDefault =
 	(u8[]){0xFF,0xFF,0xFF}
 };
 
+font_s fontWhite =
+{
+	font1Data,
+	font1Desc,
+	14,
+	(u8[]){0xFF,0xFF,0xFF}
+};
+
 font_s fontBlack =
 {
 	font1Data,
 	font1Desc,
 	14,
-	(u8[]){0x00,0x00,0x00}
+	(u8[]) {
+		0x00,0x00,0x00
+	}
 };
 
 

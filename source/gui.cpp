@@ -200,6 +200,7 @@ void fadeOut(){
 		gfxFadeScreen(GFX_BOTTOM, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_LEFT, x);
 		gfxFadeScreen(GFX_TOP, GFX_RIGHT, x);
+		renderDebug();
 		gfxFlushBuffers(); 
 		gfxSwapBuffers();
 	}
@@ -293,8 +294,8 @@ void drawAppEntry(Application_s app, int place){
 void renderDebug(){
 	int i = countLines(superStr); 
  	while(i>200/fontDefault.height-3){cutLine(superStr);i--;} 
-	gfxDrawText(GFX_TOP, GFX_LEFT, &fontBlack, superStr, (240-fontDefault.height*5)+6, 6); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontBlack, superStr, (240-fontDefault.height*5)+6, 6); 
+	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhite, superStr, (240-fontDefault.height*5)+6, 6); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhite, superStr, (240-fontDefault.height*5)+6, 6);
 }
 void background(){
 	drawFillRect( 0, 0, 320, 240, 227,242,253, screen.screenBottom);
