@@ -14,6 +14,9 @@
 #include "download.h"
 /* Images */
 #include "offline_bin.h"
+#include "Installed_bin.h"
+#include "Update_bin.h"
+#include "Error_bin.h"
 
 using namespace std;
 
@@ -264,6 +267,13 @@ void drawAppEntry(Application_s app, int place){
 	
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, (char*)app.name.c_str(),240-getOnScreenY( APPTITLE_MARGIN + y ), 5);
     gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)app.version.c_str(),240-getOnScreenY( APPVERSION_MARGIN + y ), 5);
+	int tl = 240 - getOnScreenY(APPVERSION_MARGIN + y);
+	if (app.installed && !app.updateAvalible) {
+		gfxDrawSprite(GFX_BOTTOM, GFX_LEFT, (u8*)Installed_bin, 18, 18, tl, (18 * 4));
+	}
+	else if (app.installed && app.updateAvalible) {
+		gfxDrawSprite(GFX_BOTTOM, GFX_LEFT, (u8*)Update_bin, 18, 18, tl, (18 * 4));
+	}
 	//Button
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "More Info",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
 	

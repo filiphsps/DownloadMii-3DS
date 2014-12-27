@@ -20,7 +20,8 @@ struct Application_s{
 	string smdh;
 	int raiting;
 	
-	bool installed;
+	bool installed = false;
+	bool updateAvalible = false;
 	
 	//TODO: add all the values that can be found in the json file
 };

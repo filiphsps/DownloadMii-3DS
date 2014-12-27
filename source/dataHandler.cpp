@@ -54,8 +54,11 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 		app.smdh =          (char*)(*iter).get("smdh").get<string>().c_str();
 		app.raiting =       (int)(*iter).get("rating").get<double>();
 		for (auto tempApp : InstalledApps) //Check if app is installed
-			if (app.name == tempApp.name)
+			if (app.name == tempApp.name) {
 				app.installed = true;
+				if (app.version != tempApp.version)
+					app.updateAvalible = true;
+			}
 		tempV.push_back(app);
     }
 	print("\n");
