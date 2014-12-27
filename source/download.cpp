@@ -36,10 +36,13 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 	}
 
 	result = httpcGetResponseStatusCode(&context, &statuscode, 0);
-	if ((result != 0) || statuscode != 200) {
+	if ((result != 0) || statuscode != 200 || statuscode == 403) {
 		httpcCloseContext(&context);
 		print("error: httpcGetResponseStatusCode\n");
-		return -1;
+		return -7;
+	}
+	else if (statuscode == 999) { //Service closed
+		return -200;
 	}
 
 	result = httpcGetDownloadSizeState(&context, NULL, size);

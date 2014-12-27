@@ -24,6 +24,8 @@ char* getErrorMsg(Result error) {
 		return "Remote api outdated";
 	case -6:
 		return "Client api outdated";
+	case -7:
+		return "Unknown remote api error";
 	case -99:
 		return "Not yet implamentet";
 	case -200:
