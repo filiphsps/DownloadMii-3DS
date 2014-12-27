@@ -10,9 +10,12 @@
 #include "application.h"
 #include "download.h"
 #include "gui.h"
+#include "utils.h"
 #include "file.h"
 
 using namespace std;
+
+FS_archive sdmcArchive;
 
 Result installApp(Application_s app){
 	//ToDo
@@ -61,6 +64,45 @@ Result installApp(Application_s app){
 }
 
 Result updateInstalledList(vector<Application_s> *list) {
+	list->clear();
+	Application_s tempApp;
+	//Stolen from HBMenu(modified)
+	sdmcArchive = (FS_archive) { 0x00000009, (FS_path) { PATH_EMPTY, 1, (u8*)"" } };
+	FSUSER_OpenArchive(NULL, &sdmcArchive);
+	Handle dirHandle;
+	FS_path dirPath = FS_makePath(PATH_CHAR, "/3ds/");
+	FSUSER_OpenDirectory(NULL, &dirHandle, sdmcArchive, dirPath);
 
+	static char fullPath[1024];
+	static char tempPath[1024];
+	char buffer[256];
+	u32 entriesRead;
+	do
+	{
+		static FS_dirent entry;
+		memset(&entry, 0, sizeof(FS_dirent));
+		entriesRead = 0;
+		FSDIR_Read(dirHandle, &entriesRead, 1, &entry);
+		if (entriesRead)
+		{
+			strncpy(fullPath, "/3ds/", 1024);
+			int n = strlen(fullPath);
+			unicodeToChar(&fullPath[n], entry.name, 1024 - n);
+			if (entry.isDirectory) //directories
+			{
+				snprintf(tempPath,1024, "%s", fullPath);
+				if (tempPath[5] != '.') {
+					print("%s\n", tempPath);
+					char* tp = tempPath;
+					tp += 5;
+					tempApp.name = tp;
+					list->push_back(tempApp);
+					snprintf(tempPath, 128, "%s/boot.3dsx", fullPath);
+				}
+			}
+		}
+	} while (entriesRead);
+
+	FSDIR_Close(dirHandle);
 	return -99; //Not implamentet
 }
