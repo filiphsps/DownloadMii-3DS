@@ -120,7 +120,8 @@ Result checkUpdate(char* currentVersion) {
 	int a = strcmp(currentVersion, remoteVersion);
 	if (a != 0) {
 		sceneTitle = "Update Available";
-		while (true)
+		bool running = true;
+		while (running)
 		{
 			UpdateInput(&Input);
 			if (Input.B) {
@@ -139,6 +140,7 @@ Result checkUpdate(char* currentVersion) {
 			for (auto &but : vButtons) {
 				if (but.pressed) {
 					//ToDo: download and install update
+					running = false;
 					break;
 				}
 			}
