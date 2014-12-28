@@ -14,19 +14,23 @@
 vector<vButton_s> vButtons;
 touchPosition tp;
 int x;
+int TC = 0;
 void UpdateInput(Input_s* input){
 	resetInput(input);
-	checkVButtonTouch(input);
-	
 	hidScanInput();
 	u32 kDown = hidKeysDown();
+	if (kDown & KEY_TOUCH) {
+		TC = 2;
+	}
+	if (TC > 0) {
+		hidTouchRead(&tp);
+		input->touchX = tp.px;
+		input->touchY = tp.py;
+		print("Touch: %d %d\n", tp.px, tp.py);
+		TC--;
+	}
+	checkVButtonTouch(input);
 	if(kDown){
-		if (kDown & KEY_TOUCH) {
-			hidTouchRead(&tp);
-			input->touchX = tp.px;
-			input->touchY = tp.py;
-			print("Touch: %d %d\n", tp.px,tp.py);
-		}
 		x++;
 		char buffer[100];
 		sprintf(buffer, "Input, %d\n", x);

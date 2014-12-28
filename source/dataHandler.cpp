@@ -20,6 +20,12 @@ vector<Application_s> staffSelectApps;
 vector<Application_s> InstalledApps;
 vector<Application_s> devList;
 
+char easytolower(char in) {
+	if (in <= 'Z' && in >= 'A')
+		return in - ('Z' - 'z');
+	return in;
+}
+
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 
 	vector<Application_s> tempV;
@@ -48,8 +54,13 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 		app._3dsx         = (char*)(*iter).get("3dsx").get<string>().c_str();
 		app.smdh =          (char*)(*iter).get("smdh").get<string>().c_str();
 		app.raiting =       (int)(*iter).get("rating").get<double>();
+		
 		for (auto tempApp : InstalledApps) { //Check if app is installed
-			if (app.name == tempApp.name) {
+			string ap1 = app.name;
+			transform(ap1.begin(), ap1.end(), ap1.begin(), easytolower);
+			string ap2 = tempApp.name;
+			transform(ap2.begin(), ap2.end(), ap2.begin(), easytolower);
+			if (ap1 == ap2) {
 				app.installed = true;
 				if (app.version != tempApp.version)
 					app.updateAvalible = true;
@@ -121,11 +132,18 @@ Result checkUpdate(char* currentVersion) {
 	if (a != 0) {
 		sceneTitle = "Update Available";
 		bool running = true;
-		while (running)
+		while (running == true)
 		{
 			UpdateInput(&Input);
 			if (Input.B) {
 				break;
+			}
+			for (auto &but : vButtons) {
+				if (but.pressed) {
+					//ToDo: download and install update
+					running = false;
+					break;
+				}
 			}
 			for (int x = 0; x <= 1; x++) {
 				screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
@@ -136,13 +154,6 @@ Result checkUpdate(char* currentVersion) {
 				gfxFlushBuffers();
 				gfxSwapBuffers();
 				gspWaitForVBlank();
-			}
-			for (auto &but : vButtons) {
-				if (but.pressed) {
-					//ToDo: download and install update
-					running = false;
-					break;
-				}
 			}
 		}
 	}
