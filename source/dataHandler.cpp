@@ -111,3 +111,38 @@ Result updateDevList(vector<Application_s> *AppList, char* developer) {
 	snprintf(buffer,256, "http://%s/api/bydev/%s/", APIDOMAIN,developer);
 	return updateAppList(AppList, buffer);
 }
+
+Result checkUpdate(char* currentVersion) {
+	char buffer[256];
+	char* remoteVersion;
+	u32 size;
+	downloadFile("http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/VERSION", &remoteVersion, &size);
+	int a = strcmp(currentVersion, remoteVersion);
+	if (a != 0) {
+		sceneTitle = "Update Available";
+		while (true)
+		{
+			UpdateInput(&Input);
+			if (Input.B) {
+				break;
+			}
+			for (int x = 0; x <= 1; x++) {
+				screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
+				screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
+				screen.screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
+				renderUpdate(currentVersion, remoteVersion);
+				renderDebug();
+				gfxFlushBuffers();
+				gfxSwapBuffers();
+				gspWaitForVBlank();
+			}
+			for (auto &but : vButtons) {
+				if (but.pressed) {
+					//ToDo: download and install update
+					break;
+				}
+			}
+		}
+	}
+	return 0;
+}

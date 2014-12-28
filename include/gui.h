@@ -40,7 +40,7 @@ struct Screen_s {
 };
 extern Screen_s screen;
 extern char superStr[];
-
+extern font_s debugfnt;
 extern int currentMenu; //0 = overview, 1 = settings, 2 = app page, 3 = downloads(When i fugure out multi-threading), 4 = by dev.
 extern Application_s currentApp;
 extern vector<Application_s> tAppList;
@@ -61,6 +61,7 @@ void renderAppPage();
 void renderDebug();
 void renderDownloads();
 void renderByDev();
+void renderUpdate(char* cv, char* rv);
 void setAppList(vector<Application_s> AppList);
 void fadeOut();
 

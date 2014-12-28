@@ -26,6 +26,7 @@ navBar_s navbar;
 progressBar_s progressbar;
 
 extern char superStr[];
+font_s debugfnt = fontWhite;
 char buffer[256];
 /* SCENE */
 int scene = 0;
@@ -153,6 +154,44 @@ void renderSettings(){
 	//ToDo
 }
 
+void renderUpdate(char* cv, char* rv) {
+	/* Background */
+	background();
+
+	/* UI: TOP */
+	drawTopBar();
+	navbar.Title = sceneTitle;
+	if (cimg != NULL) { //ToDo: Render app page banner
+		gfxDrawSprite(GFX_TOP, GFX_LEFT, cimg, 192, 400, 0, 0);
+		gfxDrawSprite(GFX_TOP, GFX_RIGHT, cimg, 192, 400, 0, 0);
+	}
+	/* UI: BOTTOM */
+	//Text
+	snprintf(buffer, 256, "%s->%s!", cv, rv);
+
+	int temp = (240 - fontBlackHeader.height) - fontBlackSubHeader.height;
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, buffer, 240 - fontBlackHeader.height, 5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), temp, 5);
+
+	//About text
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "There is an update avalible, download?\nPress (B) to skip the update.", (temp - fontBlackHeader.height) + 4, 5); //Should be a new line every ~35 chars
+
+																																		   //Download Button
+	drawFillRect(0, 190, 320, 240, 0, 148, 255, screen.screenBottom);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Update", 15, 116);
+
+	//ToDo: We dont need to add & remove the button multiple times.
+	clearVButtons();
+	vButton_s but;
+	but.ID = 0;
+	but.x = 0;
+	but.y = 190;
+	but.x2 = 320;
+	but.y2 = 240;
+	but.menu = 0;
+	addVButton(but);
+}
+
 void renderAppPage(){
 	/* UI: TOP */
 	if(cimg != NULL){ //ToDo: Render app page banner
@@ -207,6 +246,7 @@ void fadeOut(){
 		renderDebug();
 		gfxFlushBuffers(); 
 		gfxSwapBuffers();
+		gspWaitForVBlank();
 	}
 }
 
@@ -298,8 +338,8 @@ void drawAppEntry(Application_s app, int place){
 void renderDebug(){
 	int i = countLines(superStr); 
  	while(i>200/fontDefault.height-3){cutLine(superStr);i--;} 
-	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhite, superStr, (240-fontDefault.height*5)+6, 6); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhite, superStr, (240-fontDefault.height*5)+6, 6);
+	gfxDrawText(GFX_TOP, GFX_LEFT, &debugfnt, superStr, (240-fontDefault.height*5)+6, 6); 
+	gfxDrawText(GFX_TOP, GFX_RIGHT, &debugfnt, superStr, (240-fontDefault.height*5)+6, 6);
 }
 void background(){
 	drawFillRect( 0, 0, 320, 240, 227,242,253, screen.screenBottom);

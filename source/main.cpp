@@ -88,6 +88,9 @@ int main(int argc, char** argv)
 	svcCreateThread(&threadHandle, secondThread, 0, &stack[0x4000>>2], 0x3F, 0);*/
 
 	fadeOut();
+	debugfnt = fontBlack;
+	r = checkUpdate(_VERSION_); //ToDo: use settings.ini
+
 	/* Main loop */
 	int lastScene = 0;
 	int lastMenu = -1;
@@ -132,12 +135,11 @@ int main(int argc, char** argv)
 					switch(scene){
 						case 0:
 							sceneTitle = "Overview";
-							setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner1.bin"); //Test
+							setStoreFrontImg("http://downloadmii.filfatstudios.com/banner.bin");
 							setAppList(overviewApps);
 							break;
 						case 1:
 							sceneTitle = "Top Downloaded Applications";
-							setStoreFrontImg("http://downloadmii.filfatstudios.com/testing/banner2.bin"); //Test
 							setAppList(topApps);
 							break;
 						case 2:

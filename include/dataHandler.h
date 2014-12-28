@@ -17,3 +17,4 @@ extern vector<Application_s> devList;
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL);
 Result doListUpdate();
 Result updateDevList(vector<Application_s> *AppList, char* developer);
+Result checkUpdate(char* currentVersion);
