@@ -234,7 +234,7 @@ void renderAppPage(){
 
 void renderDownloads() {
 	//ToDo
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This page will be implemented in version 1.1.0.0", 210, 5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This page will be implemented in version 1.1/1.2", 210, 5);
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "press (B) to return to the main menu.", 190, 5);
 }
 
