@@ -28,4 +28,4 @@ struct Application_s{
 extern vector<Application_s> InstalledApps;
 
 Result installApp(Application_s app);
-Result updateInstalledList(vector<Application_s> *list);
+Result updateInstalledList(vector<Application_s> &list);

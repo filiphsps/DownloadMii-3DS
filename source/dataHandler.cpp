@@ -21,11 +21,6 @@ vector<Application_s> InstalledApps;
 vector<Application_s> devList;
 
 Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
-	//Update installed apps
-	Result r = updateInstalledList(&InstalledApps);
-	if (r != 0) {
-		print("updateInstalledList: error %s\n", getErrorMsg(r));
-	}
 
 	vector<Application_s> tempV;
 	char* jsonsource;
@@ -80,7 +75,13 @@ Result doListUpdate(){
 	char buffer[256];
 	bool hasFailed = false;
 	//ToDo: replace with real url's
-	Result r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
+	//Update installed apps
+	Result r = updateInstalledList(InstalledApps);
+	if (r != 0) {
+		print("updateInstalledList: error %s\n", getErrorMsg(r));
+	}
+
+	r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
 	if(r != 0){
 		print("updateAppList(1): Error\n");
 	}
