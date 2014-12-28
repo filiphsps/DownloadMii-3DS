@@ -80,6 +80,7 @@
     <ClInclude Include="include\dataHandler.h" />
     <ClInclude Include="include\download.h" />
     <ClInclude Include="include\draw.h" />
+    <ClInclude Include="include\error.h" />
     <ClInclude Include="include\file.h" />
     <ClInclude Include="include\font.h" />
     <ClInclude Include="include\gui.h" />
