@@ -80,7 +80,7 @@ Result updateInstalledList(vector<Application_s> &list) {
 	u32 entriesRead;
 	do
 	{
-		static FS_dirent entry;
+		FS_dirent entry;
 		memset(&entry, 0, sizeof(FS_dirent));
 		entriesRead = 0;
 		FSDIR_Read(dirHandle, &entriesRead, 1, &entry);
