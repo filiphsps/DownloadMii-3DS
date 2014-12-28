@@ -105,5 +105,5 @@ Result updateInstalledList(vector<Application_s> &list) {
 
 	FSDIR_Close(dirHandle);
 	FSUSER_CloseArchive(NULL, &sdmcArchive);
-	return -99; //Not implamentet
+	return -99; //Not implemented
 }
