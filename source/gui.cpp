@@ -164,9 +164,13 @@ void renderAppPage(){
 	//Text
 	snprintf(buffer,256, "%s %s", (char*)currentApp.name.c_str(), (char*)currentApp.version.c_str());
 
+	int temp = (240 - fontBlackHeader.height) - fontBlackSubHeader.height;
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader,  buffer, 240 - fontBlackHeader.height,5);
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), (240 - fontBlackHeader.height) - fontBlackSubHeader.height,5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), temp,5);
 	
+	//About text
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader,  (char*)currentApp.description.c_str(), (temp - fontBlackHeader.height) + 4,5); //Should be a new line every ~35 chars
+
 	//Download Button
 	drawFillRect(0,190,320,240, 0,148,255, screen.screenBottom);
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
