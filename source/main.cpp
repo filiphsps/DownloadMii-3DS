@@ -87,7 +87,7 @@ int main(int argc, char** argv)
 
 	//APP_STATUS status;
 	
-	gfxSetDoubleBuffering(false);
+	//gfxSetDoubleBuffering(false);
 	
 	/* Threading */
 	/*Handle threadHandle;
@@ -210,6 +210,7 @@ int main(int argc, char** argv)
 			lastScene = -1;
 			lastMenu = currentMenu;
 		}
+		gspWaitForVBlank();
 		renderGUI();
 		/* In case of start, exit the app */
 		if (Input.Start){
