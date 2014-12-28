@@ -229,7 +229,7 @@ void renderAppPage(){
 	but.y = fontBlackHeader.height;
 	but.x2 = 315;
 	but.y2 = (but.y + fontBlackHeader.height) + 10;
-	addVButton(but);
+	//addVButton(but);
 }
 
 void renderDownloads() {
