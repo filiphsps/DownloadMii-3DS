@@ -16,7 +16,6 @@ Result networkInit(){
 }
 
 Result downloadFile(char* url, char** buffer, u32 *size) {
-	print("Downloading File...\n");
 	Result result;
 	httpcContext context;
 	u32 statuscode = 0;

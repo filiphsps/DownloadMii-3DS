@@ -66,7 +66,7 @@ Result installApp(Application_s app){
 }
 
 Result updateInstalledList(vector<Application_s> &list) {
-	list.clear();/*
+	list.clear();
 	Application_s tempApp;
 	//Stolen from HBMenu(modified)
 	sdmcArchive = (FS_archive) { 0x00000009, (FS_path) { PATH_EMPTY, 1, (u8*)"" } };
@@ -104,6 +104,6 @@ Result updateInstalledList(vector<Application_s> &list) {
 	} while (entriesRead);
 
 	FSDIR_Close(dirHandle);
-	FSUSER_CloseArchive(NULL, &sdmcArchive);*/
+	FSUSER_CloseArchive(NULL, &sdmcArchive);
 	return -99; //Not implamentet
 }

@@ -28,7 +28,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	downloadFile(jsonURL, &jsonsource, &size);
 	/* Parse json and put it into the temp vector */
 	picojson::value v;
-    char * json = (char*) malloc(strlen(jsonsource)+1);
+    char* json = (char*) malloc(strlen(jsonsource)+1);
     strcpy(json, jsonsource);
     string err = picojson::parse(v, json, json + strlen(json));
 	print(err.c_str());
@@ -85,7 +85,7 @@ Result doListUpdate(){
 	if(r != 0){
 		print("updateAppList(1): Error\n");
 	}
-	snprintf(buffer, 256, "http://%s/api/apps/TopDownloadedApps/", APIDOMAIN);
+	/*snprintf(buffer, 256, "http://%s/api/apps/TopDownloadedApps/", APIDOMAIN);
 	r = updateAppList(&topApps, buffer);
 	if (r != 0) {
 		print("updateAppList(2): Error\n");
@@ -99,7 +99,7 @@ Result doListUpdate(){
 	r = updateAppList(&staffSelectApps, buffer);
 	if (r != 0) {
 		print("updateAppList(4): Error\n");
-	}
+	}*/
 	if (hasFailed)
 		return -2;
 	else
