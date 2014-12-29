@@ -30,6 +30,7 @@ int currentMenu = 0;
 Application_s currentApp/* = {"NULL", "Error", "App isn't loaded", "E.RR.O.R", "Please restart your 3DS and try again!", "Error", "Error", "NULL", "http://downloadmii.filfatstudios.com/testing/test.3dsx", "http://downloadmii.filfatstudios.com/testing/test.3dsx", 5, true, false}*/;
 
 static int CalcFPS(); //ToDo: move to utils.cpp
+char* getVersion();
 
 int main(int argc, char** argv)
 {
@@ -101,7 +102,7 @@ int main(int argc, char** argv)
 	int lastScene = 0;
 	int lastMenu = -1;
 	char buffer[256];
-	r = checkUpdate(_VERSION_); //ToDo: use settings.ini
+	r = checkUpdate(getVersion()); //ToDo: use settings.ini
 	if (r == 0) goto EXIT;
 	while (aptMainLoop())
 	{
@@ -177,7 +178,7 @@ int main(int argc, char** argv)
 					currentMenu = 0;
 				}
 				for (auto &but : vButtons) {
-					if (but.pressed && but.ID == 0) { //Download
+					if ((but.pressed && but.ID == 0) || Input.A) { //Download
 						clearVButtons();
 						currentMenu = 3;
 						installApp(currentApp);
@@ -231,6 +232,24 @@ int main(int argc, char** argv)
 	aptExit();
 	srvExit();
 	return 0;
+}
+
+char* getVersion() {
+	char buffer[256];
+	snprintf(buffer, 256, "/%s/%s", HBPATH, "downloadmii");
+	FILE *fp = fopen(buffer, "r+");
+	fseek(fp, 0, SEEK_END);
+	long fsize = ftell(fp);
+	fseek(fp, 0, SEEK_SET);
+
+	char *string = (char*)malloc(fsize + 1);
+	fread(string, fsize, 1, fp);
+	fclose(fp);
+
+	if (string[1] != '.')
+		string = "0.0.0.0";
+	//ToDo
+	return string;
 }
 
 static int CalcFPS(){

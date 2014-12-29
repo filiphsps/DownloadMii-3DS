@@ -34,13 +34,6 @@ Result installApp(Application_s app){
 	if (r != 0) {
 		return -1;
 	}
-#ifdef  _ //Only used when testing binary output 
-	for (u32 i = 0; i <= size[0]; i++)
-	{
-		print("%x", file3dsx[i]);
-		print("\n");
-	}
-#endif
 	//ToDo: ProgressBar
 	renderGUI();
 
@@ -60,6 +53,13 @@ Result installApp(Application_s app){
 	fp = fopen(buffer, "w+");
 	fwrite(filesmdh, sizeof(filesmdh[0]), size[1], fp);
 	fclose(fp);
+	//End with the VERSION file
+	snprintf(buffer, 256, "/%s/%s/VERSION", HBPATH, app.name.c_str());
+	fp = fopen(buffer, "w+");
+	snprintf(buffer,256, "%s", app.version.c_str());
+	fprintf(fp,buffer);
+	fclose(fp);
+
 	print("Done Installing app, updating list...\n");
 	r = doListUpdate();
 	return 0;

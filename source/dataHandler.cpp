@@ -41,6 +41,8 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
     picojson::array list = v.get("Apps").get<picojson::array>();
 	
 	Application_s app;
+	string ap1;
+	string ap2;
     for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
 		print(app.name.c_str());
 		app.GUID =          (char*)(*iter).get("guid").get<string>().c_str();
@@ -56,19 +58,17 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 		app.raiting =       (int)(*iter).get("rating").get<double>();
 		
 		for (auto tempApp : InstalledApps) { //Check if app is installed
-			string ap1 = app.name;
+			ap1 = app.name;
 			transform(ap1.begin(), ap1.end(), ap1.begin(), easytolower);
-			string ap2 = tempApp.name;
+			ap2 = tempApp.name;
 			transform(ap2.begin(), ap2.end(), ap2.begin(), easytolower);
+			app.installed = false;
+			app.updateAvalible = false;
 			if (ap1 == ap2) {
-				app.updateAvalible = false;
 				app.installed = true;
 				//if (app.version != tempApp.version)
 				//	app.updateAvalible = true;
-			}
-			else {
-				app.installed = false;
-				app.updateAvalible = false;
+				break;
 			}
 		}
 		tempV.push_back(app);
@@ -131,7 +131,7 @@ Result checkUpdate(char* currentVersion) {
 	u32 size;
 	downloadFile("http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/VERSION", &remoteVersion, &size);
 	int a = strcmp(currentVersion, remoteVersion);
-	if (a != 0) {
+	if (a != 0 && remoteVersion != NULL) {
 		sceneTitle = "Update Available";
 		bool running = true;
 		while (running == true)
@@ -145,6 +145,7 @@ Result checkUpdate(char* currentVersion) {
 					//ToDo: download and install update
 					Application_s dmii;
 					dmii.name = "downloadmii";
+					dmii.version = remoteVersion;
 					dmii._3dsx = "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.3dsx"; //ToDo: change to an release url
 					dmii.smdh = "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.smdh";  //ToDo: dito
 

@@ -316,9 +316,9 @@ void drawAppEntry(Application_s app, int place){
 	if (app.installed && !app.updateAvalible) {
 		gfxDrawSprite(GFX_BOTTOM, GFX_LEFT, (u8*)Installed_bin, 18, 18, tl, (18 * 4));
 	}
-	//else if (app.installed && app.updateAvalible) {
-	//	gfxDrawSprite(GFX_BOTTOM, GFX_LEFT, (u8*)Update_bin, 18, 18, tl, (18 * 4));
-	//}
+	else if (app.installed && app.updateAvalible) {
+		gfxDrawSprite(GFX_BOTTOM, GFX_LEFT, (u8*)Update_bin, 18, 18, tl, (18 * 4));
+	}
 	//Button
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "More Info",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
 	
