@@ -172,6 +172,9 @@ int main(int argc, char** argv)
 					sceneTitle = (char*)currentApp.name.c_str();
 					//setStoreFrontImg(currentApp.background);
 				}
+				if (Input.B) {
+					currentMenu = 0;
+				}
 				for (auto &but : vButtons) {
 					if (but.pressed && but.ID == 0) { //Download
 						clearVButtons();
