@@ -32,6 +32,8 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 	char* jsonsource;
 	u32 size;
 	downloadFile(jsonURL, &jsonsource, &size);
+	if (jsonsource == 0) return -1; //Null check
+
 	/* Parse json and put it into the temp vector */
 	picojson::value v;
     char* json = (char*) malloc(strlen(jsonsource)+1);
