@@ -235,7 +235,7 @@ int main(int argc, char** argv)
 }
 
 char* getVersion() {
-	char buffer[256];
+	/*char buffer[256];
 	snprintf(buffer, 256, "/%s/%s", HBPATH, "downloadmii");
 	FILE *fp = fopen(buffer, "r+");
 	fseek(fp, 0, SEEK_END);
@@ -247,9 +247,9 @@ char* getVersion() {
 	fclose(fp);
 
 	if (string[1] != '.')
-		string = "0.0.0.0";
+		string = "0.0.0.0";*/
 	//ToDo
-	return string;
+	return "0.0.0.0";
 }
 
 static int CalcFPS(){
