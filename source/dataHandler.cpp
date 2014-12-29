@@ -61,9 +61,10 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 			string ap2 = tempApp.name;
 			transform(ap2.begin(), ap2.end(), ap2.begin(), easytolower);
 			if (ap1 == ap2) {
+				app.updateAvalible = false;
 				app.installed = true;
-				if (app.version != tempApp.version)
-					app.updateAvalible = true;
+				//if (app.version != tempApp.version)
+				//	app.updateAvalible = true;
 			}
 			else {
 				app.installed = false;
