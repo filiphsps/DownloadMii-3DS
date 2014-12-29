@@ -96,12 +96,13 @@ int main(int argc, char** argv)
 
 	fadeOut();
 	debugfnt = fontBlack;
-	r = checkUpdate(_VERSION_); //ToDo: use settings.ini
 
 	/* Main loop */
 	int lastScene = 0;
 	int lastMenu = -1;
 	char buffer[256];
+	r = checkUpdate(_VERSION_); //ToDo: use settings.ini
+	if (r == 0) goto EXIT;
 	while (aptMainLoop())
 	{
 		loopStart:
@@ -221,8 +222,8 @@ int main(int argc, char** argv)
 			break;
 		}
 	}
-
 	//Exit services
+	EXIT:
 	fsExit();
 	sdmcExit();
 	gfxExit();

@@ -127,6 +127,7 @@ Result updateDevList(vector<Application_s> *AppList, char* developer) {
 Result checkUpdate(char* currentVersion) {
 	char buffer[256];
 	char* remoteVersion;
+	int ret = -1;
 	u32 size;
 	downloadFile("http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/VERSION", &remoteVersion, &size);
 	int a = strcmp(currentVersion, remoteVersion);
@@ -142,6 +143,14 @@ Result checkUpdate(char* currentVersion) {
 			for (auto &but : vButtons) {
 				if (but.pressed) {
 					//ToDo: download and install update
+					Application_s dmii;
+					dmii.name = "downloadmii";
+					dmii._3dsx = "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.3dsx"; //ToDo: change to an release url
+					dmii.smdh = "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.smdh";  //ToDo: dito
+
+					installApp(dmii);
+					//ToDo: reload itself instead of exiting
+					ret = 0;
 					running = false;
 					break;
 				}
@@ -158,5 +167,5 @@ Result checkUpdate(char* currentVersion) {
 			}
 		}
 	}
-	return 0;
+	return ret;
 }
