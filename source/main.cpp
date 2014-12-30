@@ -132,7 +132,7 @@ int main(int argc, char** argv)
 		
 		switch(currentMenu){
 			case 0: //Overview
-				if((Input.R && !(scene > maxScene)) && settings.internetConnection){
+				if((Input.R && (scene < maxScene)) && settings.internetConnection){
 					scene++;
 				} else if((Input.L && (scene - 1 >= 0)) && settings.internetConnection){
 					scene--;
