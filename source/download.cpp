@@ -5,20 +5,31 @@
 #include <3ds.h>
 #include <netdb.h>
 #include "download.h"
+#include "settings.h"
 #include "gui.h"
 #include "file.h"
 
 using namespace std;
+httpcContext context;
+u32 statuscode = 0;
 
 Result networkInit(){
 	httpcInit();
+	Result result = httpcOpenContext(&context, "http://nintendo.com", 0); //Test internet connection
+	if (result != 0) {
+		httpcCloseContext(&context);
+		return -3;
+	}
+	result = httpcBeginRequest(&context);
+	if (result != 0) {
+		httpcCloseContext(&context);
+		return -1;
+	}
 	return 0;
 }
 
 Result downloadFile(char* url, char** buffer, u32 *size) {
 	Result result;
-	httpcContext context;
-	u32 statuscode = 0;
 
 	result = httpcOpenContext(&context, url, 0);
 	if (result != 0) {
@@ -31,6 +42,7 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 	if (result != 0) {
 		httpcCloseContext(&context);
 		print("error: httpcBeginRequest\n");
+
 		downloadFile(url, buffer, size); //ReRun function
 		return -1;
 	}

@@ -51,7 +51,13 @@ int main(int argc, char** argv)
 	
 	Result r = networkInit();
 	if(r != 0){
+		settings.internetConnection = false;
 		print("networkInit: Error!\n");
+	}
+	else
+	{
+		settings.internetConnection = true;
+		print("Network connection is active!\n");
 	}
 	
 	u8 isN3DS=0;
@@ -81,9 +87,15 @@ int main(int argc, char** argv)
 			gfxSwapBuffers();
 			gspWaitForVBlank();
 	}
-	r = doListUpdate();
-	if (r != 0) {
-		print("doUpdate: Error\n");
+
+	if (settings.internetConnection) {
+		r = doListUpdate();
+		if (r != 0) {
+			print("doUpdate: Error\n");
+		}
+	}
+	else {
+		r = updateInstalledList(InstalledApps);
 	}
 
 	//APP_STATUS status;
@@ -95,6 +107,9 @@ int main(int argc, char** argv)
 	u32 *stack = (u32*)malloc(0x4000);
 	svcCreateThread(&threadHandle, secondThread, 0, &stack[0x4000>>2], 0x3F, 0);*/
 
+	print("Getting DownloadMii version...\n");
+	settings.version = getVersion();
+
 	fadeOut();
 	debugfnt = fontBlack;
 
@@ -102,8 +117,11 @@ int main(int argc, char** argv)
 	int lastScene = 0;
 	int lastMenu = -1;
 	char buffer[256];
-	r = checkUpdate(getVersion()); //ToDo: use settings.ini
-	if (r == 0) goto EXIT;
+	if (settings.internetConnection) {
+		r = checkUpdate(getVersion()); //ToDo: use settings.ini
+		if (r == 0) goto EXIT;
+	}
+	print("All init done, entering main loop!\n");
 	while (aptMainLoop())
 	{
 		loopStart:
@@ -114,9 +132,9 @@ int main(int argc, char** argv)
 		
 		switch(currentMenu){
 			case 0: //Overview
-				if(Input.R && !(scene > maxScene)){
+				if((Input.R && !(scene > maxScene)) && settings.internetConnection){
 					scene++;
-				} else if(Input.L && (scene - 1 >= 0)){
+				} else if((Input.L && (scene - 1 >= 0)) && settings.internetConnection){
 					scene--;
 				} else if(hidKeysHeld() & KEY_DOWN){
 					if(!(VSPY + 5 > VSTY - 240))
@@ -145,19 +163,31 @@ int main(int argc, char** argv)
 						case 0:
 							sceneTitle = "Overview";
 							setStoreFrontImg("http://downloadmii.filfatstudios.com/banner.bin");
-							setAppList(overviewApps);
+							if (!settings.internetConnection)
+								setAppList(InstalledApps); //If no internet, set applist to installed apps
+							else
+								setAppList(overviewApps);
 							break;
 						case 1:
 							sceneTitle = "Top Downloaded Applications";
-							setAppList(topApps);
+							if (!settings.internetConnection)
+								setAppList(InstalledApps); //If no internet, set applist to installed apps
+							else
+								setAppList(topApps);
 							break;
 						case 2:
 							sceneTitle = "Top Downloaded Games";
-							setAppList(topGames);
+							if (!settings.internetConnection)
+								setAppList(InstalledApps); //If no internet, set applist to installed apps
+							else
+								setAppList(topGames);
 							break;
 						case 3:
 							sceneTitle = "Staff Pick";
-							setAppList(staffSelectApps);
+							if (!settings.internetConnection)
+								setAppList(InstalledApps); //If no internet, set applist to installed apps
+							else
+								setAppList(staffSelectApps);
 							break;
 						default:
 							scene = 0;
@@ -208,6 +238,7 @@ int main(int argc, char** argv)
 				break;
 			default:
 				currentMenu = 0;
+				lastMenu = -1;
 				break;
 		}
 		if (lastMenu != currentMenu) {

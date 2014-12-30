@@ -65,19 +65,12 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 			transform(ap1.begin(), ap1.end(), ap1.begin(), easytolower);
 			ap2 = tempApp.name;
 			transform(ap2.begin(), ap2.end(), ap2.begin(), easytolower);
-			
-			char* verBuf;
-			int size = 0;
-			char* file = (char*)malloc(256);
-			snprintf(file,256, "/%s/%s/VERSION", HBPATH, tempApp.name.c_str());
-			loadfile(file, &size, &verBuf);
-			tempApp.version = verBuf;
 
 			app.installed = false;
 			app.updateAvalible = false;
 			if (ap1 == ap2) {
 				app.installed = true;
-				if ((app.version != tempApp.version) && size >= 8)
+				if ((app.version != tempApp.version) && ap2 != "downloadmii")
 					app.updateAvalible = true;
 				break;
 			}

@@ -12,6 +12,7 @@
 #include "gui.h"
 #include "main.h"
 #include "download.h"
+#include "settings.h"
 /* Images */
 #include "offline_bin.h"
 #include "Installed_bin.h"
@@ -144,11 +145,16 @@ void renderStoreFront(){
 			
 			break;
 	}
-	gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)ButtonL_bin, 40, 40, 10, 10);
-	gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)ButtonL_bin, 40, 40, 10, 10);
+	if (settings.internetConnection) {
+		gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)ButtonL_bin, 40, 40, 10, 10);
+		gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)ButtonL_bin, 40, 40, 10, 10);
 
-	gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)ButtonR_bin, 40, 40, 10, 350);
-	gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)ButtonR_bin, 40, 40, 10, 350);
+		gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)ButtonR_bin, 40, 40, 10, 350);
+		gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)ButtonR_bin, 40, 40, 10, 350);
+	}
+	else {
+		sceneTitle = "Installed Applications";
+	}
 }
 
 void renderSettings(){
@@ -218,25 +224,36 @@ void renderAppPage(){
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader,  (char*)currentApp.description.c_str(), (temp - fontBlackHeader.height) + 4,5); //Should be a new line every ~35 chars
 
 	//Download Button
-	drawFillRect(0,190,320,240, 0,148,255, screen.screenBottom);
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
+	if(settings.internetConnection)
+		drawFillRect(0,190,320,240, 0,148,255, screen.screenBottom);
+	else
+		drawFillRect(0,190,320,240, 200,200,200, screen.screenBottom);
+
+	if(!currentApp.installed && !currentApp.updateAvalible)
+		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
+	else if(currentApp.installed && !currentApp.updateAvalible)
+		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Re-Download", 15, 113);
+	else if(currentApp.installed && currentApp.updateAvalible)
+		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Update", 15, 113);
 	
 	//ToDo: We dont need to add & remove the button multiple times.
-	clearVButtons();
-	vButton_s but;
-	but.ID = 0;
-	but.x = 0;
-	but.y = 190;
-	but.x2 = 320;
-	but.y2 = 240;
-	but.menu = 0;
-	addVButton(but);
-	but.ID = 1;
-	but.x = 5;
-	but.y = fontBlackHeader.height;
-	but.x2 = 315;
-	but.y2 = (but.y + fontBlackHeader.height) + 10;
-	//addVButton(but);
+	if (settings.internetConnection) {
+		clearVButtons();
+		vButton_s but;
+		but.ID = 0;
+		but.x = 0;
+		but.y = 190;
+		but.x2 = 320;
+		but.y2 = 240;
+		but.menu = 0;
+		addVButton(but);
+		but.ID = 1;
+		but.x = 5;
+		but.y = fontBlackHeader.height;
+		but.x2 = 315;
+		but.y2 = (but.y + fontBlackHeader.height) + 10;
+		//addVButton(but);
+	}
 }
 
 void renderDownloads() {
@@ -354,15 +371,17 @@ void background(){
 	drawFillRect( 0, 0, 400, 240, 227,242,253, screen.screenTopRight);
 }
 void setStoreFrontImg(char* url){
-	//w: 400
-	//h: 192
-	print("Downloading banner...\n");
-	char* temp;
-	u32 size;
-	downloadFile(url, &temp, &size);
-	cimg = (u8*)temp;
-	print("Banner downloaded!\n");
-	if(cimg[0] == 'e'){
+	if (settings.internetConnection) {
+		//w: 400
+		//h: 192
+		print("Downloading banner...\n");
+		char* temp;
+		u32 size;
+		downloadFile(url, &temp, &size);
+		cimg = (u8*)temp;
+		print("Banner downloaded!\n");
+	}
+	if((char)cimg[0] == 'e' || !settings.internetConnection){
 		//Set banner to offline banner
 		printf("Failed to dowload and set banner, defaulting to offline one\n");
 		cimg = (u8*) offline_bin;
@@ -379,9 +398,9 @@ void drawTopBar(){
 	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H / 2) + fontWhiteHeader.height)), 13);
 	
 #ifdef DEBUG
-	snprintf(buffer, 256, "%s, FPS: %d", APPLICATION_NAME, FPS);
+	snprintf(buffer, 256, "%s(%s), FPS: %d", APPLICATION_NAME, settings.version, FPS);
 #else
-	snprintf(buffer, 256, "%s", APPLICATION_NAME);
+	snprintf(buffer, 256, "%s(%s)", APPLICATION_NAME, settings.version);
 #endif
 	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
 	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screen.screenTopRight,GFX_TOP);

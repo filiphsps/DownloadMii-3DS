@@ -12,6 +12,7 @@
 #include "gui.h"
 #include "utils.h"
 #include "file.h"
+#include "settings.h"
 #include "dataHandler.h"
 
 using namespace std;
@@ -19,8 +20,12 @@ using namespace std;
 FS_archive sdmcArchive;
 
 Result installApp(Application_s app){
+	if (!settings.internetConnection)
+		return -1;
 	//ToDo
 	print("Installing App..\n");
+	//ToDo: ProgressBar
+	renderGUI();
 	Result r;
 	char buffer[1024];
 	u32 size[2];
@@ -97,6 +102,26 @@ Result updateInstalledList(vector<Application_s> &list) {
 					char* tp = tempPath;
 					tp += 5;
 					tempApp.name = tp;
+					if (!settings.internetConnection) {
+						tempApp.publisher = "Unknown"; //ToDo: read from smdh file if settings.internetConnection is false
+						if (tempApp.name == "downloadmii") {
+							tempApp.name = "DownloadMii";
+							tempApp.publisher = "filfat";
+						}
+						tempApp.category = "Unknown";
+						tempApp.installed = true;
+						tempApp.updateAvalible = false;
+						tempApp.raiting = 0;
+					}
+					char* verBuf;
+					int size = 0;
+					char* file = (char*)malloc(256);
+					snprintf(file, 256, "/%s/%s/VERSION", HBPATH, tempApp.name.c_str());
+					loadfile(file, &size, &verBuf);
+					if (verBuf != NULL)
+						tempApp.version = verBuf;
+					else
+						tempApp.version = "0.0.0.0";
 					list.push_back(tempApp);
 				}
 			}
