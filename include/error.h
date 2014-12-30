@@ -27,7 +27,7 @@ char* getErrorMsg(Result error) {
 	case -7:
 		return "Unknown remote api error";
 	case -99:
-		return "Not yet implamentet";
+		return "Not yet implamented";
 	case -200:
 		return "Service closed";
 	default:

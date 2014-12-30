@@ -17,6 +17,8 @@
 #include "Installed_bin.h"
 #include "Update_bin.h"
 #include "Error_bin.h"
+#include "ButtonL_bin.h"
+#include "ButtonR_bin.h"
 
 using namespace std;
 
@@ -142,6 +144,11 @@ void renderStoreFront(){
 			
 			break;
 	}
+	gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)ButtonL_bin, 40, 40, 10, 10);
+	gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)ButtonL_bin, 40, 40, 10, 10);
+
+	gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)ButtonR_bin, 40, 40, 10, 350);
+	gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)ButtonR_bin, 40, 40, 10, 350);
 }
 
 void renderSettings(){

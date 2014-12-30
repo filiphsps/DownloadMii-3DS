@@ -31,6 +31,7 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 	if (result != 0) {
 		httpcCloseContext(&context);
 		print("error: httpcBeginRequest\n");
+		downloadFile(url, buffer, size); //ReRun function
 		return -1;
 	}
 
