@@ -63,3 +63,39 @@ void sock_debugwait()
     while (d[0] != 'E' && d[1] != 'X')
 		recv(sock, d, 0x2, 0); //just a wait
 }
+
+Result loadfile(char *file, int *size, char** buffer)
+{
+	FILE *fp;
+	long lSize;
+
+	fp = fopen(file, "rb");
+	if (!fp) {
+		perror(file);
+		return -1;
+	}
+
+	fseek(fp, 0L, SEEK_END);
+	lSize = ftell(fp);
+	rewind(fp);
+
+	/* allocate memory for entire content */
+	*buffer = (char*)calloc(1, lSize + 1);
+	if (!*buffer){
+		fclose(fp);
+		fputs("memory alloc fails", stderr);
+		return -1;
+	}
+
+	/* copy the file into the buffer */
+	if (1 != fread(*buffer, lSize, 1, fp)) {
+		fclose(fp);
+		free(*buffer);
+		fputs("entire read fails", stderr);
+		return -1;
+	}
+
+	size = (int *)lSize;
+	fclose(fp);
+	return 0;
+}

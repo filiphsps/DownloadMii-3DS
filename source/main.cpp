@@ -235,21 +235,16 @@ int main(int argc, char** argv)
 }
 
 char* getVersion() {
-	/*char buffer[256];
-	snprintf(buffer, 256, "/%s/%s", HBPATH, "downloadmii");
-	FILE *fp = fopen(buffer, "r+");
-	fseek(fp, 0, SEEK_END);
-	long fsize = ftell(fp);
-	fseek(fp, 0, SEEK_SET);
-
-	char *string = (char*)malloc(fsize + 1);
-	fread(string, fsize, 1, fp);
-	fclose(fp);
-
-	if (string[1] != '.')
-		string = "0.0.0.0";*/
-	//ToDo
-	return "0.0.0.0";
+	char* filePath = (char*)malloc(256);
+	snprintf(filePath, 256, "/%s/downloadmii/VERSION", HBPATH);
+	char* fileContent;
+	int size;
+	Result r = loadfile(filePath, &size, &fileContent);
+	if (r != 0) {
+		print("Failed to get current app version, defaulting to 0.0.0.0\n");
+		return "0.0.0.0";
+	}
+	return fileContent;
 }
 
 static int CalcFPS(){

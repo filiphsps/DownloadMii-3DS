@@ -87,7 +87,6 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
 }
 
 Result doListUpdate(){
-	char buffer[256];
 	bool hasFailed = false;
 	//ToDo: replace with real url's
 	//Update installed apps
@@ -128,7 +127,6 @@ Result updateDevList(vector<Application_s> *AppList, char* developer) {
 }
 
 Result checkUpdate(char* currentVersion) {
-	char buffer[256];
 	char* remoteVersion;
 	int ret = -1;
 	u32 size;
