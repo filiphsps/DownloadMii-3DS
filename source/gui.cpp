@@ -116,8 +116,16 @@ void renderByDev() {
 	}
 	appn = 0;
 }
-void renderStoreFront(){
+inline void drawAppEntries() {
 	int appn = 0;
+	for (auto app : tAppList) {
+		appn++;
+		drawAppEntry(app, appn);
+	}
+	appn = 0;
+}
+void renderStoreFront(){
+	
 	
 	/* UI: TOP */
 	if(cimg != NULL){
@@ -129,17 +137,20 @@ void renderStoreFront(){
 	/* Screen related UI(Changes based on scene) */
 	switch(scene){
 		case 0:
-			for(auto app : tAppList){
-				appn++;
-				drawAppEntry(app, appn);
-			}
-			appn = 0;
+			drawAppEntries();
 			break;
 		case 1:
-			
+			drawAppEntries();
 			break;
 		case 2:
-			
+			drawAppEntries();
+			break;
+		case 3:
+			drawAppEntries();
+			break;
+		case 4:
+			//ToDo: searchbox
+			//ToDo: allow the user to select category from a list of categories
 			break;
 		default:
 			
@@ -155,6 +166,12 @@ void renderStoreFront(){
 	else {
 		sceneTitle = "Installed Applications";
 	}
+
+	if (tAppList.empty()) {
+		int temp = (240 - fontBlackHeader.height) - fontBlackSubHeader.height;
+		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This category looks empty...\nplease come back at a later date.", (temp - fontBlackHeader.height) + 4, 5);
+	}
+
 }
 
 void renderSettings(){
