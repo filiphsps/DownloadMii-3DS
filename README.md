@@ -1,6 +1,7 @@
 ![alt text](https://raw.githubusercontent.com/DownloadMii/DownloadMii/master/logo.PNG "Logo") [![Build Status](http://build.filfatstudios.com:8080/buildStatus/icon?job=DownloadMii (3DS))](http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/)
 ===========
-DownloadMii is(will be) an online store for 3DS homebrew applications.
+DownloadMii is an online marketplace for 3DS homebrew applications & games.
+It is currently in development and is expected to be released when the web interface and backend is fully developed.
 
 [Website](http://downloadmii.filfatstudios.com), [GBATemp](http://gbatemp.net/threads/downloadmii-a-homebrew-online-marketplace-not-released.374759/)
 
@@ -16,10 +17,18 @@ CREDITS
 * #3dsdev for all the help! <3
 * Testers: AlbertoSONIC, profi200 and ichfly/ichichfly.
 
+FEATURES
+====
+* Download homebrew applications and games directly on your 3ds.
+* Updater, you will never need to visit a computer to update DownloadMii.
+* A clean and easy to use UI that to a degree folows the highly praised Flat Design.
+* With more!
+
 UPCOMING/PLANNED FEATURES
 ====
 * Catagory selection section.
 * App searching.
+* Application rating and commenting.
 * User account system.
 * SMDH parser which will be used in offline mode to get developer and other info.
 * Smoother scrolling (ie adding velocity & drag to scroll via touch screen).
