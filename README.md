@@ -18,9 +18,12 @@ CREDITS
 
 UPCOMING/PLANNED FEATURES
 ====
-* Catagory selection.
-* App search.
+* Catagory selection section.
+* App searching.
 * User account system.
+* SMDH parser which will be used in offline mode to get developer and other info.
+* Smoother scrolling (ie adding velocity & drag to scroll via touch screen).
+* Performance improvments (a minimum of 30fps).
 * And more!
 
 ADDING/UPDATING APPLICATIONS
