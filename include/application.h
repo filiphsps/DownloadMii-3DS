@@ -21,6 +21,7 @@ struct Application_s{
 	int raiting;
 	bool installed = false;
 	bool updateAvalible = false;
+	bool error = false;
 	//TODO: add all the values that can be found in the json file
 };
 //Template define: {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5}

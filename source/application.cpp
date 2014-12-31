@@ -120,8 +120,11 @@ Result updateInstalledList(vector<Application_s> &list) {
 					loadfile(file, &size, &verBuf);
 					if (verBuf != NULL)
 						tempApp.version = verBuf;
-					else
+					else {
 						tempApp.version = "0.0.0.0";
+						if(tempApp.name != "downloadmii")
+							tempApp.error = true;
+					}
 					list.push_back(tempApp);
 				}
 			}

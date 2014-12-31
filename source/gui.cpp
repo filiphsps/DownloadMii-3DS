@@ -26,7 +26,7 @@ using namespace std;
 /* UI */
 Screen_s screen;
 navBar_s navbar;
-progressBar_s progressbar;
+vector<progressBar_s> progressbars;
 
 extern char superStr[];
 font_s debugfnt = fontWhite;
@@ -246,12 +246,14 @@ void renderAppPage(){
 	else
 		drawFillRect(0,190,320,240, 200,200,200, screen.screenBottom);
 
-	if(!currentApp.installed && !currentApp.updateAvalible)
+	if(!currentApp.installed && !currentApp.updateAvalible && !currentApp.error)
 		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
-	else if(currentApp.installed && !currentApp.updateAvalible)
+	else if(currentApp.installed && !currentApp.updateAvalible && !currentApp.error)
 		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Re-Download", 15, 113);
-	else if(currentApp.installed && currentApp.updateAvalible)
-		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Update", 15, 113);
+	else if(currentApp.installed && currentApp.updateAvalible && !currentApp.error)
+		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Update", 15, 118);
+	else if (currentApp.error)
+		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "Fix Application", 15, 113);
 	
 	//ToDo: We dont need to add & remove the button multiple times.
 	if (settings.internetConnection) {
@@ -359,6 +361,9 @@ void drawAppEntry(Application_s app, int place){
 	}
 	else if (app.installed && app.updateAvalible) {
 		gfxDrawSprite(GFX_BOTTOM, GFX_LEFT, (u8*)Update_bin, 18, 18, tl, (18 * 4));
+	}
+	else if (app.error) {
+		//gfxDrawSprite(GFX_BOTTOM, GFX_LEFT, (u8*)Error_bin, 18, 18, tl, (18 * 4));
 	}
 	//Button
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader, "More Info",240-getOnScreenY( ((APPLICATION_ENTRY_H/4)*2 + fontWhiteHeader.height/2) + y ), 212);
