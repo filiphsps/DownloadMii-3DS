@@ -39,6 +39,7 @@ Result installApp(Application_s app){
 	if (r != 0) {
 		return -1;
 	}
+	print("3dsx downloaded\n");
 	//ToDo: ProgressBar
 	renderGUI();
 
@@ -47,24 +48,31 @@ Result installApp(Application_s app){
 	if (r != 0) {
 		return -1;
 	}
+	print("smdh downloaded\n");
+	renderGUI();
 	/* Save files to the SD-Card */
 	//Start with the elf file
 	snprintf(buffer,256, "/%s/%s/%s.3dsx", HBPATH, app.name.c_str(), app.name.c_str());
 	fp = fopen(buffer, "w+");
 	fwrite(file3dsx, sizeof(file3dsx[0]), size[0], fp);
 	fclose(fp);
+	print("3dsx saved\n");
+	renderGUI();
 	//Continue with the smdh file
 	snprintf(buffer,256, "/%s/%s/%s.smdh", HBPATH, app.name.c_str(), app.name.c_str());
 	fp = fopen(buffer, "w+");
 	fwrite(filesmdh, sizeof(filesmdh[0]), size[1], fp);
 	fclose(fp);
+	print("smdh saved\n");
+	renderGUI();
 	//End with the VERSION file
 	snprintf(buffer, 256, "/%s/%s/VERSION", HBPATH, app.name.c_str());
 	fp = fopen(buffer, "w+");
 	snprintf(buffer,256, "%s", app.version.c_str());
 	fprintf(fp,buffer);
 	fclose(fp);
-
+	print("VERSION saved\n");
+	renderGUI();
 	print("Done Installing app, updating list...\n");
 	r = doListUpdate();
 	return 0;
