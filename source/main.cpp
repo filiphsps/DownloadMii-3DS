@@ -17,6 +17,7 @@
 #include "dataHandler.h"
 #include "settings.h"
 #include "music.h"
+#include "md5.h"
 
 using namespace std;
 
@@ -44,7 +45,6 @@ int main(int argc, char** argv)
 	guiInit();
 	settingsInit(DEFAULT_SETTINGS_PATH);
 	//gfxSet3D(true);
-	
     gspWaitForVBlank(); //wait to let the app register itself
 
 	doSplash(); //Splash Screen
