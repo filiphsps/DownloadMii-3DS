@@ -121,6 +121,7 @@ int main(int argc, char** argv)
 		r = checkUpdate(getVersion()); //ToDo: use settings.ini
 		if (r == 0) goto EXIT;
 	}
+	setStoreFrontImg("http://downloadmii.filfatstudios.com/banner.bin");
 	print("All init done, entering main loop!\n");
 	while (aptMainLoop())
 	{
@@ -162,7 +163,6 @@ int main(int argc, char** argv)
 					switch(scene){
 						case 0:
 							sceneTitle = "Overview";
-							setStoreFrontImg("http://downloadmii.filfatstudios.com/banner.bin");
 							if (!settings.internetConnection)
 								setAppList(InstalledApps); //If no internet, set applist to installed apps
 							else
