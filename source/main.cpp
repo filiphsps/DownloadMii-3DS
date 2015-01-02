@@ -78,6 +78,8 @@ int main(int argc, char** argv)
 		}
 		aptCloseSession();
 	}
+
+#ifdef DEBUG //ToDo: move into an separate debug.h file.
 	for (int x = 0; x <= 1; x++) {
 			screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
 			screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
@@ -87,6 +89,7 @@ int main(int argc, char** argv)
 			gfxSwapBuffers();
 			gspWaitForVBlank();
 	}
+#endif
 
 	if (settings.internetConnection) {
 		r = doListUpdate();
