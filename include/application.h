@@ -16,8 +16,8 @@ struct Application_s{
 	string category;
 	string subcategory;
 	string othercategory;
-	string _3dsx;
-	string smdh;
+	string _3dsx, md5_3dsx;
+	string smdh, md5_smdh;
 	int raiting;
 	bool installed = false;
 	bool updateAvalible = false;
