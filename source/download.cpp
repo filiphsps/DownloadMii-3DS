@@ -15,7 +15,7 @@ u32 statuscode = 0;
 
 Result networkInit(){
 	httpcInit();
-	Result result = httpcOpenContext(&context, "http://nintendo.com", 0); //Test internet connection
+	Result result = httpcOpenContext(&context, "http://filfatstudios.com", 0); //Test internet connection
 	if (result != 0) {
 		httpcCloseContext(&context);
 		return -3;

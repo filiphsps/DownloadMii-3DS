@@ -27,14 +27,14 @@ char easytolower(char in) {
 	return in;
 }
 
-Result updateAppList(vector<Application_s> *AppList, char* jsonURL){
+Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 
 	vector<Application_s> tempV;
 	char* jsonsource;
 	u32 size;
 	downloadFile(jsonURL, &jsonsource, &size);
 	if (jsonsource == 0) return -1; //Null check
-	if (jsonsource[0] != '{') return -1;
+	if ((jsonsource[0] != '{' || jsonsource[9] == ']')) return -1;
 
 	/* Parse json and put it into the temp vector */
 	picojson::value v;
@@ -98,7 +98,8 @@ Result doListUpdate(){
 	}
 
 	char buffer[256];
-	r = updateAppList(&overviewApps, "http://downloadmii.filfatstudios.com/testing/apps.json");
+	snprintf(buffer, 256, "http://%s/api/apps/Applications/", APIDOMAIN);
+	r = updateAppList(&overviewApps, buffer);
 	if(r != 0){
 		print("updateAppList(1): Error\n");
 	}
