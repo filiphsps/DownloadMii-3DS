@@ -238,7 +238,8 @@ void renderAppPage(){
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), temp,5);
 	
 	//About text
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader,  (char*)currentApp.description.c_str(), (temp - fontBlackHeader.height) + 4,5); //Should be a new line every ~35 chars
+	string description = insert_newlines(currentApp.description, 50);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader,  (char*)description.c_str(), (temp - fontBlackHeader.height) + 4,5);
 
 	//Download Button
 	if(settings.internetConnection)
