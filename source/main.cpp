@@ -25,6 +25,10 @@ Input_s Input;
 char superStr[9192];
 char* jsonSS;
 
+u64 tickOld = 0;
+int fps = 0; // int instead of u32/s32 so gcc doesn't complain about different signedness.
+int cfps;
+
 int currentMenu = 0;
 
 //Todo:
@@ -141,15 +145,15 @@ int main(int argc, char** argv)
 				} else if((Input.R && (scene - 1 >= 0)) && settings.internetConnection){
 					scene--;
 				} else if(hidKeysHeld() & KEY_DOWN){
-					if(!(VSPY + 5 > VSTY - 240))
-						VSPY += 5;
+					if(!(VSPY + 10 > VSTY - 240))
+						VSPY += 10;
 					else{
 						VSPY = VSTY - 240;
 						//ToDo: Indicator that we have hit the end of the list
 					}
 				} else if(hidKeysHeld() & KEY_UP){
-					if(!(VSPY - 5 <= 0))
-						VSPY -= 5;
+					if(!(VSPY - 10 <= 0))
+						VSPY -= 10;
 					else{
 						VSPY = 0;
 						//ToDo: Indicator that we have hit the start of the list
@@ -285,16 +289,11 @@ char* getVersion() {
 }
 
 static int CalcFPS(){
-	static int FC = 0;
-	static u32 lt;
-	u32 ClockSpeed = osGetTime();
-	static int FPS;
-	
-	FC++;
-	if(ClockSpeed - lt > 1000){
-		lt = ClockSpeed;
-		FPS = FC;
-		FC = 0;
+	if (svcGetSystemTick() >= tickOld + 268123480)
+	{
+		tickOld = svcGetSystemTick();
+		cfps = fps;
+		fps = 0;
 	}
-	return FPS;
+	return cfps;
 }

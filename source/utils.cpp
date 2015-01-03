@@ -99,3 +99,16 @@ Result loadfile(char *file, int *size, char** buffer)
 	fclose(fp);
 	return 0;
 }
+
+std::string insert_newlines(const std::string &in, const size_t every_n)
+{
+	std::string out;
+	out.reserve(in.size() + in.size() / every_n);
+	for (std::string::size_type i = 0; i < in.size(); i++) {
+		out.push_back(in[i]);
+		if (!((i + 1) % every_n)) {
+			out.push_back('\n');
+		}
+	}
+	return out;
+}
