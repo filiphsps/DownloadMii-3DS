@@ -11,6 +11,7 @@ DISCLAIMER: This is unreleased software that may or may not be finished, in the 
 CREDITS
 ====
 * Main App Developer: Filiph sandström (@filfat).
+* The PHP Developers: celcodioc, Doumekxkai
 * Some code is used from AlbertoSONIC & Smealum!
 * The PicoJson dev team for their amazing json parser which even runs on low en arm devices.
 * Libctru & devkitppc.
@@ -27,6 +28,8 @@ FEATURES
 
 UPCOMING/PLANNED FEATURES
 ====
+* Scrollable app description.
+* MD5 app verification.
 * Catagory selection section.
 * App searching.
 * Application rating and commenting.
