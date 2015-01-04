@@ -128,7 +128,7 @@ int main(int argc, char** argv)
 		r = checkUpdate(getVersion()); //ToDo: use settings.ini
 		if (r == 0) goto EXIT;
 	}
-	setStoreFrontImg("http://downloadmii.filfatstudios.com/banner.bin");
+	setStoreFrontImg("http://www.downloadmii.com/assets/logo.bin");
 	print("All init done, entering main loop!\n");
 	while (aptMainLoop())
 	{
