@@ -43,7 +43,7 @@ int main(int argc, char** argv)
 	srvInit();
 	aptInit();
 	hidInit(NULL);
-	gfxInit();
+	gfxInitDefault();
 	fsInit();
 	sdmcInit();
 	guiInit();
