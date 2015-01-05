@@ -126,7 +126,7 @@ Result doListUpdate(){
 
 Result updateDevList(vector<Application_s> *AppList, char* developer) {
 	char buffer[256];
-	snprintf(buffer,256, "http://%s/api/bydev/%s/", APIDOMAIN,developer);
+	snprintf(buffer,256, "http://%s/api/apps/ByDev/%s/", APIDOMAIN,developer);
 	return updateAppList(AppList, buffer);
 }
 
