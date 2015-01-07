@@ -35,7 +35,8 @@ Result installApp(Application_s app){
 	mkdir(buffer, 0777);
 	/* Download Files */
 	char* file3dsx;
-	r = downloadFile((char*)app._3dsx.c_str(), &file3dsx, &size[0]);
+	snprintf(buffer,256, "http://%s/api/dl/3dsx/%s", APIDOMAIN, app.GUID.c_str());
+	r = downloadFile(buffer, &file3dsx, &size[0]);
 	if (r != 0) {
 		return -1;
 	}
@@ -44,7 +45,8 @@ Result installApp(Application_s app){
 	renderGUI();
 
 	char* filesmdh;
-	r = downloadFile((char*)app.smdh.c_str(), &filesmdh, &size[1]);
+	snprintf(buffer,256, "http://%s/api/dl/smdh/%s", APIDOMAIN, app.GUID.c_str());
+	r = downloadFile(buffer, &filesmdh, &size[1]);
 	if (r != 0) {
 		return -1;
 	}

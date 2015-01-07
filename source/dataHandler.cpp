@@ -65,8 +65,8 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 		}
 		else
 			app.othercategory = "null";
-		app._3dsx = (*iter).get("3dsx").get<string>();
-		app.smdh = (*iter).get("smdh").get<string>();
+		app._3dsx_md5 = (*iter).get("3dsx_md5").get<string>();
+		app.smdh_md5 = (*iter).get("smdh_md5").get<string>();
 		app.raiting = (int)(*iter).get("rating").get<double>();
 		app.downloads = (int)(*iter).get("downloads").get<double>();
 		for (auto tempApp : InstalledApps) { //Check if app is installed
