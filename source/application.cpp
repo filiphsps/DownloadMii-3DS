@@ -13,6 +13,7 @@
 #include "utils.h"
 #include "file.h"
 #include "settings.h"
+#include "md5.h"
 #include "dataHandler.h"
 
 using namespace std;

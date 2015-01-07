@@ -126,7 +126,8 @@ inline void drawAppEntries() {
 }
 void renderStoreFront(){
 	
-	
+	int temp; //ToDo: migrate to gui.h #define
+
 	/* UI: TOP */
 	if(cimg != NULL){
 		gfxDrawSprite(GFX_TOP, GFX_LEFT, cimg, 192, 400, 0, 0);
@@ -136,6 +137,12 @@ void renderStoreFront(){
 	
 	/* Screen related UI(Changes based on scene) */
 	switch(scene){
+		case -1:
+			//ToDo: searchbox
+			//ToDo: allow the user to select category from a list of categories
+			temp = (250 - fontBlackHeader.height) - fontBlackSubHeader.height;
+			gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This will be implemented in a future update!", (temp - fontBlackHeader.height) + 4, 5);
+			break;
 		case 0:
 			drawAppEntries();
 			break;
@@ -147,10 +154,6 @@ void renderStoreFront(){
 			break;
 		case 3:
 			drawAppEntries();
-			break;
-		case 4:
-			//ToDo: searchbox
-			//ToDo: allow the user to select category from a list of categories
 			break;
 		default:
 			
@@ -168,7 +171,7 @@ void renderStoreFront(){
 	}
 
 	if (tAppList.empty()) {
-		int temp = (240 - fontBlackHeader.height) - fontBlackSubHeader.height;
+		temp = (250 - fontBlackHeader.height) - fontBlackSubHeader.height;
 		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This category looks empty...\nplease come back at a later date.", (temp - fontBlackHeader.height) + 4, 5);
 	}
 

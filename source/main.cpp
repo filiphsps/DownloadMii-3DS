@@ -141,7 +141,7 @@ int main(int argc, char** argv)
 			case 0: //Overview
 				if((Input.L && (scene < maxScene)) && settings.internetConnection){
 					scene++;
-				} else if((Input.R && (scene - 1 >= 0)) && settings.internetConnection){
+				} else if((Input.R && (scene - 1 >= -1)) && settings.internetConnection){
 					scene--;
 				} else if(hidKeysHeld() & KEY_DOWN){
 					if(!(VSPY + 10 > VSTY - 240))
@@ -167,6 +167,9 @@ int main(int argc, char** argv)
 				}
 				if(lastScene != scene){
 					switch(scene){
+						case -1: //Not implemented yet
+							sceneTitle = "Category Selection";
+							break;
 						case 0:
 							sceneTitle = "Overview";
 							if (!settings.internetConnection)
@@ -194,9 +197,6 @@ int main(int argc, char** argv)
 								setAppList(InstalledApps); //If no internet, set applist to installed apps
 							else
 								setAppList(staffSelectApps);
-							break;
-						case 4: //Not implemented yet
-							sceneTitle = "Category Selection";
 							break;
 						default:
 							scene = 0;
