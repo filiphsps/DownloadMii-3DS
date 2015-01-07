@@ -65,8 +65,11 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 		}
 		else
 			app.othercategory = "null";
-		app._3dsx = (*iter).get("3dsx").get<string>();
-		app.smdh = (*iter).get("smdh").get<string>();
+		char buf[100];
+		snprintf(buf, 99, "http://www.downloadmii.com/dl/3dsx/%s", app.GUID.c_str());
+		app._3dsx = buf;
+		snprintf(buf, 99, "http://www.downloadmii.com/dl/smdh/%s", app.GUID.c_str());
+		app.smdh = buf;
 		app.raiting = (int)(*iter).get("rating").get<double>();
 		app.downloads = (int)(*iter).get("downloads").get<double>();
 		for (auto tempApp : InstalledApps) { //Check if app is installed
@@ -141,7 +144,7 @@ Result checkUpdate(char* currentVersion) {
 	char* remoteVersion;
 	int ret = -1;
 	u32 size;
-	downloadFile("http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/VERSION", &remoteVersion, &size);
+	downloadFile("http://www.downloadmii.com/api/dmii/version", &remoteVersion, &size);
 	int a = strcmp(currentVersion, remoteVersion);
 	if (a != 0 && remoteVersion != NULL) {
 		sceneTitle = "Update Available";
@@ -158,8 +161,28 @@ Result checkUpdate(char* currentVersion) {
 					Application_s dmii;
 					dmii.name = "downloadmii";
 					dmii.version = remoteVersion;
-					dmii._3dsx = "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.3dsx"; //ToDo: change to an release url
-					dmii.smdh = "http://build.filfatstudios.com:8080/job/DownloadMii%20(3DS)/lastSuccessfulBuild/artifact/DownloadMii.smdh";  //ToDo: dito
+
+					//Parse json:
+					char* jsonsource;
+					u32 size;
+					downloadFile("http://www.downloadmii.com/api/dmii/data", &jsonsource, &size);
+					if (jsonsource == 0) return -1; //Null check
+					if ((jsonsource[0] != '{' || jsonsource[9] == ']')) return -1;
+
+					/* Parse json and put it into the temp vector */
+					picojson::value v;
+					char* json = (char*)malloc(strlen(jsonsource) + 1);
+					strcpy(json, jsonsource);
+					string err = picojson::parse(v, json, json + strlen(json));
+					print(err.c_str());
+					picojson::array list = v.get("Apps").get<picojson::array>();
+					for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
+						char buf[100];
+						snprintf(buf,99,"http://www.downloadmii.com/dl/3dsx/%s", dmii.GUID.c_str());
+						dmii._3dsx = buf;
+						snprintf(buf, 99, "http://www.downloadmii.com/dl/smdh/%s", dmii.GUID.c_str());
+						dmii.smdh  = buf;
+					}
 
 					installApp(dmii);
 					//ToDo: reload itself instead of exiting
