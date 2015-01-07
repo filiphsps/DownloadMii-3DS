@@ -49,18 +49,26 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 	string ap2;
     for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
 		print(app.name.c_str());
-		app.GUID = (char*)(*iter).get("guid").get<string>().c_str();
-		app.name = (char*)(*iter).get("name").get<string>().c_str();
-		app.publisher = (char*)(*iter).get("publisher").get<string>().c_str();
-		app.version = (char*)(*iter).get("version").get<string>().c_str();
-		app.description = (char*)(*iter).get("description").get<string>().c_str();
-		app.category = (char*)(*iter).get("category").get<string>().c_str();
-		app.subcategory = (char*)(*iter).get("subcategory").get<string>().c_str();
-		app.othercategory = (char*)(*iter).get("othercategory").get<string>().c_str();
-		app._3dsx = (char*)(*iter).get("3dsx").get<string>().c_str();
-		app.smdh = (char*)(*iter).get("smdh").get<string>().c_str();
+		app.GUID = (*iter).get("guid").get<string>();
+		app.name = (*iter).get("name").get<string>();
+		app.publisher = (*iter).get("publisher").get<string>();
+		app.version = (*iter).get("version").get<string>();
+		app.description = (*iter).get("description").get<string>();
+		app.category = (*iter).get("category").get<string>();
+		if ((*iter).get("subcategory").evaluate_as_boolean()) {
+			app.subcategory = (*iter).get("subcategory").get<string>();
+		}
+		else
+			app.subcategory = "null";
+		if ((*iter).get("othercategory").evaluate_as_boolean()) {
+			app.othercategory = (*iter).get("othercategory").get<string>();
+		}
+		else
+			app.othercategory = "null";
+		app._3dsx = (*iter).get("3dsx").get<string>();
+		app.smdh = (*iter).get("smdh").get<string>();
 		app.raiting = (int)(*iter).get("rating").get<double>();
-		//app.downloads = (int)(*iter).get("downloads").get<double>();
+		app.downloads = (int)(*iter).get("downloads").get<double>();
 		for (auto tempApp : InstalledApps) { //Check if app is installed
 			ap1 = app.name;
 			transform(ap1.begin(), ap1.end(), ap1.begin(), easytolower);
