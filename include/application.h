@@ -19,12 +19,10 @@ struct Application_s{
 	string _3dsx, md5_3dsx;
 	string smdh, md5_smdh;
 	int raiting;
-	bool installed = false;
-	bool updateAvalible = false;
-	bool error = false;
-	//TODO: add all the values that can be found in the json file
+	int downloads;
+
+	bool installed = false, updateAvalible = false, error = false;
 };
-//Template define: {"NULL", "DownloadMii", "filfat Studio's", "1.0.0.0", "Download Homebrew apps on your 3ds", "Utils", "Stores", "NULL", "http://downloadmii.filfatstudios.com/stable/dmii.3dsx", "http://downloadmii.filfatstudios.com/stable/dmii.smdh", 5}
 
 extern vector<Application_s> InstalledApps;
 

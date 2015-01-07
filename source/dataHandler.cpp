@@ -49,18 +49,18 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 	string ap2;
     for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
 		print(app.name.c_str());
-		app.GUID =          (char*)(*iter).get("guid").get<string>().c_str();
-		app.name =          (char*)(*iter).get("name").get<string>().c_str();
-		app.publisher =     (char*)(*iter).get("publisher").get<string>().c_str();
-		app.version =       (char*)(*iter).get("version").get<string>().c_str();
-		app.description =   (char*)(*iter).get("description").get<string>().c_str();
-		app.category =      (char*)(*iter).get("category").get<string>().c_str();
-		app.subcategory =   (char*)(*iter).get("subcategory").get<string>().c_str();
+		app.GUID = (char*)(*iter).get("guid").get<string>().c_str();
+		app.name = (char*)(*iter).get("name").get<string>().c_str();
+		app.publisher = (char*)(*iter).get("publisher").get<string>().c_str();
+		app.version = (char*)(*iter).get("version").get<string>().c_str();
+		app.description = (char*)(*iter).get("description").get<string>().c_str();
+		app.category = (char*)(*iter).get("category").get<string>().c_str();
+		app.subcategory = (char*)(*iter).get("subcategory").get<string>().c_str();
 		app.othercategory = (char*)(*iter).get("othercategory").get<string>().c_str();
-		app._3dsx         = (char*)(*iter).get("3dsx").get<string>().c_str();
-		app.smdh =          (char*)(*iter).get("smdh").get<string>().c_str();
-		app.raiting =       (int)(*iter).get("rating").get<double>();
-		
+		app._3dsx = (char*)(*iter).get("3dsx").get<string>().c_str();
+		app.smdh = (char*)(*iter).get("smdh").get<string>().c_str();
+		app.raiting = (int)(*iter).get("rating").get<double>();
+		//app.downloads = (int)(*iter).get("downloads").get<double>();
 		for (auto tempApp : InstalledApps) { //Check if app is installed
 			ap1 = app.name;
 			transform(ap1.begin(), ap1.end(), ap1.begin(), easytolower);
@@ -90,7 +90,6 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 
 Result doListUpdate(){
 	bool hasFailed = false;
-	//ToDo: replace with real url's
 	//Update installed apps
 	Result r = updateInstalledList(InstalledApps);
 	if (r != 0) {

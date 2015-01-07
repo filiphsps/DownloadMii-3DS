@@ -32,8 +32,7 @@ int cfps;
 int currentMenu = 0;
 
 //Todo:
-Application_s currentApp/* = {"NULL", "Error", "App isn't loaded", "E.RR.O.R", "Please restart your 3DS and try again!", "Error", "Error", "NULL", "http://downloadmii.filfatstudios.com/testing/test.3dsx", "http://downloadmii.filfatstudios.com/testing/test.3dsx", 5, true, false}*/;
-
+Application_s currentApp;
 static int CalcFPS(); //ToDo: move to utils.cpp
 char* getVersion();
 
@@ -128,7 +127,7 @@ int main(int argc, char** argv)
 		r = checkUpdate(getVersion()); //ToDo: use settings.ini
 		if (r == 0) goto EXIT;
 	}
-	setStoreFrontImg("http://www.downloadmii.com/assets/logo.bin");
+	setStoreFrontImg("http://www.downloadmii.com/banner.bin");
 	print("All init done, entering main loop!\n");
 	while (aptMainLoop())
 	{
