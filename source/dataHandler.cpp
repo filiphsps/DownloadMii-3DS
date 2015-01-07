@@ -72,6 +72,8 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 		app.smdh = buf;
 		app.raiting = (int)(*iter).get("rating").get<double>();
 		app.downloads = (int)(*iter).get("downloads").get<double>();
+		app.md5_3dsx = (*iter).get("3dsx_md5").get<string>();
+		app.md5_smdh = (*iter).get("smdh_md5").get<string>();
 		for (auto tempApp : InstalledApps) { //Check if app is installed
 			ap1 = app.name;
 			transform(ap1.begin(), ap1.end(), ap1.begin(), easytolower);
