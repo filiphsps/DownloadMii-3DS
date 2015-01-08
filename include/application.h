@@ -15,7 +15,6 @@ struct Application_s{
 	string description;
 	string category;
 	string subcategory;
-	string othercategory;
 	string _3dsx, md5_3dsx;
 	string smdh, md5_smdh;
 	int raiting;

@@ -60,11 +60,6 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 		}
 		else
 			app.subcategory = "null";
-		if ((*iter).get("othercategory").evaluate_as_boolean()) {
-			app.othercategory = (*iter).get("othercategory").get<string>();
-		}
-		else
-			app.othercategory = "null";
 		char buf[100];
 		snprintf(buf, 99, "http://www.downloadmii.com/api/dl/3dsx/%s", app.GUID.c_str());
 		app._3dsx = buf;
