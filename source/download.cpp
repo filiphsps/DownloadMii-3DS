@@ -12,6 +12,7 @@
 using namespace std;
 httpcContext context;
 u32 statuscode = 0;
+int runCount;
 
 Result networkInit(){
 	httpcInit();
@@ -43,8 +44,18 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 		httpcCloseContext(&context);
 		print("error: httpcBeginRequest\n");
 
-		downloadFile(url, buffer, size); //ReRun function
+		runCount++;
+		if (runCount <= 10)
+			downloadFile(url, buffer, size); //ReRun function
+		else {
+			print("Error, download function stuck in loop! recovering...\n");
+			runCount = 0;
+		}
 		return -1;
+	}
+	else
+	{
+		runCount = 0;
 	}
 
 	result = httpcGetResponseStatusCode(&context, &statuscode, 0);

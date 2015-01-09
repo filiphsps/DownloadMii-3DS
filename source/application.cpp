@@ -26,7 +26,6 @@ Result installApp(Application_s app){
 		return -1;
 	//ToDo
 	print("Installing App..\n");
-	sceneTitle += "Downloading App..";
 	//ToDo: ProgressBar
 	renderGUI();
 	Result r;
@@ -92,7 +91,6 @@ Result installApp(Application_s app){
 	r = doListUpdate();
 	free(file3dsx);
 	free(filesmdh);
-	sceneTitle += "Downloads";
 	return 0;
 }
 
