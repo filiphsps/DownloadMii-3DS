@@ -7,7 +7,7 @@
 #include "application.h"
 #include "download.h"
 #include "gui.h"
-#include "file.h"
+
 #include "picojson.h"
 #include "error.h"
 #include "utils.h"
@@ -77,6 +77,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 
 			app.installed = false;
 			app.updateAvalible = false;
+
 			if (ap1 == ap2) {
 				app.installed = true;
 				if ((app.version != tempApp.version) && ap2 != "downloadmii")

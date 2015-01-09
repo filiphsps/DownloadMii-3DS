@@ -254,6 +254,8 @@ int main(int argc, char** argv)
 			clearVButtons();
 			lastScene = -1;
 			lastMenu = currentMenu;
+			screen.topUpdated = true;
+			screen.bottomUpdated = true;
 		}
 		gspWaitForVBlank();
 		renderGUI();

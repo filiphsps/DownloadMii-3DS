@@ -3,27 +3,26 @@
 #include <iostream>
 #include <3ds.h>
 #include <vector>
-#include "file.h"
-
-using namespace std;
 
 struct Application_s{
-	string GUID;
-	string name;
-	string publisher;
-	string version;
-	string description;
-	string category;
-	string subcategory;
-	string _3dsx, md5_3dsx;
-	string smdh, md5_smdh;
+	std::string GUID;
+	std::string name;
+	std::string publisher;
+	std::string version;
+	std::string description;
+	std::string category;
+	std::string subcategory;
+	std::string _3dsx, md5_3dsx;
+	std::string smdh, md5_smdh;
+	std::string dataZip, md5_dataZip;
 	int raiting;
 	int downloads;
 
 	bool installed = false, updateAvalible = false, error = false;
 };
 
-extern vector<Application_s> InstalledApps;
+extern std::vector<Application_s> InstalledApps;
 
 Result installApp(Application_s app);
-Result updateInstalledList(vector<Application_s> &list);
+Result updateInstalledList(std::vector<Application_s> &list);
+Result dlAndUnZip(char* url, char* path);

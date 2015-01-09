@@ -3,18 +3,16 @@
 #include <iostream>
 #include <3ds.h>
 #include <vector>
-#include "file.h"
+
 #include "application.h"
 
-using namespace std;
+extern std::vector<Application_s> topApps;
+extern std::vector<Application_s> topGames;
+extern std::vector<Application_s> overviewApps;
+extern std::vector<Application_s> staffSelectApps;
+extern std::vector<Application_s> devList;
 
-extern vector<Application_s> topApps;
-extern vector<Application_s> topGames;
-extern vector<Application_s> overviewApps;
-extern vector<Application_s> staffSelectApps;
-extern vector<Application_s> devList;
-
-Result updateAppList(vector<Application_s> *AppList, char* jsonURL);
+Result updateAppList(std::vector<Application_s> *AppList, char* jsonURL);
 Result doListUpdate();
-Result updateDevList(vector<Application_s> *AppList, char* developer);
+Result updateDevList(std::vector<Application_s> *AppList, char* developer);
 Result checkUpdate(char* currentVersion);

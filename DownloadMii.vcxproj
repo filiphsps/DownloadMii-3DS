@@ -57,6 +57,7 @@
     <ClCompile Include="source\dataHandler.cpp" />
     <ClCompile Include="source\download.cpp" />
     <ClCompile Include="source\draw.cpp" />
+    <ClCompile Include="source\error.cpp" />
     <ClCompile Include="source\font.c" />
     <ClCompile Include="source\font1.cpp" />
     <ClCompile Include="source\font_roboto.cpp" />
@@ -81,7 +82,6 @@
     <ClInclude Include="include\download.h" />
     <ClInclude Include="include\draw.h" />
     <ClInclude Include="include\error.h" />
-    <ClInclude Include="include\file.h" />
     <ClInclude Include="include\font.h" />
     <ClInclude Include="include\gui.h" />
     <ClInclude Include="include\ini.h" />

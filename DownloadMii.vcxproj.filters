@@ -66,6 +66,9 @@
     <ClCompile Include="source\ini.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="build\font_bin.h">
@@ -90,9 +93,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\draw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\font.h">

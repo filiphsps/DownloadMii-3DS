@@ -11,10 +11,11 @@
 #include "download.h"
 #include "gui.h"
 #include "utils.h"
-#include "file.h"
+
 #include "settings.h"
 #include "md5.h"
 #include "dataHandler.h"
+#include "error.h"
 
 using namespace std;
 
@@ -73,10 +74,32 @@ Result installApp(Application_s app){
 	fprintf(fp,buffer);
 	fclose(fp);
 	print("VERSION saved\n");
+
+	if (app.dataZip != "") { //if the app has extra data, download and unzip it.
+		print("unZipping data... ");
+		snprintf(buffer, 256, "/%s/%s/", HBPATH, app.name.c_str());
+		r = dlAndUnZip((char*)app.dataZip.c_str(), buffer);
+		if (r != 0) {
+			print("Error: %s\n", getErrorMsg(r));
+		}
+		print("Done!\n");
+	}
 	renderGUI();
 	print("Done Installing app, updating list...\n");
 	r = doListUpdate();
+	free(file3dsx);
+	free(filesmdh);
 	return 0;
+}
+
+Result dlAndUnZip(char* url, char* path) {
+	char buffer[1024];
+	u32 size;
+	/* Download File */
+	char* file;
+	Result r = downloadFile(url, &file, &size);
+	//ToDo: unzip zip file
+	return -99;
 }
 
 Result updateInstalledList(vector<Application_s> &list) {

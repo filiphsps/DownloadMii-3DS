@@ -37,6 +37,7 @@ struct progressBar_s {
 };
 struct Screen_s {
 	u8* screenTopLeft, *screenTopRight, *screenBottom;
+	bool topUpdated, bottomUpdated;
 };
 extern Screen_s screen;
 extern char superStr[];

@@ -7,7 +7,7 @@
 #include "download.h"
 #include "settings.h"
 #include "gui.h"
-#include "file.h"
+
 
 using namespace std;
 httpcContext context;
