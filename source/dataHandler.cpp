@@ -180,6 +180,7 @@ Result checkUpdate(char* currentVersion) {
 						dmii._3dsx = buf;
 						snprintf(buf, 99, "http://www.downloadmii.com/api/dl/smdh/%s", (*iter).get("guid").get<string>().c_str());
 						dmii.smdh  = buf;
+						break;
 					}
 
 					installApp(dmii);
