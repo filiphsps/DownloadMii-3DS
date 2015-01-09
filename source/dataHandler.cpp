@@ -173,12 +173,12 @@ Result checkUpdate(char* currentVersion) {
 					strcpy(json, jsonsource);
 					string err = picojson::parse(v, json, json + strlen(json));
 					print(err.c_str());
-					picojson::array list = v.get("Apps").get<picojson::array>();
+					picojson::array list = v.get("DownloadMii").get<picojson::array>();
 					for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
 						char buf[100];
-						snprintf(buf,99,"http://www.downloadmii.com/dl/3dsx/%s", dmii.GUID.c_str());
+						snprintf(buf,99,"http://www.downloadmii.com/api/dl/3dsx/%s", dmii.GUID.c_str());
 						dmii._3dsx = buf;
-						snprintf(buf, 99, "http://www.downloadmii.com/dl/smdh/%s", dmii.GUID.c_str());
+						snprintf(buf, 99, "http://www.downloadmii.com/api/dl/smdh/%s", dmii.GUID.c_str());
 						dmii.smdh  = buf;
 					}
 

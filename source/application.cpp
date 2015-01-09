@@ -26,6 +26,7 @@ Result installApp(Application_s app){
 		return -1;
 	//ToDo
 	print("Installing App..\n");
+	sceneTitle += "Downloading App..";
 	//ToDo: ProgressBar
 	renderGUI();
 	Result r;
@@ -91,15 +92,16 @@ Result installApp(Application_s app){
 	r = doListUpdate();
 	free(file3dsx);
 	free(filesmdh);
+	sceneTitle += "Downloads";
 	return 0;
 }
 
 Result dlAndUnZip(char* url, char* path) {
-	char buffer[1024];
-	u32 size;
+	//char buffer[1024];
+	//u32 size;
 	/* Download File */
-	char* file;
-	Result r = downloadFile(url, &file, &size);
+	//char* file;
+	//Result r = downloadFile(url, &file, &size);
 	//ToDo: unzip zip file
 	return -99;
 }

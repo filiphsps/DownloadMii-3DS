@@ -9,7 +9,7 @@
 #include "ascii64.h"
 #include "application.h"
 
-#define print(...) snprintf(&superStr[strlen(superStr)], 9192, __VA_ARGS__);
+#define print(...) snprintf(&superStr[strlen(superStr)], 9192, __VA_ARGS__); svcOutputDebugString(superStr, 9192);
 /* FLAT DESIGN UI */
 #define TOPSCREEN_W 400
 #define TOPSCREEN_H 240
