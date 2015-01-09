@@ -38,6 +38,7 @@ Result installApp(Application_s app){
 	/* Download Files */
 	char* file3dsx;
 	r = downloadFile((char*)app._3dsx.c_str(), &file3dsx, &size[0]);
+	r = downloadFile(file3dsx, &file3dsx, &size[0]);
 	if (r != 0) {
 		return -1;
 	}
@@ -47,6 +48,7 @@ Result installApp(Application_s app){
 
 	char* filesmdh;
 	r = downloadFile((char*)app.smdh.c_str(), &filesmdh, &size[1]);
+	r = downloadFile(filesmdh, &filesmdh, &size[1]);
 	if (r != 0) {
 		return -1;
 	}

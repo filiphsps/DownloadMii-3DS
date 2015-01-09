@@ -61,9 +61,9 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 		else
 			app.subcategory = "null";
 		char buf[100];
-		snprintf(buf, 99, "http://www.downloadmii.com/api/dl/3dsx/%s", app.GUID.c_str());
+		snprintf(buf, 99, "http://www.downloadmii.com/api/dl/3dsx/%s", (char*)app.GUID.c_str());
 		app._3dsx = buf;
-		snprintf(buf, 99, "http://www.downloadmii.com/api/dl/smdh/%s", app.GUID.c_str());
+		snprintf(buf, 99, "http://www.downloadmii.com/api/dl/smdh/%s", (char*)app.GUID.c_str());
 		app.smdh = buf;
 		app.raiting = (int)(*iter).get("rating").get<double>();
 		app.downloads = (int)(*iter).get("downloads").get<double>();
