@@ -13,11 +13,12 @@ CREDITS
 * Main App Developer: Filiph sandström (@filfat).
 * The PHP Developers: celcodioc, Doumekxkai
 * Some code is used from AlbertoSONIC & Smealum!
-* The PicoJson dev team for their amazing json parser which even runs on low en arm devices.
+* The PicoJson dev team for their amazing json parser which even runs on low end arm devices.
 * Libctru & devkitppc.
 * #3dsdev for all the help! <3
 * Testers: AlbertoSONIC, profi200 and ichfly/ichichfly.
-* MD5 code taken from: http://www.zedwood.com/article/cpp-md5-function
+* MD5 code taken from: http://www.zedwood.com/article/cpp-md5-function.
+* INI parser: https://github.com/brofield/simpleini.
 
 FEATURES
 ====
