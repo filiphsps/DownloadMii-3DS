@@ -26,7 +26,7 @@ using namespace std;
 /* UI */
 Screen_s screen;
 navBar_s navbar;
-vector<progressBar_s> progressbars;
+progressBar_s progressbar;
 
 extern char superStr[];
 font_s debugfnt = fontWhite;
@@ -281,8 +281,11 @@ void renderAppPage(){
 
 void renderDownloads() {
 	//ToDo
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This page will be implemented in version 1.1/1.2", 210, 5);
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "press (B) to return to the main menu.", 190, 5);
+	if (progressbar.progress > 0) {
+		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "Downloading...", 230, 5);
+	}
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This page will be implemented in version 1.1/1.2", 200, 5);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "press (B) to return to the main menu.", 180, 5);
 }
 
 void fadeOut(){

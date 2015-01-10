@@ -40,6 +40,7 @@ struct Screen_s {
 	bool topUpdated, bottomUpdated;
 };
 extern Screen_s screen;
+extern progressBar_s progressbar;
 extern char superStr[];
 extern font_s debugfnt;
 extern int currentMenu; //0 = overview, 1 = settings, 2 = app page, 3 = downloads(When i fugure out multi-threading), 4 = by dev.

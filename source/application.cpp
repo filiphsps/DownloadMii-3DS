@@ -26,6 +26,7 @@ Result installApp(Application_s app){
 		return -1;
 	//ToDo
 	print("Installing App..\n");
+	progressbar.progress = 50;
 	//ToDo: ProgressBar
 	renderGUI();
 	Result r;
@@ -91,6 +92,7 @@ Result installApp(Application_s app){
 	r = doListUpdate();
 	free(file3dsx);
 	free(filesmdh);
+	progressbar.progress = 0;
 	return 0;
 }
 
