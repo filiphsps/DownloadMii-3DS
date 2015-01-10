@@ -39,9 +39,6 @@
     <ClCompile Include="source\gui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\INIReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -61,9 +58,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\font.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ini.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\error.cpp">
@@ -101,12 +95,6 @@
     <ClInclude Include="include\gui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ini.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\INIReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -129,6 +117,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConvertUTF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\md5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SimpleIni.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

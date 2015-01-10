@@ -46,7 +46,7 @@ int main(int argc, char** argv)
 	fsInit();
 	sdmcInit();
 	guiInit();
-	settingsInit(DEFAULT_SETTINGS_PATH);
+	//settingsInit(DEFAULT_SETTINGS_PATH); //broken 
 	//gfxSet3D(true);
     gspWaitForVBlank(); //wait to let the app register itself
 
@@ -249,7 +249,8 @@ int main(int argc, char** argv)
 		}
 	}
 	//Exit services
-	EXIT:
+EXIT:
+	settingsExit();
 	fsExit();
 	sdmcExit();
 	gfxExit();

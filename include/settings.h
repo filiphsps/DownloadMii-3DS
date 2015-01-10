@@ -6,13 +6,11 @@
 #include <vector>
 #include <3ds.h>
 
-using namespace std;
-
 struct Settings_s{
-	char* version;   	//Ex: "1.0.0.0", Unused.
 	bool nightly;    	//Ex: true, Unused.
 	bool autoUpdate;	//Ex: true, Unused.
-	char* themePath; 	//Ex: "/3ds/downloadmii/flatTheme.dmt", Unused.
+	std::string version;
+	std::string themePath; 	//Ex: "/3ds/downloadmii/flatTheme.dmt", Unused.
 
 	//Settings that doesnt get saved to the file:
 	bool internetConnection;
@@ -21,5 +19,7 @@ struct Settings_s{
 extern Settings_s settings;
 extern char* defaultSettings;
 
-void settingsInit(char* settingsPath);
-void createSettings();
+Result settingsInit(char* settingsPath);
+Result deleteSettings();
+Result createSettings();
+Result settingsExit();
