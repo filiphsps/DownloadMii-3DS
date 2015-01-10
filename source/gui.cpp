@@ -452,3 +452,16 @@ void cutLine(char* str)
 	char* str2=str;	for(;*str2&&*(str2+1)&&*str2!='\n';str2++);	str2++;
 	memmove(str,str2,strlen(str2)+1);
 }
+void renderDebugLog() {
+#ifdef DEBUG //ToDo: move into an separate debug.h file.
+	for (int x = 0; x <= 1; x++) {
+		screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
+		screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
+		screen.screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
+		renderDebug();
+		gfxFlushBuffers();
+		gfxSwapBuffers();
+		gspWaitForVBlank();
+	}
+#endif
+}

@@ -22,3 +22,4 @@ static inline void unicodeToChar(char* dst, u16* src, int max)
 std::string insert_newlines(const std::string &in, const size_t every_n);
 
 Result loadfile(char *file, int *size, char** buffer);
+bool replace(std::string& str, const std::string& from, const std::string& to);

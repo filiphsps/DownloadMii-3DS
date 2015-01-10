@@ -66,6 +66,7 @@ void renderByDev();
 void renderUpdate(char* cv, char* rv);
 void setAppList(vector<Application_s> AppList);
 void fadeOut();
+void renderDebugLog();
 
 /* UIs */
 void drawTopBar();

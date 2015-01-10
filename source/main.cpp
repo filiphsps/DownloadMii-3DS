@@ -51,7 +51,9 @@ int main(int argc, char** argv)
     gspWaitForVBlank(); //wait to let the app register itself
 
 	doSplash(); //Splash Screen
-	
+
+	print("networkInit: started...\n");
+	renderDebugLog();
 	Result r = networkInit();
 	if(r != 0){
 		settings.internetConnection = false;
@@ -63,6 +65,7 @@ int main(int argc, char** argv)
 		print("Network connection is active!\n");
 	}
 	
+	renderDebugLog();
 	u8 isN3DS=0;
 	APT_CheckNew3DS(NULL, &isN3DS);
 	if(isN3DS){
@@ -82,18 +85,7 @@ int main(int argc, char** argv)
 		aptCloseSession();
 	}
 
-#ifdef DEBUG //ToDo: move into an separate debug.h file.
-	for (int x = 0; x <= 1; x++) {
-			screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
-			screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
-			screen.screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
-			renderDebug();
-			gfxFlushBuffers();
-			gfxSwapBuffers();
-			gspWaitForVBlank();
-	}
-#endif
-
+	renderDebugLog();
 	if (settings.internetConnection) {
 		r = doListUpdate();
 		if (r != 0) {
@@ -103,15 +95,6 @@ int main(int argc, char** argv)
 	else {
 		r = updateInstalledList(InstalledApps);
 	}
-
-	//APP_STATUS status;
-	
-	//gfxSetDoubleBuffering(false);
-	
-	/* Threading */
-	/*Handle threadHandle;
-	u32 *stack = (u32*)malloc(0x4000);
-	svcCreateThread(&threadHandle, secondThread, 0, &stack[0x4000>>2], 0x3F, 0);*/
 
 	print("Getting DownloadMii version...\n");
 	settings.version = getVersion();

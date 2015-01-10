@@ -33,13 +33,16 @@ Result installApp(Application_s app){
 	char buffer[1024];
 	u32 size[2];
 	FILE *fp;
+	string temp;
 	/* MKDIR */
 	snprintf(buffer,256, "/%s/%s", HBPATH, app.name.c_str());
 	mkdir(buffer, 0777);
 	/* Download Files */
 	char* file3dsx;
 	r = downloadFile((char*)app._3dsx.c_str(), &file3dsx, &size[0]);
-	r = downloadFile(file3dsx, &file3dsx, &size[0]);
+	temp = file3dsx;
+	replace(temp, "https", "http");
+	r = downloadFile((char*)temp.c_str(), &file3dsx, &size[0]);
 	if (r != 0) {
 		return -1;
 	}
@@ -49,7 +52,9 @@ Result installApp(Application_s app){
 
 	char* filesmdh;
 	r = downloadFile((char*)app.smdh.c_str(), &filesmdh, &size[1]);
-	r = downloadFile(filesmdh, &filesmdh, &size[1]);
+	temp = filesmdh;
+	replace(temp, "https", "http");
+	r = downloadFile((char*)temp.c_str(), &filesmdh, &size[1]);
 	if (r != 0) {
 		return -1;
 	}
