@@ -16,7 +16,7 @@ int runCount;
 
 Result networkInit(){
 	httpcInit();
-	Result result = httpcOpenContext(&context, "http://filfatstudios.com", 0); //Test internet connection
+	Result result = httpcOpenContext(&context, "http://www.downloadmii.com", 0); //Test internet connection
 	if (result != 0) {
 		httpcCloseContext(&context);
 		return -3;
