@@ -45,8 +45,9 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 		print("error: httpcBeginRequest\n");
 
 		runCount++;
-		if (runCount <= 10)
+		if (runCount <= 10) {
 			downloadFile(url, buffer, size); //ReRun function
+		}
 		else {
 			print("Error, download function stuck in loop! recovering...\n");
 			runCount = 0;
