@@ -429,7 +429,7 @@ void drawTopBar(){
 #ifdef DEBUG
 	snprintf(buffer, 256, "%s(%s), FPS: %d", APPLICATION_NAME, settings.version, FPS);
 #else
-	snprintf(buffer, 256, "%s(%s)", APPLICATION_NAME, settings.version);
+	snprintf(buffer, 256, "%s(%s)", APPLICATION_NAME, settings.version.c_str());
 #endif
 	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
 	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screen.screenTopRight,GFX_TOP);

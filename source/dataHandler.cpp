@@ -122,10 +122,10 @@ Result doListUpdate(){
 		print("updateAppList(3): Error\n");
 	}
 	snprintf(buffer, 256, "http://%s/api/apps/StaffPicks/", APIDOMAIN);
-	r = updateAppList(&staffSelectApps, buffer);
+	/*r = updateAppList(&staffSelectApps, buffer);
 	if (r != 0) {
 		print("updateAppList(4): Error\n");
-	}
+	}*/
 	if (hasFailed)
 		return -2;
 	else
