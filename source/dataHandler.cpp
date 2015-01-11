@@ -195,7 +195,9 @@ Result checkUpdate(char* currentVersion) {
 				screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
 				screen.screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
 				renderUpdate(currentVersion, remoteVersion);
+#ifdef DEBUG
 				renderDebug();
+#endif
 				gfxFlushBuffers();
 				gfxSwapBuffers();
 				gspWaitForVBlank();

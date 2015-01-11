@@ -207,7 +207,7 @@ void renderUpdate(char* cv, char* rv) {
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), temp, 5);
 
 	//About text
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "There is an update available, download?\nPress (B) to skip the update.", (temp - fontBlackHeader.height) + 4, 5); //Should be a new line every ~35 chars
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "There is an update available, download?\nPress (B) to skip the update.\n(The application will close when the \ninstallation is done)", (temp - fontBlackHeader.height) + 4, 5); //Should be a new line every ~35 chars
 
 																																		   //Download Button
 	drawFillRect(0, 190, 320, 240, 0, 148, 255, screen.screenBottom);
