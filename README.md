@@ -3,7 +3,8 @@
 DownloadMii is an online marketplace for 3DS homebrew applications & games.
 It is currently in development and is expected to be released when the web interface and backend is fully developed.
 
-[Website](http://downloadmii.filfatstudios.com), [GBATemp](http://gbatemp.net/threads/downloadmii-a-homebrew-online-marketplace-not-released.374759/)
+[Download](http://www.downloadmii.com/download),
+[Website](http://www.downloadmii.com), [GBATemp](http://gbatemp.net/threads/downloadmii-a-homebrew-online-marketplace-not-released.374759/)
 
 DISCLAIMER: This is unreleased software that may or may not be finished, in the event that it does get finished the developers leavs no responsibility of events that can occur during use of this software. DownloadMii is in no way associated with Nintendo. 
 
@@ -13,11 +14,12 @@ CREDITS
 * Main App Developer: Filiph sandström (@filfat).
 * The PHP Developers: celcodioc, Doumekxkai
 * Some code is used from AlbertoSONIC & Smealum!
-* The PicoJson dev team for their amazing json parser which even runs on low en arm devices.
+* The PicoJson dev team for their amazing json parser which even runs on low end arm devices.
 * Libctru & devkitppc.
 * #3dsdev for all the help! <3
 * Testers: AlbertoSONIC, profi200 and ichfly/ichichfly.
-* MD5 code taken from: http://www.zedwood.com/article/cpp-md5-function
+* MD5 code taken from: http://www.zedwood.com/article/cpp-md5-function.
+* INI parser: https://github.com/brofield/simpleini.
 
 FEATURES
 ====
@@ -41,7 +43,8 @@ UPCOMING/PLANNED FEATURES
 
 ADDING/UPDATING APPLICATIONS
 ====
-todo
+Please visit [DownloadMii.com](http://www.downloadmii.com) and click the "USER CP" button.
+(We will automatically add GPL licensed apps, if you want your app removed please contact filfat[at]hotmail.se)
 
 DOCUMENTATION
 ====
