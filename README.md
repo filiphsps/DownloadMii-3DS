@@ -3,7 +3,8 @@
 DownloadMii is an online marketplace for 3DS homebrew applications & games.
 It is currently in development and is expected to be released when the web interface and backend is fully developed.
 
-[Website](http://downloadmii.filfatstudios.com), [GBATemp](http://gbatemp.net/threads/downloadmii-a-homebrew-online-marketplace-not-released.374759/)
+[Download](http://www.downloadmii.com/download)
+[Website](http://www.downloadmii.com), [GBATemp](http://gbatemp.net/threads/downloadmii-a-homebrew-online-marketplace-not-released.374759/)
 
 DISCLAIMER: This is unreleased software that may or may not be finished, in the event that it does get finished the developers leavs no responsibility of events that can occur during use of this software. DownloadMii is in no way associated with Nintendo. 
 
@@ -42,7 +43,8 @@ UPCOMING/PLANNED FEATURES
 
 ADDING/UPDATING APPLICATIONS
 ====
-todo
+Please visit [DownloadMii.com](http://www.downloadmii.com) and click the "USER CP" button.
+(We will automatically add GPL licensed apps, if you want your app removed please contact filfat[at]hotmail.se)
 
 DOCUMENTATION
 ====
