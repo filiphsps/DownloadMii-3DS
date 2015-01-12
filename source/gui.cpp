@@ -427,7 +427,7 @@ void drawTopBar(){
 	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H / 2) + fontWhiteHeader.height)), 13);
 	
 #ifdef DEBUG
-	snprintf(buffer, 256, "%s(%s), FPS: %d", APPLICATION_NAME, settings.version, FPS);
+	snprintf(buffer, 256, "%s(%s), FPS: %d", APPLICATION_NAME, settings.version.c_str(), FPS);
 #else
 	snprintf(buffer, 256, "%s(%s)", APPLICATION_NAME, settings.version.c_str());
 #endif
