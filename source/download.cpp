@@ -26,6 +26,7 @@ Result networkInit(){
 		httpcCloseContext(&context);
 		return -1;
 	}
+	httpcCloseContext(&context);
 	return 0;
 }
 
