@@ -28,7 +28,8 @@ Result installApp(Application_s app){
 	print("Installing App..\n");
 	progressbar.progress = 50;
 	//ToDo: ProgressBar
-	renderGUI();
+	if (app.name != "downloadmii")
+		renderGUI();
 	Result r;
 	char buffer[1024];
 	u32 size[2];
@@ -48,7 +49,8 @@ Result installApp(Application_s app){
 	}
 	print("3dsx downloaded\n");
 	//ToDo: ProgressBar
-	renderGUI();
+	if (app.name != "downloadmii")
+		renderGUI();
 
 	char* filesmdh;
 	r = downloadFile((char*)app.smdh.c_str(), &filesmdh, &size[1]);
@@ -67,14 +69,16 @@ Result installApp(Application_s app){
 	fwrite(file3dsx, sizeof(file3dsx[0]), size[0], fp);
 	fclose(fp);
 	print("3dsx saved\n");
-	renderGUI();
+	if (app.name != "downloadmii")
+		renderGUI();
 	//Continue with the smdh file
 	snprintf(buffer,256, "/%s/%s/%s.smdh", HBPATH, app.name.c_str(), app.name.c_str());
 	fp = fopen(buffer, "w+");
 	fwrite(filesmdh, sizeof(filesmdh[0]), size[1], fp);
 	fclose(fp);
 	print("smdh saved\n");
-	renderGUI();
+	if (app.name != "downloadmii")
+		renderGUI();
 	//End with the VERSION file
 	snprintf(buffer, 256, "/%s/%s/VERSION", HBPATH, app.name.c_str());
 	fp = fopen(buffer, "w+");
@@ -92,7 +96,8 @@ Result installApp(Application_s app){
 		}
 		print("Done!\n");
 	}
-	renderGUI();
+	if (app.name != "downloadmii")
+		renderGUI();
 	print("Done Installing app, updating list...\n");
 	r = doListUpdate();
 	free(file3dsx);
