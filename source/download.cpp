@@ -93,7 +93,7 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 		print("error: httpcDownloadData\n");
 		return -1;
 	}
-	print("Download Size: %d\n",(int)size2);
+	print("Download Size2: %d, Size: %d\n",(int)size2, (int)*size);
 	httpcCloseContext(&context);
 	return 0;
 }
