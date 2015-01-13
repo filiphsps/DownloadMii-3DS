@@ -242,6 +242,8 @@ int main(int argc, char** argv)
 		}
 		gspWaitForVBlank();
 		renderGUI();
+		draw();
+
 		/* In case of start, exit the app */
 		if (Input.Start){
 			print("Exiting..\n");

@@ -63,6 +63,18 @@ void setAppList(vector<Application_s> AppList){
 	VSTY = 0;
 }
 
+void draw() {
+	/* DEBUG */
+#ifdef DEBUG
+	renderDebug();
+#endif
+
+	/* Buffers */
+	gfxFlushBuffers();
+	gfxSwapBuffers();
+	gspWaitForVBlank();
+}
+
 void renderGUI(){
 	for (int xzy = 0; xzy <= 1; xzy++){
 		screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL);
@@ -93,19 +105,8 @@ void renderGUI(){
 		case 4: //by dev
 			renderByDev();
 			break;
+		}
 	}
-}
-	
-	
-	/* DEBUG */
-	#ifdef DEBUG
-	renderDebug();
-	#endif
-	
-	/* Buffers */
-	gfxFlushBuffers();
-	gfxSwapBuffers();
-	gspWaitForVBlank();
 }
 
 void renderByDev() {
@@ -387,13 +388,6 @@ void drawAppEntry(Application_s app, int place){
 	butPos++;
 }
 
-
-void renderDebug(){
-	int i = countLines(superStr); 
- 	while(i>200/fontDefault.height-3){cutLine(superStr);i--;} 
-	gfxDrawText(GFX_TOP, GFX_LEFT, &debugfnt, superStr, (240-fontDefault.height*5)+6, 6); 
-	gfxDrawText(GFX_TOP, GFX_RIGHT, &debugfnt, superStr, (240-fontDefault.height*5)+6, 6);
-}
 void background(){
 	drawFillRect( 0, 0, 320, 240, 227,242,253, screen.screenBottom);
 	drawFillRect( 0, 0, 400, 240, 227,242,253, screen.screenTopLeft);
@@ -440,18 +434,55 @@ void drawTopBar(){
 	drawString(buffer, 2,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
 	drawString(buffer, 2,2, 255,255,255, screen.screenTopRight,GFX_TOP);
 }
+
+
+/* --- UI ELEMENTS --- */
+
+Result guiPopup(char* title, char* content, char* b1, char* b2, u8* screen) {
+	drawFillRect(34,58,274,191, 0,0,0, screen);			//Prints the Border
+	drawFillRect(36,60,272,85, 0,126,216, screen);		//Prints the Body
+	drawFillRect(36,85,272,189, 227,242,253, screen);	//Prints the TopBar
+	/* Draw content */
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhite, title, 160, 240 - 16 * 12);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlack, content, 130, 240 - 16 * 12);
+	/* Draw button(s) */
+	drawFillRect(50,151,141,179, 46,204,113, screen);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhite, b1, 70, 240 - 16 * 11);
+	if (b2 != NULL)
+	{
+		drawFillRect(166,151,257,179, 192,192,192, screen);
+		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhite, b2, 70, (240 - 16 * 4) + 5);
+	}
+	return 0;
+}
+
+Result guiScrollbar(int x, int y, int x2, int y2, int procent) {
+	return -99;
+}
+
+
+/* --- DEBUG --- */
 int countLines(char* str)
 {
 	if(!str)return 0;
 	int cnt; for(cnt=1;*str=='\n'?++cnt:*str;str++);
 	return cnt;
 }
+
 void cutLine(char* str)
 {
 	if(!str || !*str)return;
 	char* str2=str;	for(;*str2&&*(str2+1)&&*str2!='\n';str2++);	str2++;
 	memmove(str,str2,strlen(str2)+1);
 }
+
+void renderDebug() {
+	int i = countLines(superStr);
+	while (i>200 / fontDefault.height - 3) { cutLine(superStr); i--; }
+	gfxDrawText(GFX_TOP, GFX_LEFT, &debugfnt, superStr, (240 - fontDefault.height * 5) + 6, 6);
+	gfxDrawText(GFX_TOP, GFX_RIGHT, &debugfnt, superStr, (240 - fontDefault.height * 5) + 6, 6);
+}
+
 void renderDebugLog() {
 #ifdef DEBUG //ToDo: move into an separate debug.h file.
 	for (int x = 0; x <= 1; x++) {

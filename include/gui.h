@@ -55,7 +55,8 @@ extern int VSTX;
 
 extern int FPS;
 
-void guiInit(); 
+void guiInit();
+void draw();
 void renderGUI();
 void renderStoreFront();
 void renderSettings();
@@ -73,6 +74,11 @@ void drawTopBar();
 void setStoreFrontImg(char* url); //Needs to be: 400x192
 void background();
 void drawAppEntry(Application_s app, int place);
+
+/* UI Elements */
+Result guiPopup(char* title, char* content, char* b1, char* b2, u8* screen);
+Result guiScrollbar(int x, int y, int x2, int y2, u8 procent);
+
 
 /* TEXT */
 void cutLine(char* str);
