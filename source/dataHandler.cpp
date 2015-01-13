@@ -33,7 +33,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 	char* jsonsource;
 	u32 size;
 	downloadFile(jsonURL, &jsonsource, &size);
-	if (jsonsource == 0) return -1; //Null check
+	if (jsonsource == NULL) return -1; //Null check
 	if ((jsonsource[0] != '{' || jsonsource[9] == ']')) {
 		print("%s\n", jsonsource);
 		return -1;

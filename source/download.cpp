@@ -84,7 +84,8 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 		return -1;
 	}
 
-	result = httpcDownloadData(&context,(u8*)*buffer, *size, NULL);
+	u32 size2;
+	result = httpcDownloadData(&context,(u8*)*buffer, *size, &size2);
 	if (result != 0)
 	{
 		free(*buffer);
@@ -92,6 +93,7 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 		print("error: httpcDownloadData\n");
 		return -1;
 	}
+	print("Download Size: %d\n",(int)size2);
 	httpcCloseContext(&context);
 	return 0;
 }
