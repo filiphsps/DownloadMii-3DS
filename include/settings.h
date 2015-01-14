@@ -9,11 +9,13 @@
 struct Settings_s{
 	bool nightly;    	//Ex: true, Unused.
 	bool autoUpdate;	//Ex: true, Unused.
-	std::string version;
+	bool acceptedBeta;  //Ex: true, Used.
 	std::string themePath; 	//Ex: "/3ds/downloadmii/flatTheme.dmt", Unused.
 
 	//Settings that doesnt get saved to the file:
 	bool internetConnection;
+	std::string version;
+	std::string fileContent;
 };
 
 extern Settings_s settings;
@@ -22,4 +24,4 @@ extern char* defaultSettings;
 Result settingsInit(char* settingsPath);
 Result deleteSettings();
 Result createSettings();
-Result settingsExit();
+Result settingsExit(char* settingsPath);
