@@ -30,6 +30,7 @@ int fps = 0; // int instead of u32/s32 so gcc doesn't complain about different s
 int cfps;
 
 int currentMenu = 0;
+int currentLoop = 0;
 
 //Todo:
 Application_s currentApp;
@@ -46,7 +47,7 @@ int main(int argc, char** argv)
 	fsInit();
 	sdmcInit();
 	guiInit();
-	//settingsInit(DEFAULT_SETTINGS_PATH); //broken 
+	settingsInit(DEFAULT_SETTINGS_PATH); //broken 
 	//gfxSet3D(true);
     gspWaitForVBlank(); //wait to let the app register itself
 
@@ -114,10 +115,21 @@ int main(int argc, char** argv)
 	print("All init done, entering main loop!\n");
 	while (aptMainLoop())
 	{
-		loopStart:
+	loopStart:
+		currentLoop++;
 		#ifdef DEBUG
 		FPS = CalcFPS();
 		#endif
+		if (currentLoop > 2 && !settings.acceptedBeta) {
+			vButton_s but;
+			but.ID = 0;
+			but.x = 50;
+			but.y = 151;
+			but.x2 = 141;
+			but.y2 = 179;
+			but.menu = 0;
+			addVButton(but);
+		}
 		UpdateInput(&Input);
 		
 		switch(currentMenu){
@@ -242,17 +254,28 @@ int main(int argc, char** argv)
 		}
 		gspWaitForVBlank();
 		renderGUI();
+		if (currentLoop > 2 && !settings.acceptedBeta) {
+			guiPopup("Beta Software!", "DownloadMii is early stage software!\nBy using it you agree to terms on\nwww.downloadmii.com", "I Agree!", NULL, screen.screenBottom);
+			
+			for (auto &but : vButtons) {
+				if (but.pressed) {
+					settings.acceptedBeta = true;
+					break;
+				}
+			}
+			clearVButtons();
+		}
 		draw();
 
 		/* In case of start, exit the app */
-		if (Input.Start){
+		if (Input.A){
 			print("Exiting..\n");
 			break;
 		}
 	}
 	//Exit services
 EXIT:
-	settingsExit();
+	settingsExit(DEFAULT_SETTINGS_PATH);
 	fsExit();
 	sdmcExit();
 	gfxExit();

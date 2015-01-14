@@ -24,7 +24,7 @@ Result settingsInit(char* settingsPath){
 	string data;
 	char *file_contents;
 	long input_file_size;
-	FILE *input_file = fopen(settingsPath, "rb");
+	FILE *input_file = fopen(settingsPath, "ab+");
 	fseek(input_file, 0, SEEK_END);
 	input_file_size = ftell(input_file);
 	rewind(input_file);
@@ -32,13 +32,21 @@ Result settingsInit(char* settingsPath){
 	fread(file_contents, sizeof(char), input_file_size, input_file);
 	fclose(input_file);
 	data = file_contents;
+	if (file_contents == NULL || file_contents == 0) {
+		print("Error, ini file NULL!\n");
+		print("settingsInit: resetting/creating settings file... ");
+		createSettings();
+		print("Done!\n");
+		print("settingsInit: re-running function...\n");
+		settingsInit(settingsPath);
+	}
 
-	CSimpleIniA ini(true,true,true);
+	CSimpleIniA ini(false,false,false);
 	SI_Error rc = ini.LoadData(data);
 
     if (rc < 0) {
         print("Error, cant parse ini file(might be null)\n");
-		print("settingsInit: resseting/creating settings file... ");
+		print("settingsInit: resetting/creating settings file... ");
 		createSettings();
 		print("Done!\n");
 		print("settingsInit: re-running function...\n");
@@ -48,12 +56,29 @@ Result settingsInit(char* settingsPath){
 		settings.nightly = ini.GetBoolValue("DownloadMii", "nightly", false);
 		settings.autoUpdate = ini.GetBoolValue("DownloadMii", "autoUpdate", false);
 		settings.themePath = ini.GetValue("DownloadMii", "themePath", "none");
-		print("settingsInit: correctly parsed!\n");
+		settings.acceptedBeta = ini.GetBoolValue("DownloadMii", "acceptedBeta", false);
+		settings.fileContent = file_contents;
 	}
 	return 0;
 }
 
-Result settingsExit() {
+Result settingsExit(char* settingsPath) {
+	char buffer[2046];
+	CSimpleIniA ini(false, false, false);
+
+	print("settings: applying changes...");
+	ini.SetBoolValue("DownloadMii", "acceptedBeta", settings.acceptedBeta,	";True if the user have accepted the beta agreement.");
+	ini.SetBoolValue("DownloadMii", "autoUpdate", settings.autoUpdate,		";Auto download new updates. (Unused)");
+	ini.SetValue("DownloadMii", "themePath", settings.themePath.c_str(),	";Path to theme. (Unused)");
+	ini.SetBoolValue("DownloadMii", "nightly", settings.nightly,			";Receive nightly builds. (Unused)");
+	ini.Save(settings.fileContent);
+	print(" Done\nsettings: saving file...");
+	FILE *fp;
+	fp = fopen(settingsPath, "w+");
+	snprintf(buffer, 256, "%s", settings.fileContent.c_str());
+	fprintf(fp, buffer);
+	fclose(fp);
+	print(" Done\n");
 	return 0;
 }
 
