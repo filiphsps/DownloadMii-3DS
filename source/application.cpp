@@ -103,6 +103,7 @@ Result installApp(Application_s app){
 	free(file3dsx);
 	free(filesmdh);
 	progressbar.progress = 0;
+	renderGUI();
 	return 0;
 }
 

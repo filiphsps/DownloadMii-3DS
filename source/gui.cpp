@@ -430,7 +430,7 @@ void drawTopBar(){
 	
 	u64 timeInSeconds = osGetTime() / 1000; 
 	u64 dayTime = timeInSeconds % SECONDS_IN_DAY; 
-	snprintf(buffer,256, "%llu:%llu:%llu",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE);
+	snprintf(buffer,256, "%02llu:%02llu:%02llu",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE);
 	drawString(buffer, 2,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
 	drawString(buffer, 2,2, 255,255,255, screen.screenTopRight,GFX_TOP);
 }
