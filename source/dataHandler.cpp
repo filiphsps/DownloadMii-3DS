@@ -57,7 +57,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 		app.publisher = (*iter).get("publisher").get<string>();
 		app.version = (*iter).get("version").get<string>();
 		app.description = (*iter).get("description").get<string>();
-		int index;
+		u32 index;
 		while ((index = app.description.find("&#39;")) != string::npos)
 			app.description.replace(index, 5, "'"); //ToDo: move into separate function.
 		app.category = (*iter).get("category").get<string>();
