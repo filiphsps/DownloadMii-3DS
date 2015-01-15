@@ -268,7 +268,7 @@ int main(int argc, char** argv)
 		draw();
 
 		/* In case of start, exit the app */
-		if (Input.A){
+		if (Input.Start){
 			print("Exiting..\n");
 			break;
 		}

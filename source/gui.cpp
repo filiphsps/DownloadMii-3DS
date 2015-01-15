@@ -247,9 +247,9 @@ void renderAppPage(){
 
 	//Download Button
 	if(settings.internetConnection)
-		drawFillRect(0,190,320,240, 0,148,255, screen.screenBottom);
+		drawFillRect(1,190,320,240, 0,148,255, screen.screenBottom);
 	else
-		drawFillRect(0,190,320,240, 200,200,200, screen.screenBottom);
+		drawFillRect(1,190,320,240, 200,200,200, screen.screenBottom);
 
 	if(!currentApp.installed && !currentApp.updateAvalible && !currentApp.error)
 		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
