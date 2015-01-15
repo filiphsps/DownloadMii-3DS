@@ -16,6 +16,15 @@ int runCount;
 
 Result networkInit(){
 	httpcInit();
+	u32 out = 0;
+	
+	Handle h = acInit();
+	ACU_GetWifiStatus(&h, &out);
+	if (out != 0) {
+		print("WIFI: %d\n", out);
+		return -1;
+	}
+	acExit();
 	Result result = httpcOpenContext(&context, "http://www.downloadmii.com", 0); //Test internet connection
 	if (result != 0) {
 		httpcCloseContext(&context);
