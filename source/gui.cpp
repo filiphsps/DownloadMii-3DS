@@ -239,7 +239,8 @@ void renderAppPage(){
 
 	int temp = (240 - fontBlackHeader.height) - fontBlackSubHeader.height;
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader,  buffer, 240 - fontBlackHeader.height,5);
-	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, (char*)currentApp.publisher.c_str(), temp,5);
+	snprintf(buffer, 256, "%s; %d Downloads", (char*)currentApp.publisher.c_str(), currentApp.downloads);
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, buffer, temp,5);
 	
 	//About text
 	string description = insert_newlines(currentApp.description, 50);

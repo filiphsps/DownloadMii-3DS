@@ -59,6 +59,7 @@ void guiInit();
 void draw();
 void renderGUI();
 void renderStoreFront();
+void renderCategories();
 void renderSettings();
 void renderAppPage();
 void renderDebug();
@@ -74,6 +75,7 @@ void drawTopBar();
 void setStoreFrontImg(char* url); //Needs to be: 400x192
 void background();
 void drawAppEntry(Application_s app, int place);
+void drawCategory(Category_s cat, int place);
 
 /* UI Elements */
 Result guiPopup(char* title, char* content, char* b1, char* b2, u8* screen);

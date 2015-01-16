@@ -37,6 +37,12 @@ Application_s currentApp;
 static int CalcFPS(); //ToDo: move to utils.cpp
 char* getVersion();
 
+ThreadFunc test() {
+	while (true) {
+		gspWaitForVBlank();
+	}
+}
+
 int main(int argc, char** argv)
 {
 	//Initialize services
@@ -65,7 +71,10 @@ int main(int argc, char** argv)
 		settings.internetConnection = true;
 		print("Network connection is active!\n");
 	}
-	
+	/*Handle threadHandle;
+	u32 *stack = (u32*)malloc(0x4000);
+	svcCreateThread(&threadHandle, test(),0, &stack[0x4000 >> 2], 0, 3);*/
+
 	renderDebugLog();
 	u8 isN3DS=0;
 	APT_CheckNew3DS(NULL, &isN3DS);
