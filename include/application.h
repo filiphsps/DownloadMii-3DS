@@ -21,6 +21,12 @@ struct Application_s{
 	bool installed = false, updateAvalible = false, error = false;
 };
 
+struct Category_s {
+	int ID;
+	std::string name;
+	bool subCategories;
+};
+
 extern std::vector<Application_s> InstalledApps;
 
 Result installApp(Application_s app);

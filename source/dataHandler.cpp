@@ -20,6 +20,7 @@ vector<Application_s> overviewApps;
 vector<Application_s> staffSelectApps;
 vector<Application_s> InstalledApps;
 vector<Application_s> devList;
+vector<Category_s> categories;
 
 char easytolower(char in) {
 	if (in <= 'Z' && in >= 'A')
@@ -103,6 +104,42 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 	}
 }
 
+Result updateCategories(vector<Category_s> *CatList, char* jsonURL) {
+	vector<Category_s> tempV;
+	char* jsonsource;
+	u32 size;
+	downloadFile(jsonURL, &jsonsource, &size);
+	if (jsonsource == NULL) return -1; //Null check
+	if ((jsonsource[0] != '{' || jsonsource[9] == ']')) {
+		print("%s\n", jsonsource);
+		return -1;
+	}
+
+	/* Parse json and put it into the temp vector */
+	picojson::value v;
+	char* json = (char*)malloc(strlen(jsonsource) + 1);
+	strcpy(json, jsonsource);
+	string err = picojson::parse(v, json, json + strlen(json));
+	print(err.c_str());
+	picojson::array list = v.get("Categories").get<picojson::array>();
+
+	Category_s cat;
+	for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
+		print("%s ", cat.name.c_str());
+		cat.name = (*iter).get("name").get<string>();
+		cat.ID = (int)(*iter).get("categoryId").get<double>();
+		tempV.push_back(cat);
+	}
+	print("\n");
+	*CatList = tempV;
+	if (!CatList->empty()) // NULL/Empty check
+		return 0;
+	else {
+		print("Error, failed to do updateAppList()\n");
+		return -1;
+	}
+}
+
 Result doListUpdate(){
 	bool hasFailed = false;
 	//Update installed apps
@@ -131,6 +168,12 @@ Result doListUpdate(){
 	r = updateAppList(&staffSelectApps, buffer);
 	if (r != 0) {
 		print("updateAppList(4): Error\n");
+	}
+
+	snprintf(buffer, 256, "http://%s/api/categories/", APIDOMAIN);
+	r = updateCategories(&categories, buffer);
+	if (r != 0) {
+		print("updateCategories(4): Error\n");
 	}
 	if (hasFailed)
 		return -2;

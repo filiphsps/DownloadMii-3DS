@@ -117,9 +117,9 @@ int main(int argc, char** argv)
 	{
 	loopStart:
 		currentLoop++;
-		#ifdef DEBUG
+#ifdef DEBUG
 		FPS = CalcFPS();
-		#endif
+#endif
 		if (currentLoop > 2 && !settings.acceptedBeta) {
 			vButton_s but;
 			but.ID = 0;
@@ -270,6 +270,7 @@ int main(int argc, char** argv)
 		/* In case of start, exit the app */
 		if (Input.Start){
 			print("Exiting..\n");
+			//ToDo: Menu
 			break;
 		}
 	}
@@ -298,6 +299,7 @@ char* getVersion() {
 	return fileContent;
 }
 
+#ifdef DEBUG
 static int CalcFPS(){
 	if (svcGetSystemTick() >= tickOld + 268123480)
 	{
@@ -307,3 +309,4 @@ static int CalcFPS(){
 	}
 	return cfps;
 }
+#endif

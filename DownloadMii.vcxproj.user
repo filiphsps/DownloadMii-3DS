@@ -3,6 +3,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LocalDebuggerCommand>testing/3dmoo.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>DownloadMii.elf -sdmc "Testing/SD" -sdwrite</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>DownloadMii.elf -sdmc "Testing/sdmc" -sdwrite</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>
