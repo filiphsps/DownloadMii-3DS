@@ -34,14 +34,16 @@ int currentLoop = 0;
 
 //Todo:
 Application_s currentApp;
+#ifdef DEBUG
 static int CalcFPS(); //ToDo: move to utils.cpp
+#endif
 char* getVersion();
 
-ThreadFunc test() {
-	while (true) {
-		gspWaitForVBlank();
-	}
-}
+//ThreadFunc test() {
+//	while (true) {
+//		gspWaitForVBlank();
+//	}
+//}
 
 int main(int argc, char** argv)
 {

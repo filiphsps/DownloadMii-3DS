@@ -30,9 +30,9 @@ void doSplash(){
 		//Temp img
 		gfxDrawSprite(GFX_TOP, GFX_LEFT, (u8*)splash_bin, 240, 400, 0, 0);
 		gfxDrawSprite(GFX_TOP, GFX_RIGHT, (u8*)splash_bin, 240, 400, 0, 0);
-
+#ifdef DEBUG
 		renderDebug();
-		
+#endif
 		gfxFlushBuffers(); 
 		gfxSwapBuffers();
 	}
