@@ -37,3 +37,17 @@ void doSplash(){
 		gfxSwapBuffers();
 	}
 }
+
+Result checkEasterEgg(string date) {
+	//ToDo
+	if (date == "0215") {
+		//filfat's Birthday!
+	}
+	else if (date == "1224") {
+		//Xmas
+	}
+	else if (date == "1231") {
+		//New Year
+	}
+	return 0;
+}
