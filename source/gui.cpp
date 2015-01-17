@@ -36,6 +36,7 @@ int scene = 0;
 int maxScene = 3;
 string sceneTitle;
 vector<Application_s> tAppList;
+vector<Category_s> tCatList;
 int FPS;
 u8* cimg;
 
@@ -125,6 +126,14 @@ inline void drawAppEntries() {
 	}
 	appn = 0;
 }
+inline void drawCatEntries() {
+	int cn = 0;
+	for (auto cat : tCatList) {
+		cn++;
+		drawCategory(cat, cn, false);
+	}
+	cn = 0;
+}
 void renderStoreFront(){
 	
 	int temp; //ToDo: migrate to gui.h #define
@@ -141,8 +150,9 @@ void renderStoreFront(){
 		case -1:
 			//ToDo: searchbox
 			//ToDo: allow the user to select category from a list of categories
-			temp = (250 - fontBlackHeader.height) - fontBlackSubHeader.height;
-			gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This will be implemented in a future update!", (temp - fontBlackHeader.height) + 4, 5);
+			//temp = (250 - fontBlackHeader.height) - fontBlackSubHeader.height;
+			//gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader, "This will be implemented in a future update!", (temp - fontBlackHeader.height) + 4, 5);
+			drawCatEntries();
 			break;
 		case 0:
 			drawAppEntries();
@@ -247,10 +257,16 @@ void renderAppPage(){
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackSubHeader,  (char*)description.c_str(), (temp - fontBlackHeader.height) + 4,5);
 
 	//Download Button
-	if(settings.internetConnection)
-		drawFillRect(1,190,320,240, 0,148,255, screen.screenBottom);
-	else
-		drawFillRect(1,190,320,240, 200,200,200, screen.screenBottom);
+	if (settings.internetConnection) {
+		drawFillRect(1, 190, 320, 240, 0, 148, 255, screen.screenBottom);
+		if (progressbar.used) {
+			int width = (progressbar.progress * 320) / progressbar.maxProgress;
+			drawFillRect(1, 190, width, 240, 42, 149, 10, screen.screenBottom);
+		}
+	}
+	else {
+		drawFillRect(1, 190, 320, 240, 200, 200, 200, screen.screenBottom);
+	}
 
 	if(!currentApp.installed && !currentApp.updateAvalible && !currentApp.error)
 		gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontWhiteHeader,  "Download", 15,113);
@@ -436,6 +452,65 @@ void drawTopBar(){
 	drawString(buffer, 2,2, 255,255,255, screen.screenTopRight,GFX_TOP);
 }
 
+void drawCategory(Category_s cat, int place, bool subCategory /* Not implemented */) {
+
+	int y = 0;
+	int butY = 0, butY2 = 0, butX2 = 302, butX = 200;
+	if (place == 1) {
+		VSTY = CATEGORY_ENTRY_H;
+		clearVButtons();
+	}
+	else {
+		VSTY += CATEGORY_ENTRY_H;
+	}
+
+	y = (MARGIN * (place)) + (CATEGORY_ENTRY_H * (place - 1));
+
+	if ((getOnScreenY(y) >= 240 || getOnScreenY(y) + CATEGORY_ENTRY_H <= 0) || VSPY >= VSTY) {
+		butPos = 0;
+		return; //Outside screen dont draw
+	}
+	else if (getOnScreenY(y) + CATEGORY_ENTRY_H >= 240)/*The entry is partly offscreen*/
+	{
+		drawFillRect(0, getOnScreenY(y), 320, 239, 255,/*y/(float)VSTY**/255, 255, screen.screenBottom);
+
+		//Button
+		int x = getOnScreenY(y) + (CATEGORY_ENTRY_H / 4) * 3 < 239 ? getOnScreenY(y) + (CATEGORY_ENTRY_H / 4) * 3 : 239;
+		butX2 = x;
+		int z = getOnScreenY(y) + CATEGORY_ENTRY_H / 4 < 239 ? getOnScreenY(y) + CATEGORY_ENTRY_H / 4 : 239;
+		butX = z;
+	}
+	else if (getOnScreenY(y)<0)
+	{
+		drawLine(0, 0, 320, 0, 0, 255, 0, screen.screenBottom);
+		drawFillRect(0, 0, 320, getOnScreenY(y) + CATEGORY_ENTRY_H, 255,/*y/(float)VSTY**/255, 255, screen.screenBottom);
+		drawLine(0, getOnScreenY(y) + CATEGORY_ENTRY_H - 1, 320, getOnScreenY(y) + CATEGORY_ENTRY_H - 1, 224, 224, 224, screen.screenBottom);
+
+		//Button
+		butY = getOnScreenY(y) + CATEGORY_ENTRY_H / 4 - 1;
+		butY2 = getOnScreenY(y) + (CATEGORY_ENTRY_H / 4) * 3 - 1;
+	}
+	else {
+		drawFillRect(0, getOnScreenY(y), 320, getOnScreenY(y) + CATEGORY_ENTRY_H, 255,/*y/(float)VSTY**/255, 255, screen.screenBottom);
+		drawLine(0, getOnScreenY(y) + CATEGORY_ENTRY_H - 1, 320, getOnScreenY(y) + CATEGORY_ENTRY_H - 1, 224, 224, 224, screen.screenBottom);
+
+		//Button
+		butY = getOnScreenY(y) + CATEGORY_ENTRY_H / 4;
+		butY2 = getOnScreenY(y) + (CATEGORY_ENTRY_H / 4) * 3;
+	}
+
+	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, (char*)cat.name.c_str(), 240 - getOnScreenY(24 + y), 5);
+	vButton_s but;
+	but.ID = butPos;
+	but.x = butX;
+	but.y = butY;
+	but.x2 = butX2;
+	but.y2 = butY2;
+	//but.cat = cat;
+	but.menu = 2;
+	addVButton(but);
+	butPos++;
+}
 
 /* --- UI ELEMENTS --- */
 

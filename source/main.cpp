@@ -29,7 +29,7 @@ u64 tickOld = 0;
 int fps = 0; // int instead of u32/s32 so gcc doesn't complain about different signedness.
 int cfps;
 
-int currentMenu = 0;
+int currentMenu = -1;
 int currentLoop = 0;
 
 //Todo:
@@ -38,12 +38,6 @@ Application_s currentApp;
 static int CalcFPS(); //ToDo: move to utils.cpp
 #endif
 char* getVersion();
-
-//ThreadFunc test() {
-//	while (true) {
-//		gspWaitForVBlank();
-//	}
-//}
 
 int main(int argc, char** argv)
 {
@@ -73,9 +67,6 @@ int main(int argc, char** argv)
 		settings.internetConnection = true;
 		print("Network connection is active!\n");
 	}
-	/*Handle threadHandle;
-	u32 *stack = (u32*)malloc(0x4000);
-	svcCreateThread(&threadHandle, test(),0, &stack[0x4000 >> 2], 0, 3);*/
 
 	renderDebugLog();
 	u8 isN3DS=0;
@@ -174,6 +165,7 @@ int main(int argc, char** argv)
 				if(lastScene != scene){
 					switch(scene){
 						case -1: //Not implemented yet
+							tCatList = categories;
 							sceneTitle = "Category Selection";
 							break;
 						case 0:
