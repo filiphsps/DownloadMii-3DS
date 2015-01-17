@@ -21,7 +21,7 @@ Result networkInit(){
 	Handle h = acInit();
 	ACU_GetWifiStatus(&h, &out);
 	if (out != 0) {
-		print("WIFI: %d\n", out);
+		print("WIFI(Error) Statuscode: %d\n", (int)out);
 		return -1;
 	}
 	acExit();

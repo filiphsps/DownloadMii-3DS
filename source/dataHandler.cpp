@@ -21,6 +21,8 @@ vector<Application_s> staffSelectApps;
 vector<Application_s> InstalledApps;
 vector<Application_s> devList;
 vector<Category_s> categories;
+vector<Category_s> subCategory;
+vector<Application_s> tempCatAppList;
 
 char easytolower(char in) {
 	if (in <= 'Z' && in >= 'A')

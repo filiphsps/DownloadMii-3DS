@@ -47,6 +47,7 @@ extern char superStr[];
 extern font_s debugfnt;
 extern int currentMenu; //0 = overview, 1 = settings, 2 = app page, 3 = downloads(When i fugure out multi-threading), 4 = by dev.
 extern Application_s currentApp;
+extern Category_s currentCat;
 extern vector<Application_s> tAppList;
 extern std::vector<Category_s> tCatList;
 

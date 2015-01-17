@@ -472,7 +472,6 @@ void drawCategory(Category_s cat, int place, bool subCategory /* Not implemented
 	}
 	else if (getOnScreenY(y) + CATEGORY_ENTRY_H >= 240)/*The entry is partly offscreen*/
 	{
-		drawFillRect(0, getOnScreenY(y), 320, 239, 255,/*y/(float)VSTY**/255, 255, screen.screenBottom);
 
 		//Button
 		int x = getOnScreenY(y) + (CATEGORY_ENTRY_H / 4) * 3 < 239 ? getOnScreenY(y) + (CATEGORY_ENTRY_H / 4) * 3 : 239;
@@ -482,18 +481,11 @@ void drawCategory(Category_s cat, int place, bool subCategory /* Not implemented
 	}
 	else if (getOnScreenY(y)<0)
 	{
-		drawLine(0, 0, 320, 0, 0, 255, 0, screen.screenBottom);
-		drawFillRect(0, 0, 320, getOnScreenY(y) + CATEGORY_ENTRY_H, 255,/*y/(float)VSTY**/255, 255, screen.screenBottom);
-		drawLine(0, getOnScreenY(y) + CATEGORY_ENTRY_H - 1, 320, getOnScreenY(y) + CATEGORY_ENTRY_H - 1, 224, 224, 224, screen.screenBottom);
-
 		//Button
 		butY = getOnScreenY(y) + CATEGORY_ENTRY_H / 4 - 1;
 		butY2 = getOnScreenY(y) + (CATEGORY_ENTRY_H / 4) * 3 - 1;
 	}
 	else {
-		drawFillRect(0, getOnScreenY(y), 320, getOnScreenY(y) + CATEGORY_ENTRY_H, 255,/*y/(float)VSTY**/255, 255, screen.screenBottom);
-		drawLine(0, getOnScreenY(y) + CATEGORY_ENTRY_H - 1, 320, getOnScreenY(y) + CATEGORY_ENTRY_H - 1, 224, 224, 224, screen.screenBottom);
-
 		//Button
 		butY = getOnScreenY(y) + CATEGORY_ENTRY_H / 4;
 		butY2 = getOnScreenY(y) + (CATEGORY_ENTRY_H / 4) * 3;
@@ -506,7 +498,6 @@ void drawCategory(Category_s cat, int place, bool subCategory /* Not implemented
 	but.y = butY;
 	but.x2 = butX2;
 	but.y2 = butY2;
-	//but.cat = cat;
 	but.menu = 2;
 	addVButton(but);
 	butPos++;

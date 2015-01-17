@@ -34,6 +34,8 @@ int currentLoop = 0;
 
 //Todo:
 Application_s currentApp;
+Category_s currentCat;
+
 #ifdef DEBUG
 static int CalcFPS(); //ToDo: move to utils.cpp
 #endif
@@ -241,6 +243,15 @@ int main(int argc, char** argv)
 					sceneTitle = (char*)buffer;
 					r = updateDevList(&devList, (char*)currentApp.publisher.c_str());
 					setAppList(devList);
+				}
+				break;
+			case 5:
+				if (lastMenu != currentMenu) {
+					snprintf(buffer, 256, "%s\n", currentCat.name.c_str());
+					sceneTitle = (char*)buffer;
+					snprintf(buffer, 256, "http://%s/api/apps/Applications/%s", APIDOMAIN, currentCat.name.c_str());
+					updateAppList(&tempCatAppList, buffer);
+					setAppList(tempCatAppList);
 				}
 				break;
 			default:

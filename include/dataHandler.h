@@ -12,6 +12,7 @@ extern std::vector<Application_s> overviewApps;
 extern std::vector<Application_s> staffSelectApps;
 extern std::vector<Application_s> devList;
 extern std::vector<Category_s> categories;
+extern std::vector<Application_s> tempCatAppList;
 
 Result updateAppList(std::vector<Application_s> *AppList, char* jsonURL);
 Result updateCategories(std::vector<Category_s> *CatList, char* jsonURL);
