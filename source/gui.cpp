@@ -73,7 +73,6 @@ void draw() {
 	/* Buffers */
 	gfxFlushBuffers();
 	gfxSwapBuffers();
-	gspWaitForVBlank();
 }
 
 void renderGUI(){
