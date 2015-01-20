@@ -406,8 +406,8 @@ void drawAppEntry(Application_s app, int place){
 
 void background(){
 	drawFillRect( 0, 0, 320, 240, 227,242,253, screen.screenBottom);
-	drawFillRect( 0, 0, 400, 240, 227,242,253, screen.screenTopLeft);
-	drawFillRect( 0, 0, 400, 240, 227,242,253, screen.screenTopRight);
+	drawFillRect( 0, 0, 399, 240, 227,242,253, screen.screenTopLeft);
+	drawFillRect( 0, 0, 399, 240, 227,242,253, screen.screenTopRight);
 }
 void setStoreFrontImg(char* url){
 	if (settings.internetConnection) {
@@ -427,10 +427,10 @@ void setStoreFrontImg(char* url){
 	}
 }
 void drawTopBar(){
-	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screen.screenTopLeft);
-	drawFillRect(0,0,400,NAVBAR_H, 0,126,216, screen.screenTopRight);
-	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screen.screenTopLeft);
-	drawFillRect(0,12,400,SECONDARY_NAVBAR_H + 12, 0,148,255, screen.screenTopRight);
+	drawFillRect(0,0,399,NAVBAR_H, 0,126,216, screen.screenTopLeft);
+	drawFillRect(0,0,399,NAVBAR_H, 0,126,216, screen.screenTopRight);
+	drawFillRect(0,12,399,SECONDARY_NAVBAR_H + 12, 0,148,255, screen.screenTopLeft);
+	drawFillRect(0,12,399,SECONDARY_NAVBAR_H + 12, 0,148,255, screen.screenTopRight);
 
 	snprintf(buffer,256, (char*)navbar.Title.c_str());
 	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H / 2) + fontWhiteHeader.height)), 13);
