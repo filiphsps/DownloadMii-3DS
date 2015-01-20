@@ -31,4 +31,4 @@ extern std::vector<Application_s> InstalledApps;
 
 Result installApp(Application_s app);
 Result updateInstalledList(std::vector<Application_s> &list);
-Result dlAndUnZip(char* url, char* path);
+Result dlAndUnZip(char* url, char* path, char* appname);

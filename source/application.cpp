@@ -93,10 +93,10 @@ Result installApp(Application_s app){
 	fclose(fp);
 	print("VERSION saved\n");
 	progressbar.progress = 85;
-	if (app.dataZip != "") { //if the app has extra data, download and unzip it.
+	if (app.dataZip != "" && app.dataZip != "NULL") { //if the app has extra data, download and unzip it.
 		print("unZipping data... ");
 		snprintf(buffer, 256, "/%s/%s/", HBPATH, app.name.c_str());
-		r = dlAndUnZip((char*)app.dataZip.c_str(), buffer);
+		r = dlAndUnZip((char*)app.dataZip.c_str(), buffer, (char*)app.name.c_str());
 		if (r != 0) {
 			print("Error: %s\n", getErrorMsg(r));
 		}
@@ -112,12 +112,19 @@ Result installApp(Application_s app){
 	return 0;
 }
 
-Result dlAndUnZip(char* url, char* path) {
-	//char buffer[1024];
-	//u32 size;
+Result dlAndUnZip(char* url, char* path, char* appname) {
+	char buffer[1024];
+	FILE *fp;
 	/* Download File */
-	//char* file;
-	//Result r = downloadFile(url, &file, &size);
+	char* file;
+	u32 size;
+	Result r = downloadFile(url, &file, &size);
+	r = downloadFile(file, &file, &size);
+	/* Save Zip File */
+	snprintf(buffer, 256, "/%s/%s/%s.zip", HBPATH, appname, "appdata");
+	fp = fopen(buffer, "w+");
+	fwrite(file, sizeof(file), size, fp);
+	fclose(fp);
 	//ToDo: unzip zip file
 	return -99;
 }
