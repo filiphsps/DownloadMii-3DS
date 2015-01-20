@@ -6,12 +6,12 @@
 #include <iostream>
 #include <sstream>
 #include <3ds.h>
+#include <zlib.h>
 #include "main.h"
 #include "application.h"
 #include "download.h"
 #include "gui.h"
 #include "utils.h"
-
 #include "settings.h"
 #include "md5.h"
 #include "dataHandler.h"
@@ -96,7 +96,7 @@ Result installApp(Application_s app){
 	if (app.dataZip != "" && app.dataZip != "NULL") { //if the app has extra data, download and unzip it.
 		print("unZipping data... ");
 		snprintf(buffer, 256, "/%s/%s/", HBPATH, app.name.c_str());
-		r = dlAndUnZip((char*)app.dataZip.c_str(), buffer, (char*)app.name.c_str());
+		//r = dlAndUnZip((char*)app.dataZip.c_str(), buffer, (char*)app.name.c_str());
 		if (r != 0) {
 			print("Error: %s\n", getErrorMsg(r));
 		}
@@ -121,11 +121,14 @@ Result dlAndUnZip(char* url, char* path, char* appname) {
 	Result r = downloadFile(url, &file, &size);
 	r = downloadFile(file, &file, &size);
 	/* Save Zip File */
-	snprintf(buffer, 256, "/%s/%s/%s.zip", HBPATH, appname, "appdata");
+	snprintf(buffer, 256, "sdmc:/%s/%s/%s.zip", HBPATH, appname, "appdata");
 	fp = fopen(buffer, "w+");
 	fwrite(file, sizeof(file), size, fp);
 	fclose(fp);
 	//ToDo: unzip zip file
+	fp = fopen(buffer, "rb");
+	fclose(fp);
+
 	return -99;
 }
 

@@ -1,0 +1,1 @@
+Place the content of the zip file(s) inside the devkitpro folder.
