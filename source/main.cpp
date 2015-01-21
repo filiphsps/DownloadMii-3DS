@@ -158,17 +158,27 @@ int main(int argc, char** argv)
 					}
 				}
 				//Loop through all the buttons
-				for(auto &but : vButtons){
-					if(but.pressed){
-						currentApp = but.app;
-						currentMenu = but.menu;
+				if (scene != -1) {
+					for (auto &but : vButtons) {
+						if (but.pressed) {
+							currentApp = but.app;
+							currentMenu = but.menu;
+						}
+					}
+				}
+				else {
+					for (auto &but : vButtons) {
+						if (but.pressed) {
+							currentCat.name = but.name;
+							currentMenu = but.menu;
+						}
 					}
 				}
 				if(lastScene != scene){
 					switch(scene){
 						case -1: //Not implemented yet
 							tCatList = categories;
-							sceneTitle = "Category Selection";
+							sceneTitle = "Categories";
 							break;
 						case 0:
 							sceneTitle = "Overview";
@@ -249,7 +259,7 @@ int main(int argc, char** argv)
 				if (lastMenu != currentMenu) {
 					snprintf(buffer, 256, "%s\n", currentCat.name.c_str());
 					sceneTitle = (char*)buffer;
-					snprintf(buffer, 256, "http://%s/api/apps/Applications/%s", APIDOMAIN, currentCat.name.c_str());
+					snprintf(buffer, 256, "http://%s/api/categories/%s", APIDOMAIN, currentCat.name.c_str());
 					updateAppList(&tempCatAppList, buffer);
 					setAppList(tempCatAppList);
 				}

@@ -26,7 +26,7 @@ void UpdateInput(Input_s* input){
 		hidTouchRead(&tp);
 		input->touchX = tp.px;
 		input->touchY = tp.py;
-		//print("Touch: %d %d\n", tp.px, tp.py);
+		print("Touch: %d %d\n", tp.px, tp.py);
 		TC--;
 	}
 	checkVButtonTouch(input);

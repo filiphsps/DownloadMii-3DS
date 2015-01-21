@@ -17,6 +17,7 @@ struct vButton_s{
 	int ID;
 	int x, y, x2, y2, menu = 0;
 	Application_s app;
+	std::string name;
 	bool pressed;
 };
 

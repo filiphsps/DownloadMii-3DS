@@ -498,6 +498,7 @@ void drawCategory(Category_s cat, int place, bool subCategory /* Not implemented
 	but.x2 = butX2;
 	but.y2 = butY2;
 	but.menu = 2;
+	but.name = cat.name;
 	addVButton(but);
 	butPos++;
 }
