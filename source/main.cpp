@@ -180,7 +180,7 @@ int main(int argc, char** argv)
 					switch(scene){
 						case -1: //Not implemented yet
 							tCatList = categories;
-							sceneTitle = "Categories";
+							sceneTitle = "Categories(not implemented)";
 							break;
 						case 0:
 							sceneTitle = "Overview";
