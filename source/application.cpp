@@ -93,10 +93,9 @@ Result installApp(Application_s app){
 	fclose(fp);
 	print("VERSION saved\n");
 	progressbar.progress = 85;
-	if (app.dataZip != "" && app.dataZip != "NULL") { //if the app has extra data, download and unzip it.
+	if (app.appdata != "" && app.appdata != "null") { //if the app has extra data, download and unzip it.
 		print("unZipping data... ");
-		snprintf(buffer, 256, "/%s/%s/", HBPATH, app.name.c_str());
-		//r = dlAndUnZip((char*)app.dataZip.c_str(), buffer, (char*)app.name.c_str());
+		r = dlAndUnZip((char*)app.appdata.c_str(), "unused", (char*)app.name.c_str());
 		if (r != 0) {
 			print("Error: %s\n", getErrorMsg(r));
 		}
@@ -146,6 +145,9 @@ Result dlAndUnZip(char* url, char* path, char* appname) {
 	char* file;
 	u32 size;
 	Result r = downloadFile(url, &file, &size);
+	string temp = file;
+	replace(temp, "https", "http");
+	file = (char*)temp.c_str();
 	r = downloadFile(file, &file, &size);
 	/* Save Zip File */
 	snprintf(buffer, 255, "/%s/%s/%s.zip", HBPATH, appname, "appdata");

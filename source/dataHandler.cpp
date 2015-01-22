@@ -69,10 +69,19 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 		}
 		else
 			app.subcategory = "null";
-		char buf[100];
-		snprintf(buf, 99, "http://www.downloadmii.com/api/dl/3dsx/%s", (char*)app.GUID.c_str());
+		char buf[256];
+		if ((*iter).get("appdata_md5").evaluate_as_boolean()) {
+			snprintf(buf, 255, "http://www.downloadmii.com/api/dl/appdata/%s", (char*)app.GUID.c_str());
+			app.appdata = buf;
+			app.md5_appdata = (*iter).get("appdata_md5").get<string>();
+		}
+		else {
+			app.appdata = "null";
+			app.md5_appdata = "null";
+		}
+		snprintf(buf, 255, "http://www.downloadmii.com/api/dl/3dsx/%s", (char*)app.GUID.c_str());
 		app._3dsx = buf;
-		snprintf(buf, 99, "http://www.downloadmii.com/api/dl/smdh/%s", (char*)app.GUID.c_str());
+		snprintf(buf, 255, "http://www.downloadmii.com/api/dl/smdh/%s", (char*)app.GUID.c_str());
 		app.smdh = buf;
 		app.raiting = (int)(*iter).get("rating").get<double>();
 		app.downloads = (int)(*iter).get("downloads").get<double>();

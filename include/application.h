@@ -14,7 +14,7 @@ struct Application_s{
 	std::string subcategory;
 	std::string _3dsx, md5_3dsx;
 	std::string smdh, md5_smdh;
-	std::string dataZip, md5_dataZip;
+	std::string appdata, md5_appdata;
 	int raiting;
 	int downloads;
 
