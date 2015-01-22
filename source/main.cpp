@@ -70,6 +70,8 @@ int main(int argc, char** argv)
 		print("Network connection is active!\n");
 	}
 
+	//dlAndUnZip("http://www.downloadmii.com/releases/1000.zip", "/3ds/downloadmii/", "downloadmii");
+
 	renderDebugLog();
 	u8 isN3DS=0;
 	APT_CheckNew3DS(NULL, &isN3DS);

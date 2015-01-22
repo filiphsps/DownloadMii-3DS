@@ -34,9 +34,9 @@ include $(DEVKITARM)/3ds_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source
+SOURCES		:=	source source/unzip
 DATA		:=	data
-INCLUDES	:=	include
+INCLUDES	:=	include include/unzip
 
 APP_TITLE       := DownloadMii
 APP_DESCRIPTION := An online store for Homebrew Applications and games.

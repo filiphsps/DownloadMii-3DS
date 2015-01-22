@@ -8,8 +8,8 @@
 #include "draw.h"
 #include "ascii64.h"
 #include "application.h"
+#include "print.h"
 
-#define print(...) snprintf(&superStr[strlen(superStr)], 9192, __VA_ARGS__); svcOutputDebugString(superStr, 9192);
 /* FLAT DESIGN UI */
 #define TOPSCREEN_W 400
 #define TOPSCREEN_H 240
@@ -43,7 +43,6 @@ struct Screen_s {
 };
 extern Screen_s screen;
 extern progressBar_s progressbar;
-extern char superStr[];
 extern font_s debugfnt;
 extern int currentMenu; //0 = overview, 1 = settings, 2 = app page, 3 = downloads(When i fugure out multi-threading), 4 = by dev.
 extern Application_s currentApp;

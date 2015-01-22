@@ -112,8 +112,35 @@ Result installApp(Application_s app){
 	return 0;
 }
 
+bool unzipArchive(char * zipfilepath, char * unzipfolderpath)
+{
+	const char *FileToExtract = zipfilepath;
+	const char *DirTe = unzipfolderpath;
+	const char *Password = NULL;
+	sdmcArchive = (FS_archive) { 0x9, (FS_path) { PATH_EMPTY, 1, (u8*)"" } };
+	FSUSER_OpenArchive(NULL, &sdmcArchive);
+	FS_path TEMP_PATH = FS_makePath(PATH_CHAR, DirTe);
+	FSUSER_CreateDirectory(NULL, sdmcArchive, TEMP_PATH);
+	FSUSER_CloseArchive(NULL, &sdmcArchive);
+	char tmpFile2[1024];
+	char tmpPath2[1024];
+	sdmcInit();
+	strcpy(tmpPath2, "sdmc:");
+	strcat(tmpPath2, (char*)DirTe);
+	chdir(tmpPath2);
+	strcpy(tmpFile2, "sdmc:");
+	strcat(tmpFile2, (char*)FileToExtract);
+	Zip *handle = ZipOpen(tmpFile2);
+	if (handle == NULL) print("error opening ZIP file.\n");
+	int result = ZipExtract(handle, Password);
+	ZipClose(handle);
+	sdmcExit();
+	return 1;
+}
+
 Result dlAndUnZip(char* url, char* path, char* appname) {
-	char buffer[1024];
+	char buffer[256];
+	char buffer2[256];
 	FILE *fp;
 	/* Download File */
 	char* file;
@@ -121,13 +148,12 @@ Result dlAndUnZip(char* url, char* path, char* appname) {
 	Result r = downloadFile(url, &file, &size);
 	r = downloadFile(file, &file, &size);
 	/* Save Zip File */
-	snprintf(buffer, 256, "sdmc:/%s/%s/%s.zip", HBPATH, appname, "appdata");
+	snprintf(buffer, 255, "/%s/%s/%s.zip", HBPATH, appname, "appdata");
+	snprintf(buffer2, 255, "/%s/%s/", HBPATH, appname);
 	fp = fopen(buffer, "w+");
 	fwrite(file, sizeof(file), size, fp);
 	fclose(fp);
-	//ToDo: unzip zip file
-	fp = fopen(buffer, "rb");
-	fclose(fp);
+	unzipArchive(buffer, buffer2);
 
 	return -99;
 }

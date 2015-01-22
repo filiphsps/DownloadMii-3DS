@@ -278,7 +278,6 @@ void renderAppPage(){
 	
 	//ToDo: We dont need to add & remove the button multiple times.
 	if (settings.internetConnection) {
-		clearVButtons();
 		vButton_s but;
 		but.ID = 0;
 		but.x = 0;
@@ -491,6 +490,7 @@ void drawCategory(Category_s cat, int place, bool subCategory /* Not implemented
 	}
 
 	gfxDrawText(GFX_BOTTOM, GFX_LEFT, &fontBlackHeader, (char*)cat.name.c_str(), 240 - getOnScreenY(24 + y), 5);
+	clearVButtons();
 	vButton_s but;
 	but.ID = butPos;
 	but.x = butX;
