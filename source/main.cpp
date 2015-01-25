@@ -331,10 +331,12 @@ char* getVersion() {
 char* getApiVersion() {
 	char* file;
 	u32 size;
-	Result r = downloadFile("http://downloadmii.com/api/version", &file, &size);
+	Result r = downloadFile("http://downloadmii.com/newApi/version", &file, &size);
 	if (r != 0) {
-		print("Failed to get current app version, defaulting to 0.0.0.0\n");
-		return "0.0.0.0";
+		r = downloadFile("http://downloadmii.com/api/version", &file, &size);
+		if (r != 0) {
+			return "0.0.0.0";
+		}
 	}
 	return file;
 }
