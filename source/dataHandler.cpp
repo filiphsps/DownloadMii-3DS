@@ -7,7 +7,7 @@
 #include "application.h"
 #include "download.h"
 #include "gui.h"
-
+#include "settings.h"
 #include "picojson.h"
 #include "error.h"
 #include "utils.h"
@@ -160,26 +160,35 @@ Result doListUpdate(){
 	}
 
 	char buffer[256];
-	snprintf(buffer, 256, "http://%s/api/apps/Applications/", APIDOMAIN);
+	if (settings.apiVersion == "1.1.0.0")
+		snprintf(buffer, 256, "http://%s/api/apps/Applications/", APIDOMAIN);
+	else
+		snprintf(buffer, 256, "http://%s/newApi/apps", APIDOMAIN);
 	r = updateAppList(&overviewApps, buffer);
 	if(r != 0){
 		print("updateAppList(1): Error\n");
 	}
-	snprintf(buffer, 256, "http://%s/api/apps/TopDownloadedApps/", APIDOMAIN);
+	if (settings.apiVersion == "1.1.0.0")
+		snprintf(buffer, 256, "http://%s/api/apps/TopDownloadedApps/", APIDOMAIN);
+	else
+		snprintf(buffer, 256, "http://%s/newApi/apps?category=%21Games&sort=downloads", APIDOMAIN);
 	r = updateAppList(&topApps, buffer);
 	if (r != 0) {
 		print("updateAppList(2): Error\n");
 	}
-	snprintf(buffer, 256, "http://%s/api/apps/TopDownloadedGames/", APIDOMAIN);
+	if(settings.apiVersion == "1.1.0.0")
+		snprintf(buffer, 256, "http://%s/api/apps/TopDownloadedGames/", APIDOMAIN);
+	else
+		snprintf(buffer, 256, "http://%s/newApi/apps?category=Games&sort=downloads", APIDOMAIN);
 	r = updateAppList(&topGames, buffer);
 	if (r != 0) {
 		print("updateAppList(3): Error\n");
 	}
-	snprintf(buffer, 256, "http://%s/api/apps/StaffPicks/", APIDOMAIN);
+	/*snprintf(buffer, 256, "http://%s/api/apps/StaffPicks/", APIDOMAIN);
 	r = updateAppList(&staffSelectApps, buffer);
 	if (r != 0) {
 		print("updateAppList(4): Error\n");
-	}
+	}*/
 
 	snprintf(buffer, 256, "http://%s/api/categories/", APIDOMAIN);
 	r = updateCategories(&categories, buffer);

@@ -40,6 +40,7 @@ Category_s currentCat;
 static int CalcFPS(); //ToDo: move to utils.cpp
 #endif
 char* getVersion();
+char* getApiVersion();
 
 int main(int argc, char** argv)
 {
@@ -70,8 +71,6 @@ int main(int argc, char** argv)
 		print("Network connection is active!\n");
 	}
 
-	//dlAndUnZip("http://www.downloadmii.com/releases/1000.zip", "/3ds/downloadmii/", "downloadmii");
-
 	renderDebugLog();
 	u8 isN3DS=0;
 	APT_CheckNew3DS(NULL, &isN3DS);
@@ -92,6 +91,13 @@ int main(int argc, char** argv)
 		aptCloseSession();
 	}
 
+	print("Getting remote api version\n");
+	settings.apiVersion = getApiVersion();
+	print(settings.apiVersion.c_str());
+	print("\n");
+	print("Getting DownloadMii version...\n");
+	settings.version = getVersion();
+
 	renderDebugLog();
 	if (settings.internetConnection) {
 		r = doListUpdate();
@@ -102,9 +108,6 @@ int main(int argc, char** argv)
 	else {
 		r = updateInstalledList(InstalledApps);
 	}
-
-	print("Getting DownloadMii version...\n");
-	settings.version = getVersion();
 
 	fadeOut();
 	debugfnt = fontBlack;
@@ -323,6 +326,17 @@ char* getVersion() {
 		return "0.0.0.0";
 	}
 	return fileContent;
+}
+
+char* getApiVersion() {
+	char* file;
+	u32 size;
+	Result r = downloadFile("http://downloadmii.com/api/version", &file, &size);
+	if (r != 0) {
+		print("Failed to get current app version, defaulting to 0.0.0.0\n");
+		return "0.0.0.0";
+	}
+	return file;
 }
 
 #ifdef DEBUG

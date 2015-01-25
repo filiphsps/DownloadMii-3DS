@@ -16,6 +16,7 @@ struct Settings_s{
 	bool internetConnection;
 	std::string version;
 	std::string fileContent;
+	std::string apiVersion; //The backend api version
 };
 
 extern Settings_s settings;
