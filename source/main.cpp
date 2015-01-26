@@ -264,7 +264,7 @@ int main(int argc, char** argv)
 				if (lastMenu != currentMenu) {
 					snprintf(buffer, 256, "%s\n", currentCat.name.c_str());
 					sceneTitle = (char*)buffer;
-					snprintf(buffer, 256, "http://%s/api/categories/%s", APIDOMAIN, currentCat.name.c_str());
+					snprintf(buffer, 256, "http://%s/newApi/categories/%s", APIDOMAIN, currentCat.name.c_str());
 					updateAppList(&tempCatAppList, buffer);
 					setAppList(tempCatAppList);
 				}

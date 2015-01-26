@@ -71,7 +71,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 			app.subcategory = "null";
 		char buf[256];
 		if ((*iter).get("appdata_md5").evaluate_as_boolean()) {
-			snprintf(buf, 255, "http://www.downloadmii.com/api/dl/appdata/%s", (char*)app.GUID.c_str());
+			snprintf(buf, 255, "http://www.downloadmii.com/newApi/dl/appdata/%s", (char*)app.GUID.c_str());
 			app.appdata = buf;
 			app.md5_appdata = (*iter).get("appdata_md5").get<string>();
 		}
@@ -79,9 +79,9 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 			app.appdata = "null";
 			app.md5_appdata = "null";
 		}
-		snprintf(buf, 255, "http://www.downloadmii.com/api/dl/3dsx/%s", (char*)app.GUID.c_str());
+		snprintf(buf, 255, "http://www.downloadmii.com/newApi/dl/3dsx/%s", (char*)app.GUID.c_str());
 		app._3dsx = buf;
-		snprintf(buf, 255, "http://www.downloadmii.com/api/dl/smdh/%s", (char*)app.GUID.c_str());
+		snprintf(buf, 255, "http://www.downloadmii.com/newApi/dl/smdh/%s", (char*)app.GUID.c_str());
 		app.smdh = buf;
 		app.raiting = (int)(*iter).get("rating").get<double>();
 		app.downloads = (int)(*iter).get("downloads").get<double>();
@@ -190,7 +190,7 @@ Result doListUpdate(){
 		print("updateAppList(4): Error\n");
 	}*/
 
-	snprintf(buffer, 256, "http://%s/api/categories/", APIDOMAIN);
+	snprintf(buffer, 256, "http://%s/newApi/categories/", APIDOMAIN);
 	r = updateCategories(&categories, buffer);
 	if (r != 0) {
 		print("updateCategories(4): Error\n");
@@ -203,7 +203,7 @@ Result doListUpdate(){
 
 Result updateDevList(vector<Application_s> *AppList, char* developer) {
 	char buffer[256];
-	snprintf(buffer,256, "http://%s/api/apps/ByDev/%s/", APIDOMAIN,developer);
+	snprintf(buffer,256, "http://%s/newApi/apps/?publisher=%s", APIDOMAIN,developer);
 	return updateAppList(AppList, buffer);
 }
 
@@ -211,7 +211,7 @@ Result checkUpdate(char* currentVersion) {
 	char* remoteVersion;
 	int ret = -1;
 	u32 size;
-	downloadFile("http://www.downloadmii.com/api/dmii/version", &remoteVersion, &size);
+	downloadFile("http://www.downloadmii.com/newApi/dmii/version", &remoteVersion, &size);
 	int a = strcmp(currentVersion, remoteVersion);
 	if (a != 0 && remoteVersion != NULL) {
 		sceneTitle = "Update Available";
@@ -232,7 +232,7 @@ Result checkUpdate(char* currentVersion) {
 					//Parse json:
 					char* jsonsource;
 					u32 size;
-					downloadFile("http://www.downloadmii.com/api/dmii/data", &jsonsource, &size);
+					downloadFile("http://www.downloadmii.com/newApi/dmii/data", &jsonsource, &size);
 					if (jsonsource == 0) return -1; //Null check
 					if ((jsonsource[0] != '{' || jsonsource[9] == ']')) return -1;
 
@@ -245,9 +245,9 @@ Result checkUpdate(char* currentVersion) {
 					picojson::array list = v.get("DownloadMii").get<picojson::array>();
 					for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
 						char buf[100];
-						snprintf(buf,99,"http://www.downloadmii.com/api/dl/3dsx/%s", (*iter).get("guid").get<string>().c_str());
+						snprintf(buf,99,"http://www.downloadmii.com/newApi/dl/3dsx/%s", (*iter).get("guid").get<string>().c_str());
 						dmii._3dsx = buf;
-						snprintf(buf, 99, "http://www.downloadmii.com/api/dl/smdh/%s", (*iter).get("guid").get<string>().c_str());
+						snprintf(buf, 99, "http://www.downloadmii.com/newApi/dl/smdh/%s", (*iter).get("guid").get<string>().c_str());
 						dmii.smdh  = buf;
 						break;
 					}
