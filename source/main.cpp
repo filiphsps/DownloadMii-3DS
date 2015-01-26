@@ -331,9 +331,9 @@ char* getVersion() {
 char* getApiVersion() {
 	char* file;
 	u32 size;
-	Result r = downloadFile("http://downloadmii.com/newApi/version", &file, &size);
+	Result r = downloadFile("http://www.downloadmii.com/newApi/version", &file, &size);
 	if (r != 0) {
-		r = downloadFile("http://downloadmii.com/api/version", &file, &size);
+		r = downloadFile("http://www.downloadmii.com/api/version", &file, &size);
 		if (r != 0) {
 			return "0.0.0.0";
 		}

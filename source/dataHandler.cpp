@@ -171,7 +171,7 @@ Result doListUpdate(){
 	if (settings.apiVersion == "1.1.0.0")
 		snprintf(buffer, 256, "http://%s/api/apps/TopDownloadedApps/", APIDOMAIN);
 	else
-		snprintf(buffer, 256, "http://%s/newApi/apps?category=%21Games&sort=downloads", APIDOMAIN);
+		snprintf(buffer, 256, "http://%s/newApi/apps?sort=downloads", APIDOMAIN);
 	r = updateAppList(&topApps, buffer);
 	if (r != 0) {
 		print("updateAppList(2): Error\n");
