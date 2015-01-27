@@ -92,7 +92,7 @@ int main(int argc, char** argv)
 	}
 
 	print("Getting remote api version\n");
-	settings.apiVersion = getApiVersion();
+	settings.apiVersion = "1.2.0.0"/*getApiVersion()*/; //Temporary
 	print(settings.apiVersion.c_str());
 	print("\n");
 	print("Getting DownloadMii version...\n");
