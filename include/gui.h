@@ -1,3 +1,18 @@
+/*------------------------------------------------------
+					DownloadMii
+			© Filiph Sandström 2014-2015
+
+		TODO:
+		* Create a universal GUI Library
+		* Migrate to that Library
+
+		CONTRIBUTORS:
+		* Filiph Sandström (filfat)
+		* Lectem
+		* AlbertoSONIC
+		* celcodioc
+		* Joostin
+------------------------------------------------------*/
 #pragma once
 
 #include <iostream>

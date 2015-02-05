@@ -1,3 +1,13 @@
+/*------------------------------------------------------
+					DownloadMii
+			© Filiph Sandström 2014-2015
+
+		TODO:
+		* See issues & README.MD
+
+		CONTRIBUTORS:
+		* Filiph Sandström (filfat)
+------------------------------------------------------*/
 #pragma once
 
 #include <3ds.h>

@@ -1,3 +1,15 @@
+/*------------------------------------------------------
+					DownloadMii
+			© Filiph Sandström 2014-2015
+
+		TODO:
+		* Clean-up
+
+		CONTRIBUTORS:
+		* Filiph Sandström (filfat)
+		* ichfly
+		* Joostin
+------------------------------------------------------*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

@@ -1,3 +1,16 @@
+/*------------------------------------------------------
+					DownloadMii
+			© Filiph Sandström 2014-2015
+
+		TODO:
+		* Speed-up
+		* Clean-up
+		* Fix error codes
+
+		CONTRIBUTORS:
+		* Filiph Sandström (filfat)
+		* Joostin
+------------------------------------------------------*/
 #pragma once
 
 #include <iostream>
