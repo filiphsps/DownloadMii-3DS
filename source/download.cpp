@@ -16,7 +16,7 @@ int runCount;
 
 Result networkInit(){
 	httpcInit();
-	u32 out = 0;
+	/*u32 out = 0;
 	
 	Handle h = acInit();
 	ACU_GetWifiStatus(&h, &out);
@@ -24,7 +24,7 @@ Result networkInit(){
 		print("WIFI(Error) Statuscode: %d\n", (int)out);
 		return -1;
 	}
-	acExit();
+	acExit();*/
 	Result result = httpcOpenContext(&context, "http://www.downloadmii.com", 0); //Test internet connection
 	if (result != 0) {
 		httpcCloseContext(&context);
