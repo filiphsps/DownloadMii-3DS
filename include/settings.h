@@ -17,9 +17,9 @@
 #include <3ds.h>
 
 struct Settings_s{
-	bool nightly;    	//Ex: true, Unused.
-	bool autoUpdate;	//Ex: true, Unused.
-	bool acceptedBeta;  //Ex: true, Used.
+	bool nightly;    		//Ex: true, Unused.
+	bool autoUpdate;		//Ex: true, Unused.
+	bool acceptedBeta;		//Ex: true, Used.
 	std::string themePath; 	//Ex: "/3ds/downloadmii/flatTheme.dmt", Unused.
 
 	//Settings that doesnt get saved to the file:

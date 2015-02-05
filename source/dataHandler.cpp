@@ -184,11 +184,13 @@ Result doListUpdate(){
 	if (r != 0) {
 		print("updateAppList(3): Error\n");
 	}
-	/*snprintf(buffer, 256, "http://%s/api/apps/StaffPicks/", APIDOMAIN);
+
+	//ToDo:
+	snprintf(buffer, 256, "http://%s/api/apps/StaffPicks/", APIDOMAIN);
 	r = updateAppList(&staffSelectApps, buffer);
 	if (r != 0) {
 		print("updateAppList(4): Error\n");
-	}*/
+	}
 
 	snprintf(buffer, 256, "http://%s/newApi/categories/", APIDOMAIN);
 	r = updateCategories(&categories, buffer);

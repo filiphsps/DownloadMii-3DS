@@ -17,7 +17,6 @@
 #include <iostream>
 #include <sstream>
 #include <3ds.h>
-//Custom Classes
 #include "main.h"
 #include "utils.h"
 #include "application.h"
