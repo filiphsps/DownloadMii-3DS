@@ -152,6 +152,8 @@ Result dlAndUnZip(char* url, char* path, char* appname) {
 	fwrite(file, sizeof(file), size, fp);
 	fclose(fp);
 	unzipArchive(buffer, buffer2);
+
+	return 0;
 }
 
 Result updateInstalledList(vector<Application_s> &list) {
