@@ -43,6 +43,7 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 	Result result;
 
 	result = httpcOpenContext(&context, url, 0);
+	print("httpcOpenContext returned %d\n", (int)result);
 	if (result != 0) {
 		httpcCloseContext(&context);
 		print("error: httpcOpenContext\n");

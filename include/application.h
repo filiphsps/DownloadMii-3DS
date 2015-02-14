@@ -21,6 +21,21 @@ struct Application_s{
 	bool installed = false, updateAvalible = false, error = false;
 };
 
+struct Theme_s {
+	std::string GUID;
+	std::string name;
+	std::string publisher;
+	std::string version;
+	std::string description;
+	std::string category;
+	std::string subcategory;
+	std::string theme, md5_theme;
+	int raiting;
+	int downloads;
+
+	bool installed = false, updateAvalible = false, error = false;
+};
+
 struct Category_s {
 	int ID;
 	std::string name;

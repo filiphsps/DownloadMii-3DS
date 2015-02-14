@@ -131,7 +131,7 @@ Result updateCategories(vector<Category_s> *CatList, char* jsonURL) {
 	char* json = (char*)malloc(strlen(jsonsource) + 1);
 	strcpy(json, jsonsource);
 	string err = picojson::parse(v, json, json + strlen(json));
-	print(err.c_str());
+	//print(err.c_str());
 	picojson::array list = v.get("Categories").get<picojson::array>();
 
 	Category_s cat;

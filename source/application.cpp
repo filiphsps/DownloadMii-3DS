@@ -107,6 +107,12 @@ Result installApp(Application_s app){
 	return 0;
 }
 
+Result installTheme(Theme_s app) {
+	if (!settings.internetConnection)
+		return -1;
+	return -99;
+}
+
 bool unzipArchive(char * zipfilepath, char * unzipfolderpath)
 {
 	const char *FileToExtract = zipfilepath;
@@ -153,7 +159,7 @@ Result dlAndUnZip(char* url, char* path, char* appname) {
 	fclose(fp);
 	unzipArchive(buffer, buffer2);
 
-	return -99;
+	return 0;
 }
 
 Result updateInstalledList(vector<Application_s> &list) {

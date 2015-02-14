@@ -64,13 +64,12 @@ int main(int argc, char** argv)
 	sdmcInit();
 	guiInit();
 	settingsInit(DEFAULT_SETTINGS_PATH); //broken 
-	//gfxSet3D(true);
+	gfxSet3D(false);
     gspWaitForVBlank(); //wait to let the app register itself
 
 	doSplash(); //Splash Screen
 
 	print("networkInit: started...\n");
-	renderDebugLog();
 	Result r = networkInit();
 	if(r != 0){
 		settings.internetConnection = false;
@@ -82,7 +81,6 @@ int main(int argc, char** argv)
 		print("Network connection is active!\n");
 	}
 
-	renderDebugLog();
 	u8 isN3DS=0;
 	APT_CheckNew3DS(NULL, &isN3DS);
 	if(isN3DS){
@@ -109,7 +107,9 @@ int main(int argc, char** argv)
 	print("Getting DownloadMii version...\n");
 	settings.version = getVersion();
 
+#ifdef DEBUG
 	renderDebugLog();
+#endif
 	if (settings.internetConnection) {
 		r = doListUpdate();
 		if (r != 0) {

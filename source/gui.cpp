@@ -440,14 +440,14 @@ void drawTopBar(){
 #else
 	snprintf(buffer, 256, "%s(%s)", APPLICATION_NAME, settings.version.c_str());
 #endif
-	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
-	drawString(buffer, (400-strlen(APPLICATION_NAME)*8)/2,2, 255,255,255, screen.screenTopRight,GFX_TOP);
+	drawString(buffer, (400-strlen(buffer)*8)/2,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
+	drawString(buffer, (400-strlen(buffer)*8)/2,2, 255,255,255, screen.screenTopRight,GFX_TOP);
 	
 	u64 timeInSeconds = osGetTime() / 1000; 
 	u64 dayTime = timeInSeconds % SECONDS_IN_DAY; 
 	snprintf(buffer,256, "%02llu:%02llu:%02llu",dayTime / SECONDS_IN_HOUR,(dayTime % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,dayTime % SECONDS_IN_MINUTE);
-	drawString(buffer, 2,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
-	drawString(buffer, 2,2, 255,255,255, screen.screenTopRight,GFX_TOP);
+	drawString(buffer, 315,2, 255,255,255, screen.screenTopLeft,GFX_TOP);
+	drawString(buffer, 315,2, 255,255,255, screen.screenTopRight,GFX_TOP);
 }
 
 void drawCategory(Category_s cat, int place, bool subCategory /* Not implemented */) {
