@@ -77,6 +77,7 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 		return -7;
 	}
 	else if (statuscode == 999) { //Service closed
+		httpcCloseContext(&context);
 		return -200;
 	}
 
