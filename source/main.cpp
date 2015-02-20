@@ -2,10 +2,10 @@
 					DownloadMii
 			© Filiph Sandström 2014-2015
 
-		TODO:
+		TODO(In this file):
 		* Clean-up
 
-		CONTRIBUTORS:
+		CONTRIBUTORS(In this file):
 		* Filiph Sandström (filfat)
 		* ichfly
 		* Joostin
@@ -62,6 +62,7 @@ int main(int argc, char** argv)
 	gfxInitDefault();
 	fsInit();
 	sdmcInit();
+	printInit("sdmc:/DownloadMii.log");
 	guiInit();
 	settingsInit(DEFAULT_SETTINGS_PATH); //broken 
 	gfxSet3D(false);
@@ -317,6 +318,7 @@ int main(int argc, char** argv)
 	//Exit services
 EXIT:
 	settingsExit(DEFAULT_SETTINGS_PATH);
+	printExit();
 	fsExit();
 	sdmcExit();
 	gfxExit();

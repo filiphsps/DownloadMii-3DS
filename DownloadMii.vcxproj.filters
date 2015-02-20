@@ -63,6 +63,9 @@
     <ClCompile Include="source\error.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\print.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="build\font_bin.h">
