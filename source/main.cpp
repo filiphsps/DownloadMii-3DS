@@ -105,6 +105,7 @@ int main(int argc, char** argv)
 	print("Getting DownloadMii version...\n");
 	settings.version = getVersion();
 
+	print("Populating app lists...\n");
 	if (settings.internetConnection) {
 		r = doListUpdate();
 		if (r != 0) {
@@ -114,6 +115,7 @@ int main(int argc, char** argv)
 	else {
 		r = updateInstalledList(InstalledApps);
 	}
+	print("App lists populated!\n");
 
 	fadeOut();
 	debugfnt = fontBlack;

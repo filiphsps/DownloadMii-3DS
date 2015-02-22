@@ -8,17 +8,27 @@ Getting remote API version
 
 Getting DownloadMii version...
 
+Populating app lists...
+
+updateAppList(1): Started...
+
 httpcOpenContext returned 0x00000000
 
 Download Size2: 15439, Size: 15439
 
+updateAppList(2): Started...
+
 httpcOpenContext returned 0x00000000
 
 Download Size2: 15439, Size: 15439
 
+updateAppList(3): Started...
+
 httpcOpenContext returned 0x00000000
 
-Download Size2: 1985, Size: 1985
+Download Size2: 1868, Size: 1868
+
+updateAppList(4): Started...
 
 httpcOpenContext returned 0x00000000
 
@@ -28,9 +38,13 @@ error: Faulty json "Error: Not implemented!"
 
 updateAppList(4): Error
 
+updateAppList(5): Started...
+
 httpcOpenContext returned 0x00000000
 
 Download Size2: 274, Size: 274
+
+App lists populated!
 
 httpcOpenContext returned 0x00000000
 
@@ -46,67 +60,7 @@ Banner configured!
 
 Everything configured, entering main loop!
 
-Touch: 236 32
-
-Button(0) Pressed.
-
 Input, 1
 
 Input, 2
-
-Installing App..
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 64, Size: 64
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 2402744, Size: 2402744
-
-3dsx downloaded
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 64, Size: 64
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 14016, Size: 14016
-
-smdh downloaded
-
-3dsx saved
-
-smdh saved
-
-VERSION saved
-
-No appdata found
-
-Done Installing app, updating list...
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 15439, Size: 15439
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 15439, Size: 15439
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 1985, Size: 1985
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 23, Size: 23
-
-error: Faulty json "Error: Not implemented!"
-
-updateAppList(4): Error
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 274, Size: 274
 
