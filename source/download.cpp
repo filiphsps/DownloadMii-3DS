@@ -34,8 +34,8 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 	Result result;
 
 	result = httpcOpenContext(&context, url, 0);
-	print("httpcOpenContext returned 0x%08X\n", (int)result);
 	if (result != 0) {
+		print("httpcOpenContext returned 0x%08X\n", (int)result);
 		httpcCloseContext(&context);
 		print("error: httpcOpenContext\n");
 		return -3;
@@ -71,7 +71,6 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 		httpcCloseContext(&context);
 		return -200;
 	}
-
 	result = httpcGetDownloadSizeState(&context, NULL, size);
 	if (result != 0) {
 		httpcCloseContext(&context);
@@ -95,7 +94,7 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 		print("error: httpcDownloadData\n");
 		return -1;
 	}
-	print("Download Size2: %d, Size: %d\n",(int)size2, (int)*size);
+	print("Download size: %d\n", (int)*size);
 	httpcCloseContext(&context);
 	return 0;
 }

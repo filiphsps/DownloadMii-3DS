@@ -12,27 +12,19 @@ Populating app lists...
 
 updateAppList(1): Started...
 
-httpcOpenContext returned 0x00000000
-
-Download Size2: 15440, Size: 15440
+Download size: 15442
 
 updateAppList(2): Started...
 
-httpcOpenContext returned 0x00000000
-
-Download Size2: 15440, Size: 15440
+Download size: 15442
 
 updateAppList(3): Started...
 
-httpcOpenContext returned 0x00000000
-
-Download Size2: 1868, Size: 1868
+Download size: 2167
 
 updateAppList(4): Started...
 
-httpcOpenContext returned 0x00000000
-
-Download Size2: 23, Size: 23
+Download size: 23
 
 error: Faulty json "Error: Not implemented!"
 
@@ -40,13 +32,50 @@ updateAppList(4): Error
 
 updateAppList(5): Started...
 
-httpcOpenContext returned 0x00000000
-
-Download Size2: 274, Size: 274
+Download size: 274
 
 App lists populated!
 
-httpcOpenContext returned 0x00000000
+Download size: 10
 
-Download Size2: 8, Size: 8
+Download size: 1156
+
+Installing app "downloadmii"..
+
+Downloading 3dsx file...
+
+Download size: 64
+
+3dsx: http://dmii.blob.core.windows.net/3dsx/SOv35TpQ2bNhcEi7ajyA4ZPL
+
+Download size: 113580
+
+3dsx downloaded!
+
+Downloading smdh file...
+
+Download size: 64
+
+Download size: 14016
+
+smdh downloaded!
+
+Saving 3dsx file...
+
+3dsx saved
+
+Saving smdh file...
+
+smdh saved
+
+VERSION saved
+
+No appdata found
+
+App installation completed!
+
+settings: applying changes...
+ Done
+settings: saving file...
+ Done
 

@@ -31,11 +31,8 @@ void ProgressBarRender(u32 dummy) {
 Result installApp(Application_s app){
 	if (!settings.internetConnection)
 		return -1;
-	//ToDo
-	print("Installing App..\n");
-	/*Handle threadHandle;
-	u32 *stack = (u32*)malloc(0x4000);
-	svcCreateThread(&threadHandle, ProgressBarRender, 0, &stack[0x4000 >> 2], 0, 3);*/
+	print("Installing app \"%s\"..\n", app.name.c_str());
+
 	Result r;
 	char buffer[1024];
 	u32 size[2];
@@ -46,15 +43,19 @@ Result installApp(Application_s app){
 	mkdir(buffer, 0777);
 
 	/* Download Files */
+	print("Downloading 3dsx file...\n");
 	char* file3dsx;
 	r = downloadFile((char*)app._3dsx.c_str(), &file3dsx, &size[0]);
 	temp = file3dsx;
 	replace(temp, "https", "http");
+	print("3dsx: %s\n", temp.c_str());
 	r = downloadFile((char*)temp.c_str(), &file3dsx, &size[0]);
 	if (r != 0) {
 		return -1;
 	}
-	print("3dsx downloaded\n");
+	print("3dsx downloaded!\n");
+
+	print("Downloading smdh file...\n");
 	char* filesmdh;
 	r = downloadFile((char*)app.smdh.c_str(), &filesmdh, &size[1]);
 	temp = filesmdh;
@@ -63,19 +64,22 @@ Result installApp(Application_s app){
 	if (r != 0) {
 		return -1;
 	}
-	print("smdh downloaded\n");
+	print("smdh downloaded!\n");
 
 
 	/* Save files to the SD-Card */
 
-	//Start with the elf file
+	//Start with the 3dsx file
+	print("Saving 3dsx file...\n");
 	snprintf(buffer,256, "/%s/%s/%s.3dsx", HBPATH, app.name.c_str(), app.name.c_str());
+	remove(buffer);
 	fp = fopen(buffer, "w+");
 	fwrite(file3dsx, sizeof(file3dsx[0]), size[0], fp);
 	fclose(fp);
 	print("3dsx saved\n");
 
 	//Continue with the smdh file
+	print("Saving smdh file...\n");
 	snprintf(buffer,256, "/%s/%s/%s.smdh", HBPATH, app.name.c_str(), app.name.c_str());
 	fp = fopen(buffer, "w+");
 	fwrite(filesmdh, sizeof(filesmdh[0]), size[1], fp);
@@ -100,8 +104,9 @@ Result installApp(Application_s app){
 	else {
 		print("No appdata found\n");
 	}
-	print("Done Installing app, updating list...\n");
-	r = doListUpdate();
+	print("App installation completed!\n");
+	if(app.name != "downloadmii")
+		r = doListUpdate();
 	free(file3dsx);
 	free(filesmdh);
 	return 0;

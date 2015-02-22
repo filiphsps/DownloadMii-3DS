@@ -246,7 +246,7 @@ Result checkUpdate(char* currentVersion) {
 					string err = picojson::parse(v, json, json + strlen(json));
 					picojson::array list = v.get("DownloadMii").get<picojson::array>();
 					for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
-						char buf[100];
+						char buf[256];
 						snprintf(buf,99,"http://www.downloadmii.com/newApi/dl/3dsx/%s", (*iter).get("guid").get<string>().c_str());
 						dmii._3dsx = buf;
 						snprintf(buf, 99, "http://www.downloadmii.com/newApi/dl/smdh/%s", (*iter).get("guid").get<string>().c_str());
