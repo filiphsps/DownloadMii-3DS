@@ -26,15 +26,14 @@ void UpdateInput(Input_s* input){
 		hidTouchRead(&tp);
 		input->touchX = tp.px;
 		input->touchY = tp.py;
-		print("Touch: %d %d\n", tp.px, tp.py);
 		TC--;
 	}
 	checkVButtonTouch(input);
 	if(kDown){
 		x++;
-		char buffer[100];
-		sprintf(buffer, "Input, %d\n", x);
-		print(buffer);
+		//char buffer[100];
+		//sprintf(buffer, "Input, %d\n", x);
+		//print(buffer);
 		if(kDown & KEY_A){
 			input->A = true;
 		} if(kDown & KEY_B){
@@ -88,7 +87,7 @@ void checkVButtonTouch(Input_s* input){
 	for(auto &but : vButtons){
 		if((input->touchX >= but.x && input->touchX <= but.x2) && (input->touchY >= but.y && input->touchY <= but.y2)){
 			but.pressed = true;
-			print("Button(%d) Pressed.\n", but.ID);
+			//print("Button(%d) Pressed.\n", but.ID);
 		}
 		else{
 			but.pressed = false;

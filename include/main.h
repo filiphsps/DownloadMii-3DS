@@ -11,6 +11,7 @@
 #define LOG_PATH "sdmc:/DownloadMii.log"
 #define DEFAULT_SETTINGS_PATH "sdmc:/3ds/downloadmii/settings.ini"
 #define DEBUG
+//#define FPS_DEBUG
 #define _VERSION_ "1.0.0.0"
 
 extern int currentMenu;

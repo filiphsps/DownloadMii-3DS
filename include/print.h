@@ -16,8 +16,8 @@ CONTRIBUTORS:
 extern char superStr[];
 
 s32 printInit(const char *fn);
+void printExit(void);
 #ifdef DEBUG
-	void printExit(void);
 	void print(const char *text, ...);
 
 #else

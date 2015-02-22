@@ -49,7 +49,7 @@ Category_s currentCat;
 #ifdef FPS_DEBUG
 static int CalcFPS(); //ToDo: move to utils.cpp
 #endif
-char* getVersion();
+string getVersion();
 char* getApiVersion();
 
 int main(int argc, char** argv)
@@ -125,7 +125,7 @@ int main(int argc, char** argv)
 	int lastMenu = -1;
 	char buffer[256];
 	if (settings.internetConnection) {
-		r = checkUpdate(getVersion()); //ToDo: use settings.ini
+		r = checkUpdate((char*)getVersion().c_str()); //ToDo: use settings.ini
 		if (r == 0) goto EXIT;
 	}
 	setStoreFrontImg("http://www.downloadmii.com/banner.bin");
@@ -324,7 +324,7 @@ EXIT:
 	return 0;
 }
 
-char* getVersion() {
+string getVersion() {
 	char* filePath = (char*)malloc(256);
 	snprintf(filePath, 256, "/%s/downloadmii/VERSION", HBPATH);
 	char* fileContent;

@@ -14,13 +14,13 @@ updateAppList(1): Started...
 
 httpcOpenContext returned 0x00000000
 
-Download Size2: 15439, Size: 15439
+Download Size2: 15440, Size: 15440
 
 updateAppList(2): Started...
 
 httpcOpenContext returned 0x00000000
 
-Download Size2: 15439, Size: 15439
+Download Size2: 15440, Size: 15440
 
 updateAppList(3): Started...
 
@@ -48,19 +48,5 @@ App lists populated!
 
 httpcOpenContext returned 0x00000000
 
-Download Size2: 7, Size: 7
-
-Configuring banner...
-
-httpcOpenContext returned 0x00000000
-
-Download Size2: 230400, Size: 230400
-
-Banner configured!
-
-Everything configured, entering main loop!
-
-Input, 1
-
-Input, 2
+Download Size2: 8, Size: 8
 
