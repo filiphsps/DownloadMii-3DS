@@ -38,7 +38,7 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 	downloadFile(jsonURL, &jsonsource, &size);
 	if (jsonsource == NULL) return -1; //Null check
 	if ((jsonsource[0] != '{' || jsonsource[9] == ']')) {
-		print("%s\n", jsonsource);
+		print("error: Faulty json \"%s\"\n", jsonsource);
 		return -1;
 	}
 
@@ -47,14 +47,13 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
     char* json = (char*) malloc(strlen(jsonsource)+1);
     strcpy(json, jsonsource);
     string err = picojson::parse(v, json, json + strlen(json));
-	print(err.c_str());
     picojson::array list = v.get("Apps").get<picojson::array>();
 	
 	Application_s app;
 	string ap1;
 	string ap2;
     for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
-		print("%s ",app.name.c_str());
+		//print("%s ",app.name.c_str());
 		app.GUID = (*iter).get("guid").get<string>();
 		app.name = (*iter).get("name").get<string>();
 		app.publisher = (*iter).get("publisher").get<string>();
@@ -105,7 +104,6 @@ Result updateAppList(vector<Application_s> *AppList, char* jsonURL) {
 		}
 		tempV.push_back(app);
     }
-	print("\n");
 	*AppList = tempV;
 	if(!AppList->empty()) // NULL/Empty check
 		return 0;
@@ -131,17 +129,15 @@ Result updateCategories(vector<Category_s> *CatList, char* jsonURL) {
 	char* json = (char*)malloc(strlen(jsonsource) + 1);
 	strcpy(json, jsonsource);
 	string err = picojson::parse(v, json, json + strlen(json));
-	//print(err.c_str());
 	picojson::array list = v.get("Categories").get<picojson::array>();
 
 	Category_s cat;
 	for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
-		print("%s ", cat.name.c_str());
+		//print("%s ", cat.name.c_str());
 		cat.name = (*iter).get("name").get<string>();
 		cat.ID = (int)(*iter).get("categoryId").get<double>();
 		tempV.push_back(cat);
 	}
-	print("\n");
 	*CatList = tempV;
 	if (!CatList->empty()) // NULL/Empty check
 		return 0;
@@ -243,7 +239,6 @@ Result checkUpdate(char* currentVersion) {
 					char* json = (char*)malloc(strlen(jsonsource) + 1);
 					strcpy(json, jsonsource);
 					string err = picojson::parse(v, json, json + strlen(json));
-					print(err.c_str());
 					picojson::array list = v.get("DownloadMii").get<picojson::array>();
 					for (picojson::array::iterator iter = list.begin(); iter != list.end(); iter++) {
 						char buf[100];
@@ -266,9 +261,6 @@ Result checkUpdate(char* currentVersion) {
 				screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);
 				screen.screenBottom = gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, NULL, NULL);
 				renderUpdate(currentVersion, remoteVersion);
-#ifdef DEBUG
-				renderDebug();
-#endif
 				gfxFlushBuffers();
 				gfxSwapBuffers();
 				gspWaitForVBlank();

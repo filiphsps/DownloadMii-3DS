@@ -17,11 +17,7 @@ using namespace std;
 //extern char __BUILD_NUMBER;
 
 void doSplash(){
-	char buffer[256];
-	snprintf(buffer,256, "DownloadMii Build: %s\n", __DATE__);
-	//Loading text
-	print(buffer);
-	print("Loading...\n");
+	print("DownloadMii Build Date: %s\n", __DATE__);
 	for(int x = 0;x <= 1; x++){
 		screen.screenTopLeft = gfxGetFramebuffer(GFX_TOP, GFX_LEFT, NULL, NULL); 
 		screen.screenTopRight = gfxGetFramebuffer(GFX_TOP, GFX_RIGHT, NULL, NULL);

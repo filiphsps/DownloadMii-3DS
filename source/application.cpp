@@ -190,7 +190,7 @@ Result updateInstalledList(vector<Application_s> &list) {
 			{
 				snprintf(tempPath,1024, "%s", fullPath);
 				if (tempPath[5] != '.') {
-					print("%s\n", tempPath);
+					//print("%s\n", tempPath);
 					char* tp = tempPath;
 					tp += 5;
 					tempApp.name = tp;

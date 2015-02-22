@@ -412,16 +412,16 @@ void setStoreFrontImg(char* url){
 	if (settings.internetConnection) {
 		//w: 400
 		//h: 192
-		print("Downloading banner...\n");
+		print("Configuring banner...\n");
 		char* temp;
 		u32 size;
 		downloadFile(url, &temp, &size);
 		cimg = (u8*)temp;
-		print("Banner downloaded!\n");
+		print("Banner configured!\n");
 	}
 	if((char)cimg[0] == 'e' || !settings.internetConnection){
 		//Set banner to offline banner
-		printf("Failed to dowload and set banner, defaulting to offline one\n");
+		printf("Failed to dowload or/and configure the banner, defaulting to offline one\n");
 		cimg = (u8*) offline_bin;
 	}
 }
@@ -435,7 +435,7 @@ void drawTopBar(){
 	gfxDrawText(GFX_TOP, GFX_LEFT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H / 2) + fontWhiteHeader.height)), 13);
 	gfxDrawText(GFX_TOP, GFX_RIGHT, &fontWhiteHeader, buffer, 240 - (((SECONDARY_NAVBAR_H / 2) + fontWhiteHeader.height)), 13);
 	
-#ifdef DEBUG
+#ifdef FPS_DEBUG
 	snprintf(buffer, 256, "%s(%s), FPS: %d", APPLICATION_NAME, settings.version.c_str(), FPS);
 #else
 	snprintf(buffer, 256, "%s(%s)", APPLICATION_NAME, settings.version.c_str());

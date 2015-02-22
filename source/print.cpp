@@ -16,6 +16,7 @@ static FILE *fdebug = NULL;
 s32 printInit(const char *fileName) {
 #ifdef DEBUG
 	started = 0;
+	remove(fileName);
 	fdebug = fopen(fileName, "wb");
 	if (fdebug) started = 1;
 	return started;

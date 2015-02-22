@@ -28,7 +28,6 @@
 #include "dataHandler.h"
 #include "settings.h"
 #include "music.h"
-#include "md5.h"
 
 using namespace std;
 
@@ -37,7 +36,7 @@ char superStr[9192];
 char* jsonSS;
 
 u64 tickOld = 0;
-int fps = 0; // int instead of u32/s32 so gcc doesn't complain about different signedness.
+int fps = 0;
 int cfps;
 
 int currentMenu = -1;
@@ -47,7 +46,7 @@ int currentLoop = 0;
 Application_s currentApp;
 Category_s currentCat;
 
-#ifdef DEBUG
+#ifdef FPS_DEBUG
 static int CalcFPS(); //ToDo: move to utils.cpp
 #endif
 char* getVersion();
@@ -62,7 +61,7 @@ int main(int argc, char** argv)
 	gfxInitDefault();
 	fsInit();
 	sdmcInit();
-	printInit("sdmc:/DownloadMii.log");
+	printInit(LOG_PATH);
 	guiInit();
 	settingsInit(DEFAULT_SETTINGS_PATH); //broken 
 	gfxSet3D(false);
@@ -70,16 +69,16 @@ int main(int argc, char** argv)
 
 	doSplash(); //Splash Screen
 
-	print("networkInit: started...\n");
+	print("Configuring network...\n");
 	Result r = networkInit();
 	if(r != 0){
 		settings.internetConnection = false;
-		print("networkInit: Error!\n");
+		print("A network connection is NOT active!\n");
 	}
 	else
 	{
 		settings.internetConnection = true;
-		print("Network connection is active!\n");
+		print("A network connection is active!\n");
 	}
 
 	u8 isN3DS=0;
@@ -101,16 +100,11 @@ int main(int argc, char** argv)
 		aptCloseSession();
 	}
 
-	print("Getting remote api version\n");
+	print("Getting remote API version\n");
 	settings.apiVersion = "1.2.0.0"/*getApiVersion()*/; //Temporary
-	print(settings.apiVersion.c_str());
-	print("\n");
 	print("Getting DownloadMii version...\n");
 	settings.version = getVersion();
 
-#ifdef DEBUG
-	renderDebugLog();
-#endif
 	if (settings.internetConnection) {
 		r = doListUpdate();
 		if (r != 0) {
@@ -133,12 +127,12 @@ int main(int argc, char** argv)
 		if (r == 0) goto EXIT;
 	}
 	setStoreFrontImg("http://www.downloadmii.com/banner.bin");
-	print("All init done, entering main loop!\n");
+	print("Everything configured, entering main loop!\n");
 	while (aptMainLoop())
 	{
 	loopStart:
 		currentLoop++;
-#ifdef DEBUG
+#ifdef FPS_DEBUG
 		FPS = CalcFPS();
 #endif
 		if (currentLoop > 2 && !settings.acceptedBeta) {
@@ -354,7 +348,7 @@ char* getApiVersion() {
 	return file;
 }
 
-#ifdef DEBUG
+#ifdef FPS_DEBUG
 static int CalcFPS(){
 	if (svcGetSystemTick() >= tickOld + 268123480)
 	{

@@ -8,8 +8,9 @@
 #define SECONDS_IN_HOUR 3600 
 #define SECONDS_IN_MINUTE 60 
 #define HBPATH "3ds"
-#define DEBUG
+#define LOG_PATH "sdmc:/DownloadMii.log"
 #define DEFAULT_SETTINGS_PATH "sdmc:/3ds/downloadmii/settings.ini"
+#define DEBUG
 #define _VERSION_ "1.0.0.0"
 
 extern int currentMenu;

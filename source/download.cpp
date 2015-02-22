@@ -16,15 +16,6 @@ int runCount;
 
 Result networkInit(){
 	httpcInit();
-	/*u32 out = 0;
-	
-	Handle h = acInit();
-	ACU_GetWifiStatus(&h, &out);
-	if (out != 0) {
-		print("WIFI(Error) Statuscode: %d\n", (int)out);
-		return -1;
-	}
-	acExit();*/
 	Result result = httpcOpenContext(&context, "http://www.downloadmii.com", 0); //Test internet connection
 	if (result != 0) {
 		httpcCloseContext(&context);
@@ -43,7 +34,7 @@ Result downloadFile(char* url, char** buffer, u32 *size) {
 	Result result;
 
 	result = httpcOpenContext(&context, url, 0);
-	print("httpcOpenContext returned %d\n", (int)result);
+	print("httpcOpenContext returned 0x%08X\n", (int)result);
 	if (result != 0) {
 		httpcCloseContext(&context);
 		print("error: httpcOpenContext\n");

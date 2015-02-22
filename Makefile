@@ -45,7 +45,7 @@ APP_AUTHOR      := filfat
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
-ARCH	:= 	-march=armv6k -mtune=mpcore -mfloat-abi=softfp
+ARCH	:= 	-march=armv6k -mtune=mpcore -mfloat-abi=hard
 
 CFLAGS	:= -Wunused -g -Wall -O3 -mword-relocations \
 			-fomit-frame-pointer -ffast-math \

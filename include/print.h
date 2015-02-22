@@ -1,3 +1,14 @@
+/*------------------------------------------------------
+DownloadMii
+© Filiph Sandström 2014-2015
+
+TODO:
+* Rename files to "debug.h" and "debug.cpp"
+
+CONTRIBUTORS:
+* Filiph Sandström (filfat) - Modified code
+* Joostin - Orginal code
+------------------------------------------------------*/
 #pragma once
 #include <3ds.h>
 #include "main.h"
