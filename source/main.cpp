@@ -52,7 +52,7 @@ static int CalcFPS(); //ToDo: move to utils.cpp
 string getVersion();
 char* getApiVersion();
 
-int main(int argc, char** argv)
+int main(int argc, char *argv[])
 {
 	//Initialize services
 	srvInit();
@@ -68,6 +68,11 @@ int main(int argc, char** argv)
     gspWaitForVBlank(); //wait to let the app register itself
 
 	doSplash(); //Splash Screen
+	if (argc > 0) {
+		for (int la = 0; la < argc; la++) {
+			print("Argument %d: \"%s\"\n", la, argv[la]);
+		}
+	}
 
 	print("Configuring network...\n");
 	Result r = networkInit();
@@ -331,8 +336,8 @@ string getVersion() {
 	int size;
 	Result r = loadfile(filePath, &size, &fileContent);
 	if (r != 0) {
-		print("Failed to get current app version, defaulting to 0.0.0.0\n");
-		return "0.0.0.0";
+		print("Failed to get current app version, defaulting to 1.0.5.10\n");
+		return "1.0.5.100";
 	}
 	return fileContent;
 }

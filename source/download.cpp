@@ -32,7 +32,7 @@ Result networkInit(){
 
 Result downloadFile(char* url, char** buffer, u32 *size) {
 	Result result;
-
+	print("Downloading file from %s\n", url);
 	result = httpcOpenContext(&context, url, 0);
 	if (result != 0) {
 		print("httpcOpenContext returned 0x%08X\n", (int)result);
