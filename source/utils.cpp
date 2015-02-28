@@ -4,6 +4,7 @@
 #include <malloc.h>
 #include <sys/stat.h>
 #include <iostream>
+#include <string>
 #include <sstream>
 #include <3ds.h>
 #include <zlib.h>
@@ -115,7 +116,7 @@ std::string insert_newlines(const std::string &in, const size_t every_n)
 	return out;
 }
 
-std::string get_suffix(int n)
+/*std::string get_suffix(int n)
 {
 	std::string num_s = to_string(n);
 	std::string return_s = "";
@@ -135,7 +136,7 @@ std::string get_suffix(int n)
 		}
 	}
 	return return_s;
-}
+}*/
 
 bool replace(std::string& str, const std::string& from, const std::string& to) {
 	size_t start_pos = str.find(from);

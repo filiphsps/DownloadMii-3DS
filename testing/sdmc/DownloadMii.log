@@ -12,5 +12,37 @@ Populating app lists...
 
 updateAppList(1): Started...
 
-Downloading file from http://www.downloadmii.com/newApi/apps
+Download size: 15442
+
+updateAppList(2): Started...
+
+Download size: 15442
+
+updateAppList(3): Started...
+
+Download size: 1968
+
+updateAppList(4): Started...
+
+Download size: 23
+
+error: Faulty json "Error: Not implemented!"
+
+updateAppList(4): Error
+
+updateAppList(5): Started...
+
+Download size: 274
+
+App lists populated!
+
+Download size: 8
+
+Configuring banner...
+
+Download size: 230400
+
+Banner configured!
+
+Everything configured, entering main loop!
 
