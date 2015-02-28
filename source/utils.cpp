@@ -9,7 +9,6 @@
 #include <zlib.h>
 #include "utils.h"
 #include "print.h"
-
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
@@ -114,6 +113,28 @@ std::string insert_newlines(const std::string &in, const size_t every_n)
 		}
 	}
 	return out;
+}
+
+std::string get_suffix(int n)
+{
+	std::string num_s = to_string(n);
+	std::string return_s = "";
+
+	switch (num_s.back())
+	{
+	case '1': return_s = "st"; break;
+	case '2': return_s = "nd"; break;
+	case '3': return_s = "rd"; break;
+	default: return_s = "th";
+	}
+	if (num_s.length() > 1) {
+		num_s.pop_back();
+		if (num_s.back() == '1')
+		{
+			return_s = "th";
+		}
+	}
+	return return_s;
 }
 
 bool replace(std::string& str, const std::string& from, const std::string& to) {

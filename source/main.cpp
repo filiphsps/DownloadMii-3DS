@@ -4,6 +4,7 @@
 
 		TODO(In this file):
 		* Clean-up
+		* Move input & GUI to separate thread(s).
 
 		CONTRIBUTORS(In this file):
 		* Filiph Sandström (filfat)

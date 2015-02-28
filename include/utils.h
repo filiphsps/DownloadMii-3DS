@@ -19,6 +19,8 @@ static inline void unicodeToChar(char* dst, u16* src, int max)
 	*dst = 0x00;
 }
 
+
+std::string get_suffix(int n);
 std::string insert_newlines(const std::string &in, const size_t every_n);
 
 Result loadfile(char *file, int *size, char** buffer);
