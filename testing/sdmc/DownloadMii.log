@@ -1,4 +1,4 @@
-DownloadMii Build Date: Feb 22 2015
+DownloadMii Build Date: Mar  6 2015
 
 Configuring network...
 
@@ -12,37 +12,13 @@ Populating app lists...
 
 updateAppList(1): Started...
 
-Download size: 15442
+Downloading file from http://www.downloadmii.com/newApi/apps
+
+error: httpcGetResponseStatusCode
+
+updateAppList(1): Error
 
 updateAppList(2): Started...
 
-Download size: 15442
-
-updateAppList(3): Started...
-
-Download size: 1968
-
-updateAppList(4): Started...
-
-Download size: 23
-
-error: Faulty json "Error: Not implemented!"
-
-updateAppList(4): Error
-
-updateAppList(5): Started...
-
-Download size: 274
-
-App lists populated!
-
-Download size: 8
-
-Configuring banner...
-
-Download size: 230400
-
-Banner configured!
-
-Everything configured, entering main loop!
+Downloading file from http://www.downloadmii.com/newApi/apps?sort=downloads
 

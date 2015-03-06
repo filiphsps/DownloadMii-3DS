@@ -13,6 +13,7 @@
 #define DEBUG
 //#define FPS_DEBUG
 #define _VERSION_ "1.0.0.0"
+#define STACKSIZE (4 * 1024)
 
 extern int currentMenu;
 extern Input_s Input;

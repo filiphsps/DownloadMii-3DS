@@ -29,8 +29,10 @@
 #include "dataHandler.h"
 #include "settings.h"
 #include "music.h"
-
 using namespace std;
+
+Handle GUIthreadHandle, GUIthreadReq;
+volatile bool threadExit = false;
 
 Input_s Input;
 char superStr[9192];
@@ -53,7 +55,16 @@ static int CalcFPS(); //ToDo: move to utils.cpp
 string getVersion();
 char* getApiVersion();
 
-int main(int argc, char *argv[])
+void GUIthread(void *arg) {
+	while (1) {
+		svcWaitSynchronization(GUIthreadReq, U64_MAX);
+		svcClearEvent(GUIthreadReq);
+		//TODO: Add GUI rendering code here
+		if (threadExit) svcExitThread();
+	}
+}
+
+int main(int argc, char** argv)
 {
 	//Initialize services
 	srvInit();
@@ -67,6 +78,12 @@ int main(int argc, char *argv[])
 	settingsInit(DEFAULT_SETTINGS_PATH); //broken 
 	gfxSet3D(false);
     gspWaitForVBlank(); //wait to let the app register itself
+
+	svcCreateEvent(&GUIthreadReq, 0);
+	u32 *GUIthreadStack = (u32*)memalign(32, STACKSIZE);
+	Result ret = svcCreateThread(&GUIthreadHandle, GUIthread, 0, &GUIthreadStack[STACKSIZE / 4], 0x3f, 0);
+	if(ret != 0)
+		print("THREAD ERROR: %x\n", ret);
 
 	doSplash(); //Splash Screen
 	if (argc > 0) {
@@ -136,10 +153,12 @@ int main(int argc, char *argv[])
 	}
 	setStoreFrontImg("http://www.downloadmii.com/banner.bin");
 	print("Everything configured, entering main loop!\n");
+
 	while (aptMainLoop())
 	{
 	loopStart:
 		currentLoop++;
+		svcSignalEvent(GUIthreadReq);
 #ifdef FPS_DEBUG
 		FPS = CalcFPS();
 #endif
@@ -318,7 +337,15 @@ int main(int argc, char *argv[])
 		}
 	}
 	//Exit services
+
 EXIT:
+
+	threadExit = true;
+	svcSignalEvent(GUIthreadReq);
+	svcSleepThread(10000000ULL);
+	svcCloseHandle(GUIthreadReq);
+	svcCloseHandle(GUIthreadHandle);
+	free(GUIthreadStack);
 	settingsExit(DEFAULT_SETTINGS_PATH);
 	printExit();
 	fsExit();
