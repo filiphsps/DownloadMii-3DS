@@ -14,105 +14,11 @@ updateAppList(1): Started...
 
 Downloading file from http://www.downloadmii.com/newApi/apps
 
-Download size: 15012
+error: httpcGetResponseStatusCode
+
+updateAppList(1): Error
 
 updateAppList(2): Started...
 
 Downloading file from http://www.downloadmii.com/newApi/apps?sort=downloads
-
-Download size: 15012
-
-updateAppList(3): Started...
-
-Downloading file from http://www.downloadmii.com/newApi/apps?category=Games&sort=downloads
-
-Download size: 15012
-
-updateAppList(4): Started...
-
-Downloading file from http://www.downloadmii.com/api/apps/StaffPicks/
-
-Download size: 23
-
-error: Faulty json "Error: Not implemented!"
-
-updateAppList(4): Error
-
-updateAppList(5): Started...
-
-Downloading file from http://www.downloadmii.com/newApi/categories/
-
-Download size: 274
-
-App lists populated!
-
-Downloading file from http://www.downloadmii.com/newApi/dmii/version
-
-Download size: 8
-
-Configuring banner...
-
-Downloading file from http://www.downloadmii.com/banner.bin
-
-Download size: 230400
-
-Banner configured!
-
-Everything configured, entering main loop!
-
-Installing app "Playcoin Setter"..
-
-Downloading 3dsx file...
-
-Downloading file from http://www.downloadmii.com/newApi/dl/3dsx/6CE9F6B3-0B83-4F67-AB9E-53C0AC2DA03E
-
-error: httpcGetResponseStatusCode
-
-3dsx: 8Npÿ
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Downloading file from 8Npÿ
-
-error: httpcBeginRequest
-
-Error, download function stuck in loop! recovering...
 
