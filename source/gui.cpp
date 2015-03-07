@@ -28,6 +28,8 @@ Screen_s screen;
 navBar_s navbar;
 progressBar_s progressbar;
 
+
+bool shouldPauseGUIThread = true;
 extern char superStr[];
 font_s debugfnt = fontWhite;
 char buffer[256];
@@ -65,10 +67,6 @@ void setAppList(vector<Application_s> AppList){
 }
 
 void draw() {
-	/* DEBUG */
-#ifdef DEBUG
-	renderDebug();
-#endif
 
 	/* Buffers */
 	gfxFlushBuffers();

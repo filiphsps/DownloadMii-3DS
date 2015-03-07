@@ -70,7 +70,7 @@ extern int VSPX;
 extern int VSTY;
 extern int VSTX;
 
-
+extern bool shouldPauseGUIThread;
 extern int FPS;
 
 void guiInit();

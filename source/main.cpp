@@ -59,7 +59,12 @@ void GUIthread(void *arg) {
 	while (1) {
 		svcWaitSynchronization(GUIthreadReq, U64_MAX);
 		svcClearEvent(GUIthreadReq);
-		//TODO: Add GUI rendering code here
+		if (!shouldPauseGUIThread) {
+			//TODO: Fix a few glitches
+			gspWaitForVBlank();
+			renderGUI();
+			draw();
+		}
 		if (threadExit) svcExitThread();
 	}
 }
@@ -152,6 +157,7 @@ int main(int argc, char** argv)
 		if (r == 0) goto EXIT;
 	}
 	setStoreFrontImg("http://www.downloadmii.com/banner.bin");
+	shouldPauseGUIThread = false;
 	print("Everything configured, entering main loop!\n");
 
 	while (aptMainLoop())
@@ -181,15 +187,15 @@ int main(int argc, char** argv)
 				} else if((Input.R && (scene - 1 >= -1)) && settings.internetConnection){
 					scene--;
 				} else if(hidKeysHeld() & KEY_DOWN){
-					if(!(VSPY + 10 > VSTY - 240))
-						VSPY += 10;
+					if(!(VSPY + 5 > VSTY - 240))
+						VSPY += 5;
 					else{
 						VSPY = VSTY - 240;
 						//ToDo: Indicator that we have hit the end of the list
 					}
 				} else if(hidKeysHeld() & KEY_UP){
-					if(!(VSPY - 10 <= 0))
-						VSPY -= 10;
+					if(!(VSPY - 5 <= 0))
+						VSPY -= 5;
 					else{
 						VSPY = 0;
 						//ToDo: Indicator that we have hit the start of the list
@@ -314,8 +320,7 @@ int main(int argc, char** argv)
 			screen.topUpdated = true;
 			screen.bottomUpdated = true;
 		}
-		gspWaitForVBlank();
-		renderGUI();
+		
 		if (currentLoop > 2 && !settings.acceptedBeta) {
 			guiPopup("Beta Software!", "DownloadMii is early stage software!\nBy using it you agree to terms on\nwww.downloadmii.com", "I Agree!", NULL, screen.screenBottom);
 			
@@ -327,7 +332,6 @@ int main(int argc, char** argv)
 			}
 			clearVButtons();
 		}
-		draw();
 
 		/* In case of start, exit the app */
 		if (Input.Start){
