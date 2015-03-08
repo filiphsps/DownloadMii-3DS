@@ -48,3 +48,23 @@ Download size: 274
 
 App lists populated!
 
+Failed to get current app version, defaulting to 1.0.5.10
+
+Downloading file from http://www.downloadmii.com/newApi/dmii/version
+
+error: httpcBeginRequest
+
+Downloading file from http://www.downloadmii.com/newApi/dmii/version
+
+Download size: 8
+
+Configuring banner...
+
+Downloading file from http://www.downloadmii.com/banner.bin
+
+Download size: 230400
+
+Banner configured!
+
+Everything configured, entering main loop!
+
