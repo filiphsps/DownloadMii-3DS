@@ -366,7 +366,7 @@ string getVersion() {
 	Result r = loadfile(filePath, &size, &fileContent);
 	if (r != 0) {
 		print("Failed to get current app version, defaulting to 1.0.5.10\n");
-		return "1.0.5.100";
+		return "1.0.5.10";
 	}
 	return fileContent;
 }
