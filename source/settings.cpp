@@ -20,6 +20,11 @@ char* defaultSettings = ";DownloadMii Config File\n[DownloadMii]             ; M
 Settings_s settings;
 
 Result settingsInit(char* settingsPath){
+	char mkdbuffer[1024];
+	snprintf(mkdbuffer, 256, "/%s/%s", HBPATH, "downloadmii");
+	mkdir(HBPATH, 0777);
+	mkdir(mkdbuffer, 0777); //In case the "DownladMii" folder doesnt exist
+
 	//Load data
 	string data;
 	char *file_contents;

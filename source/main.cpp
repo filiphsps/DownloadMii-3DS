@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
+#include <sys/stat.h>
 #include <iostream>
 #include <sstream>
 #include <3ds.h>
@@ -75,7 +76,7 @@ int main(int argc, char** argv)
 	sdmcInit();
 	printInit(LOG_PATH);
 	guiInit();
-	settingsInit(DEFAULT_SETTINGS_PATH); //broken 
+	settingsInit(DEFAULT_SETTINGS_PATH);
 	gfxSet3D(false);
     gspWaitForVBlank(); //wait to let the app register itself
 

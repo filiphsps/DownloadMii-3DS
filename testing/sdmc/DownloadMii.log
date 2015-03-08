@@ -1,4 +1,4 @@
-DownloadMii Build Date: Mar  6 2015
+DownloadMii Build Date: Mar  8 2015
 
 Configuring network...
 
@@ -8,17 +8,43 @@ Getting remote API version
 
 Getting DownloadMii version...
 
+Failed to get current app version, defaulting to 1.0.5.10
+
 Populating app lists...
 
 updateAppList(1): Started...
 
 Downloading file from http://www.downloadmii.com/newApi/apps
 
-error: httpcGetResponseStatusCode
-
-updateAppList(1): Error
+Download size: 15012
 
 updateAppList(2): Started...
 
 Downloading file from http://www.downloadmii.com/newApi/apps?sort=downloads
+
+Download size: 15012
+
+updateAppList(3): Started...
+
+Downloading file from http://www.downloadmii.com/newApi/apps?category=Games&sort=downloads
+
+Download size: 15012
+
+updateAppList(4): Started...
+
+Downloading file from http://www.downloadmii.com/api/apps/StaffPicks/
+
+Download size: 23
+
+error: Faulty json "Error: Not implemented!"
+
+updateAppList(4): Error
+
+updateAppList(5): Started...
+
+Downloading file from http://www.downloadmii.com/newApi/categories/
+
+Download size: 274
+
+App lists populated!
 
