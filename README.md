@@ -3,13 +3,9 @@
 
 =========== 
 DownloadMii is an online marketplace for homebrew applications & games.
-It is currently in development and is expected to be released when the web interface and backend is fully developed.
 
 [Download](http://www.downloadmii.com/download),
 [Website](http://www.downloadmii.com), [GBATemp](http://gbatemp.net/threads/downloadmii-a-homebrew-online-marketplace-not-released.374759/)
-
-DISCLAIMER: This is unreleased software that may or may not be finished, in the event that it does get finished the developers leavs no responsibility of events that can occur during use of this software. DownloadMii is in no way associated with Nintendo. 
- 
 
 CREDITS
 ====
@@ -53,6 +49,4 @@ DOCUMENTATION
 Can be found under the "/doc" folder, assets can be found under the "/assests" folder.
 
 
-AS A WARNING: THIS APPLICATION IS NOT READY FOR TESTING YET! (11/18/2014)
-
-Copyright Filiph Sandström 2014-2015 Some rights reserved(check the license file).
+Copyright Filiph Sandström & Developers whom contributed 2014-2015 Some rights reserved(check the license file).
