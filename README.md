@@ -33,7 +33,7 @@ UPCOMING/PLANNED FEATURES
 
 ADDING/UPDATING APPLICATIONS
 ====
-Please visit [DownloadMii.com](http://www.downloadmii.com) and click the "USER CP" button.
+Please visit [DownloadMii.com](http://www.downloadmii.com) for more info.
 (We will automatically add GPL licensed apps, if you want your app removed please contact filfat[at]hotmail.se)
 
 DOCUMENTATION
